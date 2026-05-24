@@ -1,0 +1,244 @@
+/*   Biến màu sắc toàn cục (Dễ dàng thay đổi)   */
+:root {
+    --bg-color: #F8F5F0;        /* Nền be nhạt vintage */
+    --text-main: #4A3C31;       /* Chữ nâu đậm */
+    --text-muted: #736357;      /* Chữ nâu nhạt hơn */
+    --accent-color: #8B5A2B;    /* Nâu cam (dùng cho hover, nút bấm) */
+    --border-color: #E6DFD3;    /* Màu viền gạch ngang */
+}
+
+/* Reset CSS cơ bản   */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif; /* Font chữ dễ đọc cho nội dung */
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    background-image: url('../images/background.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif; /* Font chữ có chân, mang phong cách cổ điển */
+}
+
+/* HEADER STYLE */
+.header {
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo Box */
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.brand-name {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent-color);
+    font-style: italic;
+}
+
+/* Menu */
+.header-nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.header-nav a {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-main);
+    padding-bottom: 5px;
+}
+
+.header-nav a:hover, .header-nav a.active {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+/* Icons */
+.header-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.header-icons a {
+    font-size: 20px;
+    color: var(--text-main);
+}
+
+.header-icons a:hover {
+    color: var(--accent-color);
+}
+
+/* FOOTER STYLE  */
+.footer {
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+    padding-top: 60px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.footer-col .footer-title {
+    font-size: 20px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-col p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+/* Links footer */
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a, .contact-info li {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.footer-col ul li a:hover {
+    color: var(--accent-color);
+    padding-left: 5px; /* Hiệu ứng đẩy nhẹ khi hover */
+}
+
+/* Icons liên hệ */
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.contact-info i {
+    color: var(--accent-color);
+    margin-top: 4px;
+}
+
+/* Social icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 50%;
+    color: var(--text-main);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.social-icons a:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* Newsletter Form */
+.newsletter {
+    margin-top: 20px;
+}
+.newsletter-title {
+    font-weight: 500;
+    color: var(--text-main) !important;
+}
+.newsletter-form {
+    display: flex;
+    margin-top: 10px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-family: inherit;
+}
+
+.newsletter-form button {
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.newsletter-form button:hover {
+    background-color: #73461d;
+}
+
+/* Copyright Bottom */
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
