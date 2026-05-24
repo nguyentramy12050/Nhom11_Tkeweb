@@ -1,0 +1,193 @@
+.container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+}
+
+.page-header { text-align: left; margin-bottom: 40px; }
+.breadcrumb { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
+.breadcrumb a { color: var(--text-muted); }
+.page-title { font-size: 42px; color: var(--accent-color); margin-bottom: 10px; }
+.page-quote { font-size: 16px; font-style: italic; color: var(--text-muted); }
+
+.category-layout { 
+    display: flex; 
+    gap: 40px; 
+    align-items: flex-start; 
+    background-color: #FCF9F2; 
+    padding: 40px 30px; 
+    border-radius: 16px; 
+    box-shadow: 0 5px 20px rgba(74, 60, 49, 0.08);
+}
+
+/* Sidebar */
+.sidebar-filter {
+    width: 25%;
+    padding: 25px;
+}
+.filter-group { margin-bottom: 30px; }
+.filter-title {
+    font-size: 16px; font-weight: 600; margin-bottom: 15px;
+    letter-spacing: 1px; display: flex; justify-content: space-between;
+}
+.category-list li { margin-bottom: 12px; font-size: 15px; display: flex; justify-content: space-between; }
+.category-list li a:hover, .category-list li a.active-cat { color: var(--accent-color); font-weight: 600; }
+.count { background-color: #E6DFD3; padding: 2px 8px; border-radius: 12px; font-size: 12px; }
+
+.checkbox-group label { display: block; margin-bottom: 10px; font-size: 15px; cursor: pointer; }
+.checkbox-group input { margin-right: 8px; accent-color: var(--accent-color); }
+
+.year-inputs { display: flex; gap: 10px; }
+.year-inputs input { width: 50%; padding: 8px; border: 1px solid var(--border-color); background: transparent; border-radius: 4px; }
+
+.btn-apply-filter {
+    width: 100%; background-color: var(--accent-color); color: #fff; border: none;
+    padding: 12px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: 0.3s;
+}
+.btn-apply-filter:hover { background-color: #3e2f23; }
+
+/* Product Grid */
+.product-area { width: 75%; }
+/* --- Khu vực Top Bar --- */
+.product-top-bar { 
+    display: flex; 
+    justify-content: flex-end; /* Đẩy nút Sắp xếp sang phải vì đã xóa chữ bên trái */
+    align-items: center; 
+    margin-bottom: 30px; 
+}
+
+.sort-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-box label {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+/* --- Dropdown Sắp xếp xịn xò --- */
+.custom-select {
+    appearance: none; /* Xóa định dạng mặc định của trình duyệt */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Bo góc mềm mại */
+    padding: 10px 40px 10px 15px; /* Chừa không gian bên phải cho mũi tên */
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Đổ bóng nhẹ */
+    transition: all 0.3s ease;
+    
+    /* Tự vẽ mũi tên trỏ xuống màu nâu bằng mã SVG */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238B5A2B%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%; /* Đặt mũi tên ở góc phải */
+    background-size: 12px auto;
+}
+
+/* Hiệu ứng khi di chuột vào hoặc click vào */
+.custom-select:hover, .custom-select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(139, 90, 43, 0.15); /* Bóng màu nâu sáng lên */
+}
+.sort-box select { background: transparent; border: none; font-weight: 600; color: var(--text-main); font-size: 15px; cursor: pointer; outline: none; }
+
+/* Đổi từ 3 cột sang 4 cột */
+.book-grid { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); /* Sửa số 3 thành số 4 ở đây */
+    gap: 20px; 
+}
+
+/* HIỆU ỨNG HOVER OVERLAY  */
+.hover-overlay {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Lớp phủ màu đen mờ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    opacity: 0; /* Ẩn đi khi chưa di chuột */
+    transition: opacity 0.3s ease;
+}
+
+/* Khi di chuột vào ảnh (.book-img-wrapper), lớp phủ sẽ hiện ra */
+.book-img-wrapper:hover .hover-overlay {
+    opacity: 1; 
+}
+
+/* Định dạng cho 3 nút hình tròn */
+.action-btn {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: var(--text-main);
+    font-size: 16px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    transform: translateY(10px); /* Đẩy nút xuống một chút để tạo hiệu ứng nổi lên */
+}
+
+.book-img-wrapper:hover .action-btn {
+    transform: translateY(0); /* Nổi lên vị trí ban đầu khi hover */
+}
+
+.action-btn:hover {
+    background-color: #e6dfd3;
+}
+
+/* Riêng nút Giỏ hàng có màu nâu giống như ảnh bạn gửi */
+.action-btn.cart-btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+}
+
+.action-btn.cart-btn:hover {
+    background-color: #6d4622;
+}
+.book-card { background: transparent; transition: transform 0.3s ease; }
+.book-card:hover { transform: translateY(-5px); }
+.book-img-wrapper {
+    position: relative; width: 100%; aspect-ratio: 3/4;
+    background-color: #eae3d8; overflow: hidden; border-radius: 4px;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+}
+.book-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+.badge { position: absolute; bottom: 10px; right: 10px; padding: 4px 10px; font-size: 11px; font-weight: 600; border-radius: 4px; }
+.badge-new { background-color: #d4edda; color: #155724; }
+.badge-good { background-color: #e2e3e5; color: #383d41; }
+.badge-rare { background-color: #f8d7da; color: #721c24; }
+
+.book-info { padding: 15px 0; }
+.book-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; margin-bottom: 5px; }
+.book-author { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+.book-price-row { display: flex; justify-content: space-between; align-items: center; }
+.book-price { font-size: 18px; font-weight: 600; color: var(--accent-color); }
+
+/* Pagination */
+.pagination { display: flex; justify-content: center; gap: 10px; margin-top: 50px; }
+.page-num, .page-nav {
+    display: flex; justify-content: center; align-items: center;
+    width: 35px; height: 35px; border: 1px solid var(--border-color); background: #fff; color: var(--text-main); border-radius: 4px; font-weight: 500;
+}
+.page-num:hover, .page-nav:hover, .page-num.active {
+    background-color: var(--accent-color); color: #fff; border-color: var(--accent-color);
+}
+.page-dots { display: flex; align-items: end; padding-bottom: 5px; }

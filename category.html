@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh mục sách - Thư Hiên</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/category.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-container">
+        <div class="header-brand">
+          <div class="logo-box">
+            <img src="assets/images/logo.png" alt="Logo Thư Hiên" />
+          </div>
+          <h1 class="brand-name">Thư Hiên</h1>
+        </div>
+        <nav class="header-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="category.html" class="active">Danh mục</a></li>
+            <li><a href="buyback.html">Bán lại sách</a></li>
+            <li><a href="news.html">Tin tức</a></li>
+            <li><a href="about.html">Giới thiệu</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+          <a href="cart.html" title="Giỏ hàng"
+            ><i class="fas fa-shopping-cart"></i
+          ></a>
+          <a href="login.html" title="Tài khoản"><i class="far fa-user"></i></a>
+        </div>
+      </div>
+    </header>
+
+    <main class="category-page">
+      <div class="container-custom">
+        <div class="page-header">
+          <div class="breadcrumb">
+            <a href="index.html">Trang chủ</a> &rsaquo; Danh mục sách
+          </div>
+          <h2 class="page-title">Kho Tàng Tri Thức</h2>
+          <p class="page-quote">
+            "Mỗi cuốn sách là một thế giới, mỗi trang giấy là một hành trình
+            vượt thời gian."
+          </p>
+        </div>
+
+        <div class="category-layout">
+          <aside class="sidebar-filter">
+            <div class="filter-group">
+              <h3 class="filter-title">
+                THỂ LOẠI <i class="fas fa-caret-down"></i>
+              </h3>
+              <ul class="category-list">
+                <li>
+                  <a href="#">Văn học kinh điển</a> <span class="count">8</span>
+                </li>
+                <li>
+                  <a href="#" class="active-cat">Văn học Việt Nam xưa</a>
+                  <span class="count">8</span>
+                </li>
+                <li>
+                  <a href="#">Triết học & Tư tưởng</a>
+                  <span class="count">8</span>
+                </li>
+                <li>
+                  <a href="#">Lịch sử & Văn minh</a>
+                  <span class="count">8</span>
+                </li>
+                <li>
+                  <a href="#">Trinh thám kinh điển</a>
+                  <span class="count">8</span>
+                </li>
+                <li>
+                  <a href="#">Thiếu nhi & tuổi thơ</a>
+                  <span class="count">8</span>
+                </li>
+                <li>
+                  <a href="#">Ngoại văn tuyển chọn</a>
+                  <span class="count">8</span>
+                </li>
+                <li>
+                  <a href="#">Ấn bản đặc biệt</a> <span class="count">8</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="filter-group">
+              <h3 class="filter-title">TÌNH TRẠNG</h3>
+              <div class="checkbox-group">
+                <label><input type="checkbox" /> Sách hiếm</label>
+                <label
+                  ><input type="checkbox" checked /> Rất tốt (Like New)</label
+                >
+                <label><input type="checkbox" /> Cũ theo thời gian</label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <h3 class="filter-title">NĂM XUẤT BẢN</h3>
+              <div class="year-inputs">
+                <input type="number" placeholder="Từ" />
+                <input type="number" placeholder="Đến" />
+              </div>
+            </div>
+
+            <button class="btn-apply-filter">ÁP DỤNG BỘ LỌC</button>
+          </aside>
+
+          <div class="product-area">
+            <div class="product-top-bar">
+              <div class="sort-box">
+                <label>Sắp xếp:</label>
+                <select class="custom-select">
+                  <option>Mới nhất</option>
+                  <option>Giá: Thấp đến Cao</option>
+                  <option>Giá: Cao đến Thấp</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="book-grid" id="book-grid"></div>
+
+            <div class="pagination" id="pagination"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-title">Về Chúng Tôi</h3>
+          <p>
+            Tiệm Sách Thư Hiên - Nơi lưu giữ và chia sẻ những câu chuyện qua
+            từng trang sách cũ đầy ký ức.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Kết</h3>
+          <ul>
+            <li><a href="category.html">Danh mục sách</a></li>
+            <li><a href="buyback.html">Bán lại sách</a></li>
+            <li><a href="news.html">Tin tức</a></li>
+            <li><a href="about.html">Giới thiệu</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-title">Hỗ Trợ</h3>
+          <ul>
+            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#">Hướng dẫn mua hàng</a></li>
+            <li><a href="#">Phương thức thanh toán</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Hệ</h3>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Hoàn Kiếm, Hà Nội</li>
+            <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
+            <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
+          </ul>
+          <div class="newsletter">
+            <p class="newsletter-title">Nhận thêm thông tin</p>
+            <form action="#" class="newsletter-form">
+              <input type="email" placeholder="Email của bạn" required />
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Tiệm Sách Thư Hiên. Tất cả quyền được bảo lưu.</p>
+        <p>Được tạo với ❤️ từ niềm đam mê sách cũ</p>
+      </div>
+    </footer>
+
+    <script src="js/category.js"></script>
+  </body>
+</html>
