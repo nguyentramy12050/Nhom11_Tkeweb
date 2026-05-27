@@ -1,0 +1,210 @@
+/* ================= CSS TRANG CHI TIẾT SẢN PHẨM ================= */
+.detail-page {
+    /* Đã xóa padding: 40px 20px cũ ở đây */
+}
+
+/* 1. Class chứa - Giống hệt bên category.css */
+.container-custom {
+    max-width: 1200px; /* Giới hạn chiều rộng 1200px */
+    margin: 0 auto;    /* Căn giữa */
+    padding: 30px 20px 60px; /* Padding bên ngoài để lộ nền giấy */
+}
+
+/* 2. Class định dạng khung (Card) */
+.detail-container {
+    background-color: #FCF9F2; /* Nền be sáng của khung */
+    padding: 40px; /* Padding bên trong khung */
+    border-radius: 16px; /* Bo góc mượt mà */
+    box-shadow: 0 5px 20px rgba(74, 60, 49, 0.08); /* Đổ bóng nhẹ mầu nâu */
+}
+
+/* --- Khối Top: Chia 2 cột --- */
+.product-top-section {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+/* Cột Trái: Ảnh */
+.product-gallery {
+    width: 45%;
+}
+.main-image-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-image-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.badge-sale {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #ff3b30;
+    color: #fff;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+.zoom-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #fff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.thumbnail-list {
+    display: flex;
+    gap: 10px;
+}
+.thumb {
+    width: 23%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+.thumb:hover, .thumb.active-thumb {
+    opacity: 1;
+    border-color: #006450; /* Màu xanh lá mạ của nút mua */
+}
+
+/* Cột Phải: Thông tin */
+.product-info-box {
+    width: 55%;
+}
+.product-title {
+    font-size: 26px;
+    color: #0087a8; /* Màu xanh theo ảnh thiết kế */
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+.meta-info {
+    margin-bottom: 25px;
+}
+.meta-info li {
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+.meta-info strong {
+    font-style: normal;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.price-box {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+.old-price {
+    font-size: 18px;
+    color: #999;
+    text-decoration: line-through;
+}
+.new-price {
+    font-size: 28px;
+    color: #e53935; /* Màu đỏ đô */
+    font-weight: bold;
+}
+
+/* Input Số lượng & Nút Mua */
+.cart-action {
+    display: flex;
+    gap: 15px;
+}
+.qty-input {
+    width: 70px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.btn-add-cart {
+    background-color: #006450; /* Màu xanh cổ vịt giống thiết kế */
+    color: white;
+    border: none;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-add-cart:hover {
+    background-color: #004a3b;
+}
+
+/* --- Khối Bottom: Mô tả & Gợi ý --- */
+.product-bottom-section {
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+}
+.section-heading {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.description-content p {
+    font-size: 15px;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+.mt-40 {
+    margin-top: 40px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.related-card {
+    text-align: center;
+}
+.related-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.related-card h5 {
+    font-size: 14px;
+    color: #0087a8;
+    margin-bottom: 5px;
+}
+.related-card span {
+    font-size: 14px;
+    color: #555;
+    font-weight: 600;
+}

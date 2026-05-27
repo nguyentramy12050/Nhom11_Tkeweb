@@ -21,7 +21,7 @@
       <div class="header-container">
         <div class="header-brand">
           <div class="logo-box">
-            <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" />
+            <img src="assets/images/logo.png" alt="Logo Thư Hiên" />
           </div>
           <h1 class="brand-name">Thư Hiên</h1>
         </div>
@@ -50,7 +50,7 @@
           <div class="breadcrumb">
             <a href="index.html">Trang chủ</a> &rsaquo; Danh mục sách
           </div>
-          <h2 class="page-title">Kho Tàng Tri Thức</h2>
+          <h3 class="page-title">Kho Tàng Tri Thức</h3>
           <p class="page-quote">
             "Mỗi cuốn sách là một thế giới, mỗi trang giấy là một hành trình
             vượt thời gian."
@@ -63,48 +63,128 @@
               <h3 class="filter-title">
                 THỂ LOẠI <i class="fas fa-caret-down"></i>
               </h3>
-              <ul class="category-list">
+              <ul class="category-list" id="category-list">
                 <li>
-                  <a href="#">Văn học kinh điển</a> <span class="count">8</span>
+                  <a
+                    href="#"
+                    class="active-cat"
+                    onclick="filterByCategory('all', this, event)"
+                    >Tất cả sách</a
+                  >
                 </li>
                 <li>
-                  <a href="#" class="active-cat">Văn học Việt Nam xưa</a>
-                  <span class="count">8</span>
+                  <a
+                    href="#"
+                    onclick="filterByCategory('Văn học kinh điển', this, event)"
+                    >Văn học kinh điển</a
+                  >
                 </li>
                 <li>
-                  <a href="#">Triết học & Tư tưởng</a>
-                  <span class="count">8</span>
+                  <a
+                    href="#"
+                    onclick="
+                      filterByCategory('Văn học Việt Nam xưa', this, event)
+                    "
+                    >Văn học Việt Nam xưa</a
+                  >
                 </li>
                 <li>
-                  <a href="#">Lịch sử & Văn minh</a>
-                  <span class="count">8</span>
+                  <a
+                    href="#"
+                    onclick="
+                      filterByCategory('Triết học & Tư tưởng', this, event)
+                    "
+                    >Triết học & Tư tưởng</a
+                  >
                 </li>
                 <li>
-                  <a href="#">Trinh thám kinh điển</a>
-                  <span class="count">8</span>
+                  <a
+                    href="#"
+                    onclick="
+                      filterByCategory('Lịch sử & Văn minh', this, event)
+                    "
+                    >Lịch sử & Văn minh</a
+                  >
                 </li>
                 <li>
-                  <a href="#">Thiếu nhi & tuổi thơ</a>
-                  <span class="count">8</span>
+                  <a
+                    href="#"
+                    onclick="
+                      filterByCategory('Trinh thám kinh điển', this, event)
+                    "
+                    >Trinh thám kinh điển</a
+                  >
                 </li>
                 <li>
-                  <a href="#">Ngoại văn tuyển chọn</a>
-                  <span class="count">8</span>
+                  <a
+                    href="#"
+                    onclick="
+                      filterByCategory('Thiếu nhi & tuổi thơ', this, event)
+                    "
+                    >Thiếu nhi & tuổi thơ</a
+                  >
                 </li>
                 <li>
-                  <a href="#">Ấn bản đặc biệt</a> <span class="count">8</span>
+                  <a
+                    href="#"
+                    onclick="
+                      filterByCategory('Ngoại văn tuyển chọn', this, event)
+                    "
+                    >Ngoại văn tuyển chọn</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="filterByCategory('Ấn bản đặc biệt', this, event)"
+                    >Ấn bản đặc biệt</a
+                  >
                 </li>
               </ul>
             </div>
 
             <div class="filter-group">
-              <h3 class="filter-title">TÌNH TRẠNG</h3>
+              <h3 class="filter-title">
+                MỨC GIÁ <i class="fas fa-caret-down"></i>
+              </h3>
               <div class="checkbox-group">
-                <label><input type="checkbox" /> Sách hiếm</label>
                 <label
-                  ><input type="checkbox" checked /> Rất tốt (Like New)</label
+                  ><input
+                    type="radio"
+                    name="price"
+                    value="all"
+                    checked
+                    onchange="filterByPrice('all')"
+                  />
+                  Tất cả mức giá</label
                 >
-                <label><input type="checkbox" /> Cũ theo thời gian</label>
+                <label
+                  ><input
+                    type="radio"
+                    name="price"
+                    value="tier1"
+                    onchange="filterByPrice('tier1')"
+                  />
+                  Dưới 150.000đ</label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="price"
+                    value="tier2"
+                    onchange="filterByPrice('tier2')"
+                  />
+                  150.000đ - 300.000đ</label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="price"
+                    value="tier3"
+                    onchange="filterByPrice('tier3')"
+                  />
+                  Trên 300.000đ</label
+                >
               </div>
             </div>
 
@@ -120,17 +200,6 @@
           </aside>
 
           <div class="product-area">
-            <div class="product-top-bar">
-              <div class="sort-box">
-                <label>Sắp xếp:</label>
-                <select class="custom-select">
-                  <option>Mới nhất</option>
-                  <option>Giá: Thấp đến Cao</option>
-                  <option>Giá: Cao đến Thấp</option>
-                </select>
-              </div>
-            </div>
-
             <div class="book-grid" id="book-grid"></div>
 
             <div class="pagination" id="pagination"></div>
@@ -193,6 +262,6 @@
       </div>
     </footer>
 
-    <script src="js/category.js"></script>
+    <script src="assets/js/category.js"></script>
   </body>
 </html>
