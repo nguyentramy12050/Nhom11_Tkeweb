@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết sách - Thư Hiên</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/product-detail.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-container">
+        <div class="header-brand">
+          <div class="logo-box">
+            <img src="assets/images/logo.png" alt="Logo Thư Hiên" />
+          </div>
+          <h1 class="brand-name">Thư Hiên</h1>
+        </div>
+        <nav class="header-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="category.html" class="active">Danh mục</a></li>
+            <li><a href="buyback.html">Bán lại sách</a></li>
+            <li><a href="news.html">Tin tức</a></li>
+            <li><a href="about.html">Giới thiệu</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+          <a href="cart.html" title="Giỏ hàng"
+            ><i class="fas fa-shopping-cart"></i
+          ></a>
+          <a href="login.html" title="Tài khoản"><i class="far fa-user"></i></a>
+        </div>
+      </div>
+    </header>
+
+    <main class="detail-page">
+      <div class="container-custom">
+        <div class="detail-container">
+          <div class="product-top-section">
+            <div class="product-gallery">
+              <div class="main-image-box">
+                <span class="badge badge-sale">SALE!</span>
+                <img
+                  id="main-product-img"
+                  src="assets/images/books/Khonggiadinh.jpg"
+                  alt="Không Gia Đình"
+                />
+                <button class="zoom-btn">
+                  <i class="fas fa-search-plus"></i>
+                </button>
+              </div>
+              <div class="thumbnail-list">
+                <img
+                  src="assets/images/books/Khonggiadinh.jpg"
+                  class="thumb active-thumb"
+                  onclick="changeImage(this.src, this)"
+                />
+                <img
+                  src="assets/images/books/Tatden.jpg"
+                  class="thumb"
+                  onclick="changeImage(this.src, this)"
+                />
+                <img
+                  src="assets/images/books/Vonhat.jpg"
+                  class="thumb"
+                  onclick="changeImage(this.src, this)"
+                />
+                <img
+                  src="assets/images/logo.png"
+                  class="thumb"
+                  onclick="changeImage(this.src, this)"
+                />
+              </div>
+            </div>
+
+            <div class="product-info-box">
+              <h2 class="product-title">
+                KHÔNG GIA ĐÌNH – HECTOR MALOT (BÌA MỀM)
+              </h2>
+
+              <ul class="meta-info">
+                <li><strong>Tác giả:</strong> Hector Malot</li>
+                <li><strong>Dịch giả:</strong> Mai Thị Thu Huyền</li>
+                <li><strong>Số Tập:</strong> 1</li>
+                <li><strong>Loại bìa:</strong> Bìa mềm</li>
+                <li><strong>Nhà Xuất Bản:</strong> Văn Học</li>
+                <li><strong>Tình trạng:</strong> Rất tốt (Like New)</li>
+              </ul>
+
+              <div class="price-box">
+                <span class="old-price">250.000đ</span>
+                <span class="new-price">200.000đ</span>
+              </div>
+
+              <div class="cart-action">
+                <input
+                  type="number"
+                  id="qty"
+                  value="1"
+                  min="1"
+                  max="10"
+                  class="qty-input"
+                />
+                <button class="btn-add-cart">
+                  <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-bottom-section">
+            <div class="tab-section">
+              <h3 class="section-heading">MÔ TẢ</h3>
+              <div class="description-content">
+                <p>
+                  Không gia đình (Sans Famille) là tiểu thuyết nổi tiếng nhất
+                  của văn hào Pháp Hector Malot, xuất bản năm 1878. Tác phẩm kể
+                  về cuộc đời chìm nổi của cậu bé Remi bị bỏ rơi từ nhỏ...
+                </p>
+                <p>
+                  Trang sách hơi ngả vàng mang dấu ấn thời gian nhưng chất lượng
+                  in ấn vẫn rất rõ nét, gáy sách nguyên vẹn.
+                </p>
+              </div>
+            </div>
+
+            <div class="tab-section mt-40">
+              <h3 class="section-heading">Gợi ý</h3>
+              <div class="related-grid">
+                <div class="related-card">
+                  <a href="#"
+                    ><img
+                      src="assets/images/books/Demenphieuluuky.jpg"
+                      alt="Dế Mèn"
+                  /></a>
+                  <h5>Dế Mèn Phiêu Lưu Ký</h5>
+                  <span>95.000đ</span>
+                </div>
+                <div class="related-card">
+                  <a href="#"
+                    ><img src="assets/images/books/SoDo.jpg" alt="Số Đỏ"
+                  /></a>
+                  <h5>Số Đỏ (Vũ Trọng Phụng)</h5>
+                  <span>185.000đ</span>
+                </div>
+                <div class="related-card">
+                  <a href="#"
+                    ><img src="assets/images/books/ChiPheo.png" alt="Chí Phèo"
+                  /></a>
+                  <h5>Chí Phèo (Nam Cao)</h5>
+                  <span>150.000đ</span>
+                </div>
+                <div class="related-card">
+                  <a href="#"
+                    ><img
+                      src="assets/images/books/Hoangtube.jpg"
+                      alt="Hoàng tử bé"
+                  /></a>
+                  <h5>Hoàng Tử Bé</h5>
+                  <span>120.000đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-title">Về Chúng Tôi</h3>
+          <p>
+            Tiệm Sách Thư Hiên - Nơi lưu giữ và chia sẻ những câu chuyện qua
+            từng trang sách cũ đầy ký ức.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Kết</h3>
+          <ul>
+            <li><a href="category.html">Danh mục sách</a></li>
+            <li><a href="buyback.html">Bán lại sách</a></li>
+            <li><a href="news.html">Tin tức</a></li>
+            <li><a href="about.html">Giới thiệu</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-title">Hỗ Trợ</h3>
+          <ul>
+            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#">Hướng dẫn mua hàng</a></li>
+            <li><a href="#">Phương thức thanh toán</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Hệ</h3>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Hoàn Kiếm, Hà Nội</li>
+            <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
+            <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
+          </ul>
+          <div class="newsletter">
+            <p class="newsletter-title">Nhận thêm thông tin</p>
+            <form action="#" class="newsletter-form">
+              <input type="email" placeholder="Email của bạn" required />
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Tiệm Sách Thư Hiên. Tất cả quyền được bảo lưu.</p>
+        <p>Được tạo với ❤️ từ niềm đam mê sách cũ</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/product-detail.js"></script>
+  </body>
+</html>

@@ -98,7 +98,12 @@
     box-shadow: 0 4px 12px rgba(139, 90, 43, 0.15); /* Bóng màu nâu sáng lên */
 }
 .sort-box select { background: transparent; border: none; font-weight: 600; color: var(--text-main); font-size: 15px; cursor: pointer; outline: none; }
-
+.custom-select option {
+    background-color: var(--bg-color); /* Chuyển nền thành màu be */
+    color: var(--text-main);
+    font-size: 15px;
+    padding: 10px;
+}
 /* Đổi từ 3 cột sang 4 cột */
 .book-grid { 
     display: grid; 
