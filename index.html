@@ -13,10 +13,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/index.css" />
   </head>
 
   <body>
-    <!-- ========== HEADER – chỉ có logo ảnh (đã bao gồm chữ Thư Hiên) ========== -->
+    <!-- ========== HEADER ========== -->
     <header class="header">
       <div class="header-container">
         <div class="header-brand">
@@ -42,13 +43,74 @@
       </div>
     </header>
 
-    <!-- Nội dung chính giữ nguyên -->
-    <main style="min-height: 50vh; padding: 50px; text-align: center">
-      <h2></h2>
-    </main>
+    <main>
+  <!-- Hero Banner -->
+<section class="hero-master">
+  <div class="hero-background">
+    <img src="assets/images/banners/banner.jpg" alt="Thư viện cổ" class="hero-bg-img">
+    <div class="hero-overlay-gradient"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text-wrapper">
+      <span class="hero-uptitle">Bảo tàng tri thức Việt</span>
+      <h1 class="hero-title">Nơi thời gian đọng lại trên từng trang giấy</h1>
+      <p class="hero-description">Khám phá bộ sưu tập sách cổ quý hiếm, những bản in đầu tiên và những câu chuyện lịch sử bị lãng quên trong lòng di sản.</p>
+      <div class="hero-buttons">
+        <a href="category.html" class="hero-btn-primary">Khám phá thêm</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ========== FOOTER (giữ nguyên) ========== -->
-    <!-- Premium Footer - Thư Hiên -->
+  <!-- Báu vật mới về -->
+  <div class="section-header">
+    <h3><i class="fas fa-crown"></i> Báu vật mới về</h3>
+    <a href="#">Xem tất cả →</a>
+  </div>
+  <div class="book-grid" id="rareBooksGrid"></div>
+
+  <!-- Ký ức trang sách  -->
+<section class="memory-bento">
+  <div class="bento-container">
+    <div class="bento-header">
+      <h2 class="bento-title">Ký ức trang sách</h2>
+      <p class="bento-desc">Hơn cả một cuốn sách, đó là những dấu vết thời gian. Chúng tôi giúp bạn giải mã những lời nhắn gửi, dấu triện và cả những giọt mực rơi từ quá khứ.</p>
+    </div>
+    <div class="bento-grid">
+      <!-- Ảnh lớn bên trái -->
+      <div class="bento-large">
+        <div class="memory-card">
+          <img src="assets/images/buttichnguoixua.jpg" alt="Bút tích người xưa" class="memory-img" onerror="this.src='assets/images/buttichnguoi.jpg'">
+          <div class="memory-overlay memory-overlay-bottom">
+            <h3 class="memory-card-title">Bút tích người xưa</h3>
+            <p class="memory-card-desc">Những lời phê bình hay tâm tình được gửi gắm bên lề trang giấy qua hàng thế kỷ.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Cột ảnh nhỏ bên phải -->
+      <div class="bento-small">
+        <div class="memory-card">
+          <img src="assets/images/dauan.jpg" alt="Dấu ấn gia tộc" class="memory-img">
+          <div class="memory-overlay memory-overlay-center">
+            <h3 class="memory-card-title">Dấu ấn gia tộc</h3>
+          </div>
+        </div>
+        <div class="memory-card">
+          <img src="assets/images/manhhon.jpg" alt="Mảnh hồn sương khói" class="memory-img">
+          <div class="memory-overlay memory-overlay-center">
+            <h3 class="memory-card-title">Mảnh hồn sương khói</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Các danh mục sách động -->
+  <div id="categoriesContainer"></div>
+</main>
+
+    <!-- ========== FOOTER  ========== -->
  <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
@@ -106,5 +168,200 @@
         <p>Được tạo với ❤️ từ niềm đam mê sách cũ</p>
       </div>
     </footer>
+    <script>
+  // ========== MAPPING ẢNH SÁCH (giữ nguyên như cũ) ==========
+  const imageMap = {
+    "không gia đình": "Khonggiadinh.jpg",
+    "những người khốn khổ": "Nhungnguiohko.jpg",
+    "bố già": "Bogia.jpg",
+    "kiêu hãnh và định kiến": "Kieunhavadin.jpg",
+    "ông già và biển cả": "Onggiavabiance.jpg",
+    "ruồi trâu": "Ruotrauj.jpg",
+    "sông đông êm đềm": "Songdongemde.jpg",
+    "jane eyre": "Janeeyre.jpg",
+    "dế mèn phiêu lưu ký": "Demenphielu.jpg",
+    "tắt đèn": "Tatden.jpg",
+    "số đỏ": "Sodo.jpg",
+    "chí phèo": "Chipheoj.jpg",
+    "vợ nhặt": "Vonhat.jpg",
+    "tuổi thơ dữ dội": "Tuotthodudoj.jpg",
+    "kính vạn hoa": "Kinhvanhoa.jpg",
+    "cho tôi xin một vé đi tuổi thơ": "Chotoixinmotive.jpg",
+    "bàn về tự do": "Banvetudo.jpg",
+    "cộng hòa — plato": "Conghoa.jpg",
+    "đạo đức kinh": "Daoduckinh.jpg",
+    "quân vương — machiavelli": "Quanwong.jpg",
+    "thus spoke zarathustra": "Thus.jpg",
+    "hiện sinh là một nhân bản chủ nghĩa": "Thuyethienshin.jpg",
+    "nghệ thuật yêu — erich fromm": "Nghethatyue.jpg",
+    "meditations — marcus aurelius": "Meditations.jpg",
+    "việt nam sử lược": "Vietnamsuluocj.jpg",
+    "đại việt sử ký toàn thư": "Daivetsukyotmen.jpg",
+    "sapiens": "Sapiens.jpg",
+    "lược sử thời gian": "Luocshuogian.jpg",
+    "silk roads": "Silkroad.jpg",
+    "spqr": "Spqr.jpg",
+    "guns, germs and steel": "Guns.jpg",
+    "chiến tranh và hòa bình": "Chientranhava.jpg",
+    "sherlock holmes": "Sherlockholmes.jpg",
+    "siêu trộm quân tử arsène lupin": "Sietromquantu.jpg",
+    "án mạng trên chuyến tàu tốc hành phương đông": "Anmangtrenchu.jpg",
+    "mười người da đen nhỏ": "Muongiuodade.jpg",
+    "thời khắc định mệnh": "Thoikachdinh.jpg",
+    "tận cùng là cái chết": "Tancunglaacache.jpg",
+    "hannibal": "Hannibal.jpg",
+    "the hound of baskervilles": "TheHoundofBas.jpg",
+    "hoàng tử bé": "Hoangtube.jpg",
+    "totto-chan bên cửa sổ": "Totto-chanben.jpg",
+    "charlie và nhà máy chocolate": "Charlievanhama.jpg",
+    "anne tóc đỏ dưới mái nhà bạch dương": "Anmangtrenchu.jpg",
+    "heidi": "Heid.jpg",
+    "khu vườn bí mật": "Khuuvonbimat.jpg",
+    "norwegian wood": "NorwegianWoo.jpg",
+    "kafka on the shore": "Kafkaontheshor.jpg",
+    "animal farm": "Animalfarm.jpg",
+    "the great gatsby": "Thegreatgatsby.jpg",
+    "to kill a mockingbird": "Tokillamocking.jpg",
+    "crime and punishment": "Crimeandpunish.jpg",
+    "pride and prejudice": "Pridendprejudi.jpg",
+    "văn minh việt nam": "VanninhVietNa.jpg",
+    "ngụ ngôn la fontaine": "NgungonLaFont.jpg",
+    "những trận chiến thay đổi lịch sử": "Nhungtranchien.jpg",
+    "tuyển tập kịch jacinto benavente": "Tuyentapkichla.jpg",
+    "nghìn lẻ một đêm": "Nghinlemotdem.jpg",
+    "một chiến dịch ở bắc kỳ": "Motchindichob.jpg",
+    "truyện kiều hội bản": "Truyenkieuhoiba.jpg",
+    "combo 2 cuốn trăm năm nobel": "Combo2cuontra.jpg"
+  };
+
+  function getImagePath(title) {
+    let key = title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s]/g, "");
+    for (let [mapKey, filename] of Object.entries(imageMap)) {
+      if (key.includes(mapKey) || title.toLowerCase().includes(mapKey)) {
+        return `assets/images/books/${filename}`;
+      }
+    }
+    return null;
+  }
+
+  // Dữ liệu sách (giữ nguyên)
+  const booksData = {
+    "Văn học kinh điển": [
+      { title: "Không Gia Đình", author: "Hector Malot", price: "135.000đ", link: "https://www.fahasa.com/khong-gia-dinh-tai-ban-2024-569982.html" },
+      { title: "Những Người Khốn Khổ", author: "Victor Hugo", price: "180.000đ", link: "#" },
+      { title: "Bố Già", author: "Mario Puzo", price: "210.000đ", link: "#" },
+      { title: "Kiêu Hãnh Và Định Kiến", author: "Jane Austen", price: "150.000đ", link: "#" },
+      { title: "Ông Già Và Biển Cả", author: "Ernest Hemingway", price: "95.000đ", link: "#" },
+      { title: "Ruồi Trâu", author: "Ethel Voynich", price: "110.000đ", link: "#" },
+      { title: "Sông Đông Êm Đềm (Trọn Bộ 2 Tập)", author: "Mikhail Sholokhov", price: "450.000đ", link: "#" },
+      { title: "Jane Eyre", author: "Charlotte Brontë", price: "125.000đ", link: "#" }
+    ],
+    "Văn học Việt Nam xưa": [
+      { title: "Dế Mèn Phiêu Lưu Ký", author: "Tô Hoài", price: "85.000đ", link: "https://nxbkimdong.com.vn/de-men-phieu-luu-ky-2" },
+      { title: "Tắt Đèn", author: "Ngô Tất Tố", price: "95.000đ", link: "#" },
+      { title: "Số Đỏ", author: "Vũ Trọng Phụng", price: "120.000đ", link: "#" },
+      { title: "Chí Phèo", author: "Nam Cao", price: "68.000đ", link: "#" },
+      { title: "Vợ Nhặt", author: "Kim Lân", price: "70.000đ", link: "#" },
+      { title: "Tuổi Thơ Dữ Dội", author: "Phùng Quán", price: "145.000đ", link: "#" },
+      { title: "Kính Vạn Hoa (Bộ 18 Tập)", author: "Nguyễn Nhật Ánh", price: "540.000đ", link: "https://nxbkimdong.com.vn/kinh-van-hoa-tron-bo" },
+      { title: "Cho Tôi Xin Một Vé Đi Tuổi Thơ", author: "Nguyễn Nhật Ánh", price: "98.000đ", link: "#" }
+    ],
+    "Triết học & Tư tưởng": [
+      { title: "Bàn Về Tự Do", author: "John Stuart Mill", price: "125.000đ", link: "#" },
+      { title: "Cộng Hòa — Plato", author: "Plato", price: "160.000đ", link: "#" },
+      { title: "Đạo Đức Kinh", author: "Lão Tử", price: "90.000đ", link: "#" },
+      { title: "Quân Vương — Machiavelli", author: "Niccolò Machiavelli", price: "110.000đ", link: "#" },
+      { title: "Thus Spoke Zarathustra", author: "Nietzsche", price: "145.000đ", link: "#" },
+      { title: "Hiện Sinh Là Một Nhân Bản Chủ Nghĩa", author: "Jean-Paul Sartre", price: "135.000đ", link: "#" },
+      { title: "Nghệ Thuật Yêu — Erich Fromm", author: "Erich Fromm", price: "99.000đ", link: "#" },
+      { title: "Meditations — Marcus Aurelius", author: "Marcus Aurelius", price: "115.000đ", link: "#" }
+    ],
+    "Lịch sử & Văn minh": [
+      { title: "Việt Nam Sử Lược", author: "Trần Trọng Kim", price: "180.000đ", link: "#" },
+      { title: "Đại Việt Sử Ký Toàn Thư", author: "Ngô Sĩ Liên", price: "590.000đ", link: "#" },
+      { title: "Sapiens", author: "Yuval Noah Harari", price: "210.000đ", link: "#" },
+      { title: "Lược Sử Thời Gian", author: "Stephen Hawking", price: "165.000đ", link: "#" },
+      { title: "Silk Roads", author: "Peter Frankopan", price: "320.000đ", link: "#" },
+      { title: "SPQR", author: "Mary Beard", price: "350.000đ", link: "#" },
+      { title: "Guns, Germs and Steel", author: "Jared Diamond", price: "280.000đ", link: "https://www.alphabooks.vn/sung-vi-trung-va-thep" },
+      { title: "Chiến Tranh Và Hòa Bình (3 tập)", author: "Tolstoy", price: "590.000đ", link: "#" }
+    ],
+    "Trinh thám kinh điển": [
+      { title: "Sherlock Holmes (Tuyển tập)", author: "Arthur Conan Doyle", price: "255.000đ", link: "https://www.huyhoangbook.vn/products/sherlock-holmes-tap-4" },
+      { title: "Siêu trộm quân tử Arsène Lupin", author: "Maurice Leblanc", price: "149.000đ", link: "https://nxbkimdong.com.vn/sieu-trom-quan-tu-arsene-lupin" },
+      { title: "Án Mạng Trên Chuyến Tàu Tốc Hành Phương Đông", author: "Agatha Christie", price: "110.000đ", link: "https://www.nxbtre.com.vn/sach/an-mang-tren-chuyen-tau-toc-hanh-phuong-dong-13924.html" },
+      { title: "Mười Người Da Đen Nhỏ", author: "Agatha Christie", price: "98.000đ", link: "https://www.nxbtre.com.vn/sach/muoi-nguoi-da-den-nho-12046.html" },
+      { title: "Thời khắc định mệnh", author: "Agatha Christie", price: "105.000đ", link: "https://www.nxbtre.com.vn/sach/thoi-khac-dinh-menh-159072.html" },
+      { title: "Tận cùng là cái chết", author: "Agatha Christie", price: "109.000đ", link: "https://www.nxbtre.com.vn/sach/tan-cung-la-cai-chet-159073.html" },
+      { title: "Hannibal", author: "Thomas Harris", price: "169.000đ", link: "https://www.netabooks.vn/hannibal" },
+      { title: "The Hound of Baskervilles", author: "Arthur Conan Doyle", price: "125.000đ", link: "#" }
+    ],
+    "Thiếu nhi & tuổi thơ": [
+      { title: "Hoàng Tử Bé", author: "Saint-Exupéry", price: "79.000đ", link: "https://nxbkimdong.com.vn/hoang-tu-be-2" },
+      { title: "Totto-chan Bên Cửa Sổ", author: "Tetsuko Kuroyanagi", price: "115.000đ", link: "https://tiki.vn/sach-totto-chan-ben-cua-so-p124891052.html" },
+      { title: "Charlie Và Nhà Máy Chocolate", author: "Roald Dahl", price: "95.000đ", link: "https://www.fahasa.com/charlie-va-nha-may-so-co-la-tai-ban-2021.html" },
+      { title: "Anne Tóc Đỏ Dưới Mái Nhà Bạch Dương", author: "L.M. Montgomery", price: "138.000đ", link: "#" },
+      { title: "Heidi", author: "Johanna Spyri", price: "89.000đ", link: "#" },
+      { title: "Khu Vườn Bí Mật", author: "Frances H. Burnett", price: "112.000đ", link: "#" }
+    ],
+    "Ngoại văn tuyển chọn": [
+      { title: "Norwegian Wood", author: "Haruki Murakami", price: "165.000đ", link: "https://www.fahasa.com/norwegian-wood.html" },
+      { title: "Kafka On The Shore", author: "Haruki Murakami", price: "199.000đ", link: "https://www.fahasa.com/kafka-on-the-shore-hardback.html" },
+      { title: "Animal Farm", author: "George Orwell", price: "128.000đ", link: "https://www.amazon.ca/Animal-Farm-George-Orwell/dp/0141036133" },
+      { title: "The Great Gatsby", author: "Fitzgerald", price: "145.000đ", link: "https://www.amazon.com/Great-Gatsby-F-Scott-Fitzgerald/dp/0743273567" },
+      { title: "To Kill a Mockingbird", author: "Harper Lee", price: "190.000đ", link: "https://www.fahasa.com/to-kill-a-mockingbird-149378.html" },
+      { title: "Crime and Punishment", author: "Dostoevsky", price: "155.000đ", link: "#" },
+      { title: "Pride and Prejudice", author: "Jane Austen", price: "150.000đ", link: "#" }
+    ],
+    "Ấn bản đặc biệt": [
+      { title: "Văn minh Việt Nam", author: "Lê Văn Siêu", price: "420.000đ", link: "https://muabansachcu.vn/products/van-minh-viet-nam-le-van-sieu" },
+      { title: "Ngụ ngôn La Fontaine (Minh họa Gustave Doré)", author: "La Fontaine", price: "590.000đ", link: "https://muabansachcu.vn/products/ngu-ngon-la-fontaine-minh-hoa-cua-gustave-dore" },
+      { title: "Những trận chiến thay đổi lịch sử", author: "Nhiều tác giả", price: "850.000đ", link: "https://sachdonga.vn/collections/an-ban-gioi-han/products/an-ban-gioi-han-nhung-tran-chien-thay-doi-lich-su" },
+      { title: "Tuyển tập kịch Jacinto Benavente", author: "Jacinto Benavente", price: "490.000đ", link: "https://sachdonga.vn/collections/an-ban-gioi-han/products/tuyen-tap-kich" },
+      { title: "Nghìn lẻ một đêm", author: "Kể dân gian Ả Rập", price: "699.000đ", link: "https://sachdonga.vn/products/an-ban-gioi-han-nghin-le-mot-dem" },
+      { title: "Một chiến dịch ở Bắc Kỳ", author: "L.t. Brière", price: "550.000đ", link: "https://sachdonga.vn/collections/an-ban-gioi-han/products/s500-mot-chien-dich-o-bac-ky" }
+    ]
+  };
+
+  const rareItems = [
+    { title: "Truyện Kiều (1923)", author: "Nguyễn Du", price: "Liên hệ / Bản đặc biệt", link: "#" },
+    { title: "Sử ký (Trọn bộ)", author: "Tư Mã Thiên", price: "12.500.000đ", link: "#" },
+    { title: "Nam được thần hiệu", author: "Tuy Tinh", price: "4.200.000đ", link: "#" },
+    { title: "Vang bóng một thời", author: "Nguyễn Tuấn", price: "1.800.000đ", link: "#" }
+  ];
+
+  function renderBookCard(book) {
+    const imgSrc = getImagePath(book.title);
+    const coverHtml = imgSrc ? `<img src="${imgSrc}" alt="${book.title}" onerror="this.parentElement.innerHTML='<div class=\'fallback-icon\'><i class=\'fas fa-book-open\'></i></div>'">` 
+                            : `<div class="fallback-icon"><i class="fas fa-book-open"></i></div>`;
+    return `
+      <div class="book-card">
+        <div class="book-cover">${coverHtml}</div>
+        <div class="book-info">
+          <div class="book-title">${book.title}</div>
+          <div class="book-author">${book.author}</div>
+          <div class="book-price">${book.price}</div>
+          <a href="${book.link}" target="_blank" class="book-link">Khám phá →</a>
+        </div>
+      </div>
+    `;
+  }
+
+  // Render rare books
+  const rareContainer = document.getElementById('rareBooksGrid');
+  rareContainer.innerHTML = rareItems.map(book => renderBookCard(book)).join('');
+
+  // Render categories
+  const container = document.getElementById('categoriesContainer');
+  let html = '';
+  for (const [catName, books] of Object.entries(booksData)) {
+    html += `<div class="category-section"><div class="cat-title"><i class="fas fa-bookmark"></i> ${catName}</div><div class="book-grid">`;
+    books.forEach(book => {
+      html += renderBookCard(book);
+    });
+    html += `</div></div>`;
+  }
+  container.innerHTML = html;
+</script>
   </body>
 </html>
