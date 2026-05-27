@@ -51,7 +51,7 @@ h1, h2, h3 {
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px 20px;
+    padding: 4px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,26 +64,6 @@ h1, h2, h3 {
     gap: 15px;
 }
 
-.logo-box {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo-box img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.brand-name {
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--accent-color);
-    font-style: italic;
-}
 
 /* Menu */
 .header-nav ul {
@@ -241,4 +221,29 @@ h1, h2, h3 {
     padding: 20px;
     font-size: 13px;
     color: var(--text-muted);
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+}
+
+/* Ảnh logo duy nhất, to và rõ */
+.logo-img-only {
+    width: auto;        /* Tăng chiều rộng để chữ trong ảnh to ra */
+    height: 60px;    /* Xoá bỏ giới hạn 55px cũ */
+    max-width: 300px;
+    object-fit: contain; /* Giữ tỉ lệ, không bị méo */
+}
+
+.logo-img-only:hover {
+  transform: scale(1.02); /* Hiệu ứng nhẹ khi hover */
+}
+
+
+/* Responsive: màn hình nhỏ thì logo nhỏ lại chút */
+@media (max-width: 768px) {
+    .logo-img-only {
+        width: 160px;   
+        height: auto;
+    }
 }
