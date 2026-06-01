@@ -166,7 +166,13 @@
 .action-btn.cart-btn:hover {
     background-color: #6d4622;
 }
-.book-card { background: transparent; transition: transform 0.3s ease; }
+.book-card { 
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    background: transparent; 
+    transition: transform 0.3s ease; 
+}
 .book-card:hover { transform: translateY(-5px); }
 .book-img-wrapper {
     position: relative; width: 100%; aspect-ratio: 3/4;
@@ -180,12 +186,88 @@
 .badge-good { background-color: #e2e3e5; color: #383d41; }
 .badge-rare { background-color: #f8d7da; color: #721c24; }
 
-.book-info { padding: 15px 0; }
-.book-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; margin-bottom: 5px; }
-.book-author { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
-.book-price-row { display: flex; justify-content: space-between; align-items: center; }
-.book-price { font-size: 18px; font-weight: 600; color: var(--accent-color); }
+/* ================= CĂN BẰNG CHIỀU CAO CÁC BOX SÁCH ================= */
 
+.book-info { 
+    padding: 15px 0 5px 0; 
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Ép khối thông tin giãn ra lấp đầy khoảng trống */
+}
+
+.book-name { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 18px; 
+    font-weight: 600; 
+    margin-bottom: 5px; 
+    color: var(--text-main);
+    /* Giới hạn tên sách tối đa 2 dòng, quá dài sẽ hiện dấu "..." */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+}
+
+.book-author { 
+    font-size: 13px; 
+    color: var(--text-muted); 
+    margin-bottom: 10px; 
+}
+
+/* Đưa cụm giá và nút xuống đáy */
+.book-price-row { 
+    display: flex; 
+    align-items: baseline; 
+    gap: 12px; 
+    margin-bottom: 12px; 
+    margin-top: auto; /* MẤU CHỐT: Lực đẩy vô hình ép cụm giá sát xuống dưới */
+}
+
+.book-price { 
+    font-size: 18px; 
+    font-weight: 700; 
+    color: var(--accent-color); 
+}
+
+/* Giá cũ: Chữ nâu đậm, gạch ngang */
+.book-old-price { 
+    font-size: 14px; 
+    color: #5c3a21; /* Nâu đậm */
+    text-decoration: line-through; 
+    font-weight: 500;
+}
+
+/* Nút Mua Ngay: Nền nâu, bo góc, có đổ bóng và hiệu ứng nổi lên */
+.btn-buy-now {
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--accent-color); /* Nền màu nâu chủ đạo */
+    color: #ffffff; /* Chữ màu trắng */
+    border: none;
+    border-radius: 6px; /* Bo góc mượt mà */
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(139, 90, 43, 0.2); /* Đổ bóng nâu nhẹ */
+}
+
+/* Hiệu ứng khi di chuột vào nút */
+.btn-buy-now:hover {
+    background-color: #6d4622; /* Đổi màu nâu sậm hơn */
+    box-shadow: 0 6px 15px rgba(139, 90, 43, 0.35); /* Bóng đậm lên */
+    transform: translateY(-2px); /* Nút hơi nảy lên một chút */
+}
+
+.btn-buy-now i {
+    font-size: 16px;
+}
 /* Pagination */
 .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 50px; }
 .page-num, .page-nav {

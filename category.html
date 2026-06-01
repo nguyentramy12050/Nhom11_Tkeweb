@@ -2,17 +2,25 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Danh mục sách - Thư Hiên</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-
+    <!--Nhúng css-->
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/category.css" />
   </head>
@@ -20,27 +28,71 @@
     <header class="header">
       <div class="header-container">
         <div class="header-brand">
-          <div class="logo-box">
-            <img src="assets/images/logo.png" alt="Logo Thư Hiên" />
-          </div>
-          <h1 class="brand-name">Thư Hiên</h1>
+          <img
+            src="assets/images/logo.jpg"
+            alt="Logo Thư Hiên"
+            class="logo-img-only"
+          />
         </div>
+
         <nav class="header-nav">
           <ul>
             <li><a href="index.html">Trang chủ</a></li>
             <li><a href="category.html" class="active">Danh mục</a></li>
-            <li><a href="buyback.html">Bán lại sách</a></li>
-            <li><a href="news.html">Tin tức</a></li>
-            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
           </ul>
         </nav>
+
         <div class="header-icons">
-          <a href="#" title="Tìm kiếm"><i class="fas fa-search"></i></a>
-          <a href="cart.html" title="Giỏ hàng"
-            ><i class="fas fa-shopping-cart"></i
-          ></a>
-          <a href="login.html" title="Tài khoản"><i class="far fa-user"></i></a>
+          <!-- NÚT TÌM KIẾM -->
+          <button
+            class="hd-icon-btn"
+            id="btn-tim-kiem"
+            title="Tìm kiếm"
+            aria-label="Tìm kiếm"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+          <!-- NÚT GIỎ HÀNG — -->
+          <a
+            href="cart.html"
+            class="hd-icon-btn"
+            title="Giỏ hàng"
+            aria-label="Giỏ hàng"
+            style="position: relative"
+          >
+            <i class="fas fa-shopping-bag"></i>
+            <span class="hd-badge" id="so-gio-hang">0</span>
+          </a>
         </div>
+        <!-- POPUP TÌM KIẾM — -->
+        <div class="pop-tim-kiem" id="pop-tim-kiem">
+          <div class="pop-tim-kiem-noi">
+            <p class="pop-nhan">Tìm kiếm sách</p>
+            <div class="pop-search-row">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                id="o-tim-kiem"
+                placeholder="Tên sách, tác giả, thể loại…"
+              />
+              <button class="pop-search-btn" id="btn-tim">Tìm</button>
+            </div>
+            <div class="pop-tag-list">
+              <span class="pop-tag">Văn học kinh điển</span>
+              <span class="pop-tag">Văn học Việt Nam xưa</span>
+              <span class="pop-tag">Ấn bản đặc biệt</span>
+              <span class="pop-tag">Lịch sử & Văn minh</span>
+              <span class="pop-tag">Ngoại văn tuyển chọn</span>
+              <span class="pop-tag">Thiếu nhi & Tuổi thơ</span>
+              <span class="pop-tag">Triết học & Tư tưởng</span>
+              <span class="pop-tag">Tinh thám kinh điển</span>
+            </div>
+          </div>
+        </div>
+        <div class="pop-overlay" id="pop-overlay"></div>
       </div>
     </header>
 
@@ -50,7 +102,7 @@
           <div class="breadcrumb">
             <a href="index.html">Trang chủ</a> &rsaquo; Danh mục sách
           </div>
-          <h3 class="page-title">Kho Tàng Tri Thức</h3>
+          <h4 class="page-title">Kho Tàng Tri Thức</h4>
           <p class="page-quote">
             "Mỗi cuốn sách là một thế giới, mỗi trang giấy là một hành trình
             vượt thời gian."
@@ -189,14 +241,21 @@
             </div>
 
             <div class="filter-group">
-              <h3 class="filter-title">NĂM XUẤT BẢN</h3>
-              <div class="year-inputs">
-                <input type="number" placeholder="Từ" />
-                <input type="number" placeholder="Đến" />
-              </div>
+              <h3 class="filter-title">
+                TÁC GIẢ <i class="fas fa-caret-down"></i>
+              </h3>
+              <select
+                id="author-filter"
+                class="custom-select"
+                style="width: 100%"
+              >
+                <option value="all">Tất cả tác giả</option>
+              </select>
             </div>
 
-            <button class="btn-apply-filter">ÁP DỤNG BỘ LỌC</button>
+            <button class="btn-apply-filter" onclick="applyFilters()">
+              ÁP DỤNG BỘ LỌC
+            </button>
           </aside>
 
           <div class="product-area">
@@ -262,6 +321,7 @@
       </div>
     </footer>
 
+    <script src="assets/js/data.js"></script>
     <script src="assets/js/category.js"></script>
   </body>
 </html>
