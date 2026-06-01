@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <!--Nhúng css-->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/blog.css" />
+  </head>
+
+  <body>
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+      <div class="header-container">
+        <div class="header-brand">
+          <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only" />
+        </div>
+
+        <nav class="header-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="category.html">Danh mục</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html" class = "active">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-icons">
+          <!-- NÚT TÌM KIẾM -->
+          <button class="hd-icon-btn" id="btn-tim-kiem" title="Tìm kiếm" aria-label="Tìm kiếm">
+            <i class="fas fa-search"></i>
+          </button>
+          <!-- NÚT GIỎ HÀNG — -->
+          <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng" style="position:relative;">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="hd-badge" id="so-gio-hang">0</span>
+          </a>
+        </div>
+        <!-- POPUP TÌM KIẾM — -->
+        <div class="pop-tim-kiem" id="pop-tim-kiem">
+          <div class="pop-tim-kiem-noi">
+            <p class="pop-nhan">Tìm kiếm sách</p>
+            <div class="pop-search-row">
+              <i class="fas fa-search"></i>
+              <input type="text" id="o-tim-kiem" placeholder="Tên sách, tác giả, thể loại…">
+              <button class="pop-search-btn" id="btn-tim">Tìm</button>
+            </div>
+            <div class="pop-tag-list">
+              <span class="pop-tag">Văn học kinh điển</span>
+              <span class="pop-tag">Văn học Việt Nam xưa</span>
+              <span class="pop-tag">Ấn bản đặc biệt</span>
+              <span class="pop-tag">Lịch sử & Văn minh</span>
+              <span class="pop-tag">Ngoại văn tuyển chọn</span>
+              <span class="pop-tag">Thiếu nhi & Tuổi thơ</span>
+              <span class="pop-tag">Triết học & Tư tưởng</span>
+              <span class="pop-tag">Tinh thám kinh điển</span>
+            </div>
+          </div>
+        </div>
+      <div class="pop-overlay" id="pop-overlay"></div>
+      </div>
+    </header>
+
+    <main>
+      <div class="blog-hero-overlay"></div> 
+      <div class="blog-hero-content"> 
+        <p class="blog-hero-tag"> Tạp chí văn học • Tin tức • Khuyến mãi </p> 
+        <h1 class="blog-hero-title"> Góc Tri Thức<br> <em>của Thư Hiên</em> </h1> 
+        <p class="blog-hero-desc"> Khám phá những câu chuyện phía sau từng cuốn sách cũ, các bài viết chuyên sâu, tin tức văn hóa đọc và chương trình ưu đãi mới nhất. </p> 
+        <a href="#featured" class="blog-btn-main"> Khám phá ngay <i class="fas fa-arrow-down"></i> </a> 
+      </div>
+      <div class="blog-container">
+    <div class="blog-section-header">
+        <span class="blog-section-tag">
+            Nổi bật tuần này
+        </span>
+        <h2 class="blog-section-title">
+            Bài viết được quan tâm nhiều nhất
+        </h2>
+    </div>
+
+    <div class="blog-featured-grid">
+        <!-- LEFT -->
+        <article class="blog-featured-main">
+            <div class="blog-featured-image">
+                <img src="assets/images/blog/featured.jpg" alt="">
+            </div>
+            <div class="blog-featured-content">
+                <span class="blog-category">
+                    Sách cổ
+                </span>
+                <h3>
+                    Hành trình của cuốn Truyện Kiều
+                    bản in năm 1923
+                </h3>
+                <p>
+                    Một trong những bản in hiếm còn lưu giữ đến ngày nay,
+                    chứa đựng nhiều giá trị lịch sử và văn hóa đặc biệt.
+                </p>
+                <a href="#" class="blog-read-more">
+                    Đọc tiếp
+                </a>
+            </div>
+        </article>
+
+        <!-- RIGHT -->
+        <div class="blog-side-news">
+            <article class="blog-mini-card">
+                <img src="assets/images/blog/news1.jpg" alt="">
+                <div>
+                    <span>Tin tức</span>
+                    <h4>
+                        Hội sách mùa hè 2026 chính thức khởi động
+                    </h4>
+                </div>
+            </article>
+            <article class="blog-mini-card">
+                <img src="assets/images/blog/news2.jpg" alt="">
+                <div>
+                    <span>Sự kiện</span>
+                    <h4>
+                        Workshop bảo quản sách cổ miễn phí
+                    </h4>
+                </div>
+            </article>
+            <article class="blog-mini-card sale">
+                <div class="sale-badge">
+                    -15%
+                </div>
+                <div>
+                    <span>Khuyến mãi</span>
+                    <h4>
+                        Giảm giá toàn bộ sách văn học cuối tuần
+                    </h4>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+<div class="blog-container">
+    <div class="blog-section-header">
+        <span class="blog-section-tag">
+            Cập nhật mới nhất
+        </span>
+        <h2 class="blog-section-title">
+            Tin tức & Ưu đãi
+        </h2>
+    </div>
+    <div class="blog-news-grid">
+        <article class="blog-news-card">
+            <img src="assets/images/blog/blog1.jpg" alt="">
+            <div class="blog-news-content">
+                <span class="blog-category">Tin tức</span>
+                <h3>5 đầu sách kinh điển nên đọc ít nhất một lần</h3>
+            </div>
+        </article>
+        <article class="blog-news-card promo">
+            <img src="assets/images/blog/blog2.jpg" alt="">
+            <div class="blog-news-content">
+                <span class="blog-category">Khuyến mãi</span>
+                <h3>Mua 2 tặng 1 cho dòng sách văn học Nga</h3>
+            </div>
+        </article>
+        <article class="blog-news-card">
+            <img src="assets/images/blog/blog3.jpg" alt="">
+            <div class="blog-news-content">
+                <span class="blog-category">Bài viết</span>
+                <h3>Vì sao sách cũ luôn mang giá trị riêng?</h3>
+            </div>
+        </article>
+    </div>
+</div>
+
+<div class="blog-container">
+    <div class="blog-section-header">
+        <span class="blog-section-tag">
+            Sắp diễn ra
+        </span>
+        <h2 class="blog-section-title">
+            Lịch sự kiện
+        </h2>
+    </div>
+    <div class="blog-timeline">
+        <div class="blog-event">
+            <div class="blog-event-date">
+                12/06
+            </div>
+            <div class="blog-event-content">
+                <h3>
+                    Workshop bảo quản sách cổ
+                </h3>
+                <p>
+                    Hướng dẫn xử lý sách cũ đúng cách.
+                </p>
+            </div>
+        </div>
+        <div class="blog-event">
+            <div class="blog-event-date">
+                20/06
+            </div>
+            <div class="blog-event-content">
+                <h3>
+                    Chợ sách cuối tháng
+                </h3>
+                <p>
+                    Hàng trăm đầu sách giảm giá đặc biệt.
+                </p>
+            </div>
+        </div>
+        <div class="blog-event">
+            <div class="blog-event-date">
+                28/06
+            </div>
+            <div class="blog-event-content">
+                <h3>
+                    Triển lãm sách quý hiếm
+                </h3>
+                <p>
+                    Trưng bày các bản in đặc biệt trước năm 1975.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blog-container">
+    <div class="blog-section-header">
+        <span class="blog-section-tag">
+            Bộ sưu tập
+        </span>
+        <h2 class="blog-section-title">
+            Góc sách quý hiếm
+        </h2>
+    </div>
+
+    <div class="blog-rare-grid">
+        <div class="blog-rare-card">
+            <img src="assets/images/books/book1.jpg" alt="">
+            <h3>Truyện Kiều</h3>
+            <p>Bản in 1923</p>
+        </div>
+        <div class="blog-rare-card">
+            <img src="assets/images/books/book2.jpg" alt="">
+            <h3>Bố Già</h3>
+            <p>Ấn bản đầu tiên</p>
+        </div>
+        <div class="blog-rare-card">
+            <img src="assets/images/books/book3.jpg" alt="">
+            <h3>Ruồi Trâu</h3>
+            <p>Bản dịch hiếm</p>
+        </div>
+        <div class="blog-rare-card">
+            <img src="assets/images/books/book4.jpg" alt="">
+            <h3>Chí Phèo</h3>
+            <p>Bản sưu tầm</p>
+        </div>
+    </div>
+</div>
+
+<div class="blog-container">
+    <div class="blog-section-header">
+        <span class="blog-section-tag">
+            Đọc thêm
+        </span>
+        <h2 class="blog-section-title">
+            Bài viết mới nhất
+        </h2>
+    </div>
+
+    <div class="blog-masonry">
+        <article class="blog-post-card">
+            <img src="assets/images/blog/p1.jpg" alt="">
+            <h3>Cách bảo quản sách cũ không bị ố vàng</h3>
+        </article>
+        <article class="blog-post-card tall">
+            <img src="assets/images/blog/p2.jpg" alt="">
+            <h3>10 tiệm sách cũ nổi tiếng tại Việt Nam</h3>
+        </article>
+        <article class="blog-post-card">
+            <img src="assets/images/blog/p3.jpg" alt="">
+            <h3>Giá trị của những bản in đầu tiên</h3>
+        </article>
+        <article class="blog-post-card">
+            <img src="assets/images/blog/p4.jpg" alt="">
+            <h3>Những cuốn sách từng thay đổi lịch sử</h3>
+        </article>
+        <article class="blog-post-card wide">
+            <img src="assets/images/blog/p5.jpg" alt="">
+            <h3>Phỏng vấn người sưu tầm sách cổ hơn 20 năm</h3>
+        </article>
+    </div>
+</div>
+    </main>
+
+  <!-- ========== FOOTER  ========== -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-title">Về Chúng Tôi</h3>
+          <p>
+            Tiệm Sách Thư Hiên - Nơi lưu giữ và chia sẻ những câu chuyện qua
+            từng trang sách cũ đầy ký ức.
+          </p>
+          <div class="social-icons">
+            <a href="facebook.com"><i class="fab fa-facebook-f"></i></a>
+            <a href="instagram.com"><i class="fab fa-instagram"></i></a>
+            <a href="youtube.com"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Kết</h3>
+          <ul>
+            <li><a href="category.html">Danh mục sách</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Hỗ Trợ</h3>
+          <ul>
+            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#">Hướng dẫn mua hàng</a></li>
+            <li><a href="#">Phương thức thanh toán</a></li>
+            <li><a href="#">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Hệ</h3>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Hoàn Kiếm, Hà Nội</li>
+            <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
+            <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
+          </ul>
+          <div class="newsletter">
+            <p class="newsletter-title">Nhận thêm thông tin</p>
+            <form action="#" class="newsletter-form">
+              <input type="email" placeholder="Email của bạn" required />
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Tiệm Sách Thư Hiên. Tất cả quyền được bảo lưu.</p>
+        <p>Được tạo với ❤️ từ niềm đam mê sách cũ</p>
+      </div>
+    </footer>
+    <script src="assets/js/blog.js" ></script>
+    <script>
+    /* ===== TÌM KIẾM ===== */
+    const btnTimKiem  = document.getElementById('btn-tim-kiem');
+    const popTimKiem  = document.getElementById('pop-tim-kiem');
+    const popOverlay  = document.getElementById('pop-overlay');
+    const oTimKiem    = document.getElementById('o-tim-kiem');
+    const btnTim      = document.getElementById('btn-tim');
+
+    function dongPopup() {
+        popTimKiem.classList.remove('hien');
+        popOverlay.classList.remove('hien');
+    }
+
+    function moPopupTimKiem() {
+        const dangHien = popTimKiem.classList.contains('hien');
+        dongPopup();
+        if (!dangHien) {
+            popTimKiem.classList.add('hien');
+            popOverlay.classList.add('hien');
+            setTimeout(() => oTimKiem.focus(), 50);
+        }
+    }
+
+    if (btnTimKiem) btnTimKiem.addEventListener('click', e => { e.stopPropagation(); moPopupTimKiem(); });
+    if (popOverlay) popOverlay.addEventListener('click', dongPopup);
+
+    // Ấn Enter hoặc nút Tìm → chuyển sang trang category với query
+    function diTimKiem() {
+        const q = oTimKiem.value.trim();
+        if (q) window.location.href = `category.html?q=${encodeURIComponent(q)}`;
+    }
+
+    if (btnTim)   btnTim.addEventListener('click', diTimKiem);
+    if (oTimKiem) oTimKiem.addEventListener('keydown', e => { if (e.key === 'Enter') diTimKiem(); });
+
+    // Click tag gợi ý → điền vào ô tìm kiếm
+    document.querySelectorAll('.pop-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+            oTimKiem.value = tag.textContent;
+            oTimKiem.focus();
+        });
+    });
+
+    // Đóng popup khi ấn Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') dongPopup(); });
+
+    /* ===== BADGE GIỎ HÀNG ===== */
+    // Đọc số lượng từ localStorage (cart.html sẽ cập nhật)
+    function capNhatBadge() {
+        const badge = document.getElementById('so-gio-hang');
+        if (!badge) return;
+        const soLuong = parseInt(localStorage.getItem('so-luong-gio-hang') || '0');
+        badge.textContent = soLuong;
+        badge.classList.toggle('an', soLuong === 0);
+    }
+
+    capNhatBadge();
+    </script>
+  </body>
+</html>

@@ -2,45 +2,70 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thư Hiên - Tiệm Sách Cũ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <!--Nhúng css-->
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/about.css" />
   </head>
+
   <body>
+    <!-- ========== HEADER ========== -->
     <header class="header">
       <div class="header-container">
         <div class="header-brand">
-          <div class="logo-box">
-            <img src="assets/images/logo.png" alt="Logo Thư Hiên" />
-          </div>
-          <h1 class="brand-name">Thư Hiên</h1>
+          <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only" />
         </div>
 
         <nav class="header-nav">
           <ul>
             <li><a href="index.html">Trang chủ</a></li>
             <li><a href="category.html">Danh mục</a></li>
-            <li><a href="buyback.html">Bán lại sách</a></li>
-            <li><a href="news.html">Tin tức</a></li>
-            <li><a href="about.html" class="active">Giới thiệu</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html" class = "active">Về chúng tôi</a></li>
           </ul>
         </nav>
 
         <div class="header-icons">
-          <a href="#" title="Tìm kiếm"><i class="fas fa-search"></i></a>
-          <a href="cart.html" title="Giỏ hàng"
-            ><i class="fas fa-shopping-cart"></i
-          ></a>
-          <a href="login.html" title="Tài khoản"><i class="far fa-user"></i></a>
+          <!-- NÚT TÌM KIẾM -->
+          <button class="hd-icon-btn" id="btn-tim-kiem" title="Tìm kiếm" aria-label="Tìm kiếm">
+            <i class="fas fa-search"></i>
+          </button>
+          <!-- NÚT GIỎ HÀNG — -->
+          <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng" style="position:relative;">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="hd-badge" id="so-gio-hang">0</span>
+          </a>
         </div>
+        <!-- POPUP TÌM KIẾM — -->
+        <div class="pop-tim-kiem" id="pop-tim-kiem">
+          <div class="pop-tim-kiem-noi">
+            <p class="pop-nhan">Tìm kiếm sách</p>
+            <div class="pop-search-row">
+              <i class="fas fa-search"></i>
+              <input type="text" id="o-tim-kiem" placeholder="Tên sách, tác giả, thể loại…">
+              <button class="pop-search-btn" id="btn-tim">Tìm</button>
+            </div>
+            <div class="pop-tag-list">
+              <span class="pop-tag">Văn học kinh điển</span>
+              <span class="pop-tag">Văn học Việt Nam xưa</span>
+              <span class="pop-tag">Ấn bản đặc biệt</span>
+              <span class="pop-tag">Lịch sử & Văn minh</span>
+              <span class="pop-tag">Ngoại văn tuyển chọn</span>
+              <span class="pop-tag">Thiếu nhi & Tuổi thơ</span>
+              <span class="pop-tag">Triết học & Tư tưởng</span>
+              <span class="pop-tag">Tinh thám kinh điển</span>
+            </div>
+          </div>
+        </div>
+      <div class="pop-overlay" id="pop-overlay"></div>
       </div>
     </header>
 
@@ -48,6 +73,7 @@
       <h2></h2>
     </main>
 
+    <!-- ========== FOOTER  ========== -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
@@ -57,9 +83,9 @@
             từng trang sách cũ đầy ký ức.
           </p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="facebook.com"><i class="fab fa-facebook-f"></i></a>
+            <a href="instagram.com"><i class="fab fa-instagram"></i></a>
+            <a href="youtube.com"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
 
@@ -67,9 +93,9 @@
           <h3 class="footer-title">Liên Kết</h3>
           <ul>
             <li><a href="category.html">Danh mục sách</a></li>
-            <li><a href="buyback.html">Bán lại sách</a></li>
-            <li><a href="news.html">Tin tức</a></li>
-            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
           </ul>
         </div>
 
@@ -105,5 +131,64 @@
         <p>Được tạo với ❤️ từ niềm đam mê sách cũ</p>
       </div>
     </footer>
+    <script src="assets/js/buyback.js" ></script>
+    <script>
+    /* ===== TÌM KIẾM ===== */
+    const btnTimKiem  = document.getElementById('btn-tim-kiem');
+    const popTimKiem  = document.getElementById('pop-tim-kiem');
+    const popOverlay  = document.getElementById('pop-overlay');
+    const oTimKiem    = document.getElementById('o-tim-kiem');
+    const btnTim      = document.getElementById('btn-tim');
+
+    function dongPopup() {
+        popTimKiem.classList.remove('hien');
+        popOverlay.classList.remove('hien');
+    }
+
+    function moPopupTimKiem() {
+        const dangHien = popTimKiem.classList.contains('hien');
+        dongPopup();
+        if (!dangHien) {
+            popTimKiem.classList.add('hien');
+            popOverlay.classList.add('hien');
+            setTimeout(() => oTimKiem.focus(), 50);
+        }
+    }
+
+    if (btnTimKiem) btnTimKiem.addEventListener('click', e => { e.stopPropagation(); moPopupTimKiem(); });
+    if (popOverlay) popOverlay.addEventListener('click', dongPopup);
+
+    // Ấn Enter hoặc nút Tìm → chuyển sang trang category với query
+    function diTimKiem() {
+        const q = oTimKiem.value.trim();
+        if (q) window.location.href = `category.html?q=${encodeURIComponent(q)}`;
+    }
+
+    if (btnTim)   btnTim.addEventListener('click', diTimKiem);
+    if (oTimKiem) oTimKiem.addEventListener('keydown', e => { if (e.key === 'Enter') diTimKiem(); });
+
+    // Click tag gợi ý → điền vào ô tìm kiếm
+    document.querySelectorAll('.pop-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+            oTimKiem.value = tag.textContent;
+            oTimKiem.focus();
+        });
+    });
+
+    // Đóng popup khi ấn Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') dongPopup(); });
+
+    /* ===== BADGE GIỎ HÀNG ===== */
+    // Đọc số lượng từ localStorage (cart.html sẽ cập nhật)
+    function capNhatBadge() {
+        const badge = document.getElementById('so-gio-hang');
+        if (!badge) return;
+        const soLuong = parseInt(localStorage.getItem('so-luong-gio-hang') || '0');
+        badge.textContent = soLuong;
+        badge.classList.toggle('an', soLuong === 0);
+    }
+
+    capNhatBadge();
+    </script>
   </body>
 </html>

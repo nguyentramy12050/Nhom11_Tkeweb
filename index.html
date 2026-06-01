@@ -5,14 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý</title>
     <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <!--Nhúng css-->
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/index.css" />
   </head>
@@ -29,21 +24,50 @@
           <ul>
             <li><a href="index.html" class="active">Trang chủ</a></li>
             <li><a href="category.html">Danh mục</a></li>
-            <li><a href="buyback.html">Bán lại sách</a></li>
-            <li><a href="news.html">Tin tức</a></li>
-            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
           </ul>
         </nav>
 
         <div class="header-icons">
-          <a href="#" title="Tìm kiếm"><i class="fas fa-search"></i></a>
-          <a href="cart.html" title="Giỏ hàng"><i class="fas fa-shopping-cart"></i></a>
-          <a href="login.html" title="Tài khoản"><i class="far fa-user"></i></a>
+          <!-- NÚT TÌM KIẾM -->
+          <button class="hd-icon-btn" id="btn-tim-kiem" title="Tìm kiếm" aria-label="Tìm kiếm">
+            <i class="fas fa-search"></i>
+          </button>
+          <!-- NÚT GIỎ HÀNG — -->
+          <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng" style="position:relative;">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="hd-badge" id="so-gio-hang">0</span>
+          </a>
         </div>
+        <!-- POPUP TÌM KIẾM — -->
+        <div class="pop-tim-kiem" id="pop-tim-kiem">
+          <div class="pop-tim-kiem-noi">
+            <p class="pop-nhan">Tìm kiếm sách</p>
+            <div class="pop-search-row">
+              <i class="fas fa-search"></i>
+              <input type="text" id="o-tim-kiem" placeholder="Tên sách, tác giả, thể loại…">
+              <button class="pop-search-btn" id="btn-tim">Tìm</button>
+            </div>
+            <div class="pop-tag-list">
+              <span class="pop-tag">Văn học kinh điển</span>
+              <span class="pop-tag">Văn học Việt Nam xưa</span>
+              <span class="pop-tag">Ấn bản đặc biệt</span>
+              <span class="pop-tag">Lịch sử & Văn minh</span>
+              <span class="pop-tag">Ngoại văn tuyển chọn</span>
+              <span class="pop-tag">Thiếu nhi & Tuổi thơ</span>
+              <span class="pop-tag">Triết học & Tư tưởng</span>
+              <span class="pop-tag">Tinh thám kinh điển</span>
+            </div>
+          </div>
+        </div>
+      <div class="pop-overlay" id="pop-overlay"></div>
       </div>
     </header>
 
     <main>
+
   <!-- Hero Banner -->
 <section class="hero-master">
   <div class="hero-background">
@@ -62,12 +86,274 @@
   </div>
 </section>
 
-  <!-- Báu vật mới về -->
-  <div class="section-header">
-    <h3><i class="fas fa-crown"></i> Báu vật mới về</h3>
-    <a href="#">Xem tất cả →</a>
+<!-- Thanh tiện ích dưới banner -->
+<section class="khu-tien-ich">
+  <div class="khung-uu-dai">
+    <div class="o-uu-dai">
+      <i class="fas fa-shipping-fast"></i>
+      <div class="noi-dung">
+        <strong class="tieu-de">Miễn phí vận chuyển</strong>
+        <span class="mo-ta">cho đơn hàng từ 500.000đ</span>
+      </div>
+    </div>
+    <div class="o-uu-dai">
+      <i class="fas fa-laptop"></i>
+      <div class="noi-dung">
+        <strong class="tieu-de">Đặt hàng trực tuyến</strong>
+        <span class="mo-ta">giao nhanh trong 3 ngày</span>
+      </div>
+    </div>
+    <div class="o-uu-dai">
+      <i class="fas fa-percent"></i>
+      <div class="noi-dung">
+        <strong class="tieu-de">Khuyến mãi sách hiếm</strong>
+        <span class="mo-ta">giảm đến 30% ấn bản đặc biệt</span>
+      </div>
+    </div>
+    <div class="o-uu-dai">
+      <i class="fas fa-hand-holding-heart"></i>
+      <div class="noi-dung">
+        <strong class="tieu-de">Bán lại dễ dàng</strong>
+        <span class="mo-ta">thu mua tận nơi, báo giá tốt</span>
+      </div>
+    </div>
+    <div class="o-uu-dai">
+      <i class="fas fa-clock"></i>
+      <div class="noi-dung">
+        <strong class="tieu-de">Hỗ trợ tận tâm</strong>
+        <span class="mo-ta">08:00 – 22:00 kể cả cuối tuần</span>
+      </div>
+    </div>
   </div>
-  <div class="book-grid" id="rareBooksGrid"></div>
+</section>
+
+<!--------------Thư Hien chọn lọc----------->
+<section class="khu-carousel">
+  <div class="khung-carousel">
+ 
+    <div class="dau-carousel">
+      <div>
+        <p class="nhan-nho">Thư Hiên chọn lọc</p>
+        <h2 class="tieu-de-carousel">Những trang sách <em>đáng đọc nhất</em></h2>
+      </div>
+      <div class="nhom-nut">
+        <button class="nut-mui-ten" id="nut-lui">&#8592;</button>
+        <button class="nut-mui-ten" id="nut-toi">&#8594;</button>
+      </div>
+    </div>
+    <div class="khung-truot">
+      <div class="bang-truot" id="bang-truot">
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/Bogia.jpg" alt="Bố Già">
+            <span class="nhan-the hot">Bán chạy</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Văn học kinh điển</p>
+            <h3 class="ten-sach">Bố Già</h3>
+            <p class="tac-gia">Mario Puzo</p>
+            <span class="gia-sach">187.000 ₫</span>
+          </div>
+          <a href="product-detail.html?id=bogia" class="nut-mua">Mua ngay</a>
+        </div>
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/Combo2cuontramnamNobel.jpg" alt="Combo Nobel">
+            <span class="nhan-the hot">Bán chạy</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Ấn bản đặc biệt</p>
+            <h3 class="ten-sach">Combo 2 cuốn trăm năm Nobel</h3>
+            <p class="tac-gia">George Bernard Shaw</p>
+            <span class="gia-sach">1.000.000 ₫</span>
+          </div>
+          <a href="product-detail.html?id=combo-nobel" class="nut-mua">Mua ngay</a>
+        </div>
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/Daivietsukytoanthu.jpg" alt="Đại Việt Sử Ký">
+            <span class="nhan-the hot">Bán chạy</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Lịch sử & Văn minh</p>
+            <h3 class="ten-sach">Đại Việt Sử Ký Toàn Thư</h3>
+            <p class="tac-gia">Lê Văn Hưu, Ngô Sĩ Liên…</p>
+            <span class="gia-sach">580.000 ₫</span>
+          </div>
+          <a href="product-detail.html?id=daiviet-suky" class="nut-mua">Mua ngay</a>
+        </div>
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/Crimeandpunishment.jpg" alt="Crime and Punishment">
+            <span class="nhan-the moi">Mới về</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Ngoại văn tuyển chọn</p>
+            <h3 class="ten-sach">Crime and Punishment</h3>
+            <p class="tac-gia">Fyodor Dostoevsky</p>
+            <span class="gia-sach">302.000 ₫</span>
+          </div>
+          <a href="product-detail.html?id=crime-punishment" class="nut-mua">Mua ngay</a>
+        </div>
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/Khonggiadinh.jpg" alt="Không Gia Đình">
+            <span class="nhan-the hot">Bán chạy</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Văn học kinh điển</p>
+            <h3 class="ten-sach">Không Gia Đình</h3>
+            <p class="tac-gia">Hector Malot</p>
+            <span class="gia-sach">117.500 ₫</span>
+          </div>
+          <a href="product-detail.html?id=khong-gia-dinh" class="nut-mua">Mua ngay</a>
+        </div>
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/Hoangtube.jpg" alt="Hoàng Tử Bé">
+            <span class="nhan-the">Cổ điển</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Thiếu nhi & Tuổi thơ</p>
+            <h3 class="ten-sach">Hoàng Tử Bé</h3>
+            <p class="tac-gia">Antoine de Saint-Exupéry</p>
+            <span class="gia-sach">28.000 ₫</span>
+          </div>
+          <a href="product-detail.html?id=hoang-tu-be" class="nut-mua">Mua ngay</a>
+        </div>
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/nghinlemotdem.jpg" alt="Nghìn lẻ Một Đêm">
+            <span class="nhan-the new">Mới về</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Ấn bản đặc biệt</p>
+            <h3 class="ten-sach">Nghìn lẻ Một Đêm</h3>
+            <p class="tac-gia">Antoine Galland</p>
+            <span class="gia-sach">2.500.000 ₫</span>
+          </div>
+          <a href="product-detail.html?id=nghin-le-mot-dem" class="nut-mua">Mua ngay</a>
+        </div>
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/Onggiavabienca.jpg" alt="Ông Già Và Biển Cả">
+            <span class="nhan-the">Cổ điển</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Văn học kinh điển</p>
+            <h3 class="ten-sach">Ông Già Và Biển Cả</h3>
+            <p class="tac-gia">Ernest Hemingway</p>
+            <span class="gia-sach">37.000 ₫</span>
+          </div>
+          <a href="product-detail.html?id=ong-gia-va-bien-ca" class="nut-mua">Mua ngay</a>
+        </div>
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/Chotoixinmotvedituoitho.jpg" alt="Cho Tôi Xin Một Vé Đi Tuổi Thơ">
+            <span class="nhan-the">Cổ điển</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Văn học Việt Nam xưa</p>
+            <h3 class="ten-sach">Cho Tôi Xin Một Vé Đi Tuổi Thơ</h3>
+            <p class="tac-gia">Nguyễn Nhật Ánh</p>
+            <span class="gia-sach">50.000 ₫</span>
+          </div>
+          <a href="product-detail.html?id=cho-toi-xin-mot-ve-di-tuoi-tho" class="nut-mua">Mua ngay</a>
+        </div>
+        <div class="the-sach">
+          <div class="anh-sach">
+            <img src="assets/images/books/Banvetudo.jpg" alt="Bàn Về Tự Do">
+            <span class="nhan-the">Cổ điển</span>
+          </div>
+          <div class="thong-tin">
+            <p class="the-loai">Triết học & Tư tưởng</p>
+            <h3 class="ten-sach">Bàn Về Tự Do</h3>
+            <p class="tac-gia">John Stuart Mill</p>
+            <span class="gia-sach">130.000 ₫</span>
+          </div>
+          <a href="product-detail.html?id=ban-ve-tu-do" class="nut-mua">Mua ngay</a>
+        </div>
+      </div>
+    </div>
+    <div class="cham-trang" id="cham-trang"></div>
+  </div>
+</section>
+<!-- Khu vực thể loại sách -->
+<section class="khu-vuc-the-loai">
+  <div class="khung-chua">
+    <div class="tieu-de-phu">
+      <h2 class="tieu-de-chinh"> TÌM THEO THỂ LOẠI</h2>
+      <p class="mo-ta-phu">Chọn lọc những tinh hoa theo từng chủ đề</p>
+    </div>
+    <div class="luoi-the-loai">
+      <!-- 8 thể loại, mỗi ô có ảnh nền riêng và số sách = 8 -->
+      <div class="o-category" data-cat="van-hoc-kinh-dien">
+        <img src="assets/images/genre/VanHocKinhDien.jpg" alt="Văn học kinh điển" class="anh-nen-category">
+        <div class="lop-phu">
+          <span class="bieu-tuong"><i class="fas fa-feather-alt"></i></span>
+          <h3 class="ten-loai">VĂN HỌC KINH ĐIỂN</h3>
+          <p class="so-sach">8 đầu sách</p>
+        </div>
+      </div>
+      <div class="o-category" data-cat="van-hoc-viet-nam">
+        <img src="assets/images/genre/VanHocVNXua.jpg" alt="Văn học Việt Nam xưa" class="anh-nen-category">
+        <div class="lop-phu">
+          <span class="bieu-tuong"><i class="fas fa-pagelines"></i></span>
+          <h3 class="ten-loai">VĂN HỌC VIỆT NAM XƯA</h3>
+          <p class="so-sach">8 đầu sách</p>
+        </div>
+      </div>
+      <div class="o-category" data-cat="triet-hoc">
+        <img src="assets/images/genre/TrietHoc&TuTuong.jpg" alt="Triết học & Tư tưởng" class="anh-nen-category">
+        <div class="lop-phu">
+          <span class="bieu-tuong"><i class="fas fa-brain"></i></span>
+          <h3 class="ten-loai">TRIẾT HỌC & TƯ TƯỞNG</h3>
+          <p class="so-sach">8 đầu sách</p>
+        </div>
+      </div>
+      <div class="o-category" data-cat="lich-su">
+        <img src="assets/images/genre/LichSu&VanMinh.jpg" alt="Lịch sử & Văn minh" class="anh-nen-category">
+        <div class="lop-phu">
+          <span class="bieu-tuong"><i class="fas fa-landmark"></i></span>
+          <h3 class="ten-loai">LỊCH SỬ & VĂN MINH</h3>
+          <p class="so-sach">8 đầu sách</p>
+        </div>
+      </div>
+      <div class="o-category" data-cat="trinh-tham">
+        <img src="assets/images/genre/TrinhTham.jpg" alt="Trinh thám kinh điển" class="anh-nen-category">
+        <div class="lop-phu">
+          <span class="bieu-tuong"><i class="fas fa-search"></i></span>
+          <h3 class="ten-loai">TRINH THÁM KINH ĐIỂN</h3>
+          <p class="so-sach">8 đầu sách</p>
+        </div>
+      </div>
+      <div class="o-category" data-cat="thieu-nhi">
+        <img src="assets/images/genre/ThieuNhi.jpg" alt="Thiếu nhi & tuổi thơ" class="anh-nen-category">
+        <div class="lop-phu">
+          <span class="bieu-tuong"><i class="fas fa-child"></i></span>
+          <h3 class="ten-loai">THIẾU NHI & TUỔI THƠ</h3>
+          <p class="so-sach">8 đầu sách</p>
+        </div>
+      </div>
+      <div class="o-category" data-cat="ngoai-van">
+        <img src="assets/images/genre/NgoaiVan.jpg" alt="Ngoại văn tuyển chọn" class="anh-nen-category">
+        <div class="lop-phu">
+          <span class="bieu-tuong"><i class="fas fa-language"></i></span>
+          <h3 class="ten-loai">NGOẠI VĂN TUYỂN CHỌN</h3>
+          <p class="so-sach">8 đầu sách</p>
+        </div>
+      </div>
+      <div class="o-category" data-cat="an-ban-db">
+        <img src="assets/images/genre/AnBan.jpg" alt="Ấn bản đặc biệt" class="anh-nen-category">
+        <div class="lop-phu">
+          <span class="bieu-tuong"><i class="fas fa-gem"></i></span>
+          <h3 class="ten-loai">ẤN BẢN ĐẶC BIỆT</h3>
+          <p class="so-sach">8 đầu sách</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Ký ức trang sách  -->
 <section class="memory-bento">
@@ -75,8 +361,7 @@
     <div class="bento-header">
       <h2 class="bento-title">Ký ức trang sách</h2>
       <p class="bento-desc">Hơn cả một cuốn sách, đó là những dấu vết thời gian. Chúng tôi giúp bạn giải mã những lời nhắn gửi, dấu triện và cả những giọt mực rơi từ quá khứ.</p>
-    </div>
-    <div class="bento-grid">
+      <div class="bento-grid">
       <!-- Ảnh lớn bên trái -->
       <div class="bento-large">
         <div class="memory-card">
@@ -86,8 +371,8 @@
             <p class="memory-card-desc">Những lời phê bình hay tâm tình được gửi gắm bên lề trang giấy qua hàng thế kỷ.</p>
           </div>
         </div>
-      </div>
-      <!-- Cột ảnh nhỏ bên phải -->
+      </div> 
+          <!-- Cột ảnh nhỏ bên phải -->
       <div class="bento-small">
         <div class="memory-card">
           <img src="assets/images/dauan.jpg" alt="Dấu ấn gia tộc" class="memory-img">
@@ -96,7 +381,7 @@
           </div>
         </div>
         <div class="memory-card">
-          <img src="assets/images/manhhon.jpg" alt="Mảnh hồn sương khói" class="memory-img">
+            <img src="assets/images/manhhon.jpg" alt="Mảnh hồn sương khói" class="memory-img">
           <div class="memory-overlay memory-overlay-center">
             <h3 class="memory-card-title">Mảnh hồn sương khói</h3>
           </div>
@@ -106,12 +391,63 @@
   </div>
 </section>
 
-  <!-- Các danh mục sách động -->
-  <div id="categoriesContainer"></div>
+<!--===================================TOP SÁCH NỔI BẬT =================================== -->
+<section class="top-sach-noi-bat">
+    <div class="khung-top">
+        <div class="tieu-de-khu">
+            <h2 class="tieu-de-chinh"> SÁCH NỔI BẬT TUẦN QUA </h2>
+            <p class="mo-ta-phu">
+                Những cuốn sách được độc giả Thư Hiên được quan tâm nhiều nhất
+            </p>
+        </div>
+        <div class="danh-sach-lon">
+            <!-- TOP 1 -->
+            <div class="item-sach-lon top1" data-link="product-detail.html?id=bogia">
+                <div class="anh-bia-nho">
+                    <img src="assets/images/books/Bogia.jpg" alt="Bố Già">
+                </div>
+                <div class="info-sach">
+                    <h3 class="ten-sach-lon">Bố Già</h3>
+                    <p class="tac-gia-lon">Mario Puzo / Bản đặc biệt</p>
+                </div>
+                <a href="product-detail.html?id=bogia" class="fas fa-arrow-right mu-ten"></a>
+            </div>
+            <!-- TOP 2 -->
+            <div class="item-sach-lon top2" data-link="product-detail.html?id=animal-farm">
+                <div class="anh-bia-nho">
+                    <img src="assets/images/books/Animalfarm.jpg" alt="Animal Farm">
+                </div>
+                <div class="info-sach">
+                    <h3 class="ten-sach-lon">Animal Farm</h3>
+                    <p class="tac-gia-lon">George Orwell / Ấn bản tiếng Anh</p>
+                </div>
+                <a href="product-detail.html?id=animal-farm" class="fas fa-arrow-right mu-ten"></a>
+            </div>
+            <!-- TOP 3 -->
+            <div class="item-sach-lon top3" data-link="product-detail.html?id=chipheo">
+                <div class="anh-bia-nho">
+                    <img src="assets/images/books/Chipheo.jpg" alt="Chí Phèo">
+                </div>
+                <div class="info-sach">
+                    <h3 class="ten-sach-lon">Chí Phèo</h3>
+                    <p class="tac-gia-lon">Nam Cao / Khổ nhỏ 1960</p>
+                </div>
+                <a href="product-detail.html?id=chi-pheo" class="fas fa-arrow-right mu-ten"></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== BANNER BIG SALE ===== -->
+<section class="banner-bigsale">
+    <div class="khung-banner">
+        <img src="assets/images/banners/banner_bigsale.jpg" alt="Thư Hiên Big Sale" class="anh-banner">
+    </div>
+</section>
 </main>
 
     <!-- ========== FOOTER  ========== -->
- <footer class="footer">
+    <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
           <h3 class="footer-title">Về Chúng Tôi</h3>
@@ -130,8 +466,8 @@
           <h3 class="footer-title">Liên Kết</h3>
           <ul>
             <li><a href="category.html">Danh mục sách</a></li>
-            <li><a href="buyback.html">Bán lại sách</a></li>
-            <li><a href="news.html">Tin tức</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="about.html">Giới thiệu</a></li>
           </ul>
         </div>
@@ -168,5 +504,64 @@
         <p>Được tạo với ❤️ từ niềm đam mê sách cũ</p>
       </div>
     </footer>
+    <script src="assets/js/index.js" ></script>
+    <script>
+    /* ===== TÌM KIẾM ===== */
+    const btnTimKiem  = document.getElementById('btn-tim-kiem');
+    const popTimKiem  = document.getElementById('pop-tim-kiem');
+    const popOverlay  = document.getElementById('pop-overlay');
+    const oTimKiem    = document.getElementById('o-tim-kiem');
+    const btnTim      = document.getElementById('btn-tim');
+
+    function dongPopup() {
+        popTimKiem.classList.remove('hien');
+        popOverlay.classList.remove('hien');
+    }
+
+    function moPopupTimKiem() {
+        const dangHien = popTimKiem.classList.contains('hien');
+        dongPopup();
+        if (!dangHien) {
+            popTimKiem.classList.add('hien');
+            popOverlay.classList.add('hien');
+            setTimeout(() => oTimKiem.focus(), 50);
+        }
+    }
+
+    if (btnTimKiem) btnTimKiem.addEventListener('click', e => { e.stopPropagation(); moPopupTimKiem(); });
+    if (popOverlay) popOverlay.addEventListener('click', dongPopup);
+
+    // Ấn Enter hoặc nút Tìm → chuyển sang trang category với query
+    function diTimKiem() {
+        const q = oTimKiem.value.trim();
+        if (q) window.location.href = `category.html?q=${encodeURIComponent(q)}`;
+    }
+
+    if (btnTim)   btnTim.addEventListener('click', diTimKiem);
+    if (oTimKiem) oTimKiem.addEventListener('keydown', e => { if (e.key === 'Enter') diTimKiem(); });
+
+    // Click tag gợi ý → điền vào ô tìm kiếm
+    document.querySelectorAll('.pop-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+            oTimKiem.value = tag.textContent;
+            oTimKiem.focus();
+        });
+    });
+
+    // Đóng popup khi ấn Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') dongPopup(); });
+
+    /* ===== BADGE GIỎ HÀNG ===== */
+    // Đọc số lượng từ localStorage (cart.html sẽ cập nhật)
+    function capNhatBadge() {
+        const badge = document.getElementById('so-gio-hang');
+        if (!badge) return;
+        const soLuong = parseInt(localStorage.getItem('so-luong-gio-hang') || '0');
+        badge.textContent = soLuong;
+        badge.classList.toggle('an', soLuong === 0);
+    }
+
+    capNhatBadge();
+    </script>
   </body>
 </html>

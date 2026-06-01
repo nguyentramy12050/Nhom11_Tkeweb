@@ -97,6 +97,185 @@ h1, h2, h3 {
 .header-icons a:hover {
     color: var(--accent-color);
 }
+/* ========================================ICON HEADER ======================================= */
+/* NÚT ICON */
+.hd-icon-btn {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(201, 168, 124, 0.35);
+    background: transparent;
+    color: #c9a87c;
+    font-size: 15px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all .25s;
+}
+
+.hd-icon-btn:hover {
+    background: rgba(201, 168, 124, 0.18);
+    color: #fff;
+    border-color: #c9a87c;
+    transform: translateY(-1px);
+}
+
+/* BADGE GIỎ HÀNG */
+.hd-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background: #b84a2a;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    pointer-events: none;
+    transition: transform .2s;
+}
+
+.hd-badge.an { display: none; }
+
+/* OVERLAY nền mờ */
+.pop-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+}
+.pop-overlay.hien { display: block; }
+
+/* POPUP TÌM KIẾM */
+.pop-tim-kiem {
+    display: none;
+    position: fixed;
+    top: 68px;          /* đúng bằng chiều cao header */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0 24px 24px;
+    background: #1e1108;
+    border-bottom: 1px solid rgba(201, 168, 124, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    animation: truot-xuong .25s ease;
+}
+
+.pop-tim-kiem.hien { display: block; }
+
+@keyframes truot-xuong {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.pop-tim-kiem-noi {
+    max-width: 700px;
+    margin: 24px auto 0;
+}
+
+.pop-nhan {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: #9c7d5f;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'Lora', serif;
+}
+
+/* THANH SEARCH */
+.pop-search-row {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(201, 168, 124, 0.35);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color .2s;
+}
+
+.pop-search-row:focus-within {
+    border-color: #c9a87c;
+}
+
+.pop-search-row > i {
+    color: #9c7d5f;
+    font-size: 14px;
+    padding: 0 14px;
+    flex-shrink: 0;
+}
+
+.pop-search-row input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f0e0c8;
+    font-size: 15px;
+    padding: 14px 0;
+    font-family: 'Lora', Georgia, serif;
+}
+
+.pop-search-row input::placeholder {
+    color: rgba(201, 168, 124, 0.45);
+}
+
+.pop-search-btn {
+    background: #8a5d3b;
+    border: none;
+    color: #fff;
+    padding: 14px 22px;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    cursor: pointer;
+    transition: background .2s;
+    flex-shrink: 0;
+}
+
+.pop-search-btn:hover { background: #6b4423; }
+
+/* TAGS GỢI Ý */
+.pop-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.pop-tag {
+    background: rgba(201, 168, 124, 0.1);
+    border: 1px solid rgba(201, 168, 124, 0.25);
+    border-radius: 20px;
+    color: #c9a87c;
+    font-size: 11px;
+    padding: 5px 14px;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: 'Lora', serif;
+}
+
+.pop-tag:hover {
+    background: rgba(201, 168, 124, 0.25);
+    color: #fff;
+    border-color: #c9a87c;
+}
+
+/* Nếu header cao hơn/thấp hơn 68px thì đổi top của .pop-tim-kiem cho khớp */
+@media (max-width: 768px) {
+    .pop-tim-kiem { top: 60px; }
+    .pop-tim-kiem-noi { margin: 16px auto 0; }
+}
 
 /* FOOTER STYLE  */
 .footer {

@@ -1,0 +1,424 @@
+:root{
+    --bb-main:#8a5d3b;
+    --bb-dark:#4d3325;
+    --bb-light:#faf7f2;
+    --bb-border:#dcc5ab;
+    --bb-text:#6d5846;
+}
+/* ================= HERO ================= */
+.bb-hero{
+    position:relative;
+    height:85vh;
+    min-height:650px;
+    background:
+    linear-gradient(rgba(35,25,18,.45),rgba(35,25,18,.55)),
+    url("../images/background.jpg") center/cover;
+    display:flex;
+    align-items:center;
+}
+
+.bb-hero-noi{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    color:white;
+}
+
+.bb-hero-nhan{
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:15px;
+    color:#e8d5bd;
+}
+
+.bb-hero-tieu-de{
+    font-size:4rem;
+    line-height:1.1;
+    margin-bottom:25px;
+    font-family:'Playfair Display', serif;
+}
+
+.bb-hero-tieu-de em{
+    color:#f2d3a4;
+    font-style:italic;
+}
+
+.bb-hero-mo-ta{
+    font-size:1.15rem;
+    line-height:1.8;
+    max-width:700px;
+    margin-bottom:35px;
+}
+
+.bb-nut-chinh{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 30px;
+    background:var(--bb-main);
+    color:white;
+    border-radius:50px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.bb-nut-chinh:hover{
+    transform:translateY(-3px);
+}
+
+/* ================= COMMON ================= */
+.bb-khung{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+}
+
+.bb-tieu-de-khu{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.bb-nhan-nho{
+    color:var(--bb-main);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.bb-tieu-de{
+    font-size:2.7rem;
+    color:var(--bb-dark);
+    font-family:'Playfair Display', serif;
+}
+
+.bb-tieu-de em{
+    color:var(--bb-main);
+}
+
+/* ================= QUY TRÌNH ================= */
+.bb-quy-trinh{
+    padding:100px 0;
+    background:white;
+}
+
+.bb-buoc-list{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.bb-buoc{
+    width:260px;
+    background:#fff;
+    border:1px solid var(--bb-border);
+    border-radius:24px;
+    padding:30px;
+    text-align:center;
+    position:relative;
+    transition:.3s;
+}
+
+.bb-buoc:hover{
+    transform:translateY(-8px);
+}
+
+.bb-buoc-so{
+    position:absolute;
+    top:15px;
+    left:20px;
+    font-size:3rem;
+    font-weight:bold;
+    color:#dbbf9f;
+}
+
+.bb-buoc-icon{
+    width:80px;
+    height:80px;
+    margin:auto;
+    border-radius:50%;
+    background:#f7efe6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:var(--bb-main);
+    font-size:30px;
+}
+
+.bb-buoc-ten{
+    margin:20px 0 10px;
+    color:var(--bb-dark);
+}
+
+.bb-buoc-mo-ta{
+    color:var(--bb-text);
+    line-height:1.7;
+}
+
+.bb-buoc-mui-ten{
+    color:var(--bb-main);
+    font-size:22px;
+}
+
+/* ================= TIÊU CHÍ ================= */
+.bb-tieu-chi{
+    background:#faf7f2;
+    padding:100px 0;
+}
+
+.bb-tieu-chi-luoi{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:50px;
+}
+
+.bb-tieu-chi-mo-ta{
+    line-height:1.8;
+    margin:25px 0;
+    color:var(--bb-text);
+}
+
+.bb-dieu-kien-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.bb-dieu-kien{
+    padding:15px;
+    border-radius:12px;
+    background:white;
+}
+
+.bb-dieu-kien.tot{
+    border-left:5px solid #4caf50;
+}
+
+.bb-dieu-kien.khong{
+    border-left:5px solid #f44336;
+}
+
+.bb-bang-gia{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+.bb-bang-gia-tieu-de{
+    margin-bottom:25px;
+}
+
+.bb-hang-gia{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px dashed #ddd;
+}
+
+.bb-ghi-chu{
+    margin-top:20px;
+    color:#999;
+    font-size:.9rem;
+}
+
+/* ================= FORM ================= */
+.bb-form-khu{
+    padding:100px 0;
+}
+
+.bb-form-khung{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:40px;
+}
+
+.bb-nhom{
+    background:white;
+    border:1px solid var(--bb-border);
+    border-radius:24px;
+    padding:30px;
+    margin-bottom:25px;
+}
+
+.bb-nhom-tieu-de{
+    margin-bottom:25px;
+    color:var(--bb-dark);
+}
+
+.bb-hang-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.bb-truong{
+    margin-bottom:20px;
+}
+
+.bb-nhan{
+    display:block;
+    margin-bottom:8px;
+    color:var(--bb-dark);
+}
+
+.bb-input{
+    width:100%;
+    padding:14px;
+    border:1px solid #d9c2a5;
+    border-radius:12px;
+    outline:none;
+}
+
+.bb-input:focus{
+    border-color:var(--bb-main);
+}
+
+.bb-textarea{
+    min-height:140px;
+    resize:none;
+}
+
+/* ================= TÌNH TRẠNG ================= */
+.bb-tinh-trang-list{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.bb-tinh-trang{
+    border:1px solid #ddd;
+    border-radius:16px;
+    padding:15px;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.bb-tinh-trang.active{
+    background:#f8eee4;
+    border-color:var(--bb-main);
+}
+
+/* ================= UPLOAD ================= */
+.bb-form-phai{
+    background:white;
+    border:1px solid var(--bb-border);
+    border-radius:24px;
+    padding:30px;
+    height:max-content;
+}
+
+.bb-upload-khu{
+    border:2px dashed #d7b797;
+    border-radius:20px;
+    padding:40px 20px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.bb-upload-icon{
+    font-size:40px;
+    color:var(--bb-main);
+}
+
+.bb-nut-chon-anh{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 20px;
+    background:var(--bb-main);
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.bb-anh-xem-truoc{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:20px;
+}
+
+.bb-anh-xem-truoc img{
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.bb-tips{
+    margin-top:30px;
+    background:#faf7f2;
+    padding:20px;
+    border-radius:16px;
+}
+
+.bb-tips-list{
+    padding-left:20px;
+}
+
+.bb-tips-list li{
+    margin-bottom:8px;
+}
+
+/* ================= BUTTON ================= */
+.bb-nut-gui{
+    width:100%;
+    border:none;
+    background:var(--bb-main);
+    color:rgb(255, 255, 255);
+    padding:18px;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+/* ================= POPUP ================= */
+.bb-thanh-cong{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.bb-thanh-cong.show{
+    display:flex;
+}
+
+.bb-thanh-cong-hop{
+    width:500px;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+}
+
+.bb-tc-icon{
+    font-size:70px;
+    color:#4caf50;
+}
+
+/* ================= RESPONSIVE================= */
+@media(max-width:992px){
+
+    .bb-form-khung,
+    .bb-tieu-chi-luoi{
+        grid-template-columns:1fr;
+    }
+
+    .bb-tinh-trang-list{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .bb-hang-2{
+        grid-template-columns:1fr;
+    }
+
+    .bb-hero-tieu-de{
+        font-size:2.8rem;
+    }
+}
