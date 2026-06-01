@@ -69,8 +69,8 @@
       </div>
     </header>
 
-<main>
-
+  <main>
+ 
     <!-- HERO -->
     <section class="bb-hero">
       <div class="bb-hero-overlay"></div>
@@ -81,7 +81,7 @@
         <a href="#gui-sach" class="bb-nut-chinh">Gửi sách ngay <i class="fas fa-arrow-down"></i></a>
       </div>
     </section>
-
+ 
     <!-- QUY TRÌNH -->
     <section class="bb-quy-trinh">
       <div class="bb-khung">
@@ -120,7 +120,7 @@
         </div>
       </div>
     </section>
-
+ 
     <!-- TIÊU CHÍ THU MUA -->
     <section class="bb-tieu-chi">
       <div class="bb-khung bb-tieu-chi-luoi">
@@ -167,7 +167,7 @@
         </div>
       </div>
     </section>
-
+ 
     <!-- FORM GỬI SÁCH -->
     <section class="bb-form-khu" id="gui-sach">
       <div class="bb-khung">
@@ -176,10 +176,10 @@
           <h2 class="bb-tieu-de">Điền thông tin <em>sách của bạn</em></h2>
           <p class="bb-form-mo-ta">Càng mô tả chi tiết, chúng tôi càng định giá chính xác và nhanh hơn cho bạn.</p>
         </div>
-
+ 
         <div class="bb-form-khung">
           <div class="bb-form-trai">
-
+ 
             <!-- THÔNG TIN SÁCH -->
             <div class="bb-nhom">
               <h3 class="bb-nhom-tieu-de"><i class="fas fa-book"></i> Thông tin sách</h3>
@@ -233,7 +233,7 @@
                 <textarea class="bb-input bb-textarea" placeholder="Sách có đặc điểm gì nổi bật? Chữ ký tác giả, bản in giới hạn, kèm tranh minh hoạ..." id="mo-ta"></textarea>
               </div>
             </div>
-
+ 
             <!-- THÔNG TIN LIÊN HỆ -->
             <div class="bb-nhom">
               <h3 class="bb-nhom-tieu-de"><i class="fas fa-user"></i> Thông tin liên hệ</h3>
@@ -257,20 +257,28 @@
                   <label class="bb-radio"><input type="radio" name="hinh-thuc" value="chuyen-khoan" checked> Chuyển khoản</label>
                   <label class="bb-radio"><input type="radio" name="hinh-thuc" value="tien-mat"> Tiền mặt tại tiệm</label>
                 </div>
+                <div class="bb-truong" id="khu-ck" style="display:none;">
+                    <label class="bb-nhan">Thông tin chuyển khoản</label>
+                    <div class="bb-hang-2">
+                        <input type="text" class="bb-input" id="ngan-hang" placeholder="Tên ngân hàng — VD: Vietcombank">
+                        <input type="text" class="bb-input" id="so-tk" placeholder="Số tài khoản">
+                    </div>
+                    <input type="text" class="bb-input" style="margin-top:12px;" id="ten-tk" placeholder="Tên chủ tài khoản — VD: NGUYEN VAN A">
+                </div>
               </div>
             </div>
-
+ 
             <button class="bb-nut-gui" id="nut-gui-form">
               <i class="fas fa-paper-plane"></i> Gửi yêu cầu định giá
             </button>
-
+ 
           </div>
-
+ 
           <!-- CỘT PHẢI: UPLOAD ẢNH -->
           <div class="bb-form-phai">
             <h3 class="bb-nhom-tieu-de"><i class="fas fa-camera"></i> Ảnh sách</h3>
             <p class="bb-anh-huong-dan">Chụp rõ bìa trước, bìa sau và gáy sách. Ảnh càng rõ định giá càng chính xác.</p>
-
+ 
             <div class="bb-upload-khu" id="upload-khu">
               <i class="fas fa-cloud-upload-alt bb-upload-icon"></i>
               <p class="bb-upload-chu">Kéo thả ảnh vào đây</p>
@@ -279,9 +287,9 @@
               <input type="file" id="input-anh" accept="image/*" multiple style="display:none">
               <p class="bb-upload-ghi-chu">JPG, PNG • Tối đa 5 ảnh • 5MB/ảnh</p>
             </div>
-
+ 
             <div class="bb-anh-xem-truoc" id="anh-xem-truoc"></div>
-
+ 
             <!-- TIPS -->
             <div class="bb-tips">
               <h4 class="bb-tips-tieu-de"><i class="fas fa-lightbulb"></i> Mẹo chụp ảnh đẹp</h4>
@@ -293,11 +301,11 @@
               </ul>
             </div>
           </div>
-
+ 
         </div>
       </div>
     </section>
-
+ 
     <!-- THÔNG BÁO THÀNH CÔNG (ẩn mặc định) -->
     <div class="bb-thanh-cong" id="bb-thanh-cong">
       <div class="bb-thanh-cong-hop">
@@ -307,7 +315,7 @@
         <a href="index.html" class="bb-nut-chinh">Về trang chủ</a>
       </div>
     </div>
-
+ 
   </main>
 
 
@@ -321,9 +329,9 @@
             từng trang sách cũ đầy ký ức.
           </p>
           <div class="social-icons">
-            <a href="facebook.com"><i class="fab fa-facebook-f"></i></a>
-            <a href="instagram.com"><i class="fab fa-instagram"></i></a>
-            <a href="youtube.com"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
 
@@ -340,28 +348,21 @@
         <div class="footer-col">
           <h3 class="footer-title">Hỗ Trợ</h3>
           <ul>
-            <li><a href="#">Chính sách đổi trả</a></li>
-            <li><a href="#">Hướng dẫn mua hàng</a></li>
-            <li><a href="#">Phương thức thanh toán</a></li>
-            <li><a href="#">Liên hệ</a></li>
+            <li><a href="policy.html#chinh-sach-doi-tra">Chính sách đổi trả</a></li>
+            <li><a href="policy.html#huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+            <li><a href="policy.html#phuong-thuc-thanh-toan">Phương thức thanh toán</a></li>
+            <li><a href="about.html">Liên hệ</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h3 class="footer-title">Liên Hệ</h3>
-          <ul class="contact-info">
-            <li><i class="fas fa-map-marker-alt"></i> 123 Hoàn Kiếm, Hà Nội</li>
-            <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
-            <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
-          </ul>
-          <div class="newsletter">
-            <p class="newsletter-title">Nhận thêm thông tin</p>
-            <form action="#" class="newsletter-form">
-              <input type="email" placeholder="Email của bạn" required />
-              <button type="submit"><i class="fas fa-paper-plane"></i></button>
-            </form>
+            <h3 class="footer-title">Liên Hệ</h3>
+            <ul class="contact-info">
+              <li><i class="fas fa-map-marker-alt"></i> 123 Hoàn Kiếm, Hà Nội</li>
+              <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
+              <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
+            </ul>
           </div>
-        </div>
       </div>
 
       <div class="footer-bottom">

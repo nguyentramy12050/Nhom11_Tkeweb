@@ -1,288 +1,112 @@
-/* =========================================
-   BLOG THƯ HIÊN
-========================================= */
+/* ========================================
+   BLOG — Thư Hiên
+======================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    initNewsletter();
-
-    initPopup();
-
-    initScrollAnimation();
-
-    initCardEffects();
-
+    renderBaiNoiBat();
+    renderTinTuc();
+    renderKhuyenMai();
+    renderSuKien();
+    renderSachQuy();
+    renderBaiViet();
 });
 
-/* =========================================
-NEWSLETTER
-========================================= */
-
-function initNewsletter() {
-
-    const form = document.getElementById("newsletter-form");
-
-    if (!form) return;
-
-    form.addEventListener("submit", function (e) {
-
-        e.preventDefault();
-
-        const emailInput =
-            document.getElementById("newsletter-email");
-
-        const email =
-            emailInput.value.trim();
-
-        if (email === "") {
-
-            alert("Vui lòng nhập email.");
-
-            return;
-        }
-
-        const emailRegex =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailRegex.test(email)) {
-
-            alert("Email không hợp lệ.");
-
-            return;
-        }
-
-        showPopup();
-
-        emailInput.value = "";
-
-    });
-
+/* ===== BÀI NỔI BẬT ===== */
+function renderBaiNoiBat() {
+    const khu = document.getElementById("khu-noi-bat");
+    if (!khu) return;
+    const bai = duLieuBlog.baiNoiBat[0];
+    khu.innerHTML = `
+        <article class="bai-noi-bat-lon" onclick="window.location.href='blog-detail.html?slug=${bai.slug}'">
+            <img src="${bai.anh}" alt="${bai.tieuDe}">
+            <div class="noi-dung-noi-bat">
+                <span class="nhan-danh-muc">${bai.danhMuc}</span>
+                <h3>${bai.tieuDe}</h3>
+                <p>${bai.moTaNgan}</p>
+                <span class="nut-doc-tiep">Đọc tiếp →</span>
+            </div>
+        </article>
+    `;
 }
 
-/* =========================================
-POPUP
-========================================= */
-
-function initPopup() {
-
-    const popup =
-        document.getElementById("blog-popup");
-
-    const closeBtn =
-        document.querySelector(".blog-popup-close");
-
-    if (!popup || !closeBtn) return;
-
-    closeBtn.addEventListener("click", () => {
-
-        popup.classList.remove("show");
-
-    });
-
-    popup.addEventListener("click", (e) => {
-
-        if (e.target === popup) {
-
-            popup.classList.remove("show");
-
-        }
-
-    });
-
+/* ===== TIN TỨC ===== */
+function renderTinTuc() {
+    const khu = document.getElementById("luoi-tin-tuc");
+    if (!khu) return;
+    khu.innerHTML = duLieuBlog.tinTuc.map(item => `
+        <article class="the-tin-tuc" onclick="window.location.href='blog-detail.html?slug=${item.slug}'">
+            <img src="${item.anh}" alt="${item.tieuDe}">
+            <div class="noi-dung-the">
+                <span class="nhan-danh-muc">${item.danhMuc}</span>
+                <h3>${item.tieuDe}</h3>
+                <p style="font-size:12px;color:#9c7d5f;margin-top:8px;">${item.ngay} · ${item.thoiGianDoc}</p>
+            </div>
+        </article>
+    `).join("");
 }
 
-function showPopup() {
-
-    const popup =
-        document.getElementById("blog-popup");
-
-    if (!popup) return;
-
-    popup.classList.add("show");
-
+/* ===== KHUYẾN MÃI ===== */
+function renderKhuyenMai() {
+    const khu = document.getElementById("luoi-khuyen-mai");
+    if (!khu) return;
+    khu.innerHTML = duLieuBlog.khuyenMai.map(item => `
+        <article class="the-tin-tuc" onclick="window.location.href='blog-detail.html?slug=${item.slug}'">
+            <div style="position:relative;">
+                <img src="${item.anh}" alt="${item.tieuDe}" style="height:220px;object-fit:cover;" onerror="this.style.background='#e8d9c4';this.removeAttribute('src')">
+                <span class="nhan-giam-gia">${item.giamGia}</span>
+            </div>
+            <div class="noi-dung-the">
+                <span class="nhan-danh-muc">Khuyến mãi</span>
+                <h3>${item.tieuDe}</h3>
+                <p>${item.moTaNgan}</p>
+            </div>
+        </article>
+    `).join("");
 }
 
-/* =========================================
-SCROLL ANIMATION
-========================================= */
-
-function initScrollAnimation() {
-
-    const sections = document.querySelectorAll(
-        ".blog-featured," +
-        ".blog-news," +
-        ".blog-events," +
-        ".blog-rare-books," +
-        ".blog-posts," +
-        ".blog-newsletter"
-    );
-
-    sections.forEach(section => {
-
-        section.classList.add("fade-up");
-
-    });
-
-    const observer = new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("show");
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: 0.15
-        }
-
-    );
-
-    sections.forEach(section => {
-
-        observer.observe(section);
-
-    });
-
+/* ===== SỰ KIỆN ===== */
+function renderSuKien() {
+    const khu = document.getElementById("dong-thoi-gian-su-kien");
+    if (!khu) return;
+    khu.innerHTML = duLieuBlog.suKien.map(item => `
+        <div class="muc-su-kien" onclick="window.location.href='blog-detail.html?slug=${item.slug}'" style="cursor:pointer;">
+            <div class="ngay-su-kien">${item.ngay}</div>
+            <div class="noi-dung-su-kien">
+                <span class="nhan-danh-muc" style="margin-bottom:10px;display:inline-block;">${item.danhMuc}</span>
+                <h3>${item.tieuDe}</h3>
+                <p>${item.moTaNgan}</p>
+            </div>
+        </div>
+    `).join("");
 }
 
-/* =========================================
-CARD HOVER EFFECT
-========================================= */
-
-function initCardEffects() {
-
-    const cards = document.querySelectorAll(
-
-        ".blog-news-card," +
-        ".blog-post-card," +
-        ".blog-rare-card," +
-        ".blog-mini-card"
-
-    );
-
-    cards.forEach(card => {
-
-        card.addEventListener("mouseenter", () => {
-
-            card.style.transition =
-                "all .35s ease";
-
-        });
-
-    });
-
+/* ===== SÁCH QUÝ ===== */
+function renderSachQuy() {
+    const khu = document.getElementById("luoi-sach-quy");
+    if (!khu) return;
+    khu.innerHTML = duLieuBlog.sachQuy.map(item => `
+        <div class="the-sach-quy" onclick="window.location.href='blog-detail.html?slug=${item.slug}'">
+            <img src="${item.anh}" alt="${item.tieuDe}">
+            <div class="noi-dung-sach-quy">
+                <h3>${item.tieuDe}</h3>
+                <p>${item.moTaNgan}</p>
+            </div>
+        </div>
+    `).join("");
 }
 
-/* =========================================
-FAKE ARTICLE OPEN
-========================================= */
-
-const articleCards = document.querySelectorAll(
-
-    ".blog-news-card," +
-    ".blog-post-card," +
-    ".blog-featured-main"
-
-);
-
-articleCards.forEach(card => {
-
-    card.addEventListener("click", () => {
-
-        alert(
-            "Tính năng xem chi tiết bài viết sẽ được phát triển trong phiên bản tiếp theo."
-        );
-
-    });
-
-});
-
-/* =========================================
-SMOOTH SCROLL
-========================================= */
-
-document.querySelectorAll('a[href^="#"]')
-.forEach(anchor => {
-
-    anchor.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        const target =
-            document.querySelector(
-                this.getAttribute("href")
-            );
-
-        if (!target) return;
-
-        window.scrollTo({
-
-            top:
-                target.offsetTop - 70,
-
-            behavior:
-                "smooth"
-
-        });
-
-    });
-
-});
-
-/* =========================================
-HEADER SHRINK (nếu có navbar)
-========================================= */
-
-window.addEventListener("scroll", () => {
-
-    const header =
-        document.querySelector(".header");
-
-    if (!header) return;
-
-    if (window.scrollY > 80) {
-
-        header.classList.add("scrolled");
-
-    } else {
-
-        header.classList.remove("scrolled");
-
-    }
-
-});
-
-/* =========================================
-PARALLAX HERO NHẸ
-========================================= */
-
-const hero =
-    document.querySelector(".blog-hero");
-
-window.addEventListener("scroll", () => {
-
-    if (!hero) return;
-
-    const offset =
-        window.pageYOffset;
-
-    hero.style.backgroundPositionY =
-        offset * 0.4 + "px";
-
-});
-
-/* =========================================
-CONSOLE
-========================================= */
-
-console.log(
-    " Blog Thư Hiên Loaded Successfully"
-);
+/* ===== BÀI VIẾT ===== */
+function renderBaiViet() {
+    const khu = document.getElementById("luoi-bai-viet");
+    if (!khu) return;
+    const coChu = ['lon', 'vua', 'nho', 'vua', 'lon', 'nho'];
+    khu.innerHTML = duLieuBlog.baiViet.map((item, i) => `
+        <article class="the-bai-viet ${coChu[i % coChu.length]}"
+                 onclick="window.location.href='blog-detail.html?slug=${item.slug}'">
+            <img src="${item.anh}" alt="${item.tieuDe}">
+            <span class="nhan-danh-muc" style="margin:14px 20px 0;display:inline-block;">${item.danhMuc}</span>
+            <h3>${item.tieuDe}</h3>
+            <p>${item.moTaNgan}</p>
+        </article>
+    `).join("");
+}

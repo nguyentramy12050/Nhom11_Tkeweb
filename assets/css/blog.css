@@ -1,14 +1,21 @@
-/* =========================================
+/* ==================================================
    BLOG THƯ HIÊN
-========================================= */
+================================================== */
 
 :root{
-    --blog-main:#8a5d3b;
-    --blog-gold:#d6a15d;
-    --blog-red:#a44f3f;
-    --blog-cream:#faf7f2;
-    --blog-dark:#3f291c;
-    --blog-text:#6d5846;
+    --mau-kem:#faf6f0;
+    --mau-kem-dam:#f2e8db;
+
+    --mau-nau:#6d4c34;
+    --mau-nau-dam:#3d2a1d;
+
+    --mau-do:#a5523c;
+    --mau-vang:#d8a25e;
+
+    --mau-text:#66584c;
+
+    --shadow:
+    0 10px 25px rgba(0,0,0,.08);
 }
 
 *{
@@ -19,8 +26,8 @@
 
 body{
     font:'Merriweather', serif;
-    background:var(--blog-cream);
-    color:var(--blog-dark);
+    background:var(--mau-kem);
+    color:var(--mau-nau-dam);
     overflow-x:hidden;
 }
 
@@ -33,566 +40,693 @@ a{
     text-decoration:none;
 }
 
-.blog-container{
+.khung-blog{
     width:92%;
     max-width:1300px;
     margin:auto;
 }
 
-/* =========================================
-HERO
-========================================= */
+/* ==================================================
+   HERO
+================================================== */
 
-.blog-hero{
+.hero-blog{
     position:relative;
-    min-height:90vh;
+    min-height:100vh;
+
     background:
-    linear-gradient(rgba(35,25,18,.45),rgba(35,25,18,.55)),
-    url("../images/blog/blog-hero.jpg") center/cover;
+    linear-gradient(
+    rgba(20,12,8,.55),
+    rgba(20,12,8,.55)
+    ),
+    url("../images/blog/blog-hero.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
     display:flex;
     align-items:center;
 }
 
-.blog-hero-content{
-    width:92%;
-    max-width:1200px;
-    margin:auto;
+.hero-blog-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+    circle at center,
+    transparent,
+    rgba(0,0,0,.35)
+    );
+}
+
+.noi-dung-hero-blog{
+    position:relative;
+    z-index:2;
     color:white;
+    max-width:750px;
 }
 
-.blog-hero-tag{
-    letter-spacing:3px;
+.nhan-hero-blog{
+    display:inline-block;
+
+    padding:10px 18px;
+
+    background:
+    rgba(255,255,255,.12);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    border-radius:50px;
+
+    margin-bottom:25px;
+
+    font-size:.85rem;
+
+    letter-spacing:2px;
+
     text-transform:uppercase;
-    color:#e8d5bd;
-    margin-bottom:20px;
 }
 
-.blog-hero-title{
+.tieu-de-hero-blog{
     font-family:'Playfair Display', serif;
+
     font-size:5rem;
+
     line-height:1.1;
+
     margin-bottom:25px;
 }
 
-.blog-hero-title em{
-    color:#f2d3a4;
+.tieu-de-hero-blog em{
+    color:#f4d3a1;
     font-style:italic;
 }
 
-.blog-hero-desc{
-    max-width:700px;
-    line-height:1.9;
+.mo-ta-hero-blog{
     font-size:1.1rem;
+    line-height:2;
+
     margin-bottom:35px;
+
+    color:#f1e7dc;
 }
 
-.blog-btn-main{
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
-    padding:15px 30px;
-    background:var(--blog-red);
+.nut-hero-blog{
+    display:inline-block;
+
+    background:var(--mau-do);
+
     color:white;
+
+    padding:16px 32px;
+
     border-radius:50px;
+
     transition:.3s;
 }
 
-.blog-btn-main:hover{
-    transform:translateY(-4px);
+.nut-hero-blog:hover{
+    transform:translateY(-5px);
+
+    background:#8f412d;
 }
+/* ==================================================
+   TIÊU ĐỀ KHU
+================================================== */
 
-/* =========================================
-COMMON
-========================================= */
-
-.blog-section-header{
+.tieu-de-khu-blog{
     text-align:center;
     margin-bottom:60px;
 }
 
-.blog-section-tag{
-    color:var(--blog-red);
+.nhan-khu-blog{
+    display:inline-block;
+
+    color:var(--mau-do);
+
     letter-spacing:2px;
+
     text-transform:uppercase;
-    font-size:.85rem;
+
+    margin-bottom:12px;
 }
 
-.blog-section-title{
-    margin-top:10px;
+.tieu-de-khu-lon-blog{
     font-size:2.8rem;
+
     font-family:'Playfair Display', serif;
-    color:var(--blog-dark);
+
+    color:var(--mau-nau-dam);
 }
 
-/* =========================================
-FEATURED
-========================================= */
+/* ==================================================
+   SECTION
+================================================== */
 
-.blog-featured{
+.khu-bai-noi-bat,
+.khu-tin-tuc,
+.khu-khuyen-mai,
+.khu-su-kien,
+.khu-sach-quy,
+.khu-danh-sach-bai-viet{
     padding:100px 0;
 }
 
-.blog-featured-grid{
+/*---BÀi NỔI BẬT---*/
+.khoi-noi-bat{
     display:grid;
-    grid-template-columns:2fr 1fr;
+
+    grid-template-columns:
+    2fr 1fr;
+
     gap:30px;
 }
 
-.blog-featured-main{
+.bai-noi-bat-lon{
     background:white;
+
     border-radius:30px;
+
     overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    box-shadow:var(--shadow);
+
+    cursor:pointer;
 }
 
-.blog-featured-image{
+.bai-noi-bat-lon img{
     height:500px;
-}
-
-.blog-featured-image img{
-    height:100%;
     object-fit:cover;
 }
 
-.blog-featured-content{
+.noi-dung-noi-bat{
     padding:35px;
 }
 
-.blog-category{
-    display:inline-block;
-    padding:8px 16px;
-    background:#f4e4d2;
-    color:var(--blog-main);
-    border-radius:30px;
-    margin-bottom:20px;
-}
-
-.blog-featured-content h3{
+.noi-dung-noi-bat h3{
     font-size:2rem;
-    line-height:1.3;
-    margin-bottom:20px;
+
+    margin:15px 0;
+
     font-family:'Playfair Display', serif;
 }
 
-.blog-featured-content p{
-    color:var(--blog-text);
+.noi-dung-noi-bat p{
+    color:var(--mau-text);
+
     line-height:1.8;
-    margin-bottom:25px;
 }
 
-.blog-read-more{
-    color:var(--blog-red);
-    font-weight:bold;
-}
-
-/* SIDE */
-
-.blog-side-news{
+.danh-sach-phu{
     display:flex;
     flex-direction:column;
     gap:25px;
 }
 
-.blog-mini-card{
+.the-tin-nho{
     background:white;
+
     border-radius:24px;
-    padding:18px;
+
+    overflow:hidden;
+
     display:flex;
+
     gap:15px;
-    align-items:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
-    transition:.3s;
+
+    padding:15px;
+
+    box-shadow:var(--shadow);
+
+    cursor:pointer;
 }
 
-.blog-mini-card:hover{
-    transform:translateY(-5px);
-}
-
-.blog-mini-card img{
+.the-tin-nho img{
     width:110px;
     height:110px;
+
+    border-radius:15px;
+
     object-fit:cover;
-    border-radius:16px;
 }
 
-.blog-mini-card span{
-    color:var(--blog-red);
-    font-size:.8rem;
-}
-
-.blog-mini-card h4{
-    margin-top:8px;
-    line-height:1.5;
-}
-
-.sale{
-    background:
-    linear-gradient(
-    135deg,
-    #fff6ee,
-    #ffe6d6
-    );
-}
-
-.sale-badge{
-    width:80px;
-    height:80px;
-    background:var(--blog-red);
-    color:white;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:1.4rem;
-    font-weight:bold;
-    flex-shrink:0;
-}
-
-/* =========================================
-TIN TỨC
-========================================= */
-
-.blog-news{
-    padding:100px 0;
-    background:white;
-}
-
-.blog-news-grid{
+/*---------TIN TỨC & KHUYẾN MẠI-----*/
+.luoi-tin-tuc,
+.luoi-khuyen-mai{
     display:grid;
+
     grid-template-columns:
     repeat(3,1fr);
-    gap:25px;
+
+    gap:30px;
 }
 
-.blog-news-card{
+.the-tin-tuc,
+.the-khuyen-mai{
     background:white;
-    border-radius:24px;
+
+    border-radius:28px;
+
     overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    box-shadow:var(--shadow);
+
     transition:.3s;
+
+    cursor:pointer;
 }
 
-.blog-news-card:hover{
-    transform:translateY(-8px);
+.the-tin-tuc:hover,
+.the-khuyen-mai:hover{
+    transform:translateY(-10px);
 }
 
-.blog-news-card img{
-    height:280px;
+.the-tin-tuc img,
+.the-khuyen-mai img{
+    height:260px;
+
     object-fit:cover;
 }
 
-.blog-news-content{
+.noi-dung-the{
     padding:25px;
 }
 
-.blog-news-content h3{
+.noi-dung-the h3{
     margin-top:12px;
+
     line-height:1.5;
-    font-size:1.25rem;
 }
 
-.promo{
-    border:3px dashed var(--blog-gold);
+.nhan-danh-muc{
+    display:inline-block;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    background:#f6e4d0;
+
+    color:var(--mau-do);
+
+    font-size:.85rem;
 }
 
-/* =========================================
-EVENTS
-========================================= */
-
-.blog-events{
-    padding:100px 0;
-}
-
-.blog-timeline{
+/*---------SỰ KIỆN--------*/
+.dong-thoi-gian-su-kien{
     max-width:900px;
     margin:auto;
+
     position:relative;
 }
 
-.blog-timeline::before{
+.dong-thoi-gian-su-kien::before{
     content:"";
+
     position:absolute;
+
     left:50%;
+
     top:0;
+
     width:4px;
+
     height:100%;
-    background:var(--blog-gold);
-    transform:translateX(-50%);
+
+    background:var(--mau-vang);
 }
 
-.blog-event{
+.muc-su-kien{
     width:50%;
+
     padding:20px 40px;
+
     position:relative;
+
     margin-bottom:50px;
 }
 
-.blog-event:nth-child(odd){
-    left:0;
+.muc-su-kien:nth-child(odd){
     text-align:right;
 }
 
-.blog-event:nth-child(even){
+.muc-su-kien:nth-child(even){
     left:50%;
 }
 
-.blog-event::before{
-    content:"";
-    position:absolute;
-    top:30px;
-    width:18px;
-    height:18px;
-    background:var(--blog-red);
-    border-radius:50%;
-}
+.ngay-su-kien{
+    color:var(--mau-do);
 
-.blog-event:nth-child(odd)::before{
-    right:-11px;
-}
+    font-size:1.6rem;
 
-.blog-event:nth-child(even)::before{
-    left:-7px;
-}
-
-.blog-event-date{
-    font-size:1.7rem;
-    color:var(--blog-red);
     font-weight:bold;
-    margin-bottom:10px;
 }
 
-.blog-event-content{
+.noi-dung-su-kien{
     background:white;
+
     padding:25px;
+
     border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+    box-shadow:var(--shadow);
+
+    margin-top:10px;
 }
 
-.blog-event-content h3{
-    margin-bottom:10px;
-}
+/* ==================================================
+   GÓC SÁCH QUÝ
+================================================== */
 
-/* =========================================
-GÓC SÁCH QUÝ
-========================================= */
-
-.blog-rare-books{
-    padding:100px 0;
-    background:#fffaf5;
-}
-
-.blog-rare-grid{
+.luoi-sach-quy{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:25px;
 }
 
-.blog-rare-card{
+.the-sach-quy{
     background:white;
-    border-radius:24px;
+    border-radius:28px;
     overflow:hidden;
-    text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    box-shadow:var(--shadow);
     transition:.35s;
     cursor:pointer;
 }
 
-.blog-rare-card:hover{
+.the-sach-quy:hover{
     transform:translateY(-10px);
 }
 
-.blog-rare-card img{
-    height:320px;
+.the-sach-quy img{
+    height:340px;
     object-fit:cover;
 }
 
-.blog-rare-card h3{
-    font-family:'Playfair Display', serif;
-    margin-top:18px;
-    color:var(--blog-dark);
+.noi-dung-sach-quy{
+    padding:20px;
+    text-align:center;
 }
 
-.blog-rare-card p{
-    color:var(--blog-main);
-    margin:8px 0 20px;
+.noi-dung-sach-quy h3{
+    font-family:'Playfair Display', serif;
+    margin-bottom:8px;
+    color:var(--mau-nau-dam);
+}
+
+.noi-dung-sach-quy p{
+    color:var(--mau-text);
     font-size:.9rem;
 }
 
-/* =========================================
-MASONRY BLOG
-========================================= */
+/* ==================================================
+   DANH SÁCH BÀI VIẾT
+================================================== */
 
-.blog-posts{
-    padding:100px 0;
-}
-
-.blog-masonry{
+.luoi-bai-viet{
     columns:3 320px;
     column-gap:25px;
 }
 
-.blog-post-card{
+.the-bai-viet{
     background:white;
-    border-radius:24px;
+    border-radius:28px;
     overflow:hidden;
+    box-shadow:var(--shadow);
     margin-bottom:25px;
     break-inside:avoid;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.35s;
     cursor:pointer;
+    transition:.35s;
 }
 
-.blog-post-card:hover{
+.the-bai-viet:hover{
     transform:translateY(-8px);
 }
 
-.blog-post-card img{
+.the-bai-viet img{
     width:100%;
     object-fit:cover;
 }
 
-.blog-post-card h3{
+.the-bai-viet h3{
     padding:20px;
     line-height:1.6;
-    font-size:1.1rem;
+    font-size:1.15rem;
     font-family:'Playfair Display', serif;
 }
 
-.blog-post-card.tall img{
-    height:500px;
+.the-bai-viet p{
+    padding:0 20px 20px;
+    color:var(--mau-text);
+    line-height:1.7;
 }
 
-.blog-post-card.wide img{
-    height:350px;
+.the-bai-viet.lon img{
+    height:520px;
 }
 
-
-
-
-/* =========================================
-ANIMATION
-========================================= */
-
-@keyframes popupShow{
-
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
+.the-bai-viet.vua img{
+    height:360px;
 }
 
-.fade-up{
+.the-bai-viet.nho img{
+    height:250px;
+}
+
+/* ==================================================
+   ĐĂNG KÝ NHẬN TIN
+================================================== */
+
+.khu-dang-ky{
+    padding:120px 0;
+}
+
+.khung-dang-ky{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #8a5d3b,
+    #a5523c
+    );
+
+    color:white;
+
+    padding:60px;
+
+    border-radius:35px;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.15);
+}
+
+.khung-dang-ky h2{
+    font-size:2.4rem;
+    margin-bottom:15px;
+    font-family:'Playfair Display', serif;
+}
+
+.khung-dang-ky p{
+    opacity:.9;
+    margin-bottom:30px;
+    line-height:1.8;
+}
+
+.form-dang-ky{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.form-dang-ky input{
+    width:420px;
+    max-width:100%;
+
+    border:none;
+    outline:none;
+
+    padding:18px 24px;
+
+    border-radius:50px;
+
+    font-size:1rem;
+}
+
+.form-dang-ky button{
+    border:none;
+
+    background:#f3d3a3;
+
+    color:#4b2f20;
+
+    padding:18px 30px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.form-dang-ky button:hover{
+    transform:translateY(-3px);
+}
+
+/* ==================================================
+   HIỆU ỨNG CHUNG
+================================================== */
+
+.the-tin-tuc,
+.the-khuyen-mai,
+.the-bai-viet,
+.the-sach-quy,
+.the-tin-nho,
+.bai-noi-bat-lon{
+    transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+
+.the-tin-tuc:hover,
+.the-khuyen-mai:hover,
+.the-bai-viet:hover,
+.the-sach-quy:hover,
+.the-tin-nho:hover,
+.bai-noi-bat-lon:hover{
+    box-shadow:
+    0 20px 35px rgba(0,0,0,.12);
+}
+
+/* ==================================================
+   FADE ANIMATION
+================================================== */
+
+.hien-dan{
     opacity:0;
     transform:translateY(40px);
     transition:.8s;
 }
 
-.fade-up.show{
+.hien-dan.hien{
     opacity:1;
     transform:translateY(0);
 }
 
-/* =========================================
-SCROLLBAR
-========================================= */
+/* ==================================================
+   SCROLLBAR
+================================================== */
 
 ::-webkit-scrollbar{
     width:10px;
 }
 
-::-webkit-scrollbar-thumb{
-    background:var(--blog-main);
-    border-radius:20px;
-}
-
 ::-webkit-scrollbar-track{
-    background:#f3ebe2;
+    background:#efe5d8;
 }
 
-/* =========================================
-RESPONSIVE
-========================================= */
+::-webkit-scrollbar-thumb{
+    background:#8a5d3b;
+    border-radius:30px;
+}
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
 
 @media(max-width:1200px){
 
-    .blog-featured-grid{
+    .luoi-sach-quy{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .luoi-tin-tuc,
+    .luoi-khuyen-mai{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .khoi-noi-bat{
         grid-template-columns:1fr;
-    }
-
-    .blog-news-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .blog-rare-grid{
-        grid-template-columns:repeat(2,1fr);
     }
 
 }
 
 @media(max-width:768px){
 
-    .blog-hero-title{
-        font-size:3rem;
+    .tieu-de-hero-blog{
+        font-size:3.2rem;
     }
 
-    .blog-section-title{
+    .tieu-de-khu-lon-blog{
         font-size:2rem;
     }
 
-    .blog-news-grid{
+    .luoi-tin-tuc,
+    .luoi-khuyen-mai,
+    .luoi-sach-quy{
         grid-template-columns:1fr;
     }
 
-    .blog-rare-grid{
-        grid-template-columns:1fr;
-    }
-
-    .blog-timeline::before{
+    .dong-thoi-gian-su-kien::before{
         left:20px;
     }
 
-    .blog-event{
+    .muc-su-kien{
         width:100%;
         left:0 !important;
         text-align:left !important;
         padding-left:60px;
     }
 
-    .blog-event::before{
+    .muc-su-kien::before{
         left:12px !important;
         right:auto !important;
+    }
+
+    .form-dang-ky{
+        flex-direction:column;
+    }
+
+    .form-dang-ky input{
+        width:100%;
     }
 
 }
 
 @media(max-width:480px){
 
-    .blog-hero{
-        min-height:75vh;
+    .hero-blog{
+        min-height:80vh;
     }
 
-    .blog-hero-title{
-        font-size:2.4rem;
+    .tieu-de-hero-blog{
+        font-size:2.5rem;
     }
 
-    .blog-featured-image{
+    .bai-noi-bat-lon img{
         height:300px;
     }
 
-    .blog-mini-card{
+    .the-tin-nho{
         flex-direction:column;
-        text-align:center;
     }
 
-    .blog-mini-card img{
+    .the-tin-nho img{
         width:100%;
-        height:180px;
+        height:200px;
+    }
+
+    .khung-dang-ky{
+        padding:40px 25px;
     }
 
 }

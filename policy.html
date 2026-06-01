@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <!--Nhúng css-->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+    :root {
+            --primary-brown: #8b5e34; /* Nâu cổ điển */
+            --bg-cream: #fcf9f2; /* Kem giấy cũ */
+            --text-dark: #3e2723;
+            --border-color: #dfd3c3;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .policy-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .policy-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-brown);
+            margin-bottom: 40px;
+            font-family: 'Times New Roman', serif; /* Font có chân tạo cảm giác sách cổ */
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        /* --- 1. CSS Hướng dẫn mua hàng (Timeline Style) --- */
+        .step-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .step-card {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(139, 94, 52, 0.08);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-brown);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+
+        /* --- 2. CSS Chính sách đổi trả (List & Box) --- */
+        .policy-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .policy-box {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .policy-box h3 {
+            color: var(--primary-brown);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .policy-list {
+            list-style: none;
+            padding: 0;
+        }
+        .policy-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+        }
+        .policy-list.accept li::before {
+            content: '✓';
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .policy-list.deny li::before {
+            content: '✗';
+            color: #f44336;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* --- 3. CSS Phương thức thanh toán (Card Style) --- */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .payment-card {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--primary-brown);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .payment-icon {
+            font-size: 2.5rem;
+            margin-right: 20px;
+        }
+        .payment-info h4 {
+            margin: 0 0 5px 0;
+            color: var(--primary-brown);
+            font-size: 1.2rem;
+        }
+        .payment-info p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+        .bank-details {
+            margin-top: 10px;
+            padding: 10px;
+            background: var(--bg-cream);
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+    </style>
+  </head>
+
+  <body>
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+      <div class="header-container">
+        <div class="header-brand">
+          <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only" />
+        </div>
+
+        <nav class="header-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="category.html">Danh mục</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-icons">
+          <!-- NÚT TÌM KIẾM -->
+          <button class="hd-icon-btn" id="btn-tim-kiem" title="Tìm kiếm" aria-label="Tìm kiếm">
+            <i class="fas fa-search"></i>
+          </button>
+          <!-- NÚT GIỎ HÀNG — -->
+          <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng" style="position:relative;">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="hd-badge" id="so-gio-hang">0</span>
+          </a>
+        </div>
+        <!-- POPUP TÌM KIẾM — -->
+        <div class="pop-tim-kiem" id="pop-tim-kiem">
+          <div class="pop-tim-kiem-noi">
+            <p class="pop-nhan">Tìm kiếm sách</p>
+            <div class="pop-search-row">
+              <i class="fas fa-search"></i>
+              <input type="text" id="o-tim-kiem" placeholder="Tên sách, tác giả, thể loại…">
+              <button class="pop-search-btn" id="btn-tim">Tìm</button>
+            </div>
+            <div class="pop-tag-list">
+              <span class="pop-tag">Văn học kinh điển</span>
+              <span class="pop-tag">Văn học Việt Nam xưa</span>
+              <span class="pop-tag">Ấn bản đặc biệt</span>
+              <span class="pop-tag">Lịch sử & Văn minh</span>
+              <span class="pop-tag">Ngoại văn tuyển chọn</span>
+              <span class="pop-tag">Thiếu nhi & Tuổi thơ</span>
+              <span class="pop-tag">Triết học & Tư tưởng</span>
+              <span class="pop-tag">Tinh thám kinh điển</span>
+            </div>
+          </div>
+        </div>
+      <div class="pop-overlay" id="pop-overlay"></div>
+      </div>
+    </header>
+<main>
+    <div class="policy-container">
+        <h1 id="huong-dan-mua-hang" class="policy-title">Hướng Dẫn Mua Hàng</h1>
+        <div class="step-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Tìm Sách</h3>
+                <p>Khám phá các kệ sách của Thư Hiên hoặc sử dụng thanh tìm kiếm để tìm tựa sách bạn yêu thích.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Kiểm Tra</h3>
+                <p>Đọc kỹ tình trạng sách (độ mới, mép giấy, gáy sách) ở phần mô tả chi tiết của từng sản phẩm.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Đặt Hàng</h3>
+                <p>Thêm vào giỏ, điền thông tin người nhận và lựa chọn phương thức giao hàng phù hợp nhất.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Nhận Sách</h3>
+                <p>Thư Hiên sẽ gói ghém cẩn thận và gửi trao những trang sách đầy ký ức đến tận tay bạn.</p>
+            </div>
+        </div>
+        <br><br><br> 
+        <h1 id="chinh-sach-doi-tra" class="policy-title">Chính Sách Đổi Trả</h1>
+        <div class="policy-grid">
+            <div class="policy-box">
+                <h3>Thư Hiên hỗ trợ đổi/trả khi:</h3>
+                <ul class="policy-list accept">
+                    <li>Giao nhầm tên sách, sai tác giả hoặc sai phiên bản (tái bản/bản đầu).</li>
+                    <li>Sách bị lỗi in ấn nghiêm trọng: mất trang, chữ mờ không thể đọc.</li>
+                    <li>Tình trạng sách thực tế tệ hơn rất nhiều so với mô tả trên website (rách nát, ngấm nước).</li>
+                    <li>Khách hàng phản hồi trong vòng 3 ngày kể từ lúc nhận hàng thành công.</li>
+                </ul>
+            </div>
+            <div class="policy-box">
+                <h3>Thư Hiên xin phép từ chối khi:</h3>
+                <ul class="policy-list deny">
+                    <li>Sách có vết ố vàng, sờn gáy nhẹ (đặc trưng của sách cũ đã được ghi chú trước).</li>
+                    <li>Đổi trả vì lý do cá nhân: "Không thích nội dung nữa", "Đã đọc xong".</li>
+                    <li>Sách bị hư hỏng, rách nát do lỗi bảo quản từ phía khách hàng sau khi nhận.</li>
+                    <li>Quá thời hạn 3 ngày kể từ khi đơn hàng được báo phát thành công.</li>
+                </ul>
+            </div>
+        </div>
+        <br><br><br>
+        <h1 id="phuong-thuc-thanh-toan" class="policy-title">Phương Thức Thanh Toán</h1>
+        <div class="payment-methods">
+            <div class="payment-card">
+                <div class="payment-icon">📦</div>
+                <div class="payment-info">
+                    <h4>Thanh toán khi nhận hàng (COD)</h4>
+                    <p>Thanh toán trực tiếp bằng tiền mặt cho nhân viên giao hàng sau khi bạn kiểm tra và nhận sách.</p>
+                </div>
+            </div>
+            <div class="payment-card">
+                <div class="payment-icon">💳</div>
+                <div class="payment-info">
+                    <h4>Chuyển khoản Ngân hàng</h4>
+                    <p>Vui lòng chuyển khoản với nội dung: <strong>[Tên của bạn] + [Mã đơn hàng]</strong></p>
+                    <div class="bank-details">
+                        Ngân hàng: Vietcombank<br>
+                        STK: 1234567890<br>
+                        Chủ TK: NGUYEN VAN A (THU HIEN BOOK)
+                    </div>
+                </div>
+            </div>
+            <div class="payment-card">
+                <div class="payment-icon">📱</div>
+                <div class="payment-info">
+                    <h4>Ví điện tử (Momo / ZaloPay)</h4>
+                    <p>Thanh toán nhanh chóng, an toàn qua ứng dụng ví điện tử. Quét mã QR tại bước thanh toán cuối cùng.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- ========== FOOTER  ========== -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-title">Về Chúng Tôi</h3>
+          <p>
+            Tiệm Sách Thư Hiên - Nơi lưu giữ và chia sẻ những câu chuyện qua
+            từng trang sách cũ đầy ký ức.
+          </p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Kết</h3>
+          <ul>
+            <li><a href="category.html">Danh mục sách</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Hỗ Trợ</h3>
+          <ul>
+            <li><a href="policy.html#chinh-sach-doi-tra">Chính sách đổi trả</a></li>
+            <li><a href="policy.html#huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+            <li><a href="policy.html#phuong-thuc-thanh-toan">Phương thức thanh toán</a></li>
+            <li><a href="about.html">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Hệ</h3>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Hoàn Kiếm, Hà Nội</li>
+            <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
+            <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Tiệm Sách Thư Hiên. Tất cả quyền được bảo lưu.</p>
+        <p>Được tạo với ❤️ từ niềm đam mê sách cũ</p>
+      </div>
+    </footer>
+    <script src="assets/js/index.js" ></script>
+    <script>
+    /* ===== TÌM KIẾM ===== */
+    const btnTimKiem  = document.getElementById('btn-tim-kiem');
+    const popTimKiem  = document.getElementById('pop-tim-kiem');
+    const popOverlay  = document.getElementById('pop-overlay');
+    const oTimKiem    = document.getElementById('o-tim-kiem');
+    const btnTim      = document.getElementById('btn-tim');
+
+    function dongPopup() {
+        popTimKiem.classList.remove('hien');
+        popOverlay.classList.remove('hien');
+    }
+
+    function moPopupTimKiem() {
+        const dangHien = popTimKiem.classList.contains('hien');
+        dongPopup();
+        if (!dangHien) {
+            popTimKiem.classList.add('hien');
+            popOverlay.classList.add('hien');
+            setTimeout(() => oTimKiem.focus(), 50);
+        }
+    }
+
+    if (btnTimKiem) btnTimKiem.addEventListener('click', e => { e.stopPropagation(); moPopupTimKiem(); });
+    if (popOverlay) popOverlay.addEventListener('click', dongPopup);
+
+    // Ấn Enter hoặc nút Tìm → chuyển sang trang category với query
+    function diTimKiem() {
+        const q = oTimKiem.value.trim();
+        if (q) window.location.href = `category.html?q=${encodeURIComponent(q)}`;
+    }
+
+    if (btnTim)   btnTim.addEventListener('click', diTimKiem);
+    if (oTimKiem) oTimKiem.addEventListener('keydown', e => { if (e.key === 'Enter') diTimKiem(); });
+
+    // Click tag gợi ý → điền vào ô tìm kiếm
+    document.querySelectorAll('.pop-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+            oTimKiem.value = tag.textContent;
+            oTimKiem.focus();
+        });
+    });
+
+    // Đóng popup khi ấn Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') dongPopup(); });
+
+    /* ===== BADGE GIỎ HÀNG ===== */
+    // Đọc số lượng từ localStorage (cart.html sẽ cập nhật)
+    function capNhatBadge() {
+        const badge = document.getElementById('so-gio-hang');
+        if (!badge) return;
+        const soLuong = parseInt(localStorage.getItem('so-luong-gio-hang') || '0');
+        badge.textContent = soLuong;
+        badge.classList.toggle('an', soLuong === 0);
+    }
+
+    capNhatBadge();
+    </script>
+  </body>
+</html>

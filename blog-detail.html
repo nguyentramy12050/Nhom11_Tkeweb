@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thư Hiên | Chi tiết bài viết</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/blog-detail.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-container">
+      <div class="header-brand">
+        <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only">
+      </div>
+      <nav class="header-nav">
+        <ul>
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="category.html">Danh mục</a></li>
+          <li><a href="buyback.html">Bán lại sách cũ</a></li>
+          <li><a href="blog.html" class="active">Blog</a></li>
+          <li><a href="about.html">Về chúng tôi</a></li>
+        </ul>
+      </nav>
+      <div class="header-icons">
+        <button class="hd-icon-btn" id="btn-tim-kiem" title="Tìm kiếm"><i class="fas fa-search"></i></button>
+        <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" style="position:relative;">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="hd-badge an" id="so-gio-hang">0</span>
+        </a>
+      </div>
+      <div class="pop-tim-kiem" id="pop-tim-kiem">
+        <div class="pop-tim-kiem-noi">
+          <p class="pop-nhan">Tìm kiếm sách</p>
+          <div class="pop-search-row">
+            <i class="fas fa-search"></i>
+            <input type="text" id="o-tim-kiem" placeholder="Tên sách, tác giả, thể loại…">
+            <button class="pop-search-btn" id="btn-tim">Tìm</button>
+          </div>
+          <div class="pop-tag-list">
+            <span class="pop-tag">Văn học kinh điển</span>
+            <span class="pop-tag">Ấn bản đặc biệt</span>
+            <span class="pop-tag">Lịch sử & Văn minh</span>
+            <span class="pop-tag">Ngoại văn tuyển chọn</span>
+          </div>
+        </div>
+      </div>
+      <div class="pop-overlay" id="pop-overlay"></div>
+    </div>
+  </header>
+
+  <main class="chi-tiet-blog">
+
+    <!-- BREADCRUMB -->
+    <div class="duong-dan">
+      <div class="khung-blog">
+        <a href="index.html">Trang chủ</a>
+        <span>›</span>
+        <a href="blog.html">Blog</a>
+        <span>›</span>
+        <span id="chi-tiet-tieu-de-ngan">Đang tải...</span>
+      </div>
+    </div>
+
+    <!-- HERO BÀI VIẾT -->
+    <div class="hero-bai-viet">
+      <img id="chi-tiet-anh-bia" src="" alt="">
+      <div class="hero-bai-viet-overlay"></div>
+      <div class="hero-bai-viet-noi-dung">
+        <span class="chu-de-bai-viet" id="chi-tiet-danh-muc"></span>
+        <h1 id="chi-tiet-tieu-de"></h1>
+        <div class="thong-tin-bai-viet">
+          <span><i class="far fa-calendar-alt"></i> <span id="chi-tiet-ngay"></span></span>
+          <span><i class="far fa-user"></i> <span id="chi-tiet-tac-gia"></span></span>
+          <span><i class="far fa-clock"></i> <span id="chi-tiet-thoi-gian"></span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NỘI DUNG BÀI VIẾT -->
+    <div class="noi-dung-bai-viet">
+      <div class="khung-noi-dung">
+        <div id="chi-tiet-noi-dung"></div>
+      </div>
+    </div>
+
+    <!-- CHIA SẺ -->
+    <div class="chia-se-bai-viet">
+      <div class="khung-blog">
+        <h3>Chia sẻ bài viết</h3>
+        <div class="nut-chia-se">
+          <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+          <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+          <a href="#"><i class="fas fa-link"></i> Sao chép link</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BÀI VIẾT LIÊN QUAN -->
+    <div class="bai-viet-lien-quan">
+      <div class="khung-blog">
+        <div class="tieu-de-khu">
+          <span class="nhan-khu">Đọc thêm</span>
+          <h2 class="tieu-de-khu-lon">Bài viết liên quan</h2>
+        </div>
+        <div class="luoi-lien-quan" id="luoi-lien-quan"></div>
+      </div>
+    </div>
+
+    <!-- ĐĂNG KÝ NHẬN TIN -->
+    <div class="dang-ky-blog">
+      <div class="khung-dang-ky">
+        <h2>Nhận bài viết mới từ Thư Hiên</h2>
+        <p>Tin tức, bài viết và ưu đãi mới nhất sẽ được gửi tới email của bạn.</p>
+        <form>
+          <input type="email" placeholder="Nhập email của bạn">
+          <button type="submit">Đăng ký</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3 class="footer-title">Về Chúng Tôi</h3>
+        <p>Tiệm Sách Thư Hiên - Nơi lưu giữ và chia sẻ những câu chuyện qua từng trang sách cũ đầy ký ức.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Kết</h3>
+          <ul>
+            <li><a href="category.html">Danh mục sách</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Hỗ Trợ</h3>
+          <ul>
+            <li><a href="policy.html#chinh-sach-doi-tra">Chính sách đổi trả</a></li>
+            <li><a href="policy.html#huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+            <li><a href="policy.html#phuong-thuc-thanh-toan">Phương thức thanh toán</a></li>
+            <li><a href="about.html">Liên hệ</a></li>
+          </ul>
+        </div>
+      <div class="footer-col">
+            <h3 class="footer-title">Liên Hệ</h3>
+            <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Hoàn Kiếm, Hà Nội</li>
+            <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
+            <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Tiệm Sách Thư Hiên. Tất cả quyền được bảo lưu.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/blog-data.js"></script>
+  <script src="assets/js/blog-detail.js"></script>
+  <script>
+    /* TÌM KIẾM */
+    const btnTimKiem = document.getElementById('btn-tim-kiem');
+    const popTimKiem = document.getElementById('pop-tim-kiem');
+    const popOverlay = document.getElementById('pop-overlay');
+    const oTimKiem   = document.getElementById('o-tim-kiem');
+    const btnTim     = document.getElementById('btn-tim');
+
+    function dongPopup() {
+      popTimKiem.classList.remove('hien');
+      popOverlay.classList.remove('hien');
+    }
+    function moPopup() {
+      const dang = popTimKiem.classList.contains('hien');
+      dongPopup();
+      if (!dang) { popTimKiem.classList.add('hien'); popOverlay.classList.add('hien'); setTimeout(() => oTimKiem.focus(), 50); }
+    }
+    btnTimKiem.addEventListener('click', e => { e.stopPropagation(); moPopup(); });
+    popOverlay.addEventListener('click', dongPopup);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') dongPopup(); });
+    function diTimKiem() { const q = oTimKiem.value.trim(); if (q) window.location.href = `category.html?q=${encodeURIComponent(q)}`; }
+    btnTim.addEventListener('click', diTimKiem);
+    oTimKiem.addEventListener('keydown', e => { if (e.key === 'Enter') diTimKiem(); });
+    document.querySelectorAll('.pop-tag').forEach(t => t.addEventListener('click', () => { oTimKiem.value = t.textContent; oTimKiem.focus(); }));
+
+    /* BADGE */
+    const badge = document.getElementById('so-gio-hang');
+    const so = parseInt(localStorage.getItem('so-luong-gio-hang') || '0');
+    badge.textContent = so;
+    badge.classList.toggle('an', so === 0);
+  </script>
+</body>
+</html>

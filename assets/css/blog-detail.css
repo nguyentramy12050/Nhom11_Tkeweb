@@ -1,0 +1,452 @@
+/* =====================================
+   BLOG DETAIL - THƯ HIÊN
+===================================== */
+
+:root{
+    --mau-chinh:#8a5d3b;
+    --mau-do:#a44f3f;
+    --mau-vang:#d6a15d;
+    --mau-kem:#faf7f2;
+    --mau-toi:#3f291c;
+    --mau-chu:#6d5846;
+}
+
+.chi-tiet-blog{
+    background:var(--mau-kem);
+}
+
+/* =====================================
+BREADCRUMB
+===================================== */
+
+.duong-dan{
+    background:#f3ece4;
+    padding:14px 0;
+    border-bottom:1px solid #e5d8ca;
+}
+
+.khung-blog{
+    width:92%;
+    max-width:1300px;
+    margin:auto;
+}
+
+.duong-dan a{
+    color:var(--mau-chinh);
+    text-decoration:none;
+}
+
+.duong-dan span{
+    margin:0 8px;
+    color:#9f8570;
+}
+
+/* =====================================
+HERO
+===================================== */
+
+.hero-bai-viet{
+    position:relative;
+    height:80vh;
+    min-height:650px;
+    overflow:hidden;
+}
+
+.hero-bai-viet img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.hero-bai-viet-overlay{
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(
+    rgba(20,15,10,.25),
+    rgba(20,15,10,.75)
+    );
+    z-index:2;
+}
+
+.hero-bai-viet-noi-dung{
+    position:absolute;
+    bottom:80px;
+    left:50%;
+    transform:translateX(-50%);
+    width:92%;
+    max-width:1000px;
+    color:white;
+    z-index:3;
+}
+
+.chu-de-bai-viet{
+    display:inline-block;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(10px);
+    padding:10px 20px;
+    border-radius:40px;
+    margin-bottom:20px;
+    letter-spacing:1px;
+}
+
+.hero-bai-viet-noi-dung h1{
+    font-family:'Playfair Display', serif;
+    font-size:4rem;
+    line-height:1.2;
+    margin-bottom:25px;
+}
+
+.thong-tin-bai-viet{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    color:#f4dfc3;
+}
+
+/* =====================================
+NỘI DUNG
+===================================== */
+
+.noi-dung-bai-viet{
+    padding:90px 0;
+}
+
+.khung-noi-dung{
+    max-width:850px;
+    margin:auto;
+    background:white;
+    padding:60px;
+    border-radius:35px;
+    box-shadow:0 10px 35px rgba(0,0,0,.06);
+}
+
+.doan-mo-dau{
+    font-size:1.35rem;
+    line-height:2;
+    color:var(--mau-toi);
+    font-style:italic;
+    margin-bottom:40px;
+}
+
+.khung-noi-dung h2{
+    font-family:'Playfair Display', serif;
+    color:var(--mau-toi);
+    font-size:2rem;
+    margin-top:50px;
+    margin-bottom:25px;
+}
+
+.khung-noi-dung p{
+    line-height:2;
+    color:var(--mau-chu);
+    margin-bottom:25px;
+    text-align:justify;
+}
+
+/* =====================================
+ẢNH TRONG BÀI
+===================================== */
+
+.anh-trong-bai{
+    width:100%;
+    border-radius:25px;
+    margin:40px 0;
+    box-shadow:0 12px 30px rgba(0,0,0,.1);
+}
+
+/* =====================================
+QUOTE
+===================================== */
+
+.trich-dan-noi-bat{
+    position:relative;
+    margin:50px 0;
+    padding:50px;
+    background:#fff8ef;
+    border-left:6px solid var(--mau-vang);
+    border-radius:25px;
+    font-size:1.35rem;
+    line-height:1.8;
+    font-family:'Playfair Display', serif;
+    color:var(--mau-toi);
+}
+
+.trich-dan-noi-bat::before{
+    content:"❝";
+    position:absolute;
+    top:15px;
+    left:25px;
+    font-size:4rem;
+    color:#ead4b7;
+}
+
+.trich-dan-noi-bat span{
+    display:block;
+    margin-top:15px;
+    font-size:1rem;
+    color:var(--mau-do);
+}
+
+/* =====================================
+THÔNG TIN THÚ VỊ
+===================================== */
+
+.hop-thong-tin{
+    background:#fff5e8;
+    padding:35px;
+    border-radius:25px;
+    margin:45px 0;
+}
+
+.hop-thong-tin h3{
+    color:var(--mau-do);
+    margin-bottom:20px;
+}
+
+.hop-thong-tin ul{
+    padding-left:20px;
+}
+
+.hop-thong-tin li{
+    margin-bottom:12px;
+    color:var(--mau-chu);
+}
+
+/* =====================================
+CHIA SẺ
+===================================== */
+
+.chia-se-bai-viet{
+    padding:30px 0 80px;
+    text-align:center;
+}
+
+.chia-se-bai-viet h3{
+    margin-bottom:20px;
+    color:var(--mau-toi);
+}
+
+.nut-chia-se{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.nut-chia-se a{
+    padding:12px 22px;
+    border-radius:40px;
+    background:white;
+    color:var(--mau-chinh);
+    border:1px solid #e5d6c6;
+    transition:.3s;
+}
+
+.nut-chia-se a:hover{
+    background:var(--mau-chinh);
+    color:white;
+}
+
+/* =====================================
+LIÊN QUAN
+===================================== */
+
+.bai-viet-lien-quan{
+    padding:100px 0;
+}
+
+.tieu-de-khu{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.nhan-khu{
+    color:var(--mau-do);
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.tieu-de-khu-lon{
+    margin-top:10px;
+    font-size:2.6rem;
+    font-family:'Playfair Display', serif;
+}
+
+.luoi-lien-quan{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.the-lien-quan{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+    cursor:pointer;
+    transition:.35s;
+}
+
+.the-lien-quan:hover{
+    transform:translateY(-10px);
+}
+
+.the-lien-quan img{
+    height:260px;
+    object-fit:cover;
+}
+
+.the-lien-quan h3{
+    padding:25px;
+    font-family:'Playfair Display', serif;
+    line-height:1.6;
+}
+
+/* =====================================
+NEWSLETTER
+===================================== */
+
+.dang-ky-blog{
+    padding:100px 0;
+}
+
+.khung-dang-ky{
+    width:92%;
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+    background:
+    linear-gradient(
+    135deg,
+    #8a5d3b,
+    #a44f3f
+    );
+    color:white;
+    padding:60px;
+    border-radius:35px;
+}
+
+.khung-dang-ky h2{
+    font-size:2.5rem;
+    margin-bottom:20px;
+    font-family:'Playfair Display', serif;
+}
+
+.khung-dang-ky p{
+    max-width:600px;
+    margin:auto;
+    margin-bottom:35px;
+    line-height:1.8;
+}
+
+.khung-dang-ky form{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.khung-dang-ky input{
+    width:380px;
+    max-width:100%;
+    padding:15px 20px;
+    border:none;
+    border-radius:50px;
+}
+
+.khung-dang-ky button{
+    border:none;
+    padding:15px 28px;
+    border-radius:50px;
+    background:var(--mau-vang);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =====================================
+ANIMATION
+===================================== */
+
+.hero-bai-viet,
+.khung-noi-dung,
+.the-lien-quan,
+.khung-dang-ky{
+    animation:hienLen .8s ease;
+}
+
+@keyframes hienLen{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* =====================================
+RESPONSIVE
+===================================== */
+
+@media(max-width:992px){
+
+    .hero-bai-viet-noi-dung h1{
+        font-size:3rem;
+    }
+
+    .luoi-lien-quan{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero-bai-viet{
+        height:65vh;
+    }
+
+    .hero-bai-viet-noi-dung h1{
+        font-size:2.3rem;
+    }
+
+    .khung-noi-dung{
+        padding:35px 25px;
+    }
+
+    .trich-dan-noi-bat{
+        padding:35px;
+        font-size:1.15rem;
+    }
+
+    .khung-dang-ky{
+        padding:40px 25px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .hero-bai-viet-noi-dung{
+        bottom:40px;
+    }
+
+    .hero-bai-viet-noi-dung h1{
+        font-size:2rem;
+    }
+
+    .doan-mo-dau{
+        font-size:1.1rem;
+    }
+
+    .khung-dang-ky h2{
+        font-size:1.8rem;
+    }
+
+}
