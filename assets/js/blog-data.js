@@ -17,12 +17,12 @@ const duLieuBlog = {
         noiDung: `
             <p>Nhắc đến văn học Việt Nam, rất ít tác phẩm có sức sống bền bỉ như <em>Truyện Kiều</em> của đại thi hào Nguyễn Du. Trải qua hơn hai thế kỷ, tác phẩm này vẫn được nghiên cứu, giảng dạy và yêu thích bởi nhiều thế hệ độc giả trong và ngoài nước.</p>
             <p>Trong vô số lần tái bản, những bản in đầu thế kỷ XX luôn nhận được sự quan tâm đặc biệt từ giới sưu tầm. Một trong số đó là bản in năm 1923 — một cuốn sách nhỏ bé nhưng chứa đựng cả một thời đại.</p>
-            <img src="assets/images/blog/kieu-detail-1.jpg" style="border-radius:20px;margin:30px 0;" alt="Truyện Kiều bản 1923">
+            <img src="assets/images/blog/kieu-detail-1.jpg" style="border-radius:20px;margin:30px 0;display:block;width: fit-content; max-width: 100%;" alt="Truyện Kiều bản 1923">
             <h2>Bản in năm 1923 có gì đặc biệt?</h2>
             <p>Đây là giai đoạn ngành xuất bản Việt Nam bắt đầu phát triển mạnh mẽ, khi chữ Quốc ngữ dần thay thế chữ Nôm trong đời sống hàng ngày. Những cuốn sách thời kỳ này thường được in với số lượng hạn chế, trên loại giấy bản đặc trưng mang màu vàng kem theo năm tháng.</p>
             <p>Bản in 1923 sử dụng kỹ thuật in typo thủ công, từng trang giấy còn lưu dấu ấn của máy in cổ. Phông chữ được chọn lọc kỹ lưỡng, khoảng cách dòng rộng rãi để người đọc dễ theo dõi văn vần. Đây là điều hiếm thấy ở các bản in hiện đại.</p>
             <p>Điều đặc biệt hơn cả là bìa sách — được làm từ bìa cứng dày, bọc vải gai thô màu nâu sẫm, với tên tác phẩm và tác giả được in chìm bằng mực vàng. Qua hơn một thế kỷ, màu sắc đã phai nhưng nét chữ vẫn còn rõ ràng và uy nghiêm.</p>
-            <img src="assets/images/blog/kieu-detail-2.jpg" style="border-radius:20px;margin:30px 0;" alt="Chi tiết bản in">
+            <img src="assets/images/blog/kieu-detail-2.jpg" style="border-radius:20px;margin:30px 0;display:block;width: fit-content; max-width: 100%;" alt="Chi tiết bản in">
             <h2>Hành trình qua nhiều đôi tay</h2>
             <p>Cuốn sách mà Thư Hiên đang lưu giữ có một lịch sử đặc biệt. Theo ghi chú bên trong bìa, nó từng thuộc về một gia đình quan lại ở Hà Nội vào những năm 1930. Sau nhiều lần chuyển tay, cuốn sách được một người sưu tầm ở Hải Phòng gìn giữ suốt gần 60 năm trước khi đến tay chúng tôi.</p>
             <p>Bên trong còn sót lại vài dòng bút chì mờ nhạt — có lẽ là những ghi chú đọc sách của người chủ cũ. Những nét chữ ấy, dù đã nhòa, lại trở thành một phần không thể tách rời của cuốn sách.</p>
@@ -50,7 +50,7 @@ const duLieuBlog = {
                 <h2>1. Tránh ánh nắng trực tiếp</h2>
                 <p>Ánh nắng mặt trời là nguyên nhân hàng đầu khiến giấy bị lão hóa nhanh chóng. Tia UV trong ánh sáng phân hủy các sợi cellulose trong giấy, khiến chúng trở nên giòn và ngả vàng. Chỉ cần để sách gần cửa sổ trong vài tháng, màu sắc bìa và độ bền của giấy sẽ giảm đáng kể.</p>
                 <p>Giải pháp: Đặt kệ sách ở nơi không có ánh nắng chiếu trực tiếp. Nếu kệ sách ở gần cửa sổ, hãy dùng rèm lọc UV hoặc kính chống nắng.</p>
-                <img src="assets/images/blog/p1-detail.jpg" style="border-radius:20px;margin:30px 0;" alt="Bảo quản sách">
+                <img src="assets/images/blog/p1-detail.jpg" style="border-radius:20px;margin:30px 0;display:block;width: fit-content; max-width: 100%;" alt="Bảo quản sách">
                 <h2>2. Kiểm soát độ ẩm</h2>
                 <p>Độ ẩm lý tưởng để bảo quản sách là từ 40–55%. Độ ẩm quá cao (trên 65%) sẽ tạo điều kiện cho nấm mốc phát triển, gây ra những vết đốm nâu đặc trưng trên giấy. Ngược lại, độ ẩm quá thấp khiến giấy mất nước và trở nên giòn.</p>
                 <p>Ở Việt Nam, mùa mưa là thời điểm nguy hiểm nhất. Hãy đặt túi hút ẩm silica gel trong tủ sách, thay thế định kỳ mỗi 3 tháng một lần. Tránh đặt sách sát tường vì tường thường có độ ẩm cao hơn không khí.</p>
@@ -76,7 +76,7 @@ const duLieuBlog = {
                 <p>Văn hóa sách cũ vẫn luôn tồn tại bền bỉ tại Việt Nam, âm thầm như một dòng chảy ngầm giữa lòng đô thị hiện đại. Từ những con phố cổ ở Hà Nội đến các khu chợ sách ở Sài Gòn, hành trình tìm sách cũ luôn mang lại những trải nghiệm khó quên.</p>
                 <h2>Hà Nội — Nơi lưu giữ ký ức</h2>
                 <p><strong>Phố Đinh Lễ và Nguyễn Xí</strong> từ lâu đã là thiên đường của người yêu sách Hà Nội. Hàng chục cửa hàng sách chen chúc nhau, mỗi nơi một phong cách, nhưng đều toát lên cái không khí trầm mặc của những trang sách đã qua nhiều đôi tay.</p>
-                <img src="assets/images/blog/p2-detail.jpg" style="border-radius:20px;margin:30px 0;" alt="Tiệm sách cũ">
+                <img src="assets/images/blog/p2-detail.jpg" style="border-radius:20px;margin:30px 0;display:block;width: fit-content; max-width: 100%;" alt="Tiệm sách cũ">
                 <p><strong>Nhà sách Xuân Thu</strong> ở phố Tràng Tiền, dù đã qua nhiều lần thay đổi, vẫn là điểm hẹn của những người tìm kiếm sách văn học cổ điển. Chủ nhà sách đời thứ ba hiện vẫn duy trì truyền thống thu mua và bảo tồn sách quý.</p>
                 <h2>TP. Hồ Chí Minh — Sức sống khác biệt</h2>
                 <p><strong>Đường sách Nguyễn Văn Bình</strong> là không gian sách hiện đại nhất, nhưng ẩn trong đó vẫn có những gian hàng chuyên sách cũ và sách quý hiếm. Cuối tuần, nơi đây trở thành điểm hội tụ của cộng đồng yêu sách thành phố.</p>
@@ -263,13 +263,13 @@ const duLieuBlog = {
     ],
 
     sachQuy: [
-        { id: 501, slug: "hanh-trinh-truyen-kieu-1923",    tieuDe: "Truyện Kiều",         moTaNgan: "Bản in năm 1923",      anh: "assets/images/books/Truyenkieuhoiban.jpg" },
-        { id: 502, slug: "bao-quan-sach-cu",               tieuDe: "Bố Già",              moTaNgan: "Ấn bản đầu tiên",      anh: "assets/images/books/Bogia.jpg" },
-        { id: 503, slug: "10-tiem-sach-cu-noi-tieng",      tieuDe: "Ruồi Trâu",           moTaNgan: "Bản dịch hiếm 1956",   anh: "assets/images/books/Ruoitrau.jpg" },
-        { id: 504, slug: "sach-han-nom-con-duoc-luu-giu",  tieuDe: "Chí Phèo",            moTaNgan: "Bản sưu tầm 1960",     anh: "assets/images/books/Chipheo.jpg" },
-        { id: 505, slug: "hoi-sach-mua-he-2026",           tieuDe: "Không Gia Đình",      moTaNgan: "Bản dịch cổ điển",     anh: "assets/images/books/Khonggiadinh.jpg" },
-        { id: 506, slug: "du-an-so-hoa-sach-co",           tieuDe: "Đại Việt Sử Ký",      moTaNgan: "Bản khắc gỗ",          anh: "assets/images/books/Daivietsukytoanthu.jpg" },
-        { id: 507, slug: "workshop-bao-quan-sach-co",      tieuDe: "Crime & Punishment",  moTaNgan: "Ấn bản Anh ngữ 1953", anh: "assets/images/books/Crimeandpunishment.jpg" },
-        { id: 508, slug: "10-tiem-sach-cu-noi-tieng",      tieuDe: "Hoàng Tử Bé",         moTaNgan: "Bản in Pháp ngữ 1943",anh: "assets/images/books/Hoangtube.jpg" }
+        { id: 61, slug: "truyen-kieu",    tieuDe: "Truyện Kiều",         moTaNgan: "Bản in năm 1923",      anh: "assets/images/books/Truyenkieuhoiban.jpg" },
+        { id: 3, slug: "bo-gia",        tieuDe: "Bố Già",              moTaNgan: "Ấn bản đầu tiên",      anh: "assets/images/books/Bogia.jpg" },
+        { id: 6, slug: "ruoi-trau",     tieuDe: "Ruồi Trâu",           moTaNgan: "Bản dịch hiếm 1956",   anh: "assets/images/books/Ruoitrau.jpg" },
+        { id: 12, slug: "chi-pheo",      tieuDe: "Chí Phèo",            moTaNgan: "Bản sưu tầm 1960",     anh: "assets/images/books/Chipheo.jpg" },
+        { id: 1, slug: "khong-gia-dinh", tieuDe: "Không Gia Đình",      moTaNgan: "Bản dịch cổ điển",     anh: "assets/images/books/Khonggiadinh.jpg" },
+        { id: 26, slug: "dai-viet-su-ky", tieuDe: "Đại Việt Sử Ký",      moTaNgan: "Bản khắc gỗ",          anh: "assets/images/books/Daivietsukytoanthu.jpg" },
+        { id: 53, slug: "crime-punishment", tieuDe: "Crime & Punishment",  moTaNgan: "Ấn bản Anh ngữ 1953", anh: "assets/images/books/Crimeandpunishment.jpg" },
+        { id: 41, slug: "hoang-tu-be",    tieuDe: "Hoàng Tử Bé",         moTaNgan: "Bản in Pháp ngữ 1943",anh: "assets/images/books/Hoangtube.jpg" }
     ]
 };

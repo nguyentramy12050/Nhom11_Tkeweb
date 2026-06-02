@@ -32,7 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p class="the-loai" title="${book.category}">${book.category}</p>
                         <h4 class="ten-sach" title="${book.name}">${book.name}</h4>
                         <p class="tac-gia">${book.author}</p>
-                        <span class="gia-sach">${book.price}đ</span>
+                        <div class="the-gia">
+                            <span class="gia-sach">${book.price}đ</span>
+                            <span class="gia-ss">${book.oldPrice}đ</span>
+                        </div>
                         <a href="product-detail.html?id=${book.id}" class="nut-mua">Mua ngay</a>
                     </div>
                 </div>

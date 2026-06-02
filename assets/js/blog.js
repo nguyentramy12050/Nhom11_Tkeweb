@@ -23,10 +23,6 @@ function renderBaiNoiBat() {
                 <span class="nhan-danh-muc">${bai.danhMuc}</span>
                 <h3>${bai.tieuDe}</h3>
                 <p>${bai.moTaNgan}</p>
-                <div class="meta-bai-viet">
-                    <span><i class="far fa-calendar-alt"></i> ${bai.ngay}</span>
-                    <span><i class="far fa-clock"></i> ${bai.thoiGianDoc}</span>
-                </div>
                 <span class="nut-doc-tiep">Đọc tiếp →</span>
             </div>
         </article>
@@ -43,11 +39,7 @@ function renderTinTuc() {
             <div class="noi-dung-the">
                 <span class="nhan-danh-muc">${item.danhMuc}</span>
                 <h3>${item.tieuDe}</h3>
-                <p>${item.moTaNgan}</p>
-                <div class="meta-bai-viet">
-                    <span>${item.ngay}</span>
-                    <span>${item.thoiGianDoc}</span>
-                </div>
+                <p style="font-size:12px;color:#9c7d5f;margin-top:8px;">${item.ngay} · ${item.thoiGianDoc}</p>
             </div>
         </article>
     `).join("");
@@ -58,20 +50,15 @@ function renderKhuyenMai() {
     const khu = document.getElementById("luoi-khuyen-mai");
     if (!khu) return;
     khu.innerHTML = duLieuBlog.khuyenMai.map(item => `
-        <article class="the-tin-tuc the-khuyen-mai-card" onclick="window.location.href='blog-detail.html?slug=${item.slug}'">
-            <div class="khu-anh-km">
-                <img src="${item.anh}" alt="${item.tieuDe}"
-                     onerror="this.parentElement.style.background='#3d2a1d'">
-                <div class="overlay-km"></div>
-                <div class="nhan-giam-gia">${item.giamGia}</div>
+        <article class="the-tin-tuc" onclick="window.location.href='blog-detail.html?slug=${item.slug}'">
+            <div style="position:relative;">
+                <img src="${item.anh}" alt="${item.tieuDe}" style="height:220px;object-fit:cover;" onerror="this.style.background='#e8d9c4';this.removeAttribute('src')">
+                <span class="nhan-giam-gia">${item.giamGia}</span>
             </div>
             <div class="noi-dung-the">
-                <span class="nhan-danh-muc">${item.danhMuc}</span>
+                <span class="nhan-danh-muc">Khuyến mãi</span>
                 <h3>${item.tieuDe}</h3>
                 <p>${item.moTaNgan}</p>
-                <div class="meta-bai-viet">
-                    <span>Đến ${item.ngay}</span>
-                </div>
             </div>
         </article>
     `).join("");
@@ -82,7 +69,7 @@ function renderSuKien() {
     const khu = document.getElementById("dong-thoi-gian-su-kien");
     if (!khu) return;
     khu.innerHTML = duLieuBlog.suKien.map(item => `
-        <div class="muc-su-kien" onclick="window.location.href='blog-detail.html?slug=${item.slug}'">
+        <div class="muc-su-kien" onclick="window.location.href='blog-detail.html?slug=${item.slug}'" style="cursor:pointer;">
             <div class="ngay-su-kien">${item.ngay}</div>
             <div class="noi-dung-su-kien">
                 <span class="nhan-danh-muc" style="margin-bottom:10px;display:inline-block;">${item.danhMuc}</span>
@@ -98,7 +85,7 @@ function renderSachQuy() {
     const khu = document.getElementById("luoi-sach-quy");
     if (!khu) return;
     khu.innerHTML = duLieuBlog.sachQuy.map(item => `
-        <div class="the-sach-quy" onclick="window.location.href='blog-detail.html?slug=${item.slug}'">
+        <div class="the-sach-quy" onclick="window.location.href='product-detail.html?id=${item.id}'">
             <img src="${item.anh}" alt="${item.tieuDe}">
             <div class="noi-dung-sach-quy">
                 <h3>${item.tieuDe}</h3>
@@ -120,10 +107,6 @@ function renderBaiViet() {
             <span class="nhan-danh-muc" style="margin:14px 20px 0;display:inline-block;">${item.danhMuc}</span>
             <h3>${item.tieuDe}</h3>
             <p>${item.moTaNgan}</p>
-            <div class="meta-bai-viet" style="padding:0 20px 20px;">
-                <span>${item.ngay}</span>
-                <span>${item.thoiGianDoc}</span>
-            </div>
         </article>
     `).join("");
 }

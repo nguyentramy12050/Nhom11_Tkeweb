@@ -270,7 +270,7 @@
 
   .ten-sach {
       font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: #2e1a0e;
       margin: 0 0 6px;
       font-weight: 700;
@@ -294,15 +294,29 @@
       -webkit-box-orient: vertical;
   }
 
+  .the-gia {
+    display: flex; 
+    align-items: baseline; 
+    gap: 12px; 
+    margin-bottom: 12px; 
+    margin-top: auto;
+  }
+
   .gia-sach {
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 700;
       color: #8a5d3b;
-      font-family: 'Playfair Display', serif;
+      font-family: "Noto Sans", serif;
       height: 24px;
       display: block;
   }
 
+  .gia-ss {
+    font-size: 14px; 
+    color: #5c3a21;
+    text-decoration: line-through; 
+    font-weight: 500;
+  }
   /* NÚT MUA NGAY */
   .nut-mua {
       display: block;
@@ -1142,6 +1156,11 @@ RESPONSIVE
     }
 }
 
+
+/* =====================================================
+   THÊM VÀO CUỐI FILE index.css
+   Gồm 3 section: Trích dẫn | Bán lại | Blog preview
+====================================================== */
 
 /* =====================================================
    SECTION 1: TRÍCH DẪN VĂN HỌC
