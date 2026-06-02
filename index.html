@@ -17,7 +17,8 @@
     <header class="header">
       <div class="header-container">
         <div class="header-brand">
-          <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only" />
+          <a href="index.html">
+              <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only">
         </div>
 
         <nav class="header-nav">
@@ -308,12 +309,188 @@
     </div>
 </section>
 
-<!-- ===== BANNER BIG SALE ===== -->
+<!-- ===== BANNER SALE ===== -->
 <section class="banner-bigsale">
     <div class="khung-banner">
-        <img src="assets/images/banners/banner_bigsale.jpg" alt="Thư Hiên Big Sale" class="anh-banner">
+        <a href="blog-detail.html?slug=tang-bao-sach-cho-don-hang-lon">
+            <img src="assets/images/blog/km3.jpg" alt="Thư Hiên tặng quà" class="anh-banner">
     </div>
 </section>
+
+<!-- =====================================================
+   SECTION 1: TRÍCH DẪN VĂN HỌC XOAY VÒNG
+====================================================== -->
+<section class="khu-trich-dan">
+  <div class="trich-dan-khung">
+    <div class="trich-dan-dau-trang">❝</div>
+    <div class="trich-dan-noi" id="trich-dan-noi">
+      <p class="trich-dan-chu" id="trich-dan-chu"></p>
+      <div class="trich-dan-tac-gia">
+        <span class="trich-dan-ten" id="trich-dan-ten"></span>
+        <span class="trich-dan-sach" id="trich-dan-sach"></span>
+      </div>
+    </div>
+    <div class="trich-dan-cham-list" id="trich-dan-cham-list"></div>
+  </div>
+</section>
+
+<!-- =====================================================
+   SECTION 2: BÁN LẠI SÁCH CŨ
+====================================================== -->
+<section class="khu-ban-lai">
+  <div class="ban-lai-luoi">
+    <!-- CỘT TRÁI: Nội dung -->
+    <div class="ban-lai-trai">
+      <p class="ban-lai-nhan">Thư Hiên thu mua</p>
+      <h2 class="ban-lai-tieu-de">
+        Một cuốn sách hay cho ta một người bạn tốt.<br>
+        <em>Một cuốn sách quý cho ta một chốn dừng chân.</em>
+      </h2>
+      <p class="ban-lai-mo-ta">
+        Mang đến tiệm hoặc gửi ảnh qua form — chúng tôi định giá minh bạch, 
+        thanh toán ngay. Mỗi cuốn sách cũ là một câu chuyện chờ được kể tiếp.
+      </p>
+ 
+      <div class="ban-lai-buoc-list">
+        <div class="ban-lai-buoc">
+          <div class="ban-lai-buoc-so">01</div>
+          <div>
+            <strong>Chụp & Mô tả</strong>
+            <p>Gửi ảnh bìa sách qua form đơn giản</p>
+          </div>
+        </div>
+        <div class="ban-lai-buoc">
+          <div class="ban-lai-buoc-so">02</div>
+          <div>
+            <strong>Nhận báo giá</strong>
+            <p>Phản hồi trong 24 giờ qua điện thoại hoặc email</p>
+          </div>
+        </div>
+        <div class="ban-lai-buoc">
+          <div class="ban-lai-buoc-so">03</div>
+          <div>
+            <strong>Nhận tiền ngay</strong>
+            <p>Chuyển khoản hoặc tiền mặt tại tiệm</p>
+          </div>
+        </div>
+      </div>
+ 
+      <a href="buyback.html" class="ban-lai-nut">
+        Gửi sách ngay <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+ 
+    <!-- CỘT PHẢI: Ảnh + badge giá -->
+    <div class="ban-lai-phai">
+      <div class="ban-lai-anh-khung">
+        <img src="assets/images/banners/banner_thumua.jpg" 
+             alt="Bán lại sách cũ tại Thư Hiên" 
+             class="ban-lai-anh"
+             onerror="this.style.background='#3d2a1d';this.style.minHeight='400px'">
+        <div class="ban-lai-anh-overlay"></div>
+        <div class="ban-lai-badge-gia">
+          <p class="ban-lai-badge-so">20–500K</p>
+          <p class="ban-lai-badge-chu">giá thu mua</p>
+        </div>
+        <div class="ban-lai-badge-nhanh">
+          <i class="fas fa-bolt"></i>
+          <span>Báo giá trong 24h</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+   SECTION 3: ĐIỂM TIN TỪ BLOG
+====================================================== -->
+<section class="khu-blog-preview">
+  <div class="blog-prev-khung">
+ 
+    <div class="blog-prev-dau">
+      <div>
+        <p class="blog-prev-nhan">Góc tri thức</p>
+        <h2 class="blog-prev-tieu-de">Từ nhật ký <em>Thư Hiên</em></h2>
+      </div>
+      <a href="blog.html" class="blog-prev-xem-them">
+        Xem tất cả <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+ 
+    <div class="blog-prev-luoi">
+ 
+      <!-- BÀI LỚN -->
+      <article class="blog-prev-card lon" onclick="window.location.href='blog-detail.html?slug=hanh-trinh-truyen-kieu-1923'">
+        <div class="blog-prev-anh-khung">
+          <img src="assets/images/blog/truyenkieu1923.jpg" 
+               alt="Truyện Kiều 1923"
+               onerror="this.parentElement.style.background='#3d2a1d'">
+          <span class="blog-prev-nhan-loai">Sách cổ</span>
+        </div>
+        <div class="blog-prev-noi">
+          <h3 class="blog-prev-ten">Hành trình của cuốn Truyện Kiều bản in năm 1923</h3>
+          <p class="blog-prev-mo-ta">Một trong những bản in quý hiếm còn lưu giữ đến ngày nay, chứa đựng nhiều giá trị lịch sử và văn hóa đặc biệt.</p>
+          <div class="blog-prev-meta">
+            <span><i class="far fa-calendar-alt"></i> 01/06/2026</span>
+            <span><i class="far fa-clock"></i> 8 phút đọc</span>
+          </div>
+        </div>
+      </article>
+ 
+      <!-- CỘT BÀI NHỎ -->
+      <div class="blog-prev-cot-phai">
+ 
+        <article class="blog-prev-card nho" onclick="window.location.href='blog-detail.html?slug=bao-quan-sach-cu'">
+          <div class="blog-prev-anh-khung">
+            <img src="assets/images/blog/p1.jpg" alt="Bảo quản sách"
+                 onerror="this.parentElement.style.background='#3d2a1d'">
+            <span class="blog-prev-nhan-loai">Kinh nghiệm</span>
+          </div>
+          <div class="blog-prev-noi">
+            <h3 class="blog-prev-ten">Cách bảo quản sách cũ không bị ố vàng</h3>
+            <div class="blog-prev-meta">
+              <span>03/06/2026</span>
+              <span>6 phút đọc</span>
+            </div>
+          </div>
+        </article>
+ 
+        <article class="blog-prev-card nho" onclick="window.location.href='blog-detail.html?slug=hoi-sach-mua-he-2026'">
+          <div class="blog-prev-anh-khung">
+            <img src="assets/images/blog/news1.jpg" alt="Hội sách"
+                 onerror="this.parentElement.style.background='#3d2a1d'">
+            <span class="blog-prev-nhan-loai">Tin tức</span>
+          </div>
+          <div class="blog-prev-noi">
+            <h3 class="blog-prev-ten">Hội sách mùa hè 2026 chính thức khởi động</h3>
+            <div class="blog-prev-meta">
+              <span>05/06/2026</span>
+              <span>3 phút đọc</span>
+            </div>
+          </div>
+        </article>
+ 
+        <article class="blog-prev-card nho" onclick="window.location.href='blog-detail.html?slug=10-tiem-sach-cu-noi-tieng'">
+          <div class="blog-prev-anh-khung">
+            <img src="assets/images/blog/p2.jpg" alt="Tiệm sách cũ"
+                 onerror="this.parentElement.style.background='#3d2a1d'">
+            <span class="blog-prev-nhan-loai">Khám phá</span>
+          </div>
+          <div class="blog-prev-noi">
+            <h3 class="blog-prev-ten">10 tiệm sách cũ nổi tiếng tại Việt Nam</h3>
+            <div class="blog-prev-meta">
+              <span>06/06/2026</span>
+              <span>10 phút đọc</span>
+            </div>
+          </div>
+        </article>
+ 
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
 </main>
 
     <!-- ========== FOOTER  ========== -->
@@ -369,63 +546,6 @@
     </footer>
     <script src="assets/js/data.js" ></script>
     <script src="assets/js/index.js" ></script>
-    <script>
-    /* ===== TÌM KIẾM ===== */
-    const btnTimKiem  = document.getElementById('btn-tim-kiem');
-    const popTimKiem  = document.getElementById('pop-tim-kiem');
-    const popOverlay  = document.getElementById('pop-overlay');
-    const oTimKiem    = document.getElementById('o-tim-kiem');
-    const btnTim      = document.getElementById('btn-tim');
-
-    function dongPopup() {
-        popTimKiem.classList.remove('hien');
-        popOverlay.classList.remove('hien');
-    }
-
-    function moPopupTimKiem() {
-        const dangHien = popTimKiem.classList.contains('hien');
-        dongPopup();
-        if (!dangHien) {
-            popTimKiem.classList.add('hien');
-            popOverlay.classList.add('hien');
-            setTimeout(() => oTimKiem.focus(), 50);
-        }
-    }
-
-    if (btnTimKiem) btnTimKiem.addEventListener('click', e => { e.stopPropagation(); moPopupTimKiem(); });
-    if (popOverlay) popOverlay.addEventListener('click', dongPopup);
-
-    // Ấn Enter hoặc nút Tìm → chuyển sang trang category với query
-    function diTimKiem() {
-        const q = oTimKiem.value.trim();
-        if (q) window.location.href = `category.html?q=${encodeURIComponent(q)}`;
-    }
-
-    if (btnTim)   btnTim.addEventListener('click', diTimKiem);
-    if (oTimKiem) oTimKiem.addEventListener('keydown', e => { if (e.key === 'Enter') diTimKiem(); });
-
-   // Click tag gợi ý → Đi thẳng sang trang danh mục luôn!
-    document.querySelectorAll('.pop-tag').forEach(tag => {
-        tag.addEventListener('click', () => {
-            const tenTag = tag.textContent.trim();
-            window.location.href = `category.html?q=${encodeURIComponent(tenTag)}`;
-        });
-    });
-
-    // Đóng popup khi ấn Escape
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') dongPopup(); });
-
-    /* ===== BADGE GIỎ HÀNG ===== */
-    // Đọc số lượng từ localStorage (cart.html sẽ cập nhật)
-    function capNhatBadge() {
-        const badge = document.getElementById('so-gio-hang');
-        if (!badge) return;
-        const soLuong = parseInt(localStorage.getItem('so-luong-gio-hang') || '0');
-        badge.textContent = soLuong;
-        badge.classList.toggle('an', soLuong === 0);
-    }
-
-    capNhatBadge();
-    </script>
+    <script src="assets/js/style.js"></script>
   </body>
 </html>

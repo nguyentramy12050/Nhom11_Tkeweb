@@ -16,7 +16,8 @@
   <header class="header">
     <div class="header-container">
       <div class="header-brand">
-        <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only">
+        <a href="index.html">
+              <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only">
       </div>
       <nav class="header-nav">
         <ul>
@@ -174,36 +175,6 @@
 
   <script src="assets/js/blog-data.js"></script>
   <script src="assets/js/blog-detail.js"></script>
-  <script>
-    /* TÌM KIẾM */
-    const btnTimKiem = document.getElementById('btn-tim-kiem');
-    const popTimKiem = document.getElementById('pop-tim-kiem');
-    const popOverlay = document.getElementById('pop-overlay');
-    const oTimKiem   = document.getElementById('o-tim-kiem');
-    const btnTim     = document.getElementById('btn-tim');
-
-    function dongPopup() {
-      popTimKiem.classList.remove('hien');
-      popOverlay.classList.remove('hien');
-    }
-    function moPopup() {
-      const dang = popTimKiem.classList.contains('hien');
-      dongPopup();
-      if (!dang) { popTimKiem.classList.add('hien'); popOverlay.classList.add('hien'); setTimeout(() => oTimKiem.focus(), 50); }
-    }
-    btnTimKiem.addEventListener('click', e => { e.stopPropagation(); moPopup(); });
-    popOverlay.addEventListener('click', dongPopup);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') dongPopup(); });
-    function diTimKiem() { const q = oTimKiem.value.trim(); if (q) window.location.href = `category.html?q=${encodeURIComponent(q)}`; }
-    btnTim.addEventListener('click', diTimKiem);
-    oTimKiem.addEventListener('keydown', e => { if (e.key === 'Enter') diTimKiem(); });
-    document.querySelectorAll('.pop-tag').forEach(t => t.addEventListener('click', () => { oTimKiem.value = t.textContent; oTimKiem.focus(); }));
-
-    /* BADGE */
-    const badge = document.getElementById('so-gio-hang');
-    const so = parseInt(localStorage.getItem('so-luong-gio-hang') || '0');
-    badge.textContent = so;
-    badge.classList.toggle('an', so === 0);
-  </script>
-</body>
+  <script src="assets/js/style.js"></script>
+  </body>
 </html>

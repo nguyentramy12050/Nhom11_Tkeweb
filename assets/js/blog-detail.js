@@ -61,7 +61,9 @@ function hienThiLienQuan(baiHienTai, tatCaBai) {
 
     khu.innerHTML = lienQuan.map(b => `
         <article class="the-lien-quan" onclick="window.location.href='blog-detail.html?slug=${b.slug}'">
-            <img src="${b.anh}" alt="${b.tieuDe}" onerror="this.style.display='none'">
+            <img src="${b.anh}" alt="${b.tieuDe}" 
+                style="width:100%;height:240px;object-fit:cover;display:block;"
+                onerror="this.style.display='none'">
             <div style="padding:20px;">
                 <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a44f3f;font-family:'Lora',serif;">${b.danhMuc || ''}</span>
                 <h3 style="margin-top:8px;font-family:'Playfair Display',serif;line-height:1.4;">${b.tieuDe}</h3>
