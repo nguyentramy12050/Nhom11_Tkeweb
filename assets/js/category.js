@@ -2,8 +2,8 @@
 // 1. KHỞI TẠO VÀ XỬ LÝ TÌM KIẾM TỪ TRANG CHỦ
 // ==========================================
 document.addEventListener("DOMContentLoaded", function () {
-    // Tự động lấy danh sách Tác giả từ data.js đổ vào dropdown
     populateAuthors();
+    updateCartBadge();
 
     const urlParams = new URLSearchParams(window.location.search);
     const tuKhoa = urlParams.get('q');
@@ -54,7 +54,89 @@ let currentPriceTier = 'all';
 
 // Hàm phụ trợ: Ép kiểu giá từ chuỗi (VD: "185.000") thành số (185000)
 const parsePrice = (priceStr) => parseInt(priceStr.replace(/\./g, ''));
+const CART_KEY = "cart";
 
+function getCartFromStorage() {
+    try {
+        const rawCart = localStorage.getItem(CART_KEY);
+        const cart = rawCart ? JSON.parse(rawCart) : [];
+
+        if (!Array.isArray(cart)) return [];
+
+        return cart
+            .map(item => ({
+                id: Number(item.id || item.bookId),
+                quantity: Number(item.quantity || item.qty || 1)
+            }))
+            .filter(item => item.id && item.quantity > 0);
+    } catch (error) {
+        console.error("Lỗi đọc giỏ hàng:", error);
+        return [];
+    }
+}
+
+function saveCartToStorage(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function updateCartBadge() {
+    const badge = document.getElementById("so-gio-hang");
+    if (!badge) return;
+
+    const cart = getCartFromStorage();
+    const totalQuantity = cart.reduce((sum, item) => {
+        return sum + Number(item.quantity || 0);
+    }, 0);
+
+    badge.textContent = totalQuantity;
+
+    if (totalQuantity <= 0) {
+        badge.classList.add("an");
+    } else {
+        badge.classList.remove("an");
+    }
+}
+
+function addToCart(bookId) {
+    const cart = getCartFromStorage();
+    const existingItem = cart.find(item => Number(item.id) === Number(bookId));
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id: Number(bookId),
+            quantity: 1
+        });
+    }
+
+    saveCartToStorage(cart);
+    updateCartBadge();
+    showCartMessage("Đã thêm sách vào giỏ hàng.");
+}
+
+function buyNow(bookId) {
+    addToCart(bookId);
+    window.location.href = "cart.html";
+}
+
+function showCartMessage(message) {
+    let toast = document.getElementById("cart-toast");
+
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "cart-toast";
+        toast.className = "cart-toast";
+        document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 1800);
+}
 // ==========================================
 // 3. HÀM TỰ ĐỘNG LẤY TÁC GIẢ TỪ DATA.JS
 // ==========================================
@@ -143,10 +225,14 @@ function applyAllFilters() {
 // ==========================================
 function renderBooks(page) {
     const bookGrid = document.getElementById("book-grid");
-    bookGrid.innerHTML = ""; 
+    bookGrid.innerHTML = "";
 
     if (filteredBooks.length === 0) {
-        bookGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size: 16px; margin-top: 20px;">Không tìm thấy sách phù hợp với bộ lọc của bạn.</p>`;
+        bookGrid.innerHTML = `
+            <p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size: 16px; margin-top: 20px;">
+                Không tìm thấy sách phù hợp với bộ lọc của bạn.
+            </p>
+        `;
         return;
     }
 
@@ -155,38 +241,53 @@ function renderBooks(page) {
     const booksToShow = filteredBooks.slice(startIndex, endIndex);
 
     booksToShow.forEach(book => {
-        let badgeHTML = "";
-        if (book.badge) {
-            badgeHTML = `<span class="badge ${book.badgeClass}">${book.badge}</span>`;
-        }
-
         const bookCard = `
             <div class="book-card">
                 <div class="book-img-wrapper">
                     <a href="product-detail.html?id=${book.id}">
-                        ${badgeHTML}
-                        <img src="assets/images/books/${book.image}" alt="${book.name}" onerror="this.src='assets/images/logo.jpg'">
+                        <img 
+                            src="assets/images/books/${book.image}" 
+                            alt="${book.name}" 
+                            onerror="this.src='assets/images/logo.jpg'"
+                        >
                     </a>
+
                     <div class="hover-overlay">
-                        <a href="cart.html" class="action-btn cart-btn" title="Thêm vào giỏ"><i class="fas fa-shopping-cart"></i></a>
-                        <a href="#" class="action-btn" title="Yêu thích"><i class="far fa-heart"></i></a>
-                        <a href="product-detail.html?id=${book.id}" class="action-btn" title="Xem chi tiết"><i class="far fa-eye"></i></a>
+                        <button 
+                            type="button"
+                            class="action-btn cart-btn" 
+                            title="Thêm vào giỏ"
+                            onclick="addToCart(${book.id})"
+                        >
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+
+                        <a href="#" class="action-btn" title="Yêu thích">
+                            <i class="far fa-heart"></i>
+                        </a>
+
+                        <a href="product-detail.html?id=${book.id}" class="action-btn" title="Xem chi tiết">
+                            <i class="far fa-eye"></i>
+                        </a>
                     </div>
                 </div>
                 
                 <div class="book-info">
                     <h4 class="book-name" title="${book.name}">${book.name}</h4>
                     <p class="book-author">${book.author}</p>
+
                     <div class="book-price-row">
                         <span class="book-price">${book.price}đ</span>
                         <span class="book-old-price">${book.oldPrice}đ</span>
                     </div>
-                    <button class="btn-buy-now" onclick="window.location.href='cart.html'">
+
+                    <button class="btn-buy-now" onclick="buyNow(${book.id})">
                         <i class="fas fa-cart-plus"></i> Mua ngay
                     </button>
                 </div>
             </div>
         `;
+
         bookGrid.innerHTML += bookCard;
     });
 }

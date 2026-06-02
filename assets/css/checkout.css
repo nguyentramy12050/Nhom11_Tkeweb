@@ -1,0 +1,449 @@
+/* trang hoàn tất đặt sách */
+
+.checkout-page {
+    min-height: 70vh;
+    padding: 52px 20px 76px;
+    background:
+        radial-gradient(rgba(106, 63, 38, 0.12) 1px, transparent 1px);
+    background-size: 16px 16px;
+}
+
+.checkout-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.checkout-heading {
+    margin-bottom: 28px;
+}
+
+.checkout-heading h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    line-height: 1.1;
+    color: #4a2f22;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.checkout-heading p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    color: #7b6657;
+    font-style: italic;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 390px;
+    gap: 36px;
+    align-items: flex-start;
+}
+
+.checkout-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.checkout-card,
+.checkout-summary,
+.checkout-empty,
+.order-success {
+    background: rgba(255, 248, 242, 0.86);
+    border: 1px solid rgba(129, 86, 57, 0.1);
+    box-shadow: 0 18px 40px rgba(87, 54, 32, 0.07);
+    backdrop-filter: blur(2px);
+}
+
+.checkout-card {
+    padding: 28px;
+}
+
+.checkout-card h2,
+.checkout-summary h2,
+.checkout-empty h2,
+.order-success h2 {
+    font-family: 'Playfair Display', serif;
+    color: #4a2f22;
+    font-weight: 700;
+}
+
+.checkout-card h2,
+.checkout-summary h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.checkout-card h2 i {
+    font-size: 14px;
+    margin-right: 8px;
+    color: #6d351f;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #5d4638;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid rgba(126, 89, 63, 0.18);
+    background: rgba(255, 255, 255, 0.55);
+    outline: none;
+    padding: 12px 13px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 13px;
+    color: #4a2f22;
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #b09c8b;
+    font-style: italic;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #8b5a2b;
+    background: #fffaf5;
+}
+
+.form-group input.error,
+.form-group textarea.error {
+    border-color: #a6422d;
+}
+
+.form-error {
+    display: block;
+    min-height: 16px;
+    margin-top: 4px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 11px;
+    color: #a6422d;
+}
+
+.payment-card {
+    padding-bottom: 24px;
+}
+
+.payment-option {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(126, 89, 63, 0.16);
+    background: rgba(255, 255, 255, 0.36);
+    cursor: pointer;
+}
+
+.payment-option input {
+    accent-color: #6d351f;
+}
+
+.payment-option strong {
+    display: block;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    color: #4a2f22;
+    margin-bottom: 4px;
+}
+
+.payment-option em {
+    display: block;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 12px;
+    color: #7a6658;
+    line-height: 1.45;
+}
+
+.payment-option > i {
+    color: #9a7a61;
+    font-size: 14px;
+}
+
+.checkout-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.benefit-item {
+    text-align: center;
+    padding: 22px 14px;
+    background: rgba(255, 248, 242, 0.82);
+    border: 1px solid rgba(129, 86, 57, 0.08);
+    box-shadow: 0 12px 28px rgba(87, 54, 32, 0.05);
+}
+
+.benefit-item i {
+    color: #6f7f5d;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.benefit-item h3 {
+    font-family: 'Playfair Display', serif;
+    color: #4a2f22;
+    font-size: 17px;
+    margin-bottom: 4px;
+}
+
+.benefit-item p {
+    font-family: 'Noto Sans', sans-serif;
+    color: #7a6658;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.checkout-summary {
+    padding: 30px;
+    position: sticky;
+    top: 96px;
+}
+
+.checkout-summary h2 {
+    font-size: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(119, 84, 58, 0.16);
+}
+
+.checkout-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 20px 0 22px;
+}
+
+.checkout-item {
+    display: grid;
+    grid-template-columns: 58px 1fr auto;
+    gap: 12px;
+    align-items: center;
+}
+
+.checkout-item img {
+    width: 58px;
+    height: 78px;
+    object-fit: cover;
+    background: #efe6da;
+    box-shadow: 0 8px 18px rgba(65, 42, 28, 0.12);
+}
+
+.checkout-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: #3f2b21;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 3px;
+}
+
+.checkout-item-meta {
+    font-family: 'Noto Sans', sans-serif;
+    color: #8a7567;
+    font-size: 11px;
+}
+
+.checkout-item-price {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4a2f22;
+    white-space: nowrap;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 13px;
+    color: #7a6658;
+    margin-bottom: 12px;
+}
+
+.summary-line strong {
+    color: #4a2f22;
+}
+
+.summary-discount strong {
+    color: #6d7f45;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(119, 84, 58, 0.16);
+}
+
+.summary-total span {
+    font-family: 'Noto Sans', sans-serif;
+    color: #6d5b50;
+    font-size: 13px;
+}
+
+.summary-total strong {
+    font-family: 'Playfair Display', serif;
+    color: #4a2f22;
+    font-size: 36px;
+    line-height: 1;
+}
+
+.place-order-btn {
+    width: 100%;
+    margin-top: 26px;
+    border: none;
+    background: #6d351f;
+    color: #fff;
+    padding: 17px 18px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.place-order-btn i {
+    margin-left: 7px;
+}
+
+.place-order-btn:hover {
+    background: #8b5a2b;
+    transform: translateY(-1px);
+}
+
+.checkout-secure {
+    margin-top: 16px;
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 11px;
+    color: #9a887b;
+}
+
+.checkout-secure i {
+    margin-right: 6px;
+}
+
+.checkout-empty,
+.order-success {
+    max-width: 760px;
+    margin: 36px auto 0;
+    padding: 68px 24px;
+    text-align: center;
+    display: none;
+}
+
+.checkout-empty i,
+.order-success i {
+    font-size: 48px;
+    color: #9a7556;
+    margin-bottom: 18px;
+}
+
+.order-success i {
+    color: #6d7f45;
+}
+
+.checkout-empty h2,
+.order-success h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.checkout-empty p,
+.order-success p {
+    font-family: 'Noto Sans', sans-serif;
+    color: #7a6658;
+    margin-bottom: 24px;
+}
+
+.checkout-empty a,
+.success-actions a {
+    display: inline-block;
+    padding: 13px 24px;
+    background: #8b5a2b;
+    color: #fff;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+}
+
+.success-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.success-actions a:last-child {
+    background: #6d351f;
+}
+
+@media (max-width: 992px) {
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 700px) {
+    .checkout-page {
+        padding: 36px 14px 54px;
+    }
+
+    .checkout-heading h1 {
+        font-size: 34px;
+    }
+
+    .checkout-card,
+    .checkout-summary {
+        padding: 22px;
+    }
+
+    .form-grid,
+    .checkout-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-item {
+        grid-template-columns: 54px 1fr;
+    }
+
+    .checkout-item img {
+        width: 54px;
+        height: 74px;
+    }
+
+    .checkout-item-price {
+        grid-column: 2;
+    }
+}

@@ -278,3 +278,33 @@
     background-color: var(--accent-color); color: #fff; border-color: var(--accent-color);
 }
 .page-dots { display: flex; align-items: end; padding-bottom: 5px; }
+.action-btn {
+    border: none;
+    cursor: pointer;
+}
+
+/* thông báo thêm vào giỏ hàng */
+
+.cart-toast {
+    position: fixed;
+    top: 18px;
+    right: 260px;
+    z-index: 3000;
+    background: #6d351f;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 8px 22px rgba(65, 42, 28, 0.22);
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: 0.25s ease;
+}
+
+.cart-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}

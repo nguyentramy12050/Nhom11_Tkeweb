@@ -2,52 +2,181 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thư Hiên - Tiệm Sách Cũ</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Giỏ hàng | Thư Hiên</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/cart.css" />
   </head>
   <body>
+    <!-- ========== HEADER ========== -->
     <header class="header">
       <div class="header-container">
         <div class="header-brand">
-          <div class="logo-box">
-            <img src="assets/images/logo.png" alt="Logo Thư Hiên" />
-          </div>
-          <h1 class="brand-name">Thư Hiên</h1>
+          <a href="index.html">
+            <img
+              src="assets/images/logo.jpg"
+              alt="Logo Thư Hiên"
+              class="logo-img-only"
+            />
+          </a>
         </div>
 
         <nav class="header-nav">
           <ul>
             <li><a href="index.html">Trang chủ</a></li>
             <li><a href="category.html">Danh mục</a></li>
-            <li><a href="buyback.html">Bán lại sách</a></li>
-            <li><a href="news.html">Tin tức</a></li>
-            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
           </ul>
         </nav>
 
         <div class="header-icons">
-          <a href="#" title="Tìm kiếm"><i class="fas fa-search"></i></a>
-          <a href="cart.html" title="Giỏ hàng"
-            ><i class="fas fa-shopping-cart"></i
-          ></a>
-          <a href="login.html" title="Tài khoản"><i class="far fa-user"></i></a>
+          <button
+            class="hd-icon-btn"
+            id="btn-tim-kiem"
+            title="Tìm kiếm"
+            aria-label="Tìm kiếm"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+          <a
+            href="cart.html"
+            class="hd-icon-btn"
+            title="Giỏ hàng"
+            aria-label="Giỏ hàng"
+            style="position: relative"
+          >
+            <i class="fas fa-shopping-bag"></i>
+            <span class="hd-badge" id="so-gio-hang">0</span>
+          </a>
         </div>
+
+        <div class="pop-tim-kiem" id="pop-tim-kiem">
+          <div class="pop-tim-kiem-noi">
+            <p class="pop-nhan">Tìm kiếm sách</p>
+            <div class="pop-search-row">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                id="o-tim-kiem"
+                placeholder="Tên sách, tác giả, thể loại…"
+              />
+              <button class="pop-search-btn" id="btn-tim">Tìm</button>
+            </div>
+            <div class="pop-tag-list">
+              <span class="pop-tag">Văn học kinh điển</span>
+              <span class="pop-tag">Văn học Việt Nam xưa</span>
+              <span class="pop-tag">Ấn bản đặc biệt</span>
+              <span class="pop-tag">Lịch sử & Văn minh</span>
+              <span class="pop-tag">Ngoại văn tuyển chọn</span>
+              <span class="pop-tag">Thiếu nhi & Tuổi thơ</span>
+              <span class="pop-tag">Triết học & Tư tưởng</span>
+              <span class="pop-tag">Trinh thám kinh điển</span>
+            </div>
+          </div>
+        </div>
+        <div class="pop-overlay" id="pop-overlay"></div>
       </div>
     </header>
 
-    <main style="min-height: 50vh; padding: 50px; text-align: center">
-      <h2></h2>
+    <!-- ========== CART CONTENT ========== -->
+    <main class="cart-page">
+      <section class="cart-shell">
+        <div class="cart-heading">
+          <h1>Giỏ hàng của bạn</h1>
+          <p>Nơi lưu giữ những tri thức quý giá bạn đã chọn.</p>
+        </div>
+
+        <div id="cart-empty" class="empty-cart">
+          <i class="fas fa-shopping-bag"></i>
+          <h2>Giỏ hàng đang trống</h2>
+          <p>
+            Hãy quay lại danh mục để chọn những cuốn sách cũ phù hợp với bạn.
+          </p>
+          <a href="category.html">Xem danh mục sách</a>
+        </div>
+
+        <div id="cart-content" class="cart-layout">
+          <section
+            class="cart-list"
+            aria-label="Danh sách sản phẩm trong giỏ hàng"
+          >
+            <div id="cart-items"></div>
+
+            <div class="cart-actions">
+              <button class="cart-text-link" id="clear-cart">
+                Xóa toàn bộ giỏ hàng
+              </button>
+            </div>
+          </section>
+
+          <aside class="cart-summary" aria-label="Tóm tắt đơn hàng">
+            <h2>Tóm tắt đơn hàng</h2>
+
+            <div class="summary-line">
+              <span>Tạm tính (<span id="summary-count">0</span> cuốn)</span>
+              <strong id="summary-subtotal">0đ</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Phí vận chuyển (Ước tính)</span>
+              <strong id="summary-shipping">0đ</strong>
+            </div>
+
+            <div class="summary-line summary-discount" id="discount-row">
+              <span
+                >Giảm giá mã
+                <strong id="summary-coupon-name">TRIKY</strong></span
+              >
+              <strong id="summary-discount">-0đ</strong>
+            </div>
+
+            <div class="coupon-box">
+              <label class="coupon-label" for="coupon-input">Mã giảm giá</label>
+
+              <div class="coupon-row">
+                <input type="text" id="coupon-input" placeholder="Nhập mã" />
+                <button id="apply-coupon">Áp dụng</button>
+              </div>
+
+              <div class="coupon-message" id="coupon-message"></div>
+            </div>
+
+            <div class="summary-total">
+              <div class="summary-total-row">
+                <span class="summary-total-label">Tổng cộng</span>
+                <span class="summary-total-price" id="summary-total">0đ</span>
+              </div>
+              <div class="summary-note">Đã bao gồm thuế giá trị gia tăng</div>
+            </div>
+
+            <button class="checkout-btn" id="checkout-btn">
+              Tiến hành thanh toán
+            </button>
+
+            <div class="secure-note">
+              <i class="fas fa-shield-alt"></i>
+              <span>Thanh toán bảo mật 100%</span>
+            </div>
+          </aside>
+        </div>
+      </section>
     </main>
 
+    <!-- ========== FOOTER  ========== -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
@@ -57,9 +186,15 @@
             từng trang sách cũ đầy ký ức.
           </p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
           </div>
         </div>
 
@@ -67,19 +202,27 @@
           <h3 class="footer-title">Liên Kết</h3>
           <ul>
             <li><a href="category.html">Danh mục sách</a></li>
-            <li><a href="buyback.html">Bán lại sách</a></li>
-            <li><a href="news.html">Tin tức</a></li>
-            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h3 class="footer-title">Hỗ Trợ</h3>
           <ul>
-            <li><a href="#">Chính sách đổi trả</a></li>
-            <li><a href="#">Hướng dẫn mua hàng</a></li>
-            <li><a href="#">Phương thức thanh toán</a></li>
-            <li><a href="#">Liên hệ</a></li>
+            <li>
+              <a href="policy.html#chinh-sach-doi-tra">Chính sách đổi trả</a>
+            </li>
+            <li>
+              <a href="policy.html#huong-dan-mua-hang">Hướng dẫn mua hàng</a>
+            </li>
+            <li>
+              <a href="policy.html#phuong-thuc-thanh-toan"
+                >Phương thức thanh toán</a
+              >
+            </li>
+            <li><a href="about.html">Liên hệ</a></li>
           </ul>
         </div>
 
@@ -90,13 +233,6 @@
             <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
             <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
           </ul>
-          <div class="newsletter">
-            <p class="newsletter-title">Nhận thêm thông tin</p>
-            <form action="#" class="newsletter-form">
-              <input type="email" placeholder="Email của bạn" required />
-              <button type="submit"><i class="fas fa-paper-plane"></i></button>
-            </form>
-          </div>
         </div>
       </div>
 
@@ -105,5 +241,9 @@
         <p>Được tạo với ❤️ từ niềm đam mê sách cũ</p>
       </div>
     </footer>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/style.js"></script>
+    <script src="assets/js/cart.js"></script>
   </body>
 </html>

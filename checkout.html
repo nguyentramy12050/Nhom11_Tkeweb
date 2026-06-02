@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Hoàn tất đặt sách | Thư Hiên</title>
+
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/checkout.css" />
+  </head>
+
+  <body>
+    <!-- header dùng style.css -->
+    <header class="header">
+      <div class="header-container">
+        <div class="header-brand">
+          <a href="index.html">
+            <img
+              src="assets/images/logo.jpg"
+              alt="Logo Thư Hiên"
+              class="logo-img-only"
+            />
+          </a>
+        </div>
+
+        <nav class="header-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="category.html">Danh mục</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-icons">
+          <button
+            class="hd-icon-btn"
+            id="btn-tim-kiem"
+            title="Tìm kiếm"
+            aria-label="Tìm kiếm"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+
+          <a
+            href="cart.html"
+            class="hd-icon-btn"
+            title="Giỏ hàng"
+            aria-label="Giỏ hàng"
+            style="position: relative"
+          >
+            <i class="fas fa-shopping-bag"></i>
+            <span class="hd-badge" id="so-gio-hang">0</span>
+          </a>
+        </div>
+
+        <div class="pop-tim-kiem" id="pop-tim-kiem">
+          <div class="pop-tim-kiem-noi">
+            <p class="pop-nhan">Tìm kiếm sách</p>
+
+            <div class="pop-search-row">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                id="o-tim-kiem"
+                placeholder="Tên sách, tác giả, thể loại…"
+              />
+              <button class="pop-search-btn" id="btn-tim">Tìm</button>
+            </div>
+
+            <div class="pop-tag-list">
+              <span class="pop-tag">Văn học kinh điển</span>
+              <span class="pop-tag">Văn học Việt Nam xưa</span>
+              <span class="pop-tag">Ấn bản đặc biệt</span>
+              <span class="pop-tag">Lịch sử & Văn minh</span>
+              <span class="pop-tag">Ngoại văn tuyển chọn</span>
+              <span class="pop-tag">Thiếu nhi & Tuổi thơ</span>
+              <span class="pop-tag">Triết học & Tư tưởng</span>
+              <span class="pop-tag">Trinh thám kinh điển</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pop-overlay" id="pop-overlay"></div>
+      </div>
+    </header>
+
+    <!-- nội dung checkout -->
+    <main class="checkout-page">
+      <section class="checkout-wrap">
+        <div class="checkout-heading">
+          <h1>Hoàn tất đặt sách</h1>
+          <p>
+            Bước cuối cùng để đưa những tri thức vượt thời gian về tủ sách của
+            bạn.
+          </p>
+        </div>
+
+        <div id="checkout-empty" class="checkout-empty">
+          <i class="fas fa-shopping-bag"></i>
+          <h2>Chưa có sách để đặt hàng</h2>
+          <p>
+            Giỏ hàng của bạn đang trống. Hãy quay lại danh mục để chọn sách
+            trước.
+          </p>
+          <a href="category.html">Quay lại danh mục sách</a>
+        </div>
+
+        <div id="checkout-content" class="checkout-layout">
+          <div class="checkout-left">
+            <section class="checkout-card">
+              <h2><i class="fas fa-truck"></i> Thông tin giao hàng</h2>
+
+              <form id="checkout-form">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="customer-name">Họ và tên</label>
+                    <input
+                      type="text"
+                      id="customer-name"
+                      placeholder="Nguyễn Văn A"
+                    />
+                    <small class="form-error"></small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="customer-phone">Số điện thoại</label>
+                    <input
+                      type="tel"
+                      id="customer-phone"
+                      placeholder="090 123 4567"
+                    />
+                    <small class="form-error"></small>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="customer-email"
+                    >Email để nhận hóa đơn điện tử</label
+                  >
+                  <input
+                    type="email"
+                    id="customer-email"
+                    placeholder="example@thuhien.vn"
+                  />
+                  <small class="form-error"></small>
+                </div>
+
+                <div class="form-group">
+                  <label for="customer-address">Địa chỉ nhận sách</label>
+                  <input
+                    type="text"
+                    id="customer-address"
+                    placeholder="Số nhà, tên đường, phường/xã..."
+                  />
+                  <small class="form-error"></small>
+                </div>
+
+                <div class="form-group">
+                  <label for="customer-note">Ghi chú cho người đóng gói</label>
+                  <textarea
+                    id="customer-note"
+                    rows="3"
+                    placeholder="Ví dụ: giao vào giờ hành chính, gọi trước khi đến..."
+                  ></textarea>
+                </div>
+              </form>
+            </section>
+
+            <section class="checkout-card payment-card">
+              <h2><i class="fas fa-wallet"></i> Phương thức thanh toán</h2>
+
+              <label class="payment-option">
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="bank"
+                  checked
+                />
+                <span>
+                  <strong>Chuyển khoản ngân hàng</strong>
+                  <em
+                    >Quý khách sẽ nhận thông tin tài khoản sau khi đặt hàng.</em
+                  >
+                </span>
+                <i class="fas fa-university"></i>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="payment-method" value="cod" />
+                <span>
+                  <strong>Thanh toán khi nhận sách (COD)</strong>
+                  <em
+                    >Kiểm tra sách trước khi thanh toán cho nhân viên bưu
+                    điện.</em
+                  >
+                </span>
+                <i class="fas fa-money-bill-wave"></i>
+              </label>
+            </section>
+
+            <section class="checkout-benefits">
+              <div class="benefit-item">
+                <i class="fas fa-archive"></i>
+                <h3>Bọc chống ẩm</h3>
+                <p>Màng phim chuyên dụng bảo vệ sách.</p>
+              </div>
+
+              <div class="benefit-item">
+                <i class="fas fa-cube"></i>
+                <h3>Chống sốc 5 lớp</h3>
+                <p>Đảm bảo sách cũ không bị móp méo.</p>
+              </div>
+
+              <div class="benefit-item">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Bảo hành tri thức</h3>
+                <p>Đổi trả nếu phát hiện lỗi nghiêm trọng.</p>
+              </div>
+            </section>
+          </div>
+
+          <aside class="checkout-summary">
+            <h2>Tóm tắt đơn hàng</h2>
+
+            <div id="checkout-items" class="checkout-items"></div>
+
+            <div class="summary-line">
+              <span>Tạm tính</span>
+              <strong id="checkout-subtotal">0đ</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Phí vận chuyển</span>
+              <strong id="checkout-shipping">0đ</strong>
+            </div>
+
+            <div
+              class="summary-line summary-discount"
+              id="checkout-discount-row"
+            >
+              <span>Giảm giá</span>
+              <strong id="checkout-discount">-0đ</strong>
+            </div>
+
+            <div class="summary-total">
+              <span>Tổng cộng</span>
+              <strong id="checkout-total">0đ</strong>
+            </div>
+
+            <button id="place-order-btn" class="place-order-btn">
+              Xác nhận đặt sách
+              <i class="fas fa-feather-alt"></i>
+            </button>
+
+            <p class="checkout-secure">
+              <i class="fas fa-lock"></i>
+              Giao dịch được bảo mật bởi hệ thống Thư Hiên
+            </p>
+          </aside>
+        </div>
+
+        <div id="order-success" class="order-success">
+          <i class="fas fa-check-circle"></i>
+          <h2>Đặt sách thành công</h2>
+          <p id="success-message">Cảm ơn bạn đã đặt sách tại Thư Hiên.</p>
+
+          <div class="success-actions">
+            <a href="category.html">Tiếp tục mua sách</a>
+            <a href="index.html">Về trang chủ</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- footer dùng style.css -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-title">Về Chúng Tôi</h3>
+          <p>
+            Tiệm Sách Thư Hiên - Nơi lưu giữ và chia sẻ những câu chuyện qua
+            từng trang sách cũ đầy ký ức.
+          </p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Kết</h3>
+          <ul>
+            <li><a href="category.html">Danh mục sách</a></li>
+            <li><a href="buyback.html">Bán lại sách cũ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Hỗ Trợ</h3>
+          <ul>
+            <li>
+              <a href="policy.html#chinh-sach-doi-tra">Chính sách đổi trả</a>
+            </li>
+            <li>
+              <a href="policy.html#huong-dan-mua-hang">Hướng dẫn mua hàng</a>
+            </li>
+            <li>
+              <a href="policy.html#phuong-thuc-thanh-toan"
+                >Phương thức thanh toán</a
+              >
+            </li>
+            <li><a href="about.html">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Liên Hệ</h3>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Hoàn Kiếm, Hà Nội</li>
+            <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
+            <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Tiệm Sách Thư Hiên. Tất cả quyền được bảo lưu.</p>
+        <p>Được tạo với ❤️ từ niềm đam mê sách cũ</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/style.js"></script>
+    <script src="assets/js/checkout.js"></script>
+  </body>
+</html>
