@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     /* ===================================
-       CAROUSEL SÁCH — Thư Hiên chọn lọc
+       1. CAROUSEL SÁCH — Thư Hiên chọn lọc
     =================================== */
 
     const bangTruot   = document.getElementById('bang-truot');
@@ -9,6 +9,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (bangTruot && khuCham) {
 
+        // --- ĐỔ DỮ LIỆU ĐỘNG TỪ DATA.JS VÀO ---
+        const sachChonLoc = booksData.slice(0, 12); 
+        let htmlSach = '';
+        
+        sachChonLoc.forEach(book => {
+            // Xử lý nhãn Mới/Hot
+            let htmlNhan = "";
+            if (book.label === "Mới") {
+                htmlNhan = `<span class="nhan-the moi">Mới</span>`; 
+            } else if (book.label === "Hot") {
+                htmlNhan = `<span class="nhan-the hot">Hot</span>`;
+            }
+
+            htmlSach += `
+                <div class="the-sach">
+                    <div class="anh-sach">
+                        <img src="assets/images/books/${book.image}" alt="${book.name}" onerror="this.src='assets/images/logo.jpg'">
+                        ${htmlNhan}
+                    </div>
+                    <div class="thong-tin">
+                        <p class="the-loai" title="${book.category}">${book.category}</p>
+                        <h4 class="ten-sach" title="${book.name}">${book.name}</h4>
+                        <p class="tac-gia">${book.author}</p>
+                        <span class="gia-sach">${book.price}đ</span>
+                        <a href="product-detail.html?id=${book.id}" class="nut-mua">Mua ngay</a>
+                    </div>
+                </div>
+            `;
+        });
+
+        bangTruot.innerHTML = htmlSach;
+
+
+        // --- LOGIC TRƯỢT SLIDE GỐC CỦA CẬU ---
         const danhSachThe = bangTruot.querySelectorAll('.the-sach');
         const RONG_THE    = 220;   // 200px card + 20px gap
         const SO_HIEN     = 4;     // số card hiển thị cùng lúc
@@ -31,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         function taoCham() {
+            khuCham.innerHTML = ''; // Clear trước khi tạo
             for (let i = 0; i < TONG_THE - SO_HIEN + 1; i++) {
                 const c = document.createElement('button');
                 c.className = 'cham' + (i === 0 ? ' hien-tai' : '');
@@ -67,29 +102,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
         taoCham();
         batDauTuDong();
-    /* ================================== CLICK THẺ SÁCH CAROUSEL================================== */
-    const danhSachTheClick = document.querySelectorAll('.the-sach');
-    danhSachTheClick.forEach(the => {
-        the.addEventListener('click', function (e) {
-            // Nếu click vào nút "Mua ngay" thì để nó tự chạy, không cần can thiệp
-            if (e.target.closest('.nut-mua')) return;
 
-            // Lấy href từ nút mua ngay trong thẻ đó
-            const nutMua = this.querySelector('.nut-mua');
-            if (nutMua) window.location.href = nutMua.getAttribute('href');
+        /* ================================== CLICK THẺ SÁCH CAROUSEL ================================== */
+        const danhSachTheClick = document.querySelectorAll('.the-sach');
+        danhSachTheClick.forEach(the => {
+            the.style.cursor = 'pointer';
+            the.addEventListener('click', function (e) {
+                if (e.target.closest('.nut-mua')) return;
+                const nutMua = this.querySelector('.nut-mua');
+                if (nutMua) window.location.href = nutMua.getAttribute('href');
+            });
         });
-    });
     }
 
     /* ===================================
-       CLICK THẺ SÁCH TOP NỔI BẬT
+       2. CLICK THẺ SÁCH TOP NỔI BẬT
     =================================== */
-
     const cards = document.querySelectorAll(".item-sach-lon");
     cards.forEach(card => {
+        card.style.cursor = 'pointer';
         card.addEventListener("click", function () {
             const link = this.dataset.link;
             if (link) window.location.href = link;
+        });
+    });
+
+
+    /* ===================================
+       3. CLICK Ô THỂ LOẠI (DỊCH TỪ ĐIỂN)
+    =================================== */
+    const boTuDienTheLoai = {
+        "van-hoc-kinh-dien": "Văn học kinh điển",
+        "van-hoc-viet-nam": "Văn học Việt Nam xưa",
+        "triet-hoc": "Triết học & Tư tưởng",
+        "lich-su": "Lịch sử & Văn minh",
+        "trinh-tham": "Trinh thám kinh điển",
+        "thieu-nhi": "Thiếu nhi & tuổi thơ",
+        "ngoai-van": "Ngoại văn tuyển chọn",
+        "an-ban-db": "Ấn bản đặc biệt"
+    };
+
+    const categoryBoxes = document.querySelectorAll('.o-category');
+    categoryBoxes.forEach(box => {
+        box.style.cursor = 'pointer';
+        box.addEventListener('click', function() {
+            const maKhongDau = this.getAttribute('data-cat');
+            const tenTheLoai = boTuDienTheLoai[maKhongDau];
+            
+            if (tenTheLoai) {
+                window.location.href = `category.html?q=${encodeURIComponent(tenTheLoai)}`;
+            }
         });
     });
 

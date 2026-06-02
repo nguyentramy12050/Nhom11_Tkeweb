@@ -248,24 +248,6 @@
       transform: scale(1.06);
   }
 
-  /* BADGE */
-  .nhan-the {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: #8a5d3b;
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      padding: 3px 8px;
-      border-radius: 20px;
-      text-transform: uppercase;
-  }
-
-  .nhan-the.moi  { background: #2e6b3e; }
-  .nhan-the.hot  { background: #b84a2a; }
-
   /* THÔNG TIN */
   .thong-tin {
       padding: 14px 14px 0;
