@@ -1,5 +1,8 @@
 const USERS_KEY = "users";
 const CURRENT_USER_KEY = "currentUser";
+const LOGIN_STATUS_KEY = "thuhien_dang_nhap";
+const DISPLAY_NAME_KEY = "thuhien_ten";
+const REMEMBERED_EMAIL_KEY = "thuhien_remembered_email";
 
 function getUsers() {
     try {
@@ -19,10 +22,27 @@ function saveUsers(users) {
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
-function saveCurrentUser(user) {
-    localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
-    localStorage.setItem("thuhien_dang_nhap", "true");
-    localStorage.setItem("thuhien_ten", user.name || "");
+function clearCurrentUserSession() {
+    [sessionStorage, localStorage].forEach(storage => {
+        storage.removeItem(CURRENT_USER_KEY);
+        storage.removeItem(LOGIN_STATUS_KEY);
+        storage.removeItem(DISPLAY_NAME_KEY);
+    });
+}
+
+function saveCurrentUser(user, rememberLogin) {
+    clearCurrentUserSession();
+
+    const storage = rememberLogin ? localStorage : sessionStorage;
+    storage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+    storage.setItem(LOGIN_STATUS_KEY, "true");
+    storage.setItem(DISPLAY_NAME_KEY, user.name || "");
+
+    if (rememberLogin) {
+        localStorage.setItem(REMEMBERED_EMAIL_KEY, user.email || "");
+    } else {
+        localStorage.removeItem(REMEMBERED_EMAIL_KEY);
+    }
 }
 
 function normalizeEmail(email) {
@@ -238,9 +258,11 @@ function handleLogin(event) {
 
     const emailInput = document.getElementById("login-email");
     const passwordInput = document.getElementById("login-password");
+    const rememberInput = document.getElementById("remember-login");
 
     const emailValue = normalizeEmail(emailInput.value);
     const passwordValue = passwordInput.value;
+    const rememberLogin = Boolean(rememberInput && rememberInput.checked);
 
     const users = getUsers();
 
@@ -262,7 +284,7 @@ function handleLogin(event) {
         loggedInAt: new Date().toISOString()
     };
 
-    saveCurrentUser(currentUser);
+    saveCurrentUser(currentUser, rememberLogin);
 
     setMessage("login-message", "Đăng nhập thành công. Đang chuyển trang...", "success");
 
@@ -298,10 +320,18 @@ function fillLoginEmailFromStorage() {
     if (!emailInput) return;
 
     const lastEmail = sessionStorage.getItem("lastRegisteredEmail");
+    const rememberedEmail = localStorage.getItem(REMEMBERED_EMAIL_KEY);
 
     if (lastEmail) {
         emailInput.value = lastEmail;
         sessionStorage.removeItem("lastRegisteredEmail");
+    } else if (rememberedEmail) {
+        emailInput.value = rememberedEmail;
+    }
+
+    const rememberInput = document.getElementById("remember-login");
+    if (rememberInput && rememberedEmail) {
+        rememberInput.checked = true;
     }
 }
 
@@ -336,7 +366,299 @@ function initAuthForms() {
     }
 }
 
+const RESET_EMAIL_KEY = "resetEmail";
+const RESET_CODE_KEY = "resetCode";
+const RESET_EXPIRE_KEY = "resetExpireAt";
+
+const DEFAULT_EMAILJS_CONFIG = {
+    publicKey: "",
+    serviceId: "",
+    templateId: "",
+    enableDemoCode: false
+};
+
+function generateResetCode() {
+    return String(Math.floor(100000 + Math.random() * 900000));
+}
+
+function saveResetCode(email, code) {
+    const expireAt = Date.now() + 5 * 60 * 1000;
+
+    sessionStorage.setItem(RESET_EMAIL_KEY, email);
+    sessionStorage.setItem(RESET_CODE_KEY, code);
+    sessionStorage.setItem(RESET_EXPIRE_KEY, String(expireAt));
+}
+
+function clearResetCode() {
+    sessionStorage.removeItem(RESET_EMAIL_KEY);
+    sessionStorage.removeItem(RESET_CODE_KEY);
+    sessionStorage.removeItem(RESET_EXPIRE_KEY);
+}
+
+function getResetData() {
+    return {
+        email: sessionStorage.getItem(RESET_EMAIL_KEY),
+        code: sessionStorage.getItem(RESET_CODE_KEY),
+        expireAt: Number(sessionStorage.getItem(RESET_EXPIRE_KEY) || 0)
+    };
+}
+
+function getEmailJSConfig() {
+    return {
+        ...DEFAULT_EMAILJS_CONFIG,
+        ...(window.THUIEN_EMAILJS_CONFIG || {})
+    };
+}
+
+function isEmailJSConfigured(config) {
+    return Boolean(
+        config.publicKey
+        && config.serviceId
+        && config.templateId
+        && !String(config.publicKey).startsWith("YOUR_")
+        && !String(config.serviceId).startsWith("YOUR_")
+        && !String(config.templateId).startsWith("YOUR_")
+    );
+}
+
+function initEmailJS(config) {
+    if (typeof emailjs === "undefined") {
+        console.error("EmailJS chưa được nhúng vào trang.");
+        return false;
+    }
+
+    if (!isEmailJSConfigured(config)) {
+        console.error("Bạn chưa cấu hình đầy đủ EmailJS.");
+        return false;
+    }
+
+    emailjs.init({
+        publicKey: config.publicKey
+    });
+
+    return true;
+}
+
+function sendResetCodeToEmail(email, code) {
+    const config = getEmailJSConfig();
+
+    if (!initEmailJS(config)) {
+        if (config.enableDemoCode) {
+            return Promise.resolve({ demo: true });
+        }
+
+        return Promise.reject({
+            type: "missing_config",
+            message: "Chưa cấu hình đầy đủ EmailJS."
+        });
+    }
+
+    const templateParams = {
+        to_email: email,
+        user_email: email,
+        email: email,
+        reset_code: code,
+        code: code,
+        website_name: "Thư Hiên",
+        time_limit: "5 phút",
+        message: `Mã xác thực khôi phục mật khẩu Thư Hiên của bạn là ${code}. Mã có hiệu lực trong 5 phút.`
+    };
+
+    return emailjs.send(
+        config.serviceId,
+        config.templateId,
+        templateParams
+    );
+}
+
+function showResetForm() {
+    const verifyForm = document.getElementById("verify-form");
+    if (verifyForm) {
+        verifyForm.classList.add("show");
+    }
+}
+
+function validateForgotEmail() {
+    const emailInput = document.getElementById("forgot-email");
+
+    if (!emailInput) return false;
+
+    clearInputError(emailInput);
+
+    const emailValue = normalizeEmail(emailInput.value);
+
+    if (!emailValue) {
+        setInputError(emailInput, "Vui lòng nhập email.");
+        return false;
+    }
+
+    if (!isValidEmail(emailValue)) {
+        setInputError(emailInput, "Email chưa đúng định dạng.");
+        return false;
+    }
+
+    const users = getUsers();
+    const existedUser = users.find(user => normalizeEmail(user.email) === emailValue);
+
+    if (!existedUser) {
+        setInputError(emailInput, "Email này chưa được đăng ký.");
+        return false;
+    }
+
+    return true;
+}
+
+function handleForgotPassword(event) {
+    event.preventDefault();
+
+    const emailInput = document.getElementById("forgot-email");
+
+    if (!validateForgotEmail()) return;
+
+    const emailValue = normalizeEmail(emailInput.value);
+    const resetCode = generateResetCode();
+
+    setMessage("forgot-message", "Đang gửi mã xác thực đến email của bạn...", "success");
+
+    sendResetCodeToEmail(emailValue, resetCode)
+        .then(function (result) {
+            saveResetCode(emailValue, resetCode);
+
+            if (result && result.demo) {
+                setMessage(
+                    "forgot-message",
+                    `Chưa cấu hình EmailJS nên đang dùng mã kiểm thử: ${resetCode}`,
+                    "success"
+                );
+            } else {
+                setMessage(
+                    "forgot-message",
+                    "Mã xác thực đã được gửi. Vui lòng kiểm tra email của bạn.",
+                    "success"
+                );
+            }
+
+            showResetForm();
+        })
+        .catch(function (error) {
+            console.error("Lỗi gửi email:", error);
+
+            if (error && error.type === "missing_config") {
+                setMessage(
+                    "forgot-message",
+                    "Chưa cấu hình EmailJS để gửi mail thật. Hãy điền publicKey, serviceId và templateId trong assets/js/emailjs-config.js.",
+                    "error"
+                );
+
+                return;
+            }
+
+            setMessage(
+                "forgot-message",
+                "Chưa gửi được email. Hãy kiểm tra Service ID, Template ID hoặc quyền gửi của EmailJS.",
+                "error"
+            );
+        });
+}
+
+function validateResetPasswordForm() {
+    const codeInput = document.getElementById("verify-code");
+    const newPasswordInput = document.getElementById("new-password");
+    const confirmNewPasswordInput = document.getElementById("confirm-new-password");
+
+    let isValid = true;
+
+    [codeInput, newPasswordInput, confirmNewPasswordInput].forEach(input => {
+        if (input) clearInputError(input);
+    });
+
+    const resetData = getResetData();
+    const inputCode = codeInput.value.trim();
+    const newPassword = newPasswordInput.value;
+    const confirmPassword = confirmNewPasswordInput.value;
+
+    if (!inputCode) {
+        setInputError(codeInput, "Vui lòng nhập mã xác thực.");
+        isValid = false;
+    } else if (inputCode !== resetData.code) {
+        setInputError(codeInput, "Mã xác thực không đúng.");
+        isValid = false;
+    }
+
+    if (!resetData.expireAt || Date.now() > resetData.expireAt) {
+        setInputError(codeInput, "Mã xác thực đã hết hạn. Vui lòng gửi lại mã.");
+        isValid = false;
+    }
+
+    if (!newPassword) {
+        setInputError(newPasswordInput, "Vui lòng nhập mật khẩu mới.");
+        isValid = false;
+    } else if (newPassword.length < 6) {
+        setInputError(newPasswordInput, "Mật khẩu cần tối thiểu 6 ký tự.");
+        isValid = false;
+    }
+
+    if (!confirmPassword) {
+        setInputError(confirmNewPasswordInput, "Vui lòng nhập lại mật khẩu mới.");
+        isValid = false;
+    } else if (confirmPassword !== newPassword) {
+        setInputError(confirmNewPasswordInput, "Mật khẩu nhập lại không khớp.");
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function handleResetPassword(event) {
+    event.preventDefault();
+
+    if (!validateResetPasswordForm()) return;
+
+    const resetData = getResetData();
+    const newPasswordInput = document.getElementById("new-password");
+
+    const users = getUsers();
+    const userIndex = users.findIndex(user => {
+        return normalizeEmail(user.email) === normalizeEmail(resetData.email);
+    });
+
+    if (userIndex === -1) {
+        setMessage("reset-message", "Không tìm thấy tài khoản cần đặt lại mật khẩu.", "error");
+        return;
+    }
+
+    users[userIndex].password = newPasswordInput.value;
+    users[userIndex].updatedAt = new Date().toISOString();
+
+    saveUsers(users);
+    clearResetCode();
+
+    setMessage(
+        "reset-message",
+        "Đặt lại mật khẩu thành công. Đang chuyển sang trang đăng nhập...",
+        "success"
+    );
+
+    setTimeout(function () {
+        window.location.href = "login.html";
+    }, 1000);
+}
+
+function initForgotPasswordPage() {
+    const forgotForm = document.getElementById("forgot-form");
+    const verifyForm = document.getElementById("verify-form");
+
+    if (forgotForm) {
+        forgotForm.addEventListener("submit", handleForgotPassword);
+    }
+
+    if (verifyForm) {
+        verifyForm.addEventListener("submit", handleResetPassword);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     initPasswordToggle();
     initAuthForms();
+    initForgotPasswordPage();
 });

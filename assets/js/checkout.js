@@ -279,6 +279,24 @@ function createOrderCode() {
     return `TH${datePart}${randomPart}`;
 }
 
+function saveOrderToHistory(order) {
+    try {
+        const rawOrders = localStorage.getItem("orders");
+        const orders = rawOrders ? JSON.parse(rawOrders) : [];
+
+        if (!Array.isArray(orders)) {
+            localStorage.setItem("orders", JSON.stringify([order]));
+            return;
+        }
+
+        orders.unshift(order);
+        localStorage.setItem("orders", JSON.stringify(orders));
+    } catch (error) {
+        console.error("Lỗi lưu lịch sử đơn hàng:", error);
+        localStorage.setItem("orders", JSON.stringify([order]));
+    }
+}
+
 function placeOrder() {
     const items = getCartItemsDetail();
 
@@ -309,13 +327,15 @@ function placeOrder() {
         summary
     };
 
-    localStorage.setItem(ORDER_KEY, JSON.stringify(order));
-    saveCartToStorage([]);
-    removeAppliedCoupon();
-    updateHeaderCartBadge();
+        saveOrderToHistory(order);
 
-    showSuccessOrder(order);
-}
+        localStorage.setItem(ORDER_KEY, JSON.stringify(order));
+        saveCartToStorage([]);
+        removeAppliedCoupon();
+        updateHeaderCartBadge();
+
+        showSuccessOrder(order);
+    }
 
 function showSuccessOrder(order) {
     const emptyBox = document.getElementById("checkout-empty");
@@ -357,7 +377,7 @@ function initCheckoutEvents() {
 
 function readJsonStorage(key, fallbackValue) {
     try {
-        const rawValue = localStorage.getItem(key);
+        const rawValue = sessionStorage.getItem(key) || localStorage.getItem(key);
         return rawValue ? JSON.parse(rawValue) : fallbackValue;
     } catch (error) {
         console.error(`Lỗi đọc dữ liệu ${key}:`, error);

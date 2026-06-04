@@ -91,8 +91,9 @@
     const theTenUser = document.getElementById("hd-ten-user");
     const nutDangXuat = document.getElementById("hd-dang-xuat");
 
-    const tdn = sessionStorage.getItem("tenDangNhap") || localStorage.getItem("tenDangNhap");
-    if (tdn) {
+    const tdn = sessionStorage.getItem("thuhien_ten") || localStorage.getItem("thuhien_ten");
+    const daDangNhap = sessionStorage.getItem("thuhien_dang_nhap") || localStorage.getItem("thuhien_dang_nhap");
+    if (daDangNhap && tdn) {
       if (vungChuaDangNhap) vungChuaDangNhap.style.display = "none";
       if (vungDaDangNhap) vungDaDangNhap.style.display = "inline-block";
       if (theTenUser) theTenUser.textContent = tdn;
@@ -101,8 +102,13 @@
     if (nutDangXuat) {
       nutDangXuat.addEventListener("click", (e) => {
         e.preventDefault();
-        sessionStorage.clear();
-        localStorage.removeItem("tenDangNhap");
+        sessionStorage.removeItem("thuhien_dang_nhap");
+        sessionStorage.removeItem("thuhien_ten");
+        sessionStorage.removeItem("currentUser");
+        localStorage.removeItem("thuhien_dang_nhap");
+        localStorage.removeItem("thuhien_ten");
+        localStorage.removeItem("currentUser");
+        localStorage.removeItem("thuhien_remembered_email");
         window.location.reload();
       });
     }

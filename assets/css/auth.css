@@ -298,6 +298,15 @@ a {
     color: #a6422d;
 }
 
+.hidden-form {
+    display: none;
+}
+
+.hidden-form.show {
+    display: block;
+    margin-top: 18px;
+}
+
 .auth-switch {
     margin-top: 22px;
     padding-top: 16px;
