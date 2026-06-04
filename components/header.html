@@ -1,626 +1,75 @@
-<!-- =====================================================
-   HEADER MỚI 2 TẦNG — thay toàn bộ <header> cũ trong index.html
-   (và tất cả trang khác)
-====================================================== -->
-<!doctype html>
-<html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý</title>
-    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!--Nhúng css-->
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/index.css" />
-    <style>
-        /* =====================================================
-   HEADER & FOOTER MỚI — Thư Hiên
-   Dán vào cuối style.css (hoặc tạo file riêng rồi nhúng vào)
-====================================================== */
-
-/* ===========================
-   HEADER — 2 TẦNG
-=========================== */
-
-.header {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    z-index: 9999;
-    transition: transform .35s ease, box-shadow .3s ease;
-    transform: translateY(0);
-}
-
-/* Ẩn/hiện khi scroll */
-.header.hide { transform: translateY(-100%); }
-.header.show { box-shadow: 0 4px 24px rgba(46,26,14,.18); }
-
-/* ── TẦNG 1: Thanh top nhỏ ── */
-.hd-top {
-    background: #2f241d;
-    border-bottom: 1px solid rgba(201,168,124,.24);
-    padding: 6px 0;
-}
-
-.hd-top-noi {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 32px;
-}
-
-.hd-top-list {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    list-style: none;
-    margin: 0; padding: 0;
-}
-
-.hd-top-list li {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.hd-top-list li a,
-.hd-top-list li span {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(245,234,216,.84);
-    text-decoration: none;
-    transition: color .2s;
-}
-
-.hd-top-list li a:hover { color: #f4d3a1; }
-
-.hd-top-list li i {
-    font-size: 11px;
-    color: #c9a87c;
-}
-
-.hd-top-phan-cach {
-    width: 1px;
-    height: 14px;
-    background: rgba(201,168,124,.25);
-}
-
-.hd-top-dang-nhap  { color: rgba(201,168,124,.85) !important; }
-.hd-top-dang-ky    { color: #f4d3a1 !important; font-weight: 700; }
-.hd-top-dang-xuat  { color: #e07070 !important; }
-
-/* ── TẦNG 2: Nav chính ── */
-.hd-main {
-    background: rgba(255, 252, 246, 0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(139,90,43,.16);
-}
-
-/* Thu gọn khi scroll */
-.header.show .hd-main { background: rgba(255, 252, 246, .98); }
-
-.hd-main-noi {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 88px;
-}
-
-/* Logo */
-.hd-logo-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    flex-shrink: 0;
-}
-
-.hd-logo-link img {
-    width: auto;
-    height: 72px;
-    max-width: 230px;
-    border-radius: 0;
-    border: none;
-    object-fit: contain;
-    filter: drop-shadow(0 3px 8px rgba(62,48,39,.16));
-    transition: transform .25s;
-}
-
-.hd-logo-link:hover img { transform: scale(1.02); }
-
-.hd-logo-chu {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    color: #3e3027;
-    letter-spacing: 1px;
-    font-style: italic;
-}
-
-/* Menu nav */
-.hd-nav-chinh {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.hd-nav-chinh ul {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    list-style: none;
-    margin: 0; padding: 0;
-}
-
-.hd-nav-chinh ul li a {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #6e5b4b;
-    text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    position: relative;
-    transition: color .2s, background .2s;
-    white-space: nowrap;
-}
-
-.hd-nav-chinh ul li a::after {
-    content: "";
-    position: absolute;
-    bottom: 4px; left: 14px; right: 14px;
-    height: 1.5px;
-    background: #c9a87c;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .25s ease;
-}
-
-.hd-nav-chinh ul li a:hover,
-.hd-nav-chinh ul li a.active {
-    color: #2f241d;
-    background: rgba(160,106,50,.10);
-}
-
-.hd-nav-chinh ul li a:hover::after,
-.hd-nav-chinh ul li a.active::after {
-    transform: scaleX(1);
-}
-
-/* Icon group */
-.hd-icon-group {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    flex-shrink: 0;
-}
-
-.hd-icon-btn {
-    position: relative;
-    width: 50px; height: 50px;
-    border-radius: 50%;
-    border: 1px solid rgba(139,90,43,.24);
-    background: transparent;
-    color: #3e3027;
-    font-size: 20px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all .25s;
-}
-
-.hd-icon-btn:hover {
-    background: #fffaf2;
-    color: #5b341d;
-    border-color: rgba(139,90,43,.42);
-    transform: translateY(-1px);
-}
-
-.hd-badge {
-    position: absolute;
-    top: 2px; right: 2px;
-    min-width: 16px; height: 16px;
-    border-radius: 8px;
-    background: #b84a2a;
-    color: #fff;
-    font-size: 9px;
-    font-weight: 700;
-    font-family: sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 3px;
-}
-
-.hd-badge.an { display: none; }
-
-/* Mobile hamburger */
-.hd-hamburger {
-    display: none;
-    background: transparent;
-    border: 1px solid rgba(201,168,124,.3);
-    border-radius: 8px;
-    color: #c9a87c;
-    font-size: 18px;
-    width: 40px; height: 40px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all .2s;
-}
-
-.hd-hamburger:hover { background: rgba(201,168,124,.1); color: #f4d3a1; }
-
-/* Popup tìm kiếm */
-.pop-tim-kiem {
-    display: none;
-    position: fixed;
-    top: 120px; /* dưới 2 tầng header */
-    left: 0; right: 0;
-    z-index: 1000;
-    padding: 0 40px 24px;
-    background: #1e1108;
-    border-bottom: 1px solid rgba(201,168,124,.2);
-    box-shadow: 0 8px 32px rgba(0,0,0,.4);
-    animation: truot-xuong .25s ease;
-}
-
-.pop-tim-kiem.hien { display: block; }
-
-@keyframes truot-xuong {
-    from { opacity: 0; transform: translateY(-10px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-.pop-tim-kiem-noi { max-width: 700px; margin: 20px auto 0; }
-
-.pop-nhan {
-    font-size: 11px; letter-spacing: 2.5px; color: #9c7d5f;
-    text-transform: uppercase; margin-bottom: 12px;
-    font-family: 'Noto Sans',sans-serif; display: block;
-}
-
-.pop-search-row {
-    display: flex; align-items: center;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(201,168,124,.35);
-    border-radius: 12px; overflow: hidden;
-    transition: border-color .2s;
-}
-
-.pop-search-row:focus-within { border-color: #c9a87c; }
-.pop-search-row > i { color: #9c7d5f; font-size: 14px; padding: 0 14px; flex-shrink: 0; }
-
-.pop-search-row input {
-    flex: 1; background: transparent; border: none; outline: none;
-    color: #f0e0c8; font-size: 15px; padding: 14px 0;
-    font-family: 'Noto Sans',sans-serif;
-}
-
-.pop-search-row input::placeholder { color: rgba(201,168,124,.45); }
-
-.pop-search-btn {
-    background: #8a5d3b; border: none; color: #fff;
-    padding: 14px 22px; font-family: 'Playfair Display',serif;
-    font-size: 13px; font-weight: 700; cursor: pointer;
-    transition: background .2s; flex-shrink: 0;
-}
-
-.pop-search-btn:hover { background: #6b4423; }
-
-.pop-tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-
-.pop-tag {
-    background: rgba(201,168,124,.1); border: 1px solid rgba(201,168,124,.25);
-    border-radius: 20px; color: #c9a87c; font-size: 11px;
-    padding: 4px 12px; cursor: pointer; transition: all .2s;
-    font-family: 'Noto Sans',sans-serif;
-}
-
-.pop-tag:hover { background: rgba(201,168,124,.25); color: #fff; border-color: #c9a87c; }
-
-.pop-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,.4);
-    z-index: 999;
-}
-.pop-overlay.hien { display: block; }
-
-/* ===========================
-   RESPONSIVE
-=========================== */
-
-@media (max-width: 1024px) {
-    .hd-top { display: none; } /* ẩn top bar trên tablet/mobile */
-    .hd-main-noi { padding: 0 20px; }
-    .hd-nav-chinh { display: none; }
-    .hd-hamburger { display: inline-flex; }
-    .pop-tim-kiem { top: 88px; }
-
-    /* Mobile nav overlay */
-    .hd-nav-chinh.mo {
-        display: flex;
-        position: fixed;
-        top: 88px; left: 0; right: 0;
-        background: rgba(255,252,246,.98);
-        flex-direction: column;
-        align-items: stretch;
-        padding: 16px 0 24px;
-        border-bottom: 1px solid rgba(201,168,124,.15);
-        animation: truot-xuong .25s ease;
-    }
-
-    .hd-nav-chinh.mo ul {
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .hd-nav-chinh.mo ul li a {
-        display: block;
-        padding: 14px 24px;
-        border-radius: 0;
-        border-bottom: 1px solid rgba(139,90,43,.10);
-        font-size: 14px;
-    }
-
-    .hd-nav-chinh.mo ul li a::after { display: none; }
-}
-
-@media (max-width: 768px) {
-    .hd-logo-link img { height: 64px; max-width: 190px; }
-}
-    </style>  
-  </head>
-<body>
-<header class="header" id="header">
-
-  <!-- TẦNG 1: Top bar -->
+<header class="header">
   <div class="hd-top">
     <div class="hd-top-noi">
       <ul class="hd-top-list">
-
-        <!-- Sách của tôi (tương đương "Vé của tôi" trong bài mẫu) -->
         <li>
           <i class="fas fa-bookmark"></i>
           <a href="cart.html" class="hd-top-dang-nhap">Sách của tôi</a>
         </li>
-
-        <div class="hd-top-phan-cach"></div>
-
-        <!-- Tài khoản / Tên người dùng -->
+        <li class="hd-top-phan-cach" aria-hidden="true"></li>
         <li id="hd-top-chua-dang-nhap">
           <i class="far fa-user"></i>
           <a href="login.html" class="hd-top-dang-nhap">Đăng nhập</a>
-          <span style="color:rgba(201,168,124,.3);margin:0 4px;">|</span>
+          <span>|</span>
           <a href="login.html" class="hd-top-dang-ky">Đăng ký</a>
         </li>
-
         <li id="hd-top-da-dang-nhap" style="display:none;">
           <i class="far fa-user"></i>
-          <span id="hd-ten-user" style="color:rgba(201,168,124,.85);font-family:'Nunito',sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;"></span>
-          <span style="color:rgba(201,168,124,.3);margin:0 4px;">|</span>
+          <span id="hd-ten-user"></span>
+          <span>|</span>
           <a href="#" id="hd-dang-xuat" class="hd-top-dang-xuat">Đăng xuất</a>
         </li>
-
       </ul>
     </div>
   </div>
 
-  <!-- TẦNG 2: Nav chính -->
-  <div class="hd-main">
-    <div class="hd-main-noi">
-
-      <!-- Logo -->
-      <a href="index.html" class="hd-logo-link">
-        <img src="../assets/images/logo.jpg" alt="Logo Thư Hiên">
+  <div class="header-container">
+    <div class="header-brand">
+      <a href="index.html">
+        <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only" />
       </a>
-
-      <!-- Nav -->
-      <nav class="hd-nav-chinh" id="hd-nav-chinh">
-        <ul>
-          <li><a href="index.html" class="active">Trang chủ</a></li>
-          <li><a href="category.html">Danh mục</a></li>
-          <li><a href="buyback.html">Bán lại sách</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="about.html">Về chúng tôi</a></li>
-        </ul>
-      </nav>
-
-      <!-- Icon group -->
-      <div class="hd-icon-group">
-        <button class="hd-icon-btn" id="btn-tim-kiem" title="Tìm kiếm" aria-label="Tìm kiếm">
-          <i class="fas fa-search"></i>
-        </button>
-        <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng">
-          <i class="fas fa-shopping-bag"></i>
-          <span class="hd-badge an" id="so-gio-hang">0</span>
-        </a>
-        <button class="hd-hamburger" id="hd-hamburger" aria-label="Menu">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-
     </div>
-  </div>
 
-  <!-- Popup tìm kiếm -->
-  <div class="pop-tim-kiem" id="pop-tim-kiem">
-    <div class="pop-tim-kiem-noi">
-      <p class="pop-nhan">Tìm kiếm sách</p>
-      <div class="pop-search-row">
+    <nav class="header-nav">
+      <ul>
+        <li><a href="index.html" data-page="index.html">Trang chủ</a></li>
+        <li><a href="category.html" data-page="category.html">Danh mục</a></li>
+        <li><a href="buyback.html" data-page="buyback.html">Bán lại sách cũ</a></li>
+        <li><a href="blog.html" data-page="blog.html">Blog</a></li>
+        <li><a href="about.html" data-page="about.html">Về chúng tôi</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-icons">
+      <button class="hd-icon-btn" id="btn-tim-kiem" title="Tìm kiếm" aria-label="Tìm kiếm">
         <i class="fas fa-search"></i>
-        <input type="text" id="o-tim-kiem" placeholder="Tên sách, tác giả, thể loại…">
-        <button class="pop-search-btn" id="btn-tim">Tìm</button>
-      </div>
-      <div class="pop-tag-list">
-        <span class="pop-tag">Văn học kinh điển</span>
-        <span class="pop-tag">Văn học Việt Nam xưa</span>
-        <span class="pop-tag">Ấn bản đặc biệt</span>
-        <span class="pop-tag">Lịch sử & Văn minh</span>
-        <span class="pop-tag">Ngoại văn tuyển chọn</span>
-        <span class="pop-tag">Thiếu nhi & Tuổi thơ</span>
-        <span class="pop-tag">Triết học & Tư tưởng</span>
-        <span class="pop-tag">Trinh thám kinh điển</span>
+      </button>
+      <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng" style="position:relative;">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="hd-badge an" id="so-gio-hang">0</span>
+      </a>
+    </div>
+
+    <div class="pop-tim-kiem" id="pop-tim-kiem">
+      <div class="pop-tim-kiem-noi">
+        <p class="pop-nhan">Tìm kiếm sách</p>
+        <div class="pop-search-row">
+          <i class="fas fa-search"></i>
+          <input type="text" id="o-tim-kiem" placeholder="Tên sách, tác giả, thể loại..." />
+          <button class="pop-search-btn" id="btn-tim">Tìm</button>
+        </div>
+        <div class="pop-tag-list">
+          <span class="pop-tag">Văn học kinh điển</span>
+          <span class="pop-tag">Văn học Việt Nam xưa</span>
+          <span class="pop-tag">Ấn bản đặc biệt</span>
+          <span class="pop-tag">Lịch sử &amp; Văn minh</span>
+          <span class="pop-tag">Ngoại văn tuyển chọn</span>
+          <span class="pop-tag">Thiếu nhi &amp; Tuổi thơ</span>
+          <span class="pop-tag">Triết học &amp; Tư tưởng</span>
+          <span class="pop-tag">Trinh thám kinh điển</span>
+        </div>
       </div>
     </div>
+    <div class="pop-overlay" id="pop-overlay"></div>
   </div>
-  <div class="pop-overlay" id="pop-overlay"></div>
 </header>
-</body>
-<script>
-    /* =====================================================
-   HEADER & FOOTER JS — Thư Hiên
-   Dán vào style.js hoặc cuối mỗi trang trong <script>
-====================================================== */
-
-document.addEventListener('DOMContentLoaded', function () {
-
-    /* ===== 1. SCROLL ẨN/HIỆN HEADER ===== */
-    const header = document.getElementById('header');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const cur = window.pageYOffset;
-        if (cur <= 0) {
-            header.classList.remove('show', 'hide');
-        } else if (cur > lastScroll && cur > 100) {
-            header.classList.add('hide');
-            header.classList.remove('show');
-        } else {
-            header.classList.remove('hide');
-            header.classList.add('show');
-        }
-        lastScroll = cur;
-    });
-
-    /* ===== 2. HAMBURGER MOBILE ===== */
-    const hamburger = document.getElementById('hd-hamburger');
-    const navChinh  = document.getElementById('hd-nav-chinh');
-
-    if (hamburger && navChinh) {
-        hamburger.addEventListener('click', e => {
-            e.stopPropagation();
-            navChinh.classList.toggle('mo');
-            hamburger.querySelector('i').className =
-                navChinh.classList.contains('mo') ? 'fas fa-times' : 'fas fa-bars';
-        });
-
-        // Đóng khi click ngoài
-        document.addEventListener('click', e => {
-            if (!navChinh.contains(e.target) && !hamburger.contains(e.target)) {
-                navChinh.classList.remove('mo');
-                hamburger.querySelector('i').className = 'fas fa-bars';
-            }
-        });
-
-        // Đóng khi click vào link menu
-        navChinh.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                navChinh.classList.remove('mo');
-                hamburger.querySelector('i').className = 'fas fa-bars';
-            });
-        });
-    }
-
-    /* ===== 3. POPUP TÌM KIẾM ===== */
-    const btnTK     = document.getElementById('btn-tim-kiem');
-    const popTK     = document.getElementById('pop-tim-kiem');
-    const overlay   = document.getElementById('pop-overlay');
-    const oTK       = document.getElementById('o-tim-kiem');
-    const btnTimBtn = document.getElementById('btn-tim');
-
-    function dongPopup() {
-        popTK.classList.remove('hien');
-        overlay.classList.remove('hien');
-    }
-
-    function moPopup() {
-        const dang = popTK.classList.contains('hien');
-        dongPopup();
-        if (!dang) {
-            popTK.classList.add('hien');
-            overlay.classList.add('hien');
-            setTimeout(() => oTK && oTK.focus(), 50);
-        }
-    }
-
-    function diTimKiem() {
-        const q = oTK.value.trim();
-        if (q) window.location.href = `category.html?q=${encodeURIComponent(q)}`;
-    }
-
-    if (btnTK)     btnTK.addEventListener('click', e => { e.stopPropagation(); moPopup(); });
-    if (overlay)   overlay.addEventListener('click', dongPopup);
-    if (btnTimBtn) btnTimBtn.addEventListener('click', diTimKiem);
-    if (oTK)       oTK.addEventListener('keydown', e => { if (e.key === 'Enter') diTimKiem(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') dongPopup(); });
-
-    document.querySelectorAll('.pop-tag').forEach(t =>
-        t.addEventListener('click', () => { oTK.value = t.textContent; oTK.focus(); })
-    );
-
-    /* ===== 4. TRẠNG THÁI ĐĂNG NHẬP TRÊN TOP BAR ===== */
-    const tenUser = sessionStorage.getItem('thuhien_ten') || localStorage.getItem('thuhien_ten');
-    const daDangNhap = sessionStorage.getItem('thuhien_dang_nhap') || localStorage.getItem('thuhien_dang_nhap');
-
-    const khuChua = document.getElementById('hd-top-chua-dang-nhap');
-    const khuDa   = document.getElementById('hd-top-da-dang-nhap');
-    const elTen   = document.getElementById('hd-ten-user');
-
-    if (daDangNhap && tenUser && khuChua && khuDa) {
-        khuChua.style.display = 'none';
-        khuDa.style.display   = 'flex';
-        if (elTen) elTen.textContent = tenUser;
-    }
-
-    const nutXuat = document.getElementById('hd-dang-xuat');
-    if (nutXuat) {
-        nutXuat.addEventListener('click', e => {
-            e.preventDefault();
-            sessionStorage.removeItem('thuhien_dang_nhap');
-            sessionStorage.removeItem('thuhien_ten');
-            localStorage.removeItem('thuhien_dang_nhap');
-            localStorage.removeItem('thuhien_ten');
-            window.location.href = 'index.html';
-        });
-    }
-
-    /* ===== 5. BADGE GIỎ HÀNG ===== */
-    const badge = document.getElementById('so-gio-hang');
-    if (badge) {
-        const so = parseInt(localStorage.getItem('so-luong-gio-hang') || '0');
-        badge.textContent = so;
-        badge.classList.toggle('an', so === 0);
-    }
-
-    /* ===== 6. ACTIVE NAV LINK theo trang hiện tại ===== */
-    const trangHienTai = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.hd-nav-chinh a').forEach(a => {
-        const href = a.getAttribute('href');
-        if (href === trangHienTai) {
-            a.classList.add('active');
-        } else {
-            a.classList.remove('active');
-        }
-    });
-});
-</script>
-</body>
-</html>
