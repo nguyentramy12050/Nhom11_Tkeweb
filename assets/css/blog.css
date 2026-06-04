@@ -25,7 +25,7 @@
 }
 
 body{
-    font-family:'Merriweather', serif;
+    font:'Merriweather', serif;
     background:var(--mau-kem);
     color:var(--mau-nau-dam);
     overflow-x:hidden;

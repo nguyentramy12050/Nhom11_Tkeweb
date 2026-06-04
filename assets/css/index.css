@@ -1673,3 +1673,234 @@ RESPONSIVE
     .blog-prev-card.nho { flex-direction: column; }
     .blog-prev-card.nho .blog-prev-anh-khung { width: 100%; height: 140px; }
 }
+
+/* =====================================================
+   HỘP QUÀ 3D — Dán vào cuối index.css
+====================================================== */
+
+.nut-hop-qua {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 900;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    animation: noi-len-hop 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 8px 24px rgba(180,140,60,.45));
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.hop-anh {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+@keyframes noi-len-hop {
+    0%,100% { transform: translateY(0) rotate(-3deg); }
+    50%      { transform: translateY(-10px) rotate(3deg); }
+}
+
+.nut-hop-qua:hover {
+    animation: none;
+    transform: scale(1.12) rotate(-5deg);
+    transition: transform .3s;
+}
+
+/* NỀN MỜ */
+.nen-mo-qua {
+    position: fixed;
+    inset: 0;
+    z-index: 910;
+    background: rgba(0,0,0,0);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background .5s;
+}
+.nen-mo-qua.hien     { display: flex; }
+.nen-mo-qua.hien-dan { background: rgba(0,0,0,.65); }
+
+/* SÂN KHẤU */
+.san-khau-qua {
+    position: relative;
+    width: 340px;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* KHU HỘP ẢNH */
+.hop-anh-khu {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ẢNH HỘP ĐÓNG */
+.hop-anh-dong {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+/* ẢNH HỘP MỞ — dùng clip-path che phần thân, chỉ hiện nắp */
+.hop-anh-mo-nen {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+/* Khi đang chạy animation */
+.hop-anh-khu.dang-mo .hop-anh-dong {
+    animation: hop-rung .4s ease-in-out 3;
+}
+
+/* Hop mở: ảnh đóng biến mất, ảnh mở hiện ra */
+.hop-anh-khu.da-mo .hop-anh-dong {
+    opacity: 0;
+    transform: scale(.8);
+}
+.hop-anh-khu.da-mo .hop-anh-mo-nen {
+    opacity: 1;
+}
+
+/* Chỉ hiện phần trên (nắp) của ảnh mở — clip 55% trên */
+.hop-nap-khu {
+    position: absolute;
+    top: 0; left: 0;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    clip-path: inset(0 0 52% 0); /* chỉ lấy 48% trên = phần nắp + nơ */
+    opacity: 0;
+    transform: translateY(0) rotate(0deg);
+    transition: opacity .2s;
+}
+
+.hop-nap-khu.bay-len {
+    opacity: 1;
+    animation: nap-bay-len .8s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+
+.hop-nap-anh {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+/* Chỉ hiện phần dưới (thân hộp mở) */
+.hop-than-khu {
+    position: absolute;
+    top: 0; left: 0;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    clip-path: inset(48% 0 0 0); /* chỉ lấy 52% dưới = thân hộp */
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+
+.hop-than-khu.hien { opacity: 1; }
+
+.hop-than-anh {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+@keyframes hop-rung {
+    0%,100% { transform: rotate(-8deg) scale(1.05); }
+    50%      { transform: rotate(8deg) scale(1.08); }
+}
+
+@keyframes nap-bay-len {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+    60%  { transform: translateY(-120px) rotate(-25deg); opacity: 1; }
+    100% { transform: translateY(-160px) rotate(-35deg); opacity: 0; }
+}
+
+/* CONFETTI */
+.confetti-khu {
+    position: absolute;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    width: 240px; height: 240px;
+    pointer-events: none;
+    z-index: 20;
+    overflow: visible;
+}
+
+/* THẺ QUÀ */
+.the-qua-hop {
+    position: absolute;
+    width: 290px;
+    background: #fff;
+    border-radius: 20px;
+    border: 2px solid #e8d9c4;
+    padding: 28px 24px;
+    text-align: center;
+    opacity: 0;
+    top: 0; left: 50%;
+    transform: translateX(-50%) translateY(40px) scale(.85);
+    transition: opacity .5s ease, transform .5s ease;
+    z-index: 5;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    pointer-events: none;
+}
+.the-qua-hop.hien {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.qua-bieu-tuong  { font-size: 40px; margin-bottom: 12px; }
+.qua-nhan        { font-size: 13px; color: #9c7d5f; font-family: 'Nunito',sans-serif; margin-bottom: 4px; }
+.qua-tieu-de     { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #8a5d3b; margin-bottom: 8px; }
+.qua-mo-ta       { font-size: 13px; color: #9c7d5f; line-height: 1.6; margin-bottom: 16px; font-family: 'Nunito',sans-serif; }
+
+.ma-giam-gia-khung {
+    display: flex; align-items: center; gap: 8px;
+    background: #fff9f0; border: 2px dashed #c9a87c;
+    border-radius: 12px; padding: 12px 16px;
+    margin-bottom: 10px; justify-content: center;
+}
+.ma-giam-gia-chu {
+    font-family: monospace; font-size: 1.3rem;
+    font-weight: 700; color: #8a5d3b; letter-spacing: 2px;
+}
+.nut-copy-ma {
+    background: #8a5d3b; color: #fff; border: none;
+    border-radius: 8px; padding: 6px 12px; font-size: 12px;
+    cursor: pointer; font-family: 'Nunito',sans-serif;
+    transition: background .2s; white-space: nowrap;
+}
+.nut-copy-ma:hover  { background: #421904; }
+.nut-copy-ma.copied { background: #2e6b3e; }
+
+.qua-han { font-size: 11px; color: #b09070; margin-bottom: 16px; font-family: 'Nunito',sans-serif; }
+
+.nut-dong-hop {
+    background: transparent; border: 1.5px solid #c9a87c;
+    color: #8a5d3b; border-radius: 10px; padding: 10px 24px;
+    cursor: pointer; font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 700; transition: all .2s; width: 100%;
+}
+.nut-dong-hop:hover { background: #8a5d3b; color: #fff; }
+
+.da-mo-khu        { text-align: center; padding: 8px 0; }
+.da-mo-bieu-tuong { font-size: 48px; margin-bottom: 16px; }
+.da-mo-tieu-de    { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: #2e1a0e; margin-bottom: 10px; }
+.da-mo-mo-ta      { font-size: 13px; color: #9c7d5f; line-height: 1.6; font-family: 'Nunito',sans-serif; margin-bottom: 16px; }

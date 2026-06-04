@@ -41,6 +41,7 @@
             <i class="fas fa-shopping-bag"></i>
             <span class="hd-badge" id="so-gio-hang">0</span>
           </a>
+          <a href="login.html" title="Tài khoản"><i class="far fa-user"></i></a>
         </div>
         <!-- POPUP TÌM KIẾM — -->
         <div class="pop-tim-kiem" id="pop-tim-kiem">
@@ -548,5 +549,38 @@
     <script src="assets/js/data.js" ></script>
     <script src="assets/js/index.js" ></script>
     <script src="assets/js/style.js"></script>
+
+    <!-- =====================================================
+   HỘP QUÀ 3D
+====================================================== -->
+<button class="nut-hop-qua" id="nut-hop-qua" aria-label="Mở hộp quà bí ẩn">
+  <img src="assets/images/box.png" alt="Hộp quà" class="hop-anh">
+</button>
+
+<div class="nen-mo-qua" id="nen-mo-qua">
+  <div class="san-khau-qua" id="san-khau-qua">
+
+    <!-- HỘP ẢNH -->
+    <div class="hop-anh-khu" id="hop-anh-khu">
+
+      <!-- Hộp đóng ban đầu -->
+      <img src="assets/images/box.jpg" alt="Hộp đóng" class="hop-anh-dong" id="hop-anh-dong">
+
+      <!-- Thân hộp mở (phần dưới) -->
+      <div class="hop-than-khu" id="hop-than-khu">
+        <img src="assets/images/box-open.jpg" alt="Thân hộp mở" class="hop-than-anh">
+      </div>
+
+      <!-- Nắp hộp bay lên (phần trên) -->
+      <div class="hop-nap-khu" id="hop-nap-khu">
+        <img src="assets/images/box-open.jpg" alt="Nắp hộp" class="hop-nap-anh">
+      </div>
+    </div>
+
+    <svg class="confetti-khu" id="confetti-khu" overflow="visible"></svg>
+    <div class="the-qua-hop" id="the-qua-hop"></div>
+
+  </div>
+</div>
   </body>
 </html>
