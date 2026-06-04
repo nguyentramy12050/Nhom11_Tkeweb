@@ -1,21 +1,31 @@
+<!-- Cấu trúc Giao diện Header của Thư Hiên -->
 <header class="header">
+  <!-- Thanh tiện ích phía trên cùng (Top Bar) -->
   <div class="hd-top">
     <div class="hd-top-noi">
       <ul class="hd-top-list">
         <li>
-          <i class="fas fa-bookmark"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 5px; vertical-align: -1px;">
+            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5z"/>
+          </svg>
           <a href="cart.html" class="hd-top-dang-nhap">Sách của tôi</a>
         </li>
         <li class="hd-top-phan-cach" aria-hidden="true"></li>
+        
+        <!-- Trạng thái 1: Chưa đăng nhập -->
         <li id="hd-top-chua-dang-nhap">
-          <i class="far fa-user"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 5px; vertical-align: -1px;">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+          </svg>
           <a href="login.html" class="hd-top-dang-nhap">Đăng nhập</a>
           <span>|</span>
           <a href="login.html" class="hd-top-dang-ky">Đăng ký</a>
         </li>
-        <li id="hd-top-da-dang-nhap" style="display:none;">
+        
+        <!-- Trạng thái 2: Đã đăng nhập thành công (Mặc định ẩn) -->
+        <li id="hd-top-da-dang-nhap" style="display: none;">
           <i class="far fa-user"></i>
-          <span id="hd-ten-user"></span>
+          <span id="hd-ten-user" style="font-weight: bold; color: #f4d3a1;"></span>
           <span>|</span>
           <a href="#" id="hd-dang-xuat" class="hd-top-dang-xuat">Đăng xuất</a>
         </li>
@@ -23,6 +33,7 @@
     </div>
   </div>
 
+  <!-- Thanh Menu chính và Logo -->
   <div class="header-container">
     <div class="header-brand">
       <a href="index.html">
@@ -37,39 +48,106 @@
         <li><a href="buyback.html" data-page="buyback.html">Bán lại sách cũ</a></li>
         <li><a href="blog.html" data-page="blog.html">Blog</a></li>
         <li><a href="about.html" data-page="about.html">Về chúng tôi</a></li>
+        <li><a href="box.html" data-page="box.html">Hộp quà</a></li>
       </ul>
     </nav>
 
+    <!-- Các nút chức năng phải -->
     <div class="header-icons">
       <button class="hd-icon-btn" id="btn-tim-kiem" title="Tìm kiếm" aria-label="Tìm kiếm">
-        <i class="fas fa-search"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
       </button>
-      <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng" style="position:relative;">
-        <i class="fas fa-shopping-bag"></i>
+      <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+        </svg>
         <span class="hd-badge an" id="so-gio-hang">0</span>
       </a>
     </div>
 
+    <!-- Khung tìm kiếm ẩn/hiện -->
     <div class="pop-tim-kiem" id="pop-tim-kiem">
       <div class="pop-tim-kiem-noi">
-        <p class="pop-nhan">Tìm kiếm sách</p>
+        <p class="pop-nhan">Tìm kiếm sách tại Thư Hiên</p>
         <div class="pop-search-row">
           <i class="fas fa-search"></i>
           <input type="text" id="o-tim-kiem" placeholder="Tên sách, tác giả, thể loại..." />
           <button class="pop-search-btn" id="btn-tim">Tìm</button>
-        </div>
-        <div class="pop-tag-list">
-          <span class="pop-tag">Văn học kinh điển</span>
-          <span class="pop-tag">Văn học Việt Nam xưa</span>
-          <span class="pop-tag">Ấn bản đặc biệt</span>
-          <span class="pop-tag">Lịch sử &amp; Văn minh</span>
-          <span class="pop-tag">Ngoại văn tuyển chọn</span>
-          <span class="pop-tag">Thiếu nhi &amp; Tuổi thơ</span>
-          <span class="pop-tag">Triết học &amp; Tư tưởng</span>
-          <span class="pop-tag">Trinh thám kinh điển</span>
         </div>
       </div>
     </div>
     <div class="pop-overlay" id="pop-overlay"></div>
   </div>
 </header>
+
+<!-- Toàn bộ JavaScript điều khiển logic xử lý của Header -->
+<script>
+  (function() {
+    // 1. XỬ LÝ ĐĂNG NHẬP / ĐĂNG XUẤT (Sử dụng sessionStorage)
+    const vungChuaDangNhap = document.getElementById("hd-top-chua-dang-nhap");
+    const vungDaDangNhap = document.getElementById("hd-top-da-dang-nhap");
+    const theTenUser = document.getElementById("hd-ten-user");
+    const nutDangXuat = document.getElementById("hd-dang-xuat");
+
+    const tdn = sessionStorage.getItem("tenDangNhap") || localStorage.getItem("tenDangNhap");
+    if (tdn) {
+      if (vungChuaDangNhap) vungChuaDangNhap.style.display = "none";
+      if (vungDaDangNhap) vungDaDangNhap.style.display = "inline-block";
+      if (theTenUser) theTenUser.textContent = tdn;
+    }
+
+    if (nutDangXuat) {
+      nutDangXuat.addEventListener("click", (e) => {
+        e.preventDefault();
+        sessionStorage.clear();
+        localStorage.removeItem("tenDangNhap");
+        window.location.reload();
+      });
+    }
+
+    // 2. BẬT TẮT ĐÓNG MỞ POPUP TÌM KIẾM
+    const btnTimKiem = document.getElementById("btn-tim-kiem");
+    const popTimKiem = document.getElementById("pop-tim-kiem");
+    const popOverlay = document.getElementById("pop-overlay");
+
+    if (btnTimKiem && popTimKiem && popOverlay) {
+      btnTimKiem.addEventListener("click", () => {
+        popTimKiem.classList.toggle("hien-pop");
+        popOverlay.classList.toggle("hien-pop");
+      });
+
+      popOverlay.addEventListener("click", () => {
+        popTimKiem.classList.remove("hien-pop");
+        popOverlay.classList.remove("hien-pop");
+      });
+    }
+
+    // 3. TỰ ĐỘNG HIGHLIGHT MENU (ACTIVE LINK) DỰA TRÊN URL HIỆN TẠI
+    const cacDuongLink = document.querySelectorAll(".header-nav ul li a");
+    const phanCuoiUrl = window.location.pathname.split("/").pop() || "index.html";
+
+    cacDuongLink.forEach(link => {
+      if (link.getAttribute("data-page") === phanCuoiUrl) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+
+    // 4. CẬP NHẬT SỐ LƯỢNG GIỎ HÀNG ĐỘNG
+    const soGioHangBadge = document.getElementById("so-gio-hang");
+    if (soGioHangBadge) {
+      const gioHang = JSON.parse(localStorage.getItem("gioHang")) || [];
+      const tongSoLuong = gioHang.reduce((total, item) => total + (item.soluong || 1), 0);
+      
+      if (tongSoLuong > 0) {
+        soGioHangBadge.textContent = tongSoLuong;
+        soGioHangBadge.classList.remove("an");
+      } else {
+        soGioHangBadge.classList.add("an");
+      }
+    }
+  })();
+</script>

@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hộp Quà Tri Thức | Thư Hiên</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/box.css" />
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="header-brand">
+                <a href="index.html">
+                    <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only">
+                </a>
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="category.html">Danh mục sách</a></li>
+                    <li><a href="hop-qua.html" class="active">Nhận quà</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-container-qua">
+        <div class="game-card-wrapper">
+            
+            <div class="game-header-box">
+                <h1 class="game-title">📜 HỘP QUÀ TRI THỨC 📜</h1>
+                <p class="game-subtitle">Nhấp vào rương báu cổ kính để khai mở thẻ ưu đãi đặc quyền từ Thư Hiên.</p>
+            </div>
+
+            <div class="khung-hop-qua" id="khungHopQua" onclick="xuLyMoQua()">
+                <img src="assets/images/box.jpg" alt="Hộp quà Thư Hiên">
+            </div>
+
+            <div class="bang-ket-qua" id="bangKetQua">
+                <div class="noi-dung-ket-qua">
+                    <span class="icon-thu-ong">📜</span>
+                    <h2>Duyên Lành Ghé Thăm!</h2>
+                    <p>Thư Hiên gửi tặng bạn một thẻ chiết khấu <strong>Giảm 20%</strong> áp dụng cho toàn bộ các đầu sách cổ và sách quý tại tiệm.</p>
+                    
+                    <div class="khung-chua-voucher">
+                        <div class="ma-so-voucher">
+                            <span id="textMaVoucher">THUHIEN20</span>
+                        </div>
+                        <button class="btn-copy-ma" onclick="hanhDongCopy(this)">Sao chép</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nhom-nut-hanh-dong">
+                <a href="index.html" class="btn-thuhien btn-nau">Quay về Trang Chủ</a>
+                <a href="category.html" class="btn-thuhien btn-vien">Khám Phá Cửa Hàng</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-bottom" style="text-align: center; padding: 20px; color: #b09070;">
+            <p>&copy; 2026 Thư Hiên - Bảo tàng Tri thức Việt. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Kiểm tra xem khách đã từng nhận quà chưa ngay khi vừa load trang
+        document.addEventListener("DOMContentLoaded", function() {
+            if (localStorage.getItem('thuhien_da_nhan_voucher') === 'true') {
+                // Nếu đã nhận, ẩn ngay hộp quà và bung luôn kết quả mà không cần click lại
+                document.getElementById('khungHopQua').style.display = 'none';
+                document.getElementById('bangKetQua').classList.add('kich-hoat-show');
+                document.querySelector('.game-title').innerText = "🔖 THẺ QUÀ TẶNG CỦA BẠN 🔖";
+                document.querySelector('.game-subtitle').innerText = "Hộp quà tri thức đã được mở. Bạn có thể xem lại mã giảm giá của mình tại đây.";
+            }
+        });
+
+        // Hàm xử lý hoạt ảnh mở quà kịch tính
+        function xuLyMoQua() {
+            const hopQua = document.getElementById('khungHopQua');
+            const ketQua = document.getElementById('bangKetQua');
+            
+            // 1. Kích hoạt rung lắc mạnh
+            hopQua.classList.add('hieu-ung-rung-lac');
+            
+            // 2. Sau 600ms rung lắc kịch tính, thu nhỏ biến mất và nẩy bảng kết quả lên
+            setTimeout(() => {
+                hopQua.classList.remove('hieu-ung-rung-lac');
+                hopQua.classList.add('bien-mat-hoan-toan');
+                
+                // Lưu trạng thái vĩnh viễn vào trình duyệt khách hàng
+                localStorage.setItem('thuhien_da_nhan_voucher', 'true');
+                
+                setTimeout(() => {
+                    hopQua.style.display = 'none';
+                    ketQua.classList.add('kich-hoat-show');
+                }, 300); 
+            }, 600);
+        }
+
+        // Hàm xử lý copy nhanh
+        function hanhDongCopy(nutBam) {
+            const code = document.getElementById('textMaVoucher').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                nutBam.innerText = "Đã lưu!";
+                nutBam.style.background = "#2e1a0e";
+                nutBam.style.color = "#f4d3a1";
+                
+                setTimeout(() => {
+                    nutBam.innerText = "Sao chép";
+                    nutBam.style.background = "#f4d3a1";
+                    nutBam.style.color = "#2e1a0e";
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
