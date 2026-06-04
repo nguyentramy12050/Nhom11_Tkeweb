@@ -102,6 +102,77 @@ function decreaseQty() {
     }
 }
 
+function getCartFromStorage() {
+    try {
+        const rawCart = localStorage.getItem('cart');
+        const cart = rawCart ? JSON.parse(rawCart) : [];
+        return Array.isArray(cart) ? cart : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function saveCartToStorage(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function updateHeaderCartBadge() {
+    const badge = document.getElementById('so-gio-hang');
+    if (!badge) return;
+
+    const totalQuantity = getCartFromStorage().reduce((sum, item) => {
+        return sum + Number(item.quantity || item.qty || 1);
+    }, 0);
+
+    badge.textContent = totalQuantity;
+    badge.classList.toggle('an', totalQuantity === 0);
+}
+
+function addCurrentBookToCart(redirectToCart = false) {
+    if (!book) return;
+
+    const qtyInput = document.getElementById('qty');
+    const quantity = Math.max(1, parseInt(qtyInput?.value || '1', 10) || 1);
+    const cart = getCartFromStorage();
+    const existingItem = cart.find(item => Number(item.id || item.bookId) === Number(book.id));
+
+    if (existingItem) {
+        existingItem.id = Number(book.id);
+        existingItem.quantity = Number(existingItem.quantity || existingItem.qty || 0) + quantity;
+        delete existingItem.qty;
+        delete existingItem.bookId;
+    } else {
+        cart.push({
+            id: Number(book.id),
+            quantity
+        });
+    }
+
+    saveCartToStorage(cart);
+    updateHeaderCartBadge();
+
+    if (redirectToCart) {
+        window.location.href = 'cart.html';
+    } else {
+        alert('Đã thêm sách vào giỏ hàng.');
+    }
+}
+
+const addCartBtn = document.querySelector('.btn-add-cart');
+if (addCartBtn) {
+    addCartBtn.addEventListener('click', () => addCurrentBookToCart(false));
+}
+
+const buyNowDetailBtn = document.querySelector('.btn-buy-now-detail');
+if (buyNowDetailBtn) {
+    buyNowDetailBtn.addEventListener('click', event => {
+        event.preventDefault();
+        addCurrentBookToCart(true);
+    });
+}
+
+updateHeaderCartBadge();
+
 // 6. TỰ ĐỘNG ĐỔ SÁCH GỢI Ý CÙNG THỂ LOẠI (GIỐNG HỆT TRANG DANH MỤC)
 if (book) {
     const relatedGrid = document.getElementById('related-books-grid');

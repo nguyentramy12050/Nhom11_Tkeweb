@@ -1,9 +1,14 @@
 /*   Biến màu sắc toàn cục (Dễ dàng thay đổi)   */
 :root {
     --bg-color: #F8F5F0;        /* Nền be nhạt vintage */
-    --text-main: #4A3C31;       /* Chữ nâu đậm */
-    --text-muted: #736357;      /* Chữ nâu nhạt hơn */
+    --text-main: #3E3027;       /* Chữ nâu đậm */
+    --text-muted: #74665A;      /* Chữ nâu nhạt hơn */
     --accent-color: #8B5A2B;    /* Nâu cam (dùng cho hover, nút bấm) */
+    --accent-deep: #5B341D;
+    --header-bg: rgba(255, 252, 246, 0.94);
+    --header-text: #2F241D;
+    --header-muted: #6E5B4B;
+    --header-accent: #A06A32;
     --border-color: #E6DFD3;    /* Màu viền gạch ngang */
 }
 
@@ -16,13 +21,14 @@
 
 body {
     font-family: 'Noto Sans', sans-serif; /* Font chữ dễ đọc cho nội dung */
-    background-color: var(--bg-color);
+    background-color: var(--bg-color) !important;
     color: var(--text-main);
     line-height: 1.6;
-    background-image: url('../images/background.jpg'); 
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-attachment: fixed;
+    background-image: url('../images/background.jpg') !important; 
+    background-size: cover !important; 
+    background-repeat: no-repeat !important; 
+    background-attachment: fixed !important;
+    background-position: center top !important;
 }
 
 a {
@@ -35,26 +41,93 @@ ul {
     list-style: none;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6,
+.page-title,
+.section-title,
+.footer-title,
+.book-name {
     font-family: 'Playfair Display', serif; /* Font chữ có chân, mang phong cách cổ điển */
 }
 
 /* HEADER STYLE */
 .header {
-    background-color: var(--bg-color);
-    border-bottom: 1px solid var(--border-color);
+    background: var(--header-bg);
+    border-bottom: 1px solid rgba(139, 90, 43, 0.16);
+    box-shadow: 0 8px 24px rgba(62, 48, 39, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
+.hd-top {
+    border-bottom: 1px solid rgba(139, 90, 43, 0.12);
+    background: rgba(255, 252, 246, 0.86);
+}
+
+.hd-top-noi {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hd-top-list {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.hd-top-list li {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.hd-top-list a,
+.hd-top-list span {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--header-muted);
+}
+
+.hd-top-list i {
+    color: var(--header-accent);
+    font-size: 12px;
+}
+
+.hd-top-list a:hover {
+    color: var(--accent-deep);
+}
+
+.hd-top-phan-cach {
+    width: 1px;
+    height: 14px;
+    background: rgba(139, 90, 43, 0.18);
+}
+
+.hd-top-dang-ky {
+    color: var(--accent-deep) !important;
+}
+
+.hd-top-dang-xuat {
+    color: #b84a2a !important;
+}
+
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4px 20px;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 86px;
 }
 
 /* Logo Box */
@@ -62,6 +135,11 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.header-brand a {
+    display: inline-flex;
+    align-items: center;
 }
 
 
@@ -72,42 +150,49 @@ h1, h2, h3 {
 }
 
 .header-nav a {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text-main);
-    padding-bottom: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    color: var(--header-muted);
+    padding: 10px 12px;
+    border-radius: 6px;
+    border-bottom: 2px solid transparent;
+    transition: color .25s ease, background .25s ease, border-color .25s ease;
 }
 
 .header-nav a:hover, .header-nav a.active {
-    color: var(--accent-color);
-    border-bottom: 2px solid var(--accent-color);
+    color: var(--header-text);
+    background: rgba(160, 106, 50, 0.10);
+    border-bottom-color: var(--header-accent);
 }
 
 /* Icons */
 .header-icons {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 22px;
 }
 
 .header-icons a {
     font-size: 20px;
-    color: var(--text-main);
+    color: var(--header-text);
 }
 
 .header-icons a:hover {
-    color: var(--accent-color);
+    color: var(--header-accent);
 }
 /* ========================================ICON HEADER ======================================= */
 /* NÚT ICON */
 .hd-icon-btn {
     position: relative;
-    width: 38px;
-    height: 38px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    border: 1px solid rgba(201, 168, 124, 0.35);
+    border: 1px solid rgba(139, 90, 43, 0.24);
     background: transparent;
-    color: #c9a87c;
-    font-size: 15px;
+    color: var(--header-text);
+    font-size: 20px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -117,10 +202,15 @@ h1, h2, h3 {
 }
 
 .hd-icon-btn:hover {
-    background: rgba(201, 168, 124, 0.18);
-    color: #fff;
-    border-color: #c9a87c;
+    background: #fffaf2;
+    color: var(--accent-deep);
+    border-color: rgba(139, 90, 43, 0.42);
     transform: translateY(-1px);
+}
+
+.hd-icon-btn i {
+    display: inline-block;
+    line-height: 1;
 }
 
 /* BADGE GIỎ HÀNG */
@@ -160,7 +250,7 @@ h1, h2, h3 {
 .pop-tim-kiem {
     display: none;
     position: fixed;
-    top: 68px;          /* đúng bằng chiều cao header */
+    top: 121px;          /* khớp chiều cao header + top bar */
     left: 0;
     right: 0;
     z-index: 1000;
@@ -189,7 +279,7 @@ h1, h2, h3 {
     color: #9c7d5f;
     text-transform: uppercase;
     margin-bottom: 14px;
-    font-family: 'Lora', serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 /* THANH SEARCH */
@@ -222,7 +312,7 @@ h1, h2, h3 {
     color: #f0e0c8;
     font-size: 15px;
     padding: 14px 0;
-    font-family: 'Lora', Georgia, serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .pop-search-row input::placeholder {
@@ -262,7 +352,7 @@ h1, h2, h3 {
     padding: 5px 14px;
     cursor: pointer;
     transition: all .2s;
-    font-family: 'Lora', serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .pop-tag:hover {
@@ -271,39 +361,59 @@ h1, h2, h3 {
     border-color: #c9a87c;
 }
 
-/* Nếu header cao hơn/thấp hơn 68px thì đổi top của .pop-tim-kiem cho khớp */
+/* Nếu header cao hơn/thấp hơn 121px thì đổi top của .pop-tim-kiem cho khớp */
 @media (max-width: 768px) {
-    .pop-tim-kiem { top: 60px; }
+    .hd-top { display: none; }
+    .pop-tim-kiem { top: 86px; }
     .pop-tim-kiem-noi { margin: 16px auto 0; }
 }
 
 /* FOOTER STYLE  */
 .footer {
-    background-color: var(--bg-color);
-    border-top: 1px solid var(--border-color);
-    padding-top: 60px;
+    background: #fffaf2;
+    border-top: 1px solid rgba(139, 90, 43, 0.16);
+    box-shadow: 0 -8px 24px rgba(62, 48, 39, 0.06);
+    color: var(--text-main);
+    font-family: 'Noto Sans', sans-serif;
+    padding-top: 0;
 }
 
-.footer-container {
+.footer-container,
+.footer-top {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px 40px;
+    padding: 52px 20px 44px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 36px;
 }
 
+.footer-title,
 .footer-col .footer-title {
-    font-size: 20px;
-    color: var(--accent-color);
-    margin-bottom: 20px;
-    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--header-text);
+    margin-bottom: 18px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    position: relative;
+}
+
+.footer-title::after {
+    content: "";
+    display: block;
+    width: 38px;
+    height: 2px;
+    margin-top: 9px;
+    border-radius: 999px;
+    background: var(--header-accent);
 }
 
 .footer-col p {
     font-size: 14px;
     color: var(--text-muted);
     margin-bottom: 15px;
+    line-height: 1.8;
 }
 
 /* Links footer */
@@ -314,11 +424,12 @@ h1, h2, h3 {
 .footer-col ul li a, .contact-info li {
     font-size: 14px;
     color: var(--text-muted);
+    line-height: 1.65;
 }
 
 .footer-col ul li a:hover {
-    color: var(--accent-color);
-    padding-left: 5px; /* Hiệu ứng đẩy nhẹ khi hover */
+    color: var(--accent-deep);
+    padding-left: 5px;
 }
 
 /* Icons liên hệ */
@@ -330,31 +441,38 @@ h1, h2, h3 {
 }
 
 .contact-info i {
-    color: var(--accent-color);
+    color: var(--header-accent);
     margin-top: 4px;
+    width: 16px;
+    text-align: center;
 }
 
 /* Social icons */
 .social-icons {
     display: flex;
-    gap: 15px;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .social-icons a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 35px;
-    height: 35px;
-    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid rgba(139, 90, 43, 0.24);
     border-radius: 50%;
-    color: var(--text-main);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    color: var(--header-text);
+    box-shadow: none;
+    transition: all .25s ease;
 }
 
 .social-icons a:hover {
-    background-color: var(--accent-color);
-    color: #fff;
+    background: #fff;
+    border-color: rgba(139, 90, 43, 0.42);
+    color: var(--accent-deep);
+    transform: translateY(-1px);
 }
 
 /* Newsletter Form */
@@ -363,7 +481,7 @@ h1, h2, h3 {
 }
 .newsletter-title {
     font-weight: 500;
-    color: var(--text-main) !important;
+    color: var(--header-text) !important;
 }
 .newsletter-form {
     display: flex;
@@ -381,7 +499,7 @@ h1, h2, h3 {
 
 .newsletter-form button {
     padding: 10px 20px;
-    background-color: var(--accent-color);
+    background-color: var(--accent-deep);
     color: white;
     border: none;
     border-radius: 0 4px 4px 0;
@@ -390,28 +508,61 @@ h1, h2, h3 {
 }
 
 .newsletter-form button:hover {
-    background-color: #73461d;
+    background-color: #3e2416;
 }
 
 /* Copyright Bottom */
 .footer-bottom {
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-    padding: 20px;
+    border-top: 1px solid rgba(139, 90, 43, 0.14);
+    background: rgba(248, 245, 240, 0.72);
+    text-align: left;
+    padding: 22px 20px;
     font-size: 13px;
     color: var(--text-muted);
-}
-.header-brand {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    justify-content: center;
 }
 
+.footer-bottom-logo {
+    width: auto;
+    height: 58px;
+    max-width: 190px;
+    object-fit: contain;
+    border-radius: 0;
+    flex-shrink: 0;
+    filter: drop-shadow(0 3px 8px rgba(62, 48, 39, 0.12));
+}
+
+.footer-bottom-noi {
+    max-width: 860px;
+}
+
+.footer-bottom-noi p {
+    margin: 0 0 4px;
+    line-height: 1.55;
+}
+
+.footer-bottom-noi p:last-child {
+    margin-bottom: 0;
+}
+
+.footer-bottom-noi strong {
+    color: var(--header-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+}
 /* Ảnh logo duy nhất, to và rõ */
 .logo-img-only {
     width: auto;        /* Tăng chiều rộng để chữ trong ảnh to ra */
-    height: 60px;    /* Xoá bỏ giới hạn 55px cũ */
-    max-width: 300px;
+    height: 72px;    /* Giữ logo dạng chữ nhật như ảnh mẫu */
+    max-width: 230px;
     object-fit: contain; /* Giữ tỉ lệ, không bị méo */
+    display: block;
+    border-radius: 0;
+    filter: drop-shadow(0 3px 8px rgba(62, 48, 39, 0.16));
+    transition: transform .25s ease;
 }
 
 .logo-img-only:hover {
@@ -420,9 +571,47 @@ h1, h2, h3 {
 
 
 /* Responsive: màn hình nhỏ thì logo nhỏ lại chút */
+@media (max-width: 1024px) {
+    .footer-container,
+    .footer-top {
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+}
+
 @media (max-width: 768px) {
     .logo-img-only {
         width: 160px;   
         height: auto;
+    }
+
+    .footer-container,
+    .footer-top {
+        grid-template-columns: 1fr;
+        padding: 36px 22px 30px;
+        gap: 28px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-title::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-col {
+        text-align: center;
+    }
+
+    .contact-info li {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
     }
 }

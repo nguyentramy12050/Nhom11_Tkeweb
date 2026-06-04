@@ -4,11 +4,21 @@
 .container-custom {
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
     padding: 30px 20px 60px;
 }
 
-.breadcrumb { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
-.breadcrumb a { color: var(--text-muted); transition: 0.3s; }
+.breadcrumb {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+.breadcrumb a {
+    color: var(--text-muted);
+    transition: 0.3s;
+}
 .breadcrumb a:hover { color: var(--accent-color); }
 
 /* Khung viền trắng be bo góc bao quanh toàn bộ chi tiết */
@@ -17,6 +27,7 @@
     padding: 40px;
     border-radius: 16px;
     box-shadow: 0 5px 20px rgba(74, 60, 49, 0.08);
+    width: 100%;
 }
 
 /* === KHỐI TRÊN: ẢNH VÀ THÔNG TIN (CHIA 2 CỘT) === */

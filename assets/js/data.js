@@ -326,3 +326,5 @@ const booksData = [
         description: "Bộ đôi tác phẩm đặc biệt tuyển chọn từ các tác gia từng vinh dự đạt giải Nobel Văn học toàn cầu. Với thiết kế hộp đựng đồng bộ, ép nhũ sang trọng, hai cuốn sách mang đến những triết lý nhân sinh sâu sắc, những áng văn chương diễm lệ vượt qua mọi ranh giới quốc gia và thời đại. Lựa chọn tuyệt vời làm quà tặng cho những người có tình yêu lớn với văn chương." 
     }
 ];
+
+window.booksData = booksData;

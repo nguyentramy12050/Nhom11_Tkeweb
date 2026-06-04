@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (bangTruot && khuCham) {
 
         // --- ĐỔ DỮ LIỆU ĐỘNG TỪ DATA.JS VÀO ---
-        const sachChonLoc = booksData.slice(0, 12); 
+        const nguonSach = window.booksData || (typeof booksData !== 'undefined' ? booksData : []);
+        const sachChonLoc = nguonSach.slice(0, 12); 
         let htmlSach = '';
         
         sachChonLoc.forEach(book => {
@@ -157,86 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
-/* =====================================================
-   4. TRÍCH DẪN VĂN HỌC XOAY VÒNG
-====================================================== */
-const danhSachTrichDan = [
-    {
-        chu:  "Sách là kho tàng khổng lồ của nhân loại — một di sản được trao tặng cho những người đã qua, và một món quà gửi đến những người sẽ đến.",
-        ten:  "Henry David Thoreau",
-        sach: "Walden"
-    },
-    {
-        chu:  "Một cuốn sách hay là sự liên minh giữa quá khứ và tương lai, là cuộc trò chuyện giữa những tâm hồn đã khuất và những tâm hồn chưa được sinh ra.",
-        ten:  "Henry Ward Beecher",
-        sach: ""
-    },
-    {
-        chu:  "Ta tìm thấy trong sách những tư tưởng mà ta đã từng có nhưng không biết diễn đạt, ta gặp ở đó những bạn bè tri âm.",
-        ten:  "Leo Tolstoy",
-        sach: ""
-    },
-    {
-        chu:  "Không có người bạn nào trung thành hơn một cuốn sách.",
-        ten:  "Ernest Hemingway",
-        sach: ""
-    },
-    {
-        chu:  "Đọc sách mà không suy nghĩ cũng như ăn mà không tiêu hóa.",
-        ten:  "Edmund Burke",
-        sach: ""
-    },
-    {
-        chu:  "Những cuốn sách cũ giống như bạn bè cũ — chúng là người đồng hành trung thành nhất qua thời gian.",
-        ten:  "Thư Hiên",
-        sach: "Nhật ký tiệm sách"
-    }
-];
-
-const khuTrichDan = document.getElementById('trich-dan-noi');
-if (khuTrichDan) {
-    const elChu  = document.getElementById('trich-dan-chu');
-    const elTen  = document.getElementById('trich-dan-ten');
-    const elSach = document.getElementById('trich-dan-sach');
-    const elCham = document.getElementById('trich-dan-cham-list');
-    let chiSoHienTai = 0;
-
-    // Tạo dots
-    danhSachTrichDan.forEach((_, i) => {
-        const c = document.createElement('button');
-        c.className = 'trich-dan-cham' + (i === 0 ? ' hien-tai' : '');
-        c.onclick = () => hienTrichDan(i);
-        elCham.appendChild(c);
-    });
-
-    function hienTrichDan(i) {
-        chiSoHienTai = i;
-        // Fade out
-        elChu.classList.add('an-di');
-        setTimeout(() => {
-            const td = danhSachTrichDan[i];
-            elChu.textContent  = td.chu;
-            elTen.textContent  = '— ' + td.ten;
-            elSach.textContent = td.sach ? td.sach : '';
-            elChu.classList.remove('an-di');
-        }, 400);
-        // Cập nhật dots
-        elCham.querySelectorAll('.trich-dan-cham').forEach((c, j) => {
-            c.classList.toggle('hien-tai', j === i);
-        });
-    }
-
-    // Hiện bài đầu tiên ngay
-    hienTrichDan(0);
-
-    // Tự động đổi mỗi 6 giây
-    setInterval(() => {
-        const tiepTheo = (chiSoHienTai + 1) % danhSachTrichDan.length;
-        hienTrichDan(tiepTheo);
-    }, 6000);
-}
-
 
 /* =====================================================
    HỘP QUÀ 3D — Thư Hiên
@@ -416,3 +337,5 @@ if (khuTrichDan) {
 
     window.dongHopQua = dongHop;
 })();
+
+});

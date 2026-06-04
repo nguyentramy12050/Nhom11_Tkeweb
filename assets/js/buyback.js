@@ -124,7 +124,16 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ===== BADGE GIỎ HÀNG ===== */
     const badge = document.getElementById('so-gio-hang');
     if (badge) {
-        const so = parseInt(localStorage.getItem('so-luong-gio-hang') || '0');
+        let so = 0;
+        try {
+            const rawCart = localStorage.getItem('cart');
+            const cart = rawCart ? JSON.parse(rawCart) : [];
+            if (Array.isArray(cart)) {
+                so = cart.reduce((tong, item) => tong + Number(item.quantity || item.qty || 1), 0);
+            }
+        } catch (error) {
+            so = 0;
+        }
         badge.textContent = so;
         badge.classList.toggle('an', so === 0);
     }
