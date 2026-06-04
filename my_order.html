@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Đơn hàng của tôi | Thư Hiên</title>
+
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/my_order.css" />
+  </head>
+
+  <body>
+    <div id="header-placeholder"></div>
+
+    <main class="orders-page">
+      <section class="orders-container">
+        <div class="orders-heading">
+          <h1>Đơn hàng của tôi</h1>
+          <p>Theo dõi hành trình của những pho sách quý đang tới tay bạn.</p>
+        </div>
+
+        <div class="orders-tabs">
+          <button class="order-tab active" data-filter="all">Tất cả</button>
+          <button class="order-tab" data-filter="shipping">Đang giao</button>
+          <button class="order-tab" data-filter="completed">Hoàn thành</button>
+        </div>
+
+        <section id="orders-list" class="orders-list"></section>
+
+        <section id="orders-empty" class="orders-empty">
+          <i class="fas fa-box-open"></i>
+          <h2>Bạn chưa có đơn hàng nào</h2>
+          <p>
+            Hãy chọn một vài cuốn sách cũ để bắt đầu hành trình sưu tầm của
+            mình.
+          </p>
+          <a href="category.html">Xem danh mục sách</a>
+        </section>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/style.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/my_order.js"></script>
+  </body>
+</html>
