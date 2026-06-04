@@ -116,6 +116,7 @@ window.initThuhienHeader = function () {
             sessionStorage.removeItem('thuhien_ten');
             localStorage.removeItem('thuhien_dang_nhap');
             localStorage.removeItem('thuhien_ten');
+            localStorage.removeItem('currentUser');
             window.location.href = 'index.html';
         });
     }

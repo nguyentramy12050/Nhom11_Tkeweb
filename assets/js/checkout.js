@@ -4,6 +4,8 @@ const ORDER_KEY = "latestOrder";
 const COUPON_CODE = "TRIKY";
 const COUPON_PERCENT = 10;
 const SHIPPING_FEE = 35000;
+const USERS_KEY = "users";
+const CURRENT_USER_KEY = "currentUser";
 
 /* xử lý giá tiền */
 
@@ -353,6 +355,75 @@ function initCheckoutEvents() {
     });
 }
 
+function readJsonStorage(key, fallbackValue) {
+    try {
+        const rawValue = localStorage.getItem(key);
+        return rawValue ? JSON.parse(rawValue) : fallbackValue;
+    } catch (error) {
+        console.error(`Lỗi đọc dữ liệu ${key}:`, error);
+        return fallbackValue;
+    }
+}
+
+function normalizeCheckoutEmail(email) {
+    return String(email || "").trim().toLowerCase();
+}
+
+function getRegisteredCheckoutUser() {
+    const currentUser = readJsonStorage(CURRENT_USER_KEY, null);
+    if (!currentUser) return null;
+
+    const users = readJsonStorage(USERS_KEY, []);
+    if (!Array.isArray(users)) return currentUser;
+
+    const registeredUser = users.find(user => {
+        return String(user.id || "") === String(currentUser.id || "")
+            || normalizeCheckoutEmail(user.email) === normalizeCheckoutEmail(currentUser.email);
+    });
+
+    return registeredUser
+        ? { ...currentUser, ...registeredUser }
+        : currentUser;
+}
+
+function getFirstFilledValue(source, keys) {
+    for (const key of keys) {
+        const value = source ? source[key] : "";
+        if (value) return String(value).trim();
+    }
+
+    return "";
+}
+
+function fillCheckoutUserInfo() {
+    const currentUser = getRegisteredCheckoutUser();
+
+    if (!currentUser) return;
+
+    const nameInput = document.getElementById("customer-name");
+    const phoneInput = document.getElementById("customer-phone");
+    const emailInput = document.getElementById("customer-email");
+
+    const customerName = getFirstFilledValue(currentUser, ["name", "fullName", "fullname", "hoTen"]);
+    const customerPhone = getFirstFilledValue(currentUser, ["phone", "phoneNumber", "sdt", "soDienThoai"]);
+    const customerEmail = getFirstFilledValue(currentUser, ["email", "gmail"]);
+
+    if (nameInput && customerName) {
+        nameInput.value = customerName;
+        clearFieldError(nameInput);
+    }
+
+    if (phoneInput && customerPhone) {
+        phoneInput.value = customerPhone;
+        clearFieldError(phoneInput);
+    }
+
+    if (emailInput && customerEmail) {
+        emailInput.value = customerEmail;
+        clearFieldError(emailInput);
+    }
+}
+
 /* khởi chạy trang */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -363,4 +434,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initCheckoutEvents();
     renderCheckoutPage();
+    fillCheckoutUserInfo();
 });
