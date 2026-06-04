@@ -1,4 +1,6 @@
-/*   Biến màu sắc toàn cục (Dễ dàng thay đổi)   */
+/* ==========================================================================
+   1. BIẾN MÀU SẮC TOÀN CỤC & RESET CSS
+   ========================================================================== */
 :root {
     --bg-color: #F8F5F0;        /* Nền be nhạt vintage */
     --text-main: #3E3027;       /* Chữ nâu đậm */
@@ -12,7 +14,6 @@
     --border-color: #E6DFD3;    /* Màu viền gạch ngang */
 }
 
-/* Reset CSS cơ bản   */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +21,7 @@
 }
 
 body {
-    font-family: 'Noto Sans', sans-serif; /* Font chữ dễ đọc cho nội dung */
+    font-family: 'Noto Sans', sans-serif;
     background-color: var(--bg-color) !important;
     color: var(--text-main);
     line-height: 1.6;
@@ -46,10 +47,12 @@ h1, h2, h3, h4, h5, h6,
 .section-title,
 .footer-title,
 .book-name {
-    font-family: 'Playfair Display', serif; /* Font chữ có chân, mang phong cách cổ điển */
+    font-family: 'Playfair Display', serif; /* Font chữ có chân phong cách cổ điển */
 }
 
-/* HEADER STYLE */
+/* ==========================================================================
+   2. GIAO DIỆN HEADER (Thanh điều hướng trên cùng)
+   ========================================================================== */
 .header {
     background: var(--header-bg);
     border-bottom: 1px solid rgba(139, 90, 43, 0.16);
@@ -61,6 +64,7 @@ h1, h2, h3, h4, h5, h6,
     z-index: 1000;
 }
 
+/* --- Top Bar (Thanh tiện ích nhỏ) --- */
 .hd-top {
     border-bottom: 1px solid rgba(139, 90, 43, 0.12);
     background: rgba(255, 252, 246, 0.86);
@@ -97,9 +101,8 @@ h1, h2, h3, h4, h5, h6,
     color: var(--header-muted);
 }
 
-.hd-top-list i {
+.hd-top-list svg {
     color: var(--header-accent);
-    font-size: 12px;
 }
 
 .hd-top-list a:hover {
@@ -120,6 +123,7 @@ h1, h2, h3, h4, h5, h6,
     color: #b84a2a !important;
 }
 
+/* --- Main Header Container --- */
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -130,7 +134,6 @@ h1, h2, h3, h4, h5, h6,
     min-height: 86px;
 }
 
-/* Logo Box */
 .header-brand {
     display: flex;
     align-items: center;
@@ -142,8 +145,7 @@ h1, h2, h3, h4, h5, h6,
     align-items: center;
 }
 
-
-/* Menu */
+/* --- Menu điều hướng chính --- */
 .header-nav ul {
     display: flex;
     gap: 30px;
@@ -161,13 +163,13 @@ h1, h2, h3, h4, h5, h6,
     transition: color .25s ease, background .25s ease, border-color .25s ease;
 }
 
-.header-nav a:hover, .header-nav a.active {
+.header-nav a:hover, 
+.header-nav a.active {
     color: var(--header-text);
     background: rgba(160, 106, 50, 0.10);
     border-bottom-color: var(--header-accent);
 }
 
-/* Icons */
 .header-icons {
     display: flex;
     align-items: center;
@@ -182,23 +184,28 @@ h1, h2, h3, h4, h5, h6,
 .header-icons a:hover {
     color: var(--header-accent);
 }
-/* ========================================ICON HEADER ======================================= */
-/* NÚT ICON */
+
+/* ==========================================================================
+   3. Cấu hình Nút bấm & Icon SVG trên Header
+   ========================================================================== */
+.hd-icon-btn, 
+.hd-hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    cursor: pointer;
+}
+
 .hd-icon-btn {
     position: relative;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     border: 1px solid rgba(139, 90, 43, 0.24);
-    background: transparent;
     color: var(--header-text);
-    font-size: 20px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     text-decoration: none;
-    transition: all .25s;
+    transition: all .25s ease;
 }
 
 .hd-icon-btn:hover {
@@ -208,12 +215,18 @@ h1, h2, h3, h4, h5, h6,
     transform: translateY(-1px);
 }
 
-.hd-icon-btn i {
-    display: inline-block;
-    line-height: 1;
+/* Hiệu ứng chuyển động và đổi màu mượt mà cho Icon SVG */
+.hd-icon-btn svg,
+.hd-hamburger svg {
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 
-/* BADGE GIỎ HÀNG */
+.hd-icon-btn:hover svg,
+.hd-hamburger:hover svg {
+    color: var(--accent-color); /* Tự động đổi sang màu nâu cam thương hiệu khi hover */
+}
+
+/* Badge số lượng hiển thị trên nút Giỏ hàng */
 .hd-badge {
     position: absolute;
     top: 2px;
@@ -234,9 +247,13 @@ h1, h2, h3, h4, h5, h6,
     transition: transform .2s;
 }
 
-.hd-badge.an { display: none; }
+.hd-badge.an { 
+    display: none; 
+}
 
-/* OVERLAY nền mờ */
+/* ==========================================================================
+   4. POPUP KHUNG TÌM KIẾM HỘP THOẠI
+   ========================================================================== */
 .pop-overlay {
     display: none;
     position: fixed;
@@ -244,13 +261,15 @@ h1, h2, h3, h4, h5, h6,
     background: rgba(0, 0, 0, 0.45);
     z-index: 999;
 }
-.pop-overlay.hien { display: block; }
 
-/* POPUP TÌM KIẾM */
+.pop-overlay.hien { 
+    display: block; 
+}
+
 .pop-tim-kiem {
     display: none;
     position: fixed;
-    top: 121px;          /* khớp chiều cao header + top bar */
+    top: 121px;          /* Khớp hoàn hảo với chiều cao tổng thể của header */
     left: 0;
     right: 0;
     z-index: 1000;
@@ -261,7 +280,9 @@ h1, h2, h3, h4, h5, h6,
     animation: truot-xuong .25s ease;
 }
 
-.pop-tim-kiem.hien { display: block; }
+.pop-tim-kiem.hien { 
+    display: block; 
+}
 
 @keyframes truot-xuong {
     from { opacity: 0; transform: translateY(-10px); }
@@ -282,7 +303,7 @@ h1, h2, h3, h4, h5, h6,
     font-family: 'Noto Sans', sans-serif;
 }
 
-/* THANH SEARCH */
+/* Ô nhập liệu tìm kiếm */
 .pop-search-row {
     display: flex;
     align-items: center;
@@ -333,9 +354,11 @@ h1, h2, h3, h4, h5, h6,
     flex-shrink: 0;
 }
 
-.pop-search-btn:hover { background: #6b4423; }
+.pop-search-btn:hover { 
+    background: #6b4423; 
+}
 
-/* TAGS GỢI Ý */
+/* Các thẻ từ khóa gợi ý nhanh */
 .pop-tag-list {
     display: flex;
     flex-wrap: wrap;
@@ -361,14 +384,16 @@ h1, h2, h3, h4, h5, h6,
     border-color: #c9a87c;
 }
 
-/* Nếu header cao hơn/thấp hơn 121px thì đổi top của .pop-tim-kiem cho khớp */
+/* --- Media Queries dành cho Header --- */
 @media (max-width: 768px) {
     .hd-top { display: none; }
     .pop-tim-kiem { top: 86px; }
     .pop-tim-kiem-noi { margin: 16px auto 0; }
 }
 
-/* FOOTER STYLE  */
+/* ==========================================================================
+   5. GIAO DIỆN FOOTER (Chân trang)
+   ========================================================================== */
 .footer {
     background: #fffaf2;
     border-top: 1px solid rgba(139, 90, 43, 0.16);
@@ -416,12 +441,12 @@ h1, h2, h3, h4, h5, h6,
     line-height: 1.8;
 }
 
-/* Links footer */
 .footer-col ul li {
     margin-bottom: 12px;
 }
 
-.footer-col ul li a, .contact-info li {
+.footer-col ul li a, 
+.contact-info li {
     font-size: 14px;
     color: var(--text-muted);
     line-height: 1.65;
@@ -432,7 +457,7 @@ h1, h2, h3, h4, h5, h6,
     padding-left: 5px;
 }
 
-/* Icons liên hệ */
+/* Khối thông tin liên hệ */
 .contact-info li {
     display: flex;
     align-items: flex-start;
@@ -447,7 +472,7 @@ h1, h2, h3, h4, h5, h6,
     text-align: center;
 }
 
-/* Social icons */
+/* Các nút Mạng xã hội */
 .social-icons {
     display: flex;
     gap: 12px;
@@ -475,14 +500,16 @@ h1, h2, h3, h4, h5, h6,
     transform: translateY(-1px);
 }
 
-/* Newsletter Form */
+/* Khung đăng ký nhận tin tức */
 .newsletter {
     margin-top: 20px;
 }
+
 .newsletter-title {
     font-weight: 500;
     color: var(--header-text) !important;
 }
+
 .newsletter-form {
     display: flex;
     margin-top: 10px;
@@ -511,7 +538,7 @@ h1, h2, h3, h4, h5, h6,
     background-color: #3e2416;
 }
 
-/* Copyright Bottom */
+/* --- Thanh bản quyền Copyright ở đáy trang --- */
 .footer-bottom {
     border-top: 1px solid rgba(139, 90, 43, 0.14);
     background: rgba(248, 245, 240, 0.72);
@@ -553,12 +580,12 @@ h1, h2, h3, h4, h5, h6,
     font-family: 'Playfair Display', serif;
     font-size: 15px;
 }
-/* Ảnh logo duy nhất, to và rõ */
+
 .logo-img-only {
-    width: auto;        /* Tăng chiều rộng để chữ trong ảnh to ra */
-    height: 72px;    /* Giữ logo dạng chữ nhật như ảnh mẫu */
+    width: auto;        
+    height: 72px;    
     max-width: 230px;
-    object-fit: contain; /* Giữ tỉ lệ, không bị méo */
+    object-fit: contain; 
     display: block;
     border-radius: 0;
     filter: drop-shadow(0 3px 8px rgba(62, 48, 39, 0.16));
@@ -566,11 +593,12 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .logo-img-only:hover {
-  transform: scale(1.02); /* Hiệu ứng nhẹ khi hover */
+    transform: scale(1.02);
 }
 
-
-/* Responsive: màn hình nhỏ thì logo nhỏ lại chút */
+/* ==========================================================================
+   6. RESPONSIVE MEDIA QUERIES (Cho Tablet & Mobile)
+   ========================================================================== */
 @media (max-width: 1024px) {
     .footer-container,
     .footer-top {
@@ -614,4 +642,154 @@ h1, h2, h3, h4, h5, h6,
     .social-icons {
         justify-content: center;
     }
+}
+
+/* =====================================================
+   HỘP QUÀ NỔI TÍCH HỢP (FLOATING ACTION BUTTON & POPUP)
+===================================================== */
+
+/* 1. NÚT HỘP QUÀ LƠ LỬNG (Góc dưới cùng bên phải màn hình) */
+.nut-hop-qua-don-gian {
+    position: fixed;
+    bottom: 30px;       /* Cách đáy màn hình 30px */
+    right: 30px;        /* Cách lề phải màn hình 30px */
+    width: 75px;        /* Khống chế kích thước hộp quà vừa vặn */
+    height: 75px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 9999;      /* Luôn nổi trên mọi nội dung, dưới lớp màng popup */
+    padding: 0;
+    transition: transform 0.3s ease;
+    animation: qua-mach-dap 2s infinite ease-in-out; /* Tạo hiệu ứng co giãn thu hút */
+}
+
+/* Định dạng ảnh bên trong nút không bị tràn kích thước */
+.nut-hop-qua-don-gian img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 12px rgba(46, 26, 14, 0.35)); /* Tạo bóng đổ chân thực */
+}
+
+/* Hiệu ứng nảy nhẹ và xoay góc khi di chuột vào */
+.nut-hop-qua-don-gian:hover {
+    transform: scale(1.15) rotate(8deg);
+    animation-play-state: paused; /* Di chuột vào thì dừng nhịp đập chung */
+}
+
+/* 2. LỚP MÀNG ĐEN PHỦ TOÀN MÀN HÌNH */
+#mang-toi {
+    position: fixed;
+    inset: 0;
+    background: rgba(46, 26, 14, 0.7); /* Màu nâu tối sang trọng hợp gu Thư Hiên */
+    backdrop-filter: blur(4px);
+    z-index: 999999;    /* Nổi lên cao nhất để đè cả header/footer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* Trạng thái kích hoạt hiện màng đen */
+#mang-toi.hien-len {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 3. THẺ QUÀ TẶNG THÔNG MINH (NẰM GIỮA) */
+#the-qua-thong-minh {
+    background: #F8F5F0; /* Nền be nhạt đồng bộ toàn trang */
+    border: 2px solid #8B5A2B;
+    border-radius: 16px;
+    padding: 35px 25px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(46, 26, 14, 0.4);
+    
+    /* Hiệu ứng thu nhỏ ẩn ban đầu */
+    transform: scale(0.7);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+}
+
+/* Trạng thái kích hoạt nảy bung popup */
+#the-qua-thong-minh.bung-no {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* --- Các thành phần chi tiết bên trong Popup --- */
+.icon-chuc-mung {
+    font-size: 55px;
+    margin-bottom: 12px;
+    line-height: 1;
+    animation: hop-qua-lac 2.5s infinite ease-in-out;
+}
+
+.tieu-de-qua {
+    font-family: 'Playfair Display', serif;
+    color: #2E1A0E;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.mo-ta-qua {
+    font-family: 'Noto Sans', sans-serif;
+    color: #74665A;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+.khung-ma-code {
+    background: #E6DFD3;
+    border: 2px dashed #8B5A2B;
+    padding: 12px 25px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+#ma-code {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #5B341D;
+    letter-spacing: 2px;
+}
+
+.nut-nhan-qua {
+    background: #8B5A2B;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.nut-nhan-qua:hover {
+    background: #5B341D;
+    transform: translateY(-2px);
+}
+
+/* --- HIỆU ỨNG CHUYỂN ĐỘNG (ANIMATIONS) --- */
+@keyframes qua-mach-dap {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+}
+
+@keyframes hop-qua-lac {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30% { transform: rotate(-6deg); }
+    20%, 40% { transform: rotate(6deg); }
+    50% { transform: rotate(0deg); }
 }
