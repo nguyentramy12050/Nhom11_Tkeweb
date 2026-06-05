@@ -66,47 +66,61 @@ document.addEventListener("DOMContentLoaded", function () {
     const nutGui = document.getElementById('abt-nut-gui');
     if (nutGui) {
         nutGui.addEventListener('click', function () {
-            // Kiểm tra input đơn giản
-            const inputs = document.querySelectorAll('.abt-lien-he-form .abt-input');
-            let hop = true;
+            const hoTenVal = document.getElementById('abt-ho-ten').value.trim();
+            const sdtVal   = document.getElementById('abt-sdt').value.trim();
+            const emailVal = document.getElementById('abt-email').value.trim();
+            const loiNhan  = document.getElementById('abt-loi-nhan').value.trim();
 
-            inputs.forEach(inp => {
-                if (inp.tagName !== 'SELECT' && inp.type !== 'tel' && !inp.value.trim()) {
-                    inp.style.borderColor = '#b84a2a';
-                    hop = false;
-                    setTimeout(() => inp.style.borderColor = '', 2500);
-                }
-            });
+            // Kiểm tra bắt buộc
+            if (!hoTenVal) { abtBaoLoi('abt-ho-ten', 'Vui lòng nhập họ tên'); return; }
+            if (!sdtVal)   { abtBaoLoi('abt-sdt',   'Vui lòng nhập số điện thoại'); return; }
+            if (!/^0\d{9}$/.test(sdtVal)) { abtBaoLoi('abt-sdt', 'SĐT phải là 10 số, bắt đầu bằng 0'); return; }
+            if (!emailVal) { abtBaoLoi('abt-email', 'Vui lòng nhập email'); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) { abtBaoLoi('abt-email', 'Email không hợp lệ'); return; }
+            if (!loiNhan)  { abtBaoLoi('abt-loi-nhan', 'Vui lòng nhập lời nhắn'); return; }
 
-            if (!hop) return;
-
-            // Giả lập gửi
             nutGui.disabled = true;
             nutGui.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
 
+            const banGhi = {
+                id: Date.now(),
+                loai: 'contact',
+                ngay: new Date().toLocaleString('vi-VN'),
+                khach: { ten: hoTenVal, sdt: sdtVal, email: emailVal },
+                chuDe: document.getElementById('abt-chu-de').value,
+                loiNhan: loiNhan,
+                trangThai: 'cho-xu-ly',
+                ghiChu: ''
+            };
+
+            const danhSach = JSON.parse(localStorage.getItem('thuhien_submissions') || '[]');
+            danhSach.unshift(banGhi);
+            localStorage.setItem('thuhien_submissions', JSON.stringify(danhSach));
+
             setTimeout(() => {
-                // Hiện thông báo thành công
-                let thongBao = document.querySelector('.abt-thong-bao');
-                if (!thongBao) {
-                    thongBao = document.createElement('div');
-                    thongBao.className = 'abt-thong-bao';
-                    thongBao.innerHTML = '<i class="fas fa-check-circle"></i> Tin nhắn đã được gửi! Chúng tôi sẽ phản hồi trong vòng 24 giờ.';
-                    nutGui.parentElement.appendChild(thongBao);
-                }
-                thongBao.classList.add('hien');
-
-                // Reset form
-                inputs.forEach(inp => {
-                    if (inp.tagName !== 'SELECT') inp.value = '';
-                });
-
+                const tb = document.getElementById('abt-thanh-cong');
+                if (tb) tb.classList.add('hien');
+                document.getElementById('abt-ho-ten').value = '';
+                document.getElementById('abt-sdt').value = '';
+                document.getElementById('abt-email').value = '';
+                document.getElementById('abt-loi-nhan').value = '';
                 nutGui.disabled = false;
                 nutGui.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi tin nhắn';
-
-                // Ẩn thông báo sau 5 giây
-                setTimeout(() => thongBao.classList.remove('hien'), 5000);
+                setTimeout(() => { if (tb) tb.classList.remove('hien'); }, 4000);
             }, 1200);
         });
+    }
+
+    function abtBaoLoi(id, thongBao) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.style.borderColor = '#b84a2a';
+        el.value = thongBao;
+        el.focus();
+        setTimeout(() => {
+            el.style.borderColor = '';
+            if (id !== 'abt-loi-nhan') el.value = '';
+        }, 2500);
     }
 
 });

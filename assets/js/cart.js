@@ -1,20 +1,21 @@
 const CART_KEY = "cart";
 const COUPON_KEY = "appliedCoupon";
+const VOUCHER_KEY = "savedVoucher";
 const SHIPPING_FEE = 35000;
 
-// DANH SÁCH VOUCHER (giống hệt checkout.js)
+// DANH SÁCH VOUCHER — có donToiThieu (đơn tối thiểu) và hetHan (hết hạn)
 const DANH_SACH_VOUCHER = {
-    "HESANG20": { loai: "percent", giaTri: 20 },
-    "HESANG50K": { loai: "fixed", giaTri: 50000 },
-    "THUHIEN20": { loai: "percent", giaTri: 20 },
-    "FREESHIP26": { loai: "shipping", giaTri: 0 },
-    "GIFT50K": { loai: "fixed", giaTri: 50000 },
-    "KHAIQUYEN10": { loai: "percent", giaTri: 10 },
-    "NGOCQUY20": { loai: "fixed", giaTri: 20000 },
-    "CHUVANAN15": { loai: "percent", giaTri: 15 },
-    "NGUYENKHI25": { loai: "fixed", giaTri: 25000 },
-    "TINHHOA50": { loai: "fixed", giaTri: 50000 },
-    "TRIKY": { loai: "percent", giaTri: 10 }
+    "HESANG20":   { loai: "percent",  giaTri: 20,  donToiThieu: 0,      hetHan: new Date("2026-06-30") },
+    "HESANG50K":  { loai: "fixed",    giaTri: 50000, donToiThieu: 0,     hetHan: new Date("2026-06-30") },
+    "FREESHIP26": { loai: "shipping", giaTri: 0,    donToiThieu: 199000, hetHan: new Date("2026-06-30") },
+    "GIFT50K":    { loai: "fixed",    giaTri: 50000, donToiThieu: 299000, hetHan: new Date("2026-06-30") },
+    "THUHIEN20":  { loai: "percent",  giaTri: 20,  donToiThieu: 0,      hetHan: null },
+    "KHAIQUYEN10":{ loai: "percent",  giaTri: 10,  donToiThieu: 0,      hetHan: null },
+    "NGOCQUY20":  { loai: "fixed",    giaTri: 20000, donToiThieu: 0,     hetHan: null },
+    "CHUVANAN15": { loai: "percent",  giaTri: 15,  donToiThieu: 0,      hetHan: null },
+    "NGUYENKHI25":{ loai: "fixed",    giaTri: 25000, donToiThieu: 0,     hetHan: null },
+    "TINHHOA50":  { loai: "fixed",    giaTri: 50000, donToiThieu: 0,     hetHan: null },
+    "TRIKY":      { loai: "percent",  giaTri: 10,  donToiThieu: 0,      hetHan: null },
 };
 
 /* xử lý giá tiền */
@@ -159,38 +160,53 @@ function removeAppliedCoupon() {
 function applyCoupon() {
     const input = document.getElementById("coupon-input");
     const message = document.getElementById("coupon-message");
-
     if (!input || !message) return;
 
     const code = input.value.trim().toUpperCase();
     const items = getCartItemsDetail();
+    const voucher = DANH_SACH_VOUCHER[code];
 
-    if (items.length === 0) {
-        removeAppliedCoupon();
-        message.textContent = "Giỏ hàng đang trống.";
-        message.classList.add("error");
-        message.style.display = "block";
-        return;
-    }
+    // Tính tạm tính để kiểm tra điều kiện
+    const subtotal = items.reduce((sum, item) => sum + parsePrice(item.price) * item.quantity, 0);
 
     if (!code) {
+        removeAppliedCoupon();
         message.textContent = "Vui lòng nhập mã giảm giá.";
         message.classList.add("error");
         message.style.display = "block";
+        renderCartPage();
         return;
     }
 
-    const voucher = DANH_SACH_VOUCHER[code];
     if (!voucher) {
         removeAppliedCoupon();
         message.textContent = "Mã giảm giá không hợp lệ hoặc đã hết hạn.";
         message.classList.add("error");
         message.style.display = "block";
-        renderCartPage(); // cập nhật lại giao diện (xóa mã cũ nếu có)
+        renderCartPage();
         return;
     }
 
-    // Nếu mã hợp lệ, lưu vào localStorage
+    // Kiểm tra đơn tối thiểu
+    if (voucher.donToiThieu && subtotal < voucher.donToiThieu) {
+        removeAppliedCoupon();
+        message.textContent = `Mã ${code} cần đơn từ ${voucher.donToiThieu.toLocaleString('vi-VN')}đ mới áp dụng được.`;
+        message.classList.add("error");
+        message.style.display = "block";
+        renderCartPage();
+        return;
+    }
+
+    // Kiểm tra hết hạn
+    if (voucher.hetHan && new Date() > voucher.hetHan) {
+        removeAppliedCoupon();
+        message.textContent = "Mã giảm giá đã hết hạn sử dụng.";
+        message.classList.add("error");
+        message.style.display = "block";
+        renderCartPage();
+        return;
+    }
+
     setAppliedCoupon(code);
     message.textContent = `Áp dụng thành công! Mã ${code} đã được kích hoạt.`;
     message.classList.remove("error");

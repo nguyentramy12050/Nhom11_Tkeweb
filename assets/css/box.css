@@ -253,6 +253,54 @@ body {
     justify-content: center;
 }
 
+/* THÔNG BÁO LỖI */
+.thong-bao-loi {
+    display: none;
+    background: #fff3e0;
+    border: 1px solid #e65100;
+    border-radius: 6px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    color: #bf360c;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.thong-bao-loi a {
+    color: #e65100;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* TRẠNG THÁI HẾT HẠN */
+.da-het-han {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.hinh-anh-het-han {
+    font-size: 3.5rem;
+    color: #8a5d3b;
+    margin-bottom: 20px;
+}
+
+.tieu-de-het-han {
+    font-family: 'Playfair Display', serif;
+    color: #2e1a0e;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.mo-ta-het-han {
+    color: #74665A;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
 .btn-thuhien {
     padding: 12px 28px;
     border-radius: 4px;

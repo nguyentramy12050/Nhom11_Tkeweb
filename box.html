@@ -21,6 +21,14 @@
                 <p class="game-subtitle">Thành tâm xin một quẻ xăm, khai mở trí tuệ và đón nhận cơ duyên từ những pho sách cổ của Thư Hiên.</p>
             </div>
 
+            <div class="thong-bao-loi" id="thongBaoLoi"></div>
+            <div class="da-het-han" id="daHetHan">
+                <div class="hinh-anh-het-han"><i class="fas fa-hourglass-end"></i></div>
+                <h2 class="tieu-de-het-han">Sự Kiện Đã Kết Thúc</h2>
+                <p class="mo-ta-het-han">Cảm ơn bạn đã quan tâm đến sự kiện Gieo Quẻ Tri Thức. Đón chờ những chương trình tiếp theo từ Thư Hiên nhé!</p>
+                <a href="index.html" class="btn-thuhien btn-vien"><i class="fas fa-home" style="margin-right: 6px;"></i> Quay về trang chủ</a>
+            </div>
+
             <div class="khung-ong-xam" id="khungOngXam" onclick="xuLyGieoQue()">
                 <div class="ong-xam-tre">
                     <div class="the-xam-tre the-1"></div>
@@ -61,65 +69,180 @@
     </div>
 
     <script>
-    // Định nghĩa danh sách các quẻ xăm: Mỗi quẻ gồm Lời khuyên, Tác giả và Mã Voucher riêng biệt
-    const danhSachQueTriThuc = [
-        { 
-            quote: "“Khai quyển hữu ích” — Mở cuốn sách ra là đã có ích rồi.", 
-            author: "Tục ngữ cổ",
-            voucher: "KHAIQUYEN10" // Ví dụ: Giảm 10% cho sách mới
-        },
-        { 
-            quote: "“Ngọc bất trác, bất thành khí; nhân bất học, bất tri lý.”", 
-            author: "Lễ Ký",
-            voucher: "NGOCQUY20"   // Ví dụ: Giảm 20k cho đơn hàng triết học
-        },
-        { 
-            quote: "“Muốn xây dựng đất nước, trước hết phải phát triển giáo dục. Muốn trị nước, trước hết phải trọng dụng nhân tài.”", 
-            author: "Chu Văn An",
-            voucher: "CHUVANAN15" // Ví dụ: Giảm 15% sách lịch sử
-        },
-        { 
-            quote: "“Hiền tài là nguyên khí của quốc gia, nguyên khí thịnh thì thế nước mạnh.”", 
-            author: "Thân Nhân Trung",
-            voucher: "NGUYENKHI25" // Ví dụ: Ưu đãi đặc quyền K26 Thư Hiên
-        },
-        { 
-            quote: "“Sách chứa đựng tinh hoa của dòng thời gian, là báu vật vô giá của nhân loại.”", 
-            author: "Thư Hiên Chí",
-            voucher: "TINHHOA50"  // Ví dụ: Quẻ đại cát giảm 50k
-        }
-    ];
+    /* ───────────────────────────────────────────
+       HẰNG SỐ & CẤU HÌNH
+    ──────────────────────────────────────────── */
+    const FEATURE_EXPIRY = new Date("2026-06-30T23:59:59");
+    const CURRENT_USER_KEY = "currentUser";
+    const LOGIN_STATUS_KEY = "thuhien_dang_nhap";
 
+    /* ───────────────────────────────────────────
+       KIỂM TRA ĐĂNG NHẬP
+    ──────────────────────────────────────────── */
+    function isUserLoggedIn() {
+        return localStorage.getItem(LOGIN_STATUS_KEY) === "true" ||
+               sessionStorage.getItem(LOGIN_STATUS_KEY) === "true";
+    }
+
+    function getCurrentUser() {
+        try {
+            const raw = localStorage.getItem(CURRENT_USER_KEY) ||
+                        sessionStorage.getItem(CURRENT_USER_KEY);
+            return raw ? JSON.parse(raw) : null;
+        } catch(e) { return null; }
+    }
+
+    /* ───────────────────────────────────────────
+       KIỂM TRA ĐÃ GIEO QUẺ (THEO USER)
+    ──────────────────────────────────────────── */
+    function hasUserDrawnFortune() {
+        const user = getCurrentUser();
+        if (!user || !user.id) return false;
+        return localStorage.getItem('thuhien_' + user.id + '_da_gieo_que') === 'true';
+    }
+
+    function markUserAsDrawn(queTriThuc) {
+        const user = getCurrentUser();
+        if (!user || !user.id) return;
+        localStorage.setItem('thuhien_' + user.id + '_da_gieo_que', 'true');
+        if (queTriThuc) {
+            localStorage.setItem('thuhien_' + user.id + '_que_info', JSON.stringify(queTriThuc));
+        }
+    }
+
+    function getUserDrawnFortune() {
+        const user = getCurrentUser();
+        if (!user || !user.id) return null;
+        try {
+            const raw = localStorage.getItem('thuhien_' + user.id + '_que_info');
+            return raw ? JSON.parse(raw) : null;
+        } catch(e) { return null; }
+    }
+
+    /* ───────────────────────────────────────────
+       KIỂM TRA SỰ KIỆN CÒN HẠN KHÔNG
+    ──────────────────────────────────────────── */
+    function isFeatureExpired() {
+        return new Date() > FEATURE_EXPIRY;
+    }
+
+    /* ───────────────────────────────────────────
+       KHởi tạo khi trang load
+    ──────────────────────────────────────────── */
+    function kiemTraTuongTac() {
+        const ongXam     = document.getElementById('khungOngXam');
+        const theThongBao = document.getElementById('thongBaoLoi');
+
+        // 1) Kiểm tra sự kiện đã hết hạn
+        if (isFeatureExpired()) {
+            ongXam.style.display = 'none';
+            const daHetHan = document.getElementById('daHetHan');
+            if (daHetHan) daHetHan.style.display = 'block';
+            // Nếu đã gieo rồi → hiện luôn kết quả đã lưu
+            if (hasUserDrawnFortune()) {
+                if (daHetHan) daHetHan.style.display = 'none';
+                ongXam.style.display = 'none';
+                const queCu = getUserDrawnFortune();
+                if (queCu) {
+                    document.getElementById('cau-ngon-ngu').innerText = queCu.quote;
+                    document.getElementById('tac-gia-ngon').innerText = `- ${queCu.author}`;
+                    document.getElementById('textMaVoucher').innerText = queCu.voucher;
+                    document.getElementById('bangKetQua').classList.add('cuon-sach-mo-ra');
+                }
+            }
+            return;
+        }
+
+        // 2) Kiểm tra đã gieo chưa (sau cả khi đăng nhập)
+        if (hasUserDrawnFortune()) {
+            // Đã gieo rồi → khôi phục lại quẻ đã gieo + hiện kết quả
+            ongXam.style.display = 'none';
+            const queCu = getUserDrawnFortune();
+            if (queCu) {
+                document.getElementById('cau-ngon-ngu').innerText = queCu.quote;
+                document.getElementById('tac-gia-ngon').innerText = `- ${queCu.author}`;
+                document.getElementById('textMaVoucher').innerText = queCu.voucher;
+                document.getElementById('bangKetQua').classList.add('cuon-sach-mo-ra');
+            }
+            return;
+        }
+
+        // 3) Chưa gieo → cho tương tác (đã kiểm tra đăng nhập bên dưới khi click)
+        ongXam.style.display = 'block';
+    }
+
+    /* ───────────────────────────────────────────
+       XỬ LÝ GIEO QUẺ
+    ──────────────────────────────────────────── */
     function xuLyGieoQue() {
-        const ongXam = document.getElementById('khungOngXam');
-        const ketQua = document.getElementById('bangKetQua');
-        
-        if(ongXam.classList.contains('bien-mat-hoan-toan')) return;
+        const ongXam   = document.getElementById('khungOngXam');
+        const ketQua  = document.getElementById('bangKetQua');
+        const thongBao = document.getElementById('thongBaoLoi');
+
+        // Đã đang xử lý → bỏ qua
+        if (ongXam.classList.contains('bien-mat-hoan-toan')) return;
+
+        // ── RÀNG BUỘC 1: Phải đăng nhập ──
+        if (!isUserLoggedIn()) {
+            if (thongBao) {
+                thongBao.style.display = 'block';
+                thongBao.innerHTML = '<i class="fas fa-lock"></i> Vui lòng <a href="login.html">đăng nhập</a> để tham gia gieo quẻ.';
+            }
+            return;
+        }
+
+        // ── RÀNG BUỘC 2: Mỗi tài khoản chỉ gieo 1 lần ──
+        if (hasUserDrawnFortune()) {
+            if (thongBao) {
+                thongBao.style.display = 'block';
+                thongBao.innerHTML = '<i class="fas fa-info-circle"></i> Bạn đã tham gia gieo quẻ rồi. Không thể gieo lại.';
+            }
+            return;
+        }
+
+        // ── RÀNG BUỘC 3: Sự kiện còn hạn ──
+        if (isFeatureExpired()) {
+            if (thongBao) {
+                thongBao.style.display = 'block';
+                thongBao.innerHTML = '<i class="fas fa-clock"></i> Sự kiện đã kết thúc. Cảm ơn bạn đã quan tâm!';
+            }
+            return;
+        }
+
+        // Ẩn thông báo lỗi (nếu có)
+        if (thongBao) thongBao.style.display = 'none';
 
         // Kích hoạt hiệu ứng lắc ống xăm tre
         ongXam.classList.add('hieu-ung-lac-xam');
-        
-        // 🌟 LẤY NGẪU NHIÊN 1 QUẺ TRONG DANH SÁCH
+
+        // LẤY NGẪU NHIÊN 1 QUẺ TRONG DANH SÁCH
         const queNgauNhien = danhSachQueTriThuc[Math.floor(Math.random() * danhSachQueTriThuc.length)];
-        
-        // 🌟 ĐỔ DỮ LIỆU TƯƠNG ỨNG CỦA QUẺ ĐÓ VÀO GIAO DIỆN
+
+        // ĐỔ DỮ LIỆU TƯƠNG ỨNG CỦA QUẺ ĐÓ VÀO GIAO DIỆN
         document.getElementById('cau-ngon-ngu').innerText = queNgauNhien.quote;
         document.getElementById('tac-gia-ngon').innerText = `- ${queNgauNhien.author}`;
-        document.getElementById('textMaVoucher').innerText = queNgauNhien.voucher; // Cập nhật mã voucher riêng biệt!
+        document.getElementById('textMaVoucher').innerText = queNgauNhien.voucher;
 
         setTimeout(() => {
             ongXam.classList.remove('hieu-ung-lac-xam');
             ongXam.classList.add('bien-mat-hoan-toan');
-            
-            localStorage.setItem('thuhien_da_gieo_que', 'true');
-            
+
+            // Lưu theo user ID (per-user) + lưu luôn quẻ đã gieo
+            markUserAsDrawn(queNgauNhien);
+
+            // Lưu mã voucher vào localStorage để cart/checkout đọc được
+            localStorage.setItem('appliedCoupon', queNgauNhien.voucher);
+
             setTimeout(() => {
                 ongXam.style.display = 'none';
                 ketQua.classList.add('cuon-sach-mo-ra');
-            }, 400); 
+            }, 400);
         }, 1200);
     }
 
+    /* ───────────────────────────────────────────
+       HÀNH ĐỘNG SAO CHÉP MÃ
+    ──────────────────────────────────────────── */
     function hanhDongCopy(nutBam) {
         const code = document.getElementById('textMaVoucher').innerText;
         navigator.clipboard.writeText(code).then(() => {
@@ -133,6 +256,42 @@
             }, 2000);
         });
     }
+
+    // Định nghĩa danh sách các quẻ xăm: Mỗi quẻ gồm Lời khuyên, Tác giả và Mã Voucher riêng biệt
+    const danhSachQueTriThuc = [
+        {
+            quote: "“Khai quyển hữu ích” — Mở cuốn sách ra là đã có ích rồi.",
+            author: "Tục ngữ cổ",
+            voucher: "KHAIQUYEN10"
+        },
+        {
+            quote: "“Ngọc bất trác, bất thành khí; nhân bất học, bất tri lý.”",
+            author: "Lễ Ký",
+            voucher: "NGOCQUY20"
+        },
+        {
+            quote: "“Muốn xây dựng đất nước, trước hết phải phát triển giáo dục. Muốn trị nước, trước hết phải trọng dụng nhân tài.”",
+            author: "Chu Văn An",
+            voucher: "CHUVANAN15"
+        },
+        {
+            quote: "“Hiền tài là nguyên khí của quốc gia, nguyên khí thịnh thì thế nước mạnh.”",
+            author: "Thân Nhân Trung",
+            voucher: "NGUYENKHI25"
+        },
+        {
+            quote: "“Sách chứa đựng tinh hoa của dòng thời gian, là báu vật vô giá của nhân loại.”",
+            author: "Thư Hiên Chí",
+            voucher: "TINHHOA50"
+        }
+    ];
+
+    /* ───────────────────────────────────────────
+       CHẠY SAU KHI DOM SẴN SÀNG
+    ──────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', function() {
+        kiemTraTuongTac();
+    });
 </script>
 </body>
 </html>

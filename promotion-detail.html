@@ -71,7 +71,7 @@
             <h3>Giảm đến 50%</h3>
             <p>Cho hàng trăm đầu sách chọn lọc trong kho. Áp dụng toàn bộ thể loại, từ sách cổ đến ấn bản đặc biệt.</p>
             <div class="pd-uu-dai-han">Từ 01/06 – 30/06/2026</div>
-            <button class="pd-sao-chep-ma" data-ma="HESANG20" onclick="applyPromotionVoucher('HESANG20')">📋 Lưu mã giảm 20% toàn đơn</button>
+            <button class="pd-sao-chep-ma" data-ma="HESANG50K" onclick="saveVoucherCode('HESANG50K', this)">📋 Lưu mã giảm 50.000đ</button>
           </div>
 
           <div class="pd-uu-dai-the mau-xanh">
@@ -82,7 +82,7 @@
             <h3>Miễn phí giao hàng</h3>
             <p>Toàn quốc cho mọi đơn hàng từ 199.000đ. Giao nhanh trong 3 ngày làm việc, đóng gói cẩn thận.</p>
             <div class="pd-uu-dai-han">Đơn từ 199.000đ</div>
-            <button class="pd-sao-chep-ma" data-ma="FREESHIP26" onclick="applyPromotionVoucher('FREESHIP26')">📋 Lưu mã miễn phí vận chuyển</button>
+            <button class="pd-sao-chep-ma" data-ma="FREESHIP26" onclick="saveVoucherCode('FREESHIP26', this)">📋 Lưu mã miễn phí vận chuyển</button>
           </div>
 
           <div class="pd-uu-dai-the mau-do">
@@ -93,7 +93,7 @@
             <h3>Quà tặng bí mật</h3>
             <p>Mỗi đơn hàng từ 299.000đ nhận ngay một phần quà bí mật — bookmark thêu tay, túi vải hay voucher tiếp theo.</p>
             <div class="pd-uu-dai-han">Đơn từ 299.000đ</div>
-            <button class="pd-sao-chep-ma" data-ma="GIFT50K" onclick="applyPromotionVoucher('GIFT50K')">📋 Lưu mã giảm 50.000đ</button>
+            <button class="pd-sao-chep-ma" data-ma="GIFT50K" onclick="saveVoucherCode('GIFT50K', this)">📋 Lưu mã quà tặng 50.000đ</button>
           </div>
 
         </div>
@@ -196,9 +196,9 @@
 
     <!-- ==========NHÚNG FOOTER ========== -->
     <div id="footer"></div>
-
-    <script src="assets/js/data.js" ></script>
-    <script src="assets/js/promotion-detail.js" ></script>
+<script src="assets/js/promotion-detail.js"></script>
+    <script src="assets/js/data.js"></script>
+    
     <script src="assets/js/style.js"></script>
 
     <!-- ================= HỘP QUÀ NỔI TÍCH HỢP ================= -->

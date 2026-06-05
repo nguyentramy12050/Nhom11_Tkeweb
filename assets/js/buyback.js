@@ -86,7 +86,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!tenSach) { baoLoi('ten-sach', 'Vui lòng nhập tên sách'); return; }
         if (!hoTen)   { baoLoi('ho-ten',   'Vui lòng nhập họ tên');    return; }
         if (!sdt)     { baoLoi('sdt',       'Vui lòng nhập số điện thoại'); return; }
+        if (!/^0\d{9}$/.test(sdt)) { baoLoi('sdt', 'SĐT phải là 10 số, bắt đầu bằng 0'); return; }
         if (!tinhTrangChon) { alert('Vui lòng chọn tình trạng sách'); return; }
+
+        const emailVal = document.getElementById('email').value.trim();
+        if (emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+            baoLoi('email', 'Email không hợp lệ'); return;
+        }
 
         const hinhThuc = document.querySelector('input[name="hinh-thuc"]:checked').value;
         if (hinhThuc === 'chuyen-khoan') {
@@ -101,7 +107,30 @@ document.addEventListener("DOMContentLoaded", function () {
         nutGui.disabled = true;
         nutGui.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
 
+        /* ===== LƯU VÀO LOCALSTORAGE ===== */
+        const diaChi = document.getElementById('so-tk').value.trim();
+        const nganHang = document.getElementById('ngan-hang').value.trim();
+
+        const banGhi = {
+            id: Date.now(),
+            loai: 'buyback',
+            ngay: new Date().toLocaleString('vi-VN'),
+            sach: { ten: tenSach, tacGia: document.getElementById('tac-gia').value.trim(), namXB: document.getElementById('nam-xb').value.trim(), soLuong: document.getElementById('so-luong').value.trim(), tinhTrang: tinhTrangChon.dataset.val, moTa: document.getElementById('mo-ta').value.trim() },
+            khach: { ten: hoTen, sdt: sdt, email: document.getElementById('email').value.trim() },
+            hinhThuc: hinhThuc,
+            nganHang: hinhThuc === 'chuyen-khoan' ? nganHang : '',
+            soTK: hinhThuc === 'chuyen-khoan' ? diaChi : '',
+            trangThai: 'cho-xu-ly',
+            ghiChu: ''
+        };
+
+        const danhSach = JSON.parse(localStorage.getItem('thuhien_submissions') || '[]');
+        danhSach.unshift(banGhi);
+        localStorage.setItem('thuhien_submissions', JSON.stringify(danhSach));
+
         setTimeout(() => {
+            nutGui.disabled = false;
+            nutGui.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi yêu cầu định giá';
             thanhCong.classList.add('hien');
         }, 1200);
     });

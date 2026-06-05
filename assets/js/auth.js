@@ -22,6 +22,25 @@ function saveUsers(users) {
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
+// Tạo sẵn tài khoản admin nếu chưa có
+function initAdminAccount() {
+    const users = getUsers();
+    const adminEmail = "admin@thuhien.vn";
+    const hasAdmin = users.some(u => u.email === adminEmail && u.role === "admin");
+    if (!hasAdmin) {
+        users.push({
+            id: "admin_" + Date.now(),
+            name: "Quản trị viên",
+            email: adminEmail,
+            phone: "0901234567",
+            password: "admin123",
+            role: "admin",
+            createdAt: new Date().toISOString()
+        });
+        saveUsers(users);
+    }
+}
+
 function clearCurrentUserSession() {
     [sessionStorage, localStorage].forEach(storage => {
         storage.removeItem(CURRENT_USER_KEY);
@@ -285,6 +304,11 @@ function handleLogin(event) {
     };
 
     saveCurrentUser(currentUser, rememberLogin);
+
+    // Nếu là admin thì set thêm flag để hiện link "Quản lý" ở header
+    if (foundUser.role === "admin") {
+        localStorage.setItem("thuhien_admin_da_dang_nhap", "true");
+    }
 
     setMessage("login-message", "Đăng nhập thành công. Đang chuyển trang...", "success");
 
@@ -658,6 +682,7 @@ function initForgotPasswordPage() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    initAdminAccount();
     initPasswordToggle();
     initAuthForms();
     initForgotPasswordPage();
