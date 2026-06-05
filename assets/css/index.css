@@ -346,6 +346,12 @@ main > section {
       flex-shrink: 0;
   }
 
+  .anh-sach a {
+      display: block;
+      width: 100%;
+      height: 100%;
+  }
+
   .anh-sach img {
       width: 100%;
       height: 100%;

@@ -270,6 +270,9 @@ function renderCartItem(item) {
                 src="${getBookImagePath(item.image)}"
                 alt="${item.name}"
                 class="cart-item-img"
+                onclick="window.location.href='product-detail.html?id=${item.id}'"
+                title="Xem chi tiết ${item.name}"
+                style="cursor:pointer"
                 onerror="this.src='assets/images/background.jpg'"
             >
 

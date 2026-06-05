@@ -171,6 +171,9 @@ function renderTrackingItems(items) {
                 <img
                     src="assets/images/books/${imageName}"
                     alt="${bookName}"
+                    onclick="window.location.href='product-detail.html?id=${item.id}'"
+                    title="Xem chi tiết ${bookName}"
+                    style="cursor:pointer"
                     onerror="this.src='assets/images/logo.jpg'"
                 >
 

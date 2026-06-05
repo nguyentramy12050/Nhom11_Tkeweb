@@ -495,11 +495,10 @@ function sendResetCodeToEmail(email, code) {
     );
 }
 
-function showResetForm() {
-    const verifyForm = document.getElementById("verify-form");
-    if (verifyForm) {
-        verifyForm.classList.add("show");
-    }
+function goToResetPasswordPage(delay = 900) {
+    setTimeout(function () {
+        window.location.href = "reset_password.html";
+    }, delay);
 }
 
 function validateForgotEmail() {
@@ -551,18 +550,18 @@ function handleForgotPassword(event) {
             if (result && result.demo) {
                 setMessage(
                     "forgot-message",
-                    `Chưa cấu hình EmailJS nên đang dùng mã kiểm thử: ${resetCode}`,
+                    `Chưa cấu hình EmailJS nên đang dùng mã kiểm thử: ${resetCode}. Đang chuyển sang trang đặt lại mật khẩu...`,
                     "success"
                 );
+                goToResetPasswordPage(1600);
             } else {
                 setMessage(
                     "forgot-message",
-                    "Mã xác thực đã được gửi. Vui lòng kiểm tra email của bạn.",
+                    "Mã xác thực đã được gửi. Đang chuyển sang trang đặt lại mật khẩu...",
                     "success"
                 );
+                goToResetPasswordPage();
             }
-
-            showResetForm();
         })
         .catch(function (error) {
             console.error("Lỗi gửi email:", error);
@@ -670,14 +669,25 @@ function handleResetPassword(event) {
 
 function initForgotPasswordPage() {
     const forgotForm = document.getElementById("forgot-form");
-    const verifyForm = document.getElementById("verify-form");
 
     if (forgotForm) {
         forgotForm.addEventListener("submit", handleForgotPassword);
     }
+}
 
+function initResetPasswordPage() {
+    const verifyForm = document.getElementById("verify-form");
     if (verifyForm) {
         verifyForm.addEventListener("submit", handleResetPassword);
+
+        const resetData = getResetData();
+        if (!resetData.email || !resetData.code) {
+            setMessage(
+                "reset-message",
+                "Vui lòng gửi mã xác thực trước khi đặt lại mật khẩu.",
+                "error"
+            );
+        }
     }
 }
 
@@ -686,4 +696,5 @@ document.addEventListener("DOMContentLoaded", function () {
     initPasswordToggle();
     initAuthForms();
     initForgotPasswordPage();
+    initResetPasswordPage();
 });

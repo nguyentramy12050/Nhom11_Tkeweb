@@ -233,6 +233,7 @@
     gap: 10px;
     opacity: 0; /* Ẩn đi khi chưa di chuột */
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 /* Khi di chuột vào ảnh (.book-img-wrapper), lớp phủ sẽ hiện ra */
@@ -254,6 +255,7 @@
     transition: all 0.3s ease;
     text-decoration: none;
     transform: translateY(10px); /* Đẩy nút xuống một chút để tạo hiệu ứng nổi lên */
+    pointer-events: auto;
 }
 
 .book-img-wrapper:hover .action-btn {
@@ -286,6 +288,11 @@
     position: relative; width: 100%; aspect-ratio: 3/4;
     background-color: #eae3d8; overflow: hidden; border-radius: 4px;
     box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+}
+.book-img-wrapper > a {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 .book-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 

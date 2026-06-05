@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
             htmlSach += `
                 <div class="the-sach">
                     <div class="anh-sach">
-                        <img src="assets/images/books/${book.image}" alt="${book.name}" onerror="this.src='assets/images/logo.jpg'">
+                        <a href="product-detail.html?id=${book.id}" aria-label="Xem chi tiết ${book.name}">
+                            <img src="assets/images/books/${book.image}" alt="${book.name}" onerror="this.src='assets/images/logo.jpg'">
+                        </a>
                         ${htmlNhan}
                     </div>
                     <div class="thong-tin">

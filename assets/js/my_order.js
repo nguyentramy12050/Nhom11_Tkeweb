@@ -246,6 +246,9 @@ function renderOrderCard(order, index) {
                     src="${getBookImagePath(firstItem.image)}"
                     alt="${firstItem.name}"
                     class="order-image"
+                    onclick="window.location.href='product-detail.html?id=${firstItem.id}'"
+                    title="Xem chi tiết ${firstItem.name}"
+                    style="cursor:pointer"
                     onerror="this.src='assets/images/background.jpg'"
                 >
 
