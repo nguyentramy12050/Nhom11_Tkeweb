@@ -116,11 +116,43 @@ function getOrderTotal(order) {
 }
 
 function filterOrders(orders) {
-    if (currentOrderFilter === "all") return orders;
+    const ordersWithIndex = orders.map((order, index) => ({
+        order,
+        originalIndex: index
+    }));
 
-    return orders.filter((order, index) => {
-        const status = getOrderStatus(order, index);
-        return status === currentOrderFilter;
+    const filteredOrders = currentOrderFilter === "all"
+        ? ordersWithIndex
+        : ordersWithIndex.filter(({ order, originalIndex }) => {
+            const status = getOrderStatus(order, originalIndex);
+            return status === currentOrderFilter;
+        });
+
+    return sortOrdersForDisplay(filteredOrders);
+}
+
+// Lấy mốc thời gian của đơn hàng để sắp xếp đơn mới hơn lên trên.
+function getOrderTime(order) {
+    const date = new Date(order.createdAt || 0);
+
+    if (Number.isNaN(date.getTime())) return 0;
+
+    return date.getTime();
+}
+
+// Sắp xếp đơn chưa giao lên đầu, đơn hoàn thành xuống cuối và trong từng nhóm thì đơn mới hơn nằm trên.
+function sortOrdersForDisplay(ordersWithIndex) {
+    return ordersWithIndex.sort((left, right) => {
+        const leftStatus = getOrderStatus(left.order, left.originalIndex);
+        const rightStatus = getOrderStatus(right.order, right.originalIndex);
+        const leftPriority = leftStatus === "shipping" ? 0 : 1;
+        const rightPriority = rightStatus === "shipping" ? 0 : 1;
+
+        if (leftPriority !== rightPriority) {
+            return leftPriority - rightPriority;
+        }
+
+        return getOrderTime(right.order) - getOrderTime(left.order);
     });
 }
 
@@ -201,11 +233,8 @@ function renderOrderCard(order, index) {
                                   <button class="order-btn" onclick="showOrderDetail(${index})">
                                     Chi tiết
                                   </button>`
-                                : `<button class="order-btn primary" onclick="showOrderDetail(${index})">
+                                : `<button class="order-btn primary" onclick="goToReview(${index})">
                                     Đánh giá
-                                  </button>
-                                  <button class="order-btn" onclick="buyAgain(${index})">
-                                    Mua lại
                                   </button>`
                         }
                     </div>
@@ -234,8 +263,7 @@ function renderOrdersPage() {
 
     emptyBox.style.display = "none";
 
-    ordersList.innerHTML = filteredOrders.map((order) => {
-        const originalIndex = orders.indexOf(order);
+    ordersList.innerHTML = filteredOrders.map(({ order, originalIndex }) => {
         return renderOrderCard(order, originalIndex);
     }).join("");
 }
@@ -312,31 +340,9 @@ function goToTracking(orderIndex) {
     window.location.href = `tracking.html?${params.toString()}`;
 }
 
-function buyAgain(orderIndex) {
-    const orders = getOrdersFromStorage();
-    const order = orders[orderIndex];
-
-    if (!order || !order.items) return;
-
-    const cart = getCartFromStorage();
-
-    order.items.forEach(orderItem => {
-        const existingItem = cart.find(item => Number(item.id) === Number(orderItem.id));
-
-        if (existingItem) {
-            existingItem.quantity += Number(orderItem.quantity || 1);
-        } else {
-            cart.push({
-                id: Number(orderItem.id),
-                quantity: Number(orderItem.quantity || 1)
-            });
-        }
-    });
-
-    saveCartToStorage(cart);
-    updateHeaderCartBadge();
-
-    window.location.href = "cart.html";
+// Chuyển sang trang viết đánh giá cho đúng đơn hàng đã hoàn thành.
+function goToReview(orderIndex) {
+    window.location.href = `review.html?order=${orderIndex}`;
 }
 
 function initOrderTabs() {

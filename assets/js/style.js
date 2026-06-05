@@ -22,6 +22,38 @@ function capNhatBadgeGioHang() {
     badge.classList.toggle('an', soLuong === 0);
 }
 
+// Danh sách thể loại dùng để nhận diện khi người dùng tìm đúng tên thể loại ở header.
+const CAC_THE_LOAI_HEADER = [
+    'Văn học kinh điển',
+    'Văn học Việt Nam xưa',
+    'Triết học & Tư tưởng',
+    'Lịch sử & Văn minh',
+    'Trinh thám kinh điển',
+    'Thiếu nhi & tuổi thơ',
+    'Ngoại văn tuyển chọn',
+    'Ấn bản đặc biệt'
+];
+
+// Chuẩn hóa chữ để so sánh thể loại không phân biệt hoa/thường và khoảng trắng thừa.
+function chuanHoaTuKhoaHeader(value) {
+    return String(value || '')
+        .trim()
+        .replace(/\s+/g, ' ')
+        .toLocaleLowerCase('vi-VN');
+}
+
+// Tạo đường dẫn sang trang danh mục, ưu tiên lọc thể loại nếu từ khóa là tên thể loại.
+function taoDuongDanDanhMucTheoTuKhoa(tuKhoa) {
+    const tuKhoaChuan = chuanHoaTuKhoaHeader(tuKhoa);
+    const theLoai = CAC_THE_LOAI_HEADER.find(item => chuanHoaTuKhoaHeader(item) === tuKhoaChuan);
+
+    if (theLoai) {
+        return `category.html?category=${encodeURIComponent(theLoai)}`;
+    }
+
+    return `category.html?q=${encodeURIComponent(tuKhoa)}`;
+}
+
 window.initThuhienHeader = function () {
     const btnTimKiem = document.getElementById('btn-tim-kiem');
     const popTimKiem = document.getElementById('pop-tim-kiem');
@@ -49,7 +81,7 @@ window.initThuhienHeader = function () {
 
     function diTimKiem() {
         const q = oTimKiem ? oTimKiem.value.trim() : '';
-        if (q) window.location.href = `category.html?q=${encodeURIComponent(q)}`;
+        if (q) window.location.href = taoDuongDanDanhMucTheoTuKhoa(q);
     }
 
     if (btnTimKiem && !btnTimKiem.dataset.bound) {
@@ -82,7 +114,7 @@ window.initThuhienHeader = function () {
         tag.dataset.bound = 'true';
         tag.addEventListener('click', () => {
             const tenTag = tag.textContent.trim();
-            window.location.href = `category.html?q=${encodeURIComponent(tenTag)}`;
+            window.location.href = taoDuongDanDanhMucTheoTuKhoa(tenTag);
         });
     });
 

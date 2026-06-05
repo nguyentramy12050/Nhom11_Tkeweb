@@ -59,9 +59,16 @@ h1, h2, h3, h4, h5, h6,
     box-shadow: 0 8px 24px rgba(62, 48, 39, 0.08);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1000;
+}
+
+#header {
+    min-height: 121px;
 }
 
 /* --- Top Bar (Thanh tiện ích nhỏ) --- */
@@ -149,9 +156,18 @@ h1, h2, h3, h4, h5, h6,
 .header-nav ul {
     display: flex;
     gap: 30px;
+    align-items: center;
+}
+
+.header-nav > ul > li {
+    position: relative;
 }
 
 .header-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: .6px;
@@ -168,6 +184,76 @@ h1, h2, h3, h4, h5, h6,
     color: var(--header-text);
     background: rgba(160, 106, 50, 0.10);
     border-bottom-color: var(--header-accent);
+}
+
+.nav-dropdown > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    z-index: 1002;
+    min-width: 245px;
+    max-height: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 90, 43, 0.55) rgba(230, 223, 211, 0.55);
+    background: #fffaf2;
+    border: 1px solid rgba(139, 90, 43, 0.18);
+    border-radius: 8px;
+    box-shadow: 0 14px 34px rgba(62, 48, 39, 0.16);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+
+.nav-dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.nav-dropdown-menu::-webkit-scrollbar-track {
+    background: rgba(230, 223, 211, 0.55);
+    border-radius: 999px;
+}
+
+.nav-dropdown-menu::-webkit-scrollbar-thumb {
+    background: rgba(139, 90, 43, 0.55);
+    border-radius: 999px;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-dropdown-menu a {
+    width: 100%;
+    display: block;
+    min-height: 0;
+    padding: 7px 10px;
+    border-bottom: 0;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.2;
+    text-transform: none;
+    color: var(--header-muted);
+    white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover {
+    color: var(--header-text);
+    background: rgba(160, 106, 50, 0.10);
 }
 
 .header-icons {
@@ -386,6 +472,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* --- Media Queries dành cho Header --- */
 @media (max-width: 768px) {
+    #header { min-height: 86px; }
     .hd-top { display: none; }
     .pop-tim-kiem { top: 86px; }
     .pop-tim-kiem-noi { margin: 16px auto 0; }

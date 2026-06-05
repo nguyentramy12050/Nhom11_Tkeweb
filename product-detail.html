@@ -95,11 +95,44 @@
 
           <div class="product-bottom-section">
             <div class="tab-section">
-              <h3 class="section-heading">MÔ TẢ</h3>
-              <div class="description-content">
+              <div class="detail-tabs" role="tablist" aria-label="Thông tin chi tiết sách">
+                <button class="detail-tab-btn active" type="button" data-tab="description" role="tab" aria-selected="true">
+                  MÔ TẢ
+                </button>
+                <button class="detail-tab-btn" type="button" data-tab="reviews" role="tab" aria-selected="false">
+                  ĐÁNH GIÁ
+                </button>
+              </div>
+
+              <div class="tab-panel active" id="description-panel" role="tabpanel">
+                <div class="description-content">
                 <p id="detail-description" style="white-space: pre-line">
                   Đang tải mô tả...
                 </p>
+                </div>
+              </div>
+
+              <div class="tab-panel" id="reviews-panel" role="tabpanel">
+                <h3 class="review-panel-title">
+                  <i class="fas fa-star-half-alt"></i>
+                  Đánh giá từ độc giả
+                </h3>
+
+                <div class="review-summary">
+                  <div class="review-score-box">
+                    <div class="review-score-number">
+                      <strong id="review-average">0.0</strong><span>/5</span>
+                    </div>
+                    <div class="review-average-stars" id="review-average-stars"></div>
+                    <p class="review-summary-text">
+                      Dựa trên <strong id="review-count">0</strong> đánh giá
+                    </p>
+                  </div>
+
+                  <div class="review-breakdown" id="review-breakdown"></div>
+                </div>
+
+                <div class="review-list" id="review-list"></div>
               </div>
             </div>
 

@@ -3,12 +3,18 @@
 // ==========================================
 document.addEventListener("DOMContentLoaded", function () {
     populateAuthors();
+    populatePublishers();
     updateCartBadge();
 
     const urlParams = new URLSearchParams(window.location.search);
+    const theLoaiTuHeader = urlParams.get('category');
     const tuKhoa = urlParams.get('q');
+    const theLoaiTimThay = timTheLoaiTheoTuKhoa(theLoaiTuHeader || tuKhoa || '');
 
-    if (tuKhoa) {
+    if (theLoaiTimThay) {
+        chonTheLoaiTuUrl(theLoaiTimThay);
+        applyAllFilters();
+    } else if (tuKhoa) {
         // Lọc sách khớp tên / tác giả / thể loại
         filteredBooks = booksData.filter(book => {
             const q = tuKhoa.toLowerCase();
@@ -17,24 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 || book.category.toLowerCase().includes(q);
         });
 
-        // Cập nhật tiêu đề trang
-        const tieuDe = document.querySelector('.page-title');
-        if (tieuDe) tieuDe.textContent = `Kết quả: "${tuKhoa}"`;
-
-        // Bỏ active ở sidebar, không lọc theo category nữa
+        // Bỏ trạng thái sáng ở sidebar khi tìm theo tên sách hoặc tác giả.
         document.querySelectorAll('.category-list a').forEach(a => a.classList.remove('active-cat'));
 
         // Hiển thị kết quả
         currentPage = 1;
         renderBooks(currentPage);
         renderPagination();
-
-        // Hiển thị thông báo số kết quả
-        const bookGrid = document.getElementById('book-grid');
-        const thongBao = document.createElement('p');
-        thongBao.style.cssText = 'grid-column:1/-1; color:#9c7d5f; font-size:13px; margin-bottom:8px; font-style:italic;';
-        thongBao.textContent = `Tìm thấy ${filteredBooks.length} sách cho từ khóa "${tuKhoa}"`;
-        bookGrid.insertAdjacentElement('beforebegin', thongBao);
     } else {
         // Nếu không có từ khóa tìm kiếm thì chạy bộ lọc mặc định
         applyAllFilters();
@@ -55,6 +50,36 @@ let currentPriceTier = 'all';
 // Hàm phụ trợ: Ép kiểu giá từ chuỗi (VD: "185.000") thành số (185000)
 const parsePrice = (priceStr) => parseInt(priceStr.replace(/\./g, ''));
 const CART_KEY = "cart";
+
+// Chuẩn hóa chữ để so sánh tên thể loại không bị lệch do hoa/thường hoặc khoảng trắng.
+function chuanHoaChuoi(value) {
+    return String(value || '')
+        .trim()
+        .replace(/\s+/g, ' ')
+        .toLocaleLowerCase('vi-VN');
+}
+
+// Tìm tên thể loại đúng trong dữ liệu sách dựa trên từ khóa từ URL hoặc ô tìm kiếm.
+function timTheLoaiTheoTuKhoa(keyword) {
+    const tuKhoaChuan = chuanHoaChuoi(keyword);
+    if (!tuKhoaChuan) return null;
+
+    const danhSachTheLoai = [...new Set(booksData.map(book => book.category))];
+    return danhSachTheLoai.find(category => chuanHoaChuoi(category) === tuKhoaChuan) || null;
+}
+
+// Bật sáng đúng mục thể loại trong sidebar khi người dùng đi từ dropdown header hoặc tìm kiếm.
+function chonTheLoaiTuUrl(categoryName) {
+    currentCategory = categoryName;
+
+    document.querySelectorAll('.category-list a').forEach(link => {
+        const tenHienThi = chuanHoaChuoi(link.textContent);
+        const laTatCaSach = chuanHoaChuoi(categoryName) === 'all' && tenHienThi === 'tất cả sách';
+        const laTheLoaiDangChon = tenHienThi === chuanHoaChuoi(categoryName);
+
+        link.classList.toggle('active-cat', laTatCaSach || laTheLoaiDangChon);
+    });
+}
 
 function getCartFromStorage() {
     try {
@@ -156,7 +181,110 @@ function populateAuthors() {
 
     // Lắng nghe sự kiện khi người dùng chọn tác giả khác
     authorSelect.addEventListener('change', applyAllFilters);
+    taoDropdownLocTuyBien(authorSelect);
 }
+
+function populatePublishers() {
+    const publisherSelect = document.getElementById('publisher-filter');
+    if (!publisherSelect) return;
+
+    // Lấy danh sách các nhà xuất bản (không trùng lặp) và sắp xếp A-Z
+    const publishers = [...new Set(booksData.map(book => book.publisher))].sort();
+
+    publishers.forEach(publisher => {
+        const option = document.createElement('option');
+        option.value = publisher;
+        option.textContent = publisher;
+        publisherSelect.appendChild(option);
+    });
+
+    // Lắng nghe sự kiện khi người dùng chọn nhà xuất bản khác
+    publisherSelect.addEventListener('change', applyAllFilters);
+    taoDropdownLocTuyBien(publisherSelect);
+}
+
+// Đóng các dropdown lọc đang mở, trừ dropdown được truyền vào nếu có.
+function dongCacDropdownLoc(dropdownDangGiu) {
+    document.querySelectorAll('.filter-dropdown.open').forEach(dropdown => {
+        if (dropdown !== dropdownDangGiu) {
+            dropdown.classList.remove('open');
+        }
+    });
+}
+
+// Cập nhật chữ hiển thị và trạng thái active trong dropdown tùy biến.
+function capNhatDropdownLoc(selectElement, dropdown) {
+    const label = dropdown.querySelector('.filter-dropdown-label');
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+
+    if (label && selectedOption) {
+        label.textContent = selectedOption.textContent;
+    }
+
+    dropdown.querySelectorAll('.filter-dropdown-option').forEach(optionButton => {
+        optionButton.classList.toggle('active', optionButton.dataset.value === selectElement.value);
+    });
+}
+
+// Tạo dropdown tùy biến từ select gốc để dễ chỉnh giao diện và vẫn giữ logic lọc cũ.
+function taoDropdownLocTuyBien(selectElement) {
+    if (!selectElement || selectElement.dataset.dropdownReady) return;
+
+    selectElement.dataset.dropdownReady = 'true';
+    selectElement.classList.add('filter-select-hidden');
+
+    const dropdown = document.createElement('div');
+    dropdown.className = 'filter-dropdown';
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'filter-dropdown-button';
+    button.innerHTML = '<span class="filter-dropdown-label"></span><i class="fas fa-caret-down"></i>';
+
+    const menu = document.createElement('div');
+    menu.className = 'filter-dropdown-menu';
+
+    Array.from(selectElement.options).forEach(option => {
+        const optionButton = document.createElement('button');
+        optionButton.type = 'button';
+        optionButton.className = 'filter-dropdown-option';
+        optionButton.dataset.value = option.value;
+        optionButton.textContent = option.textContent;
+
+        optionButton.addEventListener('click', () => {
+            selectElement.value = option.value;
+            capNhatDropdownLoc(selectElement, dropdown);
+            dropdown.classList.remove('open');
+            selectElement.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+
+        menu.appendChild(optionButton);
+    });
+
+    button.addEventListener('click', event => {
+        event.stopPropagation();
+        const dangMo = dropdown.classList.contains('open');
+        dongCacDropdownLoc(dropdown);
+        dropdown.classList.toggle('open', !dangMo);
+    });
+
+    dropdown.appendChild(button);
+    dropdown.appendChild(menu);
+    selectElement.insertAdjacentElement('afterend', dropdown);
+    capNhatDropdownLoc(selectElement, dropdown);
+}
+
+// Đóng dropdown lọc khi người dùng bấm ra ngoài vùng dropdown.
+document.addEventListener('click', () => {
+    dongCacDropdownLoc();
+});
+
+// Đóng dropdown lọc khi người dùng nhấn phím Escape.
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+        dongCacDropdownLoc();
+    }
+});
 
 // ==========================================
 // 4. CÁC HÀM XỬ LÝ LỌC
@@ -182,7 +310,7 @@ function filterByPrice(tier) {
     applyAllFilters();
 }
 
-// BỘ LỌC TỔNG (Kết hợp Thể loại + Mức giá + Tác giả)
+// BỘ LỌC TỔNG (Kết hợp Thể loại + Mức giá + Tác giả + Nhà xuất bản)
 function applyAllFilters() {
     let tempBooks = [...booksData];
 
@@ -213,11 +341,21 @@ function applyAllFilters() {
         tempBooks = tempBooks.filter(book => book.author === authorSelect.value);
     }
 
+    // 4.4 Lọc theo Nhà xuất bản
+    const publisherSelect = document.getElementById('publisher-filter');
+    if (publisherSelect && publisherSelect.value !== 'all') {
+        tempBooks = tempBooks.filter(book => book.publisher === publisherSelect.value);
+    }
+
     // Gán kết quả vào mảng hiển thị và vẽ lại giao diện
     filteredBooks = tempBooks;
     currentPage = 1;
     renderBooks(currentPage);
     renderPagination();
+}
+
+function applyFilters() {
+    applyAllFilters();
 }
 
 // ==========================================

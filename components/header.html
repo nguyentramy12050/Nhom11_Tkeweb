@@ -35,7 +35,21 @@
     <nav class="header-nav">
       <ul>
         <li><a href="index.html" data-page="index.html">Trang chủ</a></li>
-        <li><a href="category.html" data-page="category.html" class="active">Danh mục</a></li>
+        <li class="nav-dropdown">
+          <a href="category.html" data-page="category.html" class="active">
+            Danh mục <i class="fas fa-caret-down"></i>
+          </a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="category.html?category=Văn%20học%20kinh%20điển">Văn học kinh điển</a></li>
+            <li><a href="category.html?category=Văn%20học%20Việt%20Nam%20xưa">Văn học Việt Nam xưa</a></li>
+            <li><a href="category.html?category=Triết%20học%20%26%20Tư%20tưởng">Triết học &amp; Tư tưởng</a></li>
+            <li><a href="category.html?category=Lịch%20sử%20%26%20Văn%20minh">Lịch sử &amp; Văn minh</a></li>
+            <li><a href="category.html?category=Trinh%20thám%20kinh%20điển">Trinh thám kinh điển</a></li>
+            <li><a href="category.html?category=Thiếu%20nhi%20%26%20tuổi%20thơ">Thiếu nhi &amp; tuổi thơ</a></li>
+            <li><a href="category.html?category=Ngoại%20văn%20tuyển%20chọn">Ngoại văn tuyển chọn</a></li>
+            <li><a href="category.html?category=Ấn%20bản%20đặc%20biệt">Ấn bản đặc biệt</a></li>
+          </ul>
+        </li>
         <li><a href="buyback.html" data-page="buyback.html">Bán lại sách cũ</a></li>
         <li><a href="blog.html" data-page="blog.html">Blog</a></li>
         <li><a href="about.html" data-page="about.html">Về chúng tôi</a></li>
@@ -125,7 +139,7 @@
     }
 
     // 3. TỰ ĐỘNG HIGHLIGHT MENU (ACTIVE LINK) DỰA TRÊN URL HIỆN TẠI
-    const cacDuongLink = document.querySelectorAll(".header-nav ul li a");
+    const cacDuongLink = document.querySelectorAll(".header-nav > ul > li > a");
     const phanCuoiUrl = window.location.pathname.split("/").pop() || "index.html";
 
     cacDuongLink.forEach(link => {
