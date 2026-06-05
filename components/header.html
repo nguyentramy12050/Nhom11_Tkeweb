@@ -8,6 +8,10 @@
           </svg>
           <a href="my_order.html" class="hd-top-dang-nhap">Sách của tôi</a>
         </li>
+        <li id="hd-admin-link" style="display:none;">
+          <i class="fas fa-cog" style="margin-right:4px;"></i>
+          <a href="admin.html" class="hd-top-dang-nhap" style="color:#f4d3a1;">Quản lý</a>
+        </li>
         <li class="hd-top-phan-cach" aria-hidden="true"></li>
         <li id="hd-top-chua-dang-nhap">
           <i class="far fa-user"></i>
@@ -107,6 +111,12 @@
       if (theTenUser) theTenUser.textContent = tdn;
     }
 
+    // Hiện link "Quản lý" nếu đã đăng nhập admin
+    const adminLink = document.getElementById("hd-admin-link");
+    if (adminLink && localStorage.getItem("thuhien_admin_da_dang_nhap") === "true") {
+      adminLink.style.display = "inline-block";
+    }
+
     if (nutDangXuat) {
       nutDangXuat.addEventListener("click", (e) => {
         e.preventDefault();
@@ -117,6 +127,7 @@
         localStorage.removeItem("thuhien_ten");
         localStorage.removeItem("currentUser");
         localStorage.removeItem("thuhien_remembered_email");
+        localStorage.removeItem("thuhien_admin_da_dang_nhap");
         window.location.reload();
       });
     }

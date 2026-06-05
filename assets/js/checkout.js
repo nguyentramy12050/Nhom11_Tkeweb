@@ -1,29 +1,23 @@
 const CART_KEY = "cart";
 const COUPON_KEY = "appliedCoupon";
 const ORDER_KEY = "latestOrder";
-//const COUPON_CODE = "TRIKY";
-//const COUPON_PERCENT = 10;
 const SHIPPING_FEE = 35000;
 const USERS_KEY = "users";
 const CURRENT_USER_KEY = "currentUser";
-// VOUCHER TOÀN HỆ THỐNG
-const DANH_SACH_VOUCHER = {
-    // 1. Mã từ sự kiện "Hè Sang Thư Hiên" (promotion-detail)
-    "HESANG20": { loai: "percent", giaTri: 20 },      // Giảm 20% tổng hóa đơn
-    "HESANG50K": { loai: "fixed", giaTri: 50000 },    // Giảm thẳng 50.000đ
-    
-    // 2. Mã từ sự kiện "Gieo Quẻ Tri Thức" (box.html)
-    "THUHIEN20": { loai: "percent", giaTri: 20 },     
-    "FREESHIP26": { loai: "shipping", giaTri: 0 },    // Miễn phí vận chuyển
-    "GIFT50K": { loai: "fixed", giaTri: 50000 },      
-    "KHAIQUYEN10": {loai: "percent", giaTri: 10},
-    "NGOCQUY20": {loai: "fixed", giaTri: 20000},
-    "CHUVANAN15": {loai: "percent", giaTri: 15},
-    "NGUYENKHI25": {loai: "fixed", giaTri: 25000},
-    "TINHHOA50": {loai: "fixed", giaTri: 50000},
 
-    // 3. Mã tri ân cũ của cậu để giữ logic không lỗi
-    "TRIKY": { loai: "percent", giaTri: 10 }
+// DANH SÁCH VOUCHER — có donToiThieu và hetHan
+const DANH_SACH_VOUCHER = {
+    "HESANG20":   { loai: "percent",  giaTri: 20,  donToiThieu: 0,      hetHan: new Date("2026-06-30") },
+    "HESANG50K":  { loai: "fixed",    giaTri: 50000, donToiThieu: 0,     hetHan: new Date("2026-06-30") },
+    "FREESHIP26": { loai: "shipping", giaTri: 0,    donToiThieu: 199000, hetHan: new Date("2026-06-30") },
+    "GIFT50K":    { loai: "fixed",    giaTri: 50000, donToiThieu: 299000, hetHan: new Date("2026-06-30") },
+    "THUHIEN20":  { loai: "percent",  giaTri: 20,  donToiThieu: 0,      hetHan: null },
+    "KHAIQUYEN10":{ loai: "percent",  giaTri: 10,  donToiThieu: 0,      hetHan: null },
+    "NGOCQUY20":  { loai: "fixed",    giaTri: 20000, donToiThieu: 0,     hetHan: null },
+    "CHUVANAN15": { loai: "percent",  giaTri: 15,  donToiThieu: 0,      hetHan: null },
+    "NGUYENKHI25":{ loai: "fixed",    giaTri: 25000, donToiThieu: 0,     hetHan: null },
+    "TINHHOA50":  { loai: "fixed",    giaTri: 50000, donToiThieu: 0,     hetHan: null },
+    "TRIKY":      { loai: "percent",  giaTri: 10,  donToiThieu: 0,      hetHan: null },
 };
 /* xử lý giá tiền */
 

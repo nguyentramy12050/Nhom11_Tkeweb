@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý | Thư Hiên</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="assets/css/style.css">
+  <style>
+    :root { --mau-chinh: #2e6b3e; --mau-nau: #8a5d3b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans', sans-serif; background: #f5f2ed; color: #2e1a0e; min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1; }
+
+    /* ── ADMIN HEADER ── */
+    .ad-hd { background: #2e1a0e; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .ad-hd-logo { color: #f4d3a1; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .ad-hd-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+    .ad-hd-right { display: flex; align-items: center; gap: 16px; }
+    .ad-hd-btn { padding: 7px 18px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; cursor: pointer; border: none; display: none; }
+    .ad-hd-btn-vl { background: transparent; border: 1px solid #8a5d3b; color: #f4d3a1; }
+    .ad-hd-btn-vl:hover { background: #8a5d3b; }
+    .ad-hd-btn-dx { background: #8a5d3b; color: #fff; }
+    .ad-hd-btn-dx:hover { background: #6b4729; }
+
+    /* ── ADMIN FOOTER ── */
+    .ad-ft { background: #2e1a0e; color: #a08060; padding: 24px 32px; text-align: center; font-size: 0.82rem; margin-top: auto; }
+    .ad-ft strong { color: #f4d3a1; }
+
+    .ad-container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+    .ad-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+    .ad-stat-card { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 2px 8px rgba(0,0,0,.06); display: flex; align-items: center; gap: 16px; }
+    .ad-stat-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .ad-stat-icon.mau-nau { background: #f4ede4; color: #8a5d3b; }
+    .ad-stat-icon.mau-xanh { background: #e8f5ec; color: #2e6b3e; }
+    .ad-stat-icon.mau-cam { background: #fff3e0; color: #e65100; }
+    .ad-stat-icon.mau-chanh { background: #fff8e1; color: #f57f17; }
+    .ad-stat-so { font-size: 1.8rem; font-weight: 700; color: #2e1a0e; }
+    .ad-stat-label { font-size: 0.82rem; color: #74665A; margin-top: 2px; }
+
+    .ad-login { max-width: 400px; margin: 80px auto; background: #fff; border-radius: 16px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,.1); text-align: center; }
+    .ad-login h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 8px; color: #2e1a0e; }
+    .ad-login p { font-size: 0.85rem; color: #74665A; margin-bottom: 28px; }
+    .ad-login input { width: 100%; padding: 12px 16px; border: 1px solid #d4c5b0; border-radius: 8px; font-size: 1rem; margin-bottom: 16px; outline: none; }
+    .ad-login input:focus { border-color: #8a5d3b; }
+    .ad-login button { width: 100%; padding: 14px; background: #2e1a0e; color: #f4d3a1; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+    .ad-login button:hover { background: #4a2c14; }
+    .ad-login .ad-loi { color: #b84a2a; font-size: 0.85rem; margin-top: 12px; display: none; }
+
+    .ad-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .ad-toolbar select, .ad-toolbar input { padding: 8px 14px; border: 1px solid #d4c5b0; border-radius: 8px; font-size: 0.88rem; outline: none; }
+    .ad-toolbar input[type="text"] { width: 240px; }
+    .ad-tab-group { display: flex; gap: 4px; background: #ede8e0; border-radius: 8px; padding: 4px; }
+    .ad-tab { padding: 8px 18px; border: none; background: transparent; border-radius: 6px; cursor: pointer; font-size: 0.88rem; font-weight: 500; color: #74665A; transition: .2s; }
+    .ad-tab.active { background: #fff; color: #2e1a0e; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+    .ad-tab:hover:not(.active) { background: rgba(255,255,255,.6); }
+    .ad-btn-xoa-tat-ca { margin-left: auto; padding: 8px 16px; background: #fff; border: 1px solid #e5503a; color: #e5503a; border-radius: 8px; cursor: pointer; font-size: 0.85rem; display: none; }
+    .ad-btn-xoa-tat-ca:hover { background: #e5503a; color: #fff; }
+
+    .ad-table-wrap { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); overflow: hidden; }
+    .ad-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .ad-table th { background: #f4ede4; padding: 12px 16px; text-align: left; font-weight: 600; color: #74665A; font-size: 0.8rem; text-transform: uppercase; letter-spacing: .5px; }
+    .ad-table td { padding: 14px 16px; border-bottom: 1px solid #f0ece6; vertical-align: top; }
+    .ad-table tr:last-child td { border-bottom: none; }
+    .ad-table tr:hover td { background: #faf8f5; }
+
+    .ad-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+    .ad-badge.chua { background: #fff3e0; color: #e65100; }
+    .ad-badge.xl { background: #e8f5ec; color: #2e6b3e; }
+    .ad-badge.tc { background: #fce4ec; color: #c62828; }
+    .ad-badge.loai-buyback { background: #f4ede4; color: #8a5d3b; }
+    .ad-badge.loai-contact { background: #e3f2fd; color: #1565c0; }
+
+    .ad-table select.trang-thai { padding: 5px 10px; border: 1px solid #d4c5b0; border-radius: 6px; font-size: 0.82rem; background: #fff; cursor: pointer; }
+
+    .ad-ghi-chu-btn { padding: 5px 12px; background: #f4ede4; border: 1px solid #d4c5b0; border-radius: 6px; cursor: pointer; font-size: 0.82rem; color: #74665A; }
+    .ad-ghi-chu-btn:hover { background: #ede4d4; }
+
+    .ad-modal-gh { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); align-items: center; justify-content: center; z-index: 200; }
+    .ad-modal-gh.hien { display: flex; }
+    .ad-modal-gh-body { background: #fff; border-radius: 14px; padding: 32px; width: 480px; max-width: 92vw; box-shadow: 0 8px 32px rgba(0,0,0,.2); }
+    .ad-modal-gh-body h3 { font-family: 'Playfair Display', serif; margin-bottom: 16px; font-size: 1.2rem; }
+    .ad-modal-gh-body textarea { width: 100%; min-height: 100px; resize: vertical; padding: 12px; border: 1px solid #d4c5b0; border-radius: 8px; font-size: 0.9rem; font-family: inherit; outline: none; }
+    .ad-modal-gh-body textarea:focus { border-color: #8a5d3b; }
+    .ad-modal-gh-body .ad-modal-hanh-dong { display: flex; gap: 10px; margin-top: 14px; justify-content: flex-end; }
+    .ad-modal-gh-body .ad-modal-hanh-dong button { padding: 8px 20px; border-radius: 8px; font-size: 0.88rem; cursor: pointer; border: none; font-weight: 600; }
+    .ad-modal-huy { background: #f0ece6; color: #74665A; }
+    .ad-modal-luu { background: #2e6b3e; color: #fff; }
+
+    .ad-nut-hanh-dong { display: flex; gap: 6px; align-items: center; }
+    .ad-nut-xoa { width: 30px; height: 30px; border-radius: 6px; border: 1px solid #e5503a; background: transparent; color: #e5503a; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+    .ad-nut-xoa:hover { background: #e5503a; color: #fff; }
+
+    .ad-chi-tiet { background: #faf8f5; border-radius: 8px; padding: 14px; margin-top: 10px; font-size: 0.84rem; color: #74665A; display: none; }
+    .ad-chi-tiet.hien { display: block; }
+    .ad-chi-tiet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .ad-chi-tiet p { line-height: 1.5; }
+    .ad-chi-tiet strong { color: #2e1a0e; }
+
+    .ad-empty { text-align: center; padding: 60px; color: #74665A; }
+    .ad-empty i { font-size: 3rem; margin-bottom: 16px; color: #d4c5b0; display: block; }
+
+    .ad-thanh-cong-notify { display: none; position: fixed; bottom: 24px; right: 24px; background: #2e6b3e; color: #fff; padding: 14px 22px; border-radius: 10px; font-size: 0.9rem; box-shadow: 0 4px 16px rgba(0,0,0,.2); z-index: 300; }
+    .ad-thanh-cong-notify.hien { display: flex; align-items: center; gap: 10px; }
+
+    /* Admin page heading */
+    .ad-page-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: #2e1a0e; margin-bottom: 24px; }
+
+    @media (max-width: 768px) {
+      .ad-stats { grid-template-columns: repeat(2, 1fr); }
+      .ad-table { font-size: 0.8rem; }
+      .ad-table th, .ad-table td { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="ad-hd">
+  <a href="index.html" class="ad-hd-logo">
+    <img src="assets/images/logo.jpg" alt="logo">
+    <span>Thư Hiên — Quản lý</span>
+  </a>
+  <div class="ad-hd-right">
+    <button class="ad-hd-btn ad-hd-btn-vl" id="ad-btn-ve-trang-chu" onclick="window.location.href='index.html'">
+      <i class="fas fa-home"></i> Về trang chủ
+    </button>
+    <button class="ad-hd-btn ad-hd-btn-dx" id="ad-btn-dang-xuat" onclick="adDangXuat()">
+      <i class="fas fa-sign-out-alt"></i> Đăng xuất
+    </button>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="ad-container">
+  <h1 class="ad-page-title">Trang Quản lý</h1>
+
+  <!-- LOGIN -->
+  <div class="ad-login" id="ad-form-dang-nhap">
+    <h2>Đăng nhập Quản trị</h2>
+    <p>Nhập mật khẩu để truy cập trang quản lý</p>
+    <input type="password" id="ad-mk" placeholder="Nhập mật khẩu…" onkeydown="if(event.key==='Enter')adDangNhap()">
+    <button onclick="adDangNhap()">Đăng nhập</button>
+    <p class="ad-loi" id="ad-loi-dn">Sai mật khẩu. Vui lòng thử lại.</p>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="ad-dashboard" style="display:none">
+
+    <div class="ad-stats">
+      <div class="ad-stat-card">
+        <div class="ad-stat-icon mau-nau"><i class="fas fa-box-open"></i></div>
+        <div><div class="ad-stat-so" id="ad-tb-mua-lai">0</div><div class="ad-stat-label">Yêu cầu mua lại</div></div>
+      </div>
+      <div class="ad-stat-card">
+        <div class="ad-stat-icon mau-xanh"><i class="fas fa-envelope"></i></div>
+        <div><div class="ad-stat-so" id="ad-tb-lien-he">0</div><div class="ad-stat-label">Liên hệ / Phản hồi</div></div>
+      </div>
+      <div class="ad-stat-card">
+        <div class="ad-stat-icon mau-cam"><i class="fas fa-hourglass-half"></i></div>
+        <div><div class="ad-stat-so" id="ad-tb-cho">0</div><div class="ad-stat-label">Chờ xử lý</div></div>
+      </div>
+      <div class="ad-stat-card">
+        <div class="ad-stat-icon mau-chanh"><i class="fas fa-check-double"></i></div>
+        <div><div class="ad-stat-so" id="ad-tb-da-xl">0</div><div class="ad-stat-label">Đã xử lý</div></div>
+      </div>
+    </div>
+
+    <div class="ad-toolbar">
+      <div class="ad-tab-group">
+        <button class="ad-tab active" data-tab="tat-ca" onclick="adDoiTab('tat-ca', this)">Tất cả</button>
+        <button class="ad-tab" data-tab="buyback" onclick="adDoiTab('buyback', this)">Mua lại sách</button>
+        <button class="ad-tab" data-tab="contact" onclick="adDoiTab('contact', this)">Liên hệ</button>
+      </div>
+      <select id="ad-loc-trang-thai" onchange="adLocDuLieu()">
+        <option value="">Tất cả trạng thái</option>
+        <option value="cho-xu-ly">Chờ xử lý</option>
+        <option value="da-phan-hoi">Đã phản hồi</option>
+        <option value="tu-choi">Từ chối</option>
+      </select>
+      <input type="text" id="ad-tim-kiem" placeholder="Tìm tên, SĐT, email…" oninput="adLocDuLieu()">
+      <button class="ad-btn-xoa-tat-ca" id="ad-btn-xoa-nhieu" onclick="adXoaDaChon()">
+        <i class="fas fa-trash"></i> Xóa đã chọn
+      </button>
+    </div>
+
+    <div class="ad-table-wrap">
+      <table class="ad-table">
+        <thead>
+          <tr>
+            <th style="width:38px"><input type="checkbox" id="ad-chon-tat-ca" onchange="adChonTatCa(this)"></th>
+            <th>Ngày</th>
+            <th>Loại</th>
+            <th>Khách hàng</th>
+            <th>Nội dung</th>
+            <th>Trạng thái</th>
+            <th>Ghi chú</th>
+            <th style="width:60px"></th>
+          </tr>
+        </thead>
+        <tbody id="ad-tbody"></tbody>
+      </table>
+      <div class="ad-empty" id="ad-empty">
+        <i class="fas fa-inbox"></i>
+        <p>Chưa có yêu cầu nào.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="ad-ft">
+  <strong>Thư Hiên</strong> — Hệ thống quản lý &nbsp;|&nbsp; &copy; 2026 Tiệm Sách Thư Hiên
+</footer>
+
+<!-- MODAL GHI CHÚ -->
+<div class="ad-modal-gh" id="ad-modal-gh">
+  <div class="ad-modal-gh-body">
+    <h3>Ghi chú / Phản hồi</h3>
+    <textarea id="ad-gh-text" placeholder="Viết ghi chú nội bộ hoặc phản hồi cho yêu cầu này…"></textarea>
+    <div class="ad-modal-hanh-dong">
+      <button class="ad-modal-huy" onclick="adDongModal()">Hủy</button>
+      <button class="ad-modal-luu" onclick="adLuuGhiChu()">Lưu ghi chú</button>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFY -->
+<div class="ad-thanh-cong-notify" id="ad-notify">
+  <i class="fas fa-check-circle"></i>
+  <span id="ad-notify-text">Thành công!</span>
+</div>
+<script>
+const SUB_KEY   = 'thuhien_submissions';
+const ADMIN_KEY = 'thuhien_admin_da_dang_nhap';
+const ADMIN_PASS = 'thuhienadmin';
+let adTabHienTai = 'tat-ca';
+let adIdDangSua  = null;
+let adIdsDaChon   = new Set();
+
+/* ── ĐĂNG NHẬP ── */
+function adDangNhap() {
+  const mk = document.getElementById('ad-mk').value;
+  if (mk === ADMIN_PASS) {
+    localStorage.setItem(ADMIN_KEY, 'true');
+    document.getElementById('ad-form-dang-nhap').style.display = 'none';
+    document.getElementById('ad-dashboard').style.display = 'block';
+    document.getElementById('ad-btn-ve-trang-chu').style.display = 'inline-block';
+    document.getElementById('ad-btn-dang-xuat').style.display = 'inline-block';
+    adTaiDuLieu();
+  } else {
+    document.getElementById('ad-loi-dn').style.display = 'block';
+    document.getElementById('ad-mk').value = '';
+    document.getElementById('ad-mk').focus();
+  }
+}
+
+function adDangXuat() {
+  localStorage.removeItem(ADMIN_KEY);
+  window.location.href = 'index.html';
+}
+
+/* ── TẢI DỮ LIỆU ── */
+function adTaiDuLieu() {
+  if (localStorage.getItem(ADMIN_KEY) !== 'true') return;
+  document.getElementById('ad-form-dang-nhap').style.display = 'none';
+  document.getElementById('ad-dashboard').style.display = 'block';
+  document.getElementById('ad-btn-ve-trang-chu').style.display = 'inline-block';
+  document.getElementById('ad-btn-dang-xuat').style.display = 'inline-block';
+  adCapNhatStats();
+  adLocDuLieu();
+}
+
+function adCapNhatStats() {
+  const ds = JSON.parse(localStorage.getItem(SUB_KEY) || '[]');
+  document.getElementById('ad-tb-mua-lai').textContent = ds.filter(x => x.loai === 'buyback').length;
+  document.getElementById('ad-tb-lien-he').textContent = ds.filter(x => x.loai === 'contact').length;
+  document.getElementById('ad-tb-cho').textContent = ds.filter(x => x.trangThai === 'cho-xu-ly').length;
+  document.getElementById('ad-tb-da-xl').textContent = ds.filter(x => x.trangThai !== 'cho-xu-ly').length;
+}
+
+function adLocDuLieu() {
+  const ds     = JSON.parse(localStorage.getItem(SUB_KEY) || '[]');
+  const tab    = adTabHienTai;
+  const tt     = document.getElementById('ad-loc-trang-thai').value;
+  const tuKhoa = document.getElementById('ad-tim-kiem').value.toLowerCase().trim();
+
+  const loc = ds.filter(x => {
+    if (tab !== 'tat-ca' && x.loai !== tab) return false;
+    if (tt && x.trangThai !== tt) return false;
+    if (tuKhoa) {
+      const s = (x.khach.ten + x.khach.sdt + x.khach.email +
+                 (x.sach?.ten || '') + (x.loiNhan || '')).toLowerCase();
+      if (!s.includes(tuKhoa)) return false;
+    }
+    return true;
+  });
+
+  adRenderBang(loc);
+}
+
+function adRenderBang(ds) {
+  const tbody      = document.getElementById('ad-tbody');
+  const empty      = document.getElementById('ad-empty');
+  const bang       = document.querySelector('.ad-table-wrap .ad-table');
+  const btnXoaNhieu = document.getElementById('ad-btn-xoa-nhieu');
+
+  btnXoaNhieu.style.display = adIdsDaChon.size > 0 ? 'block' : 'none';
+
+  if (ds.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    if (bang) bang.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  if (bang) bang.style.display = '';
+
+  tbody.innerHTML = ds.map(item => {
+    const checked = adIdsDaChon.has(item.id) ? 'checked' : '';
+    const ttBadge = item.trangThai === 'cho-xu-ly' ? 'chua'
+                   : item.trangThai === 'da-phan-hoi' ? 'xl' : 'tc';
+    const ttText  = item.trangThai === 'cho-xu-ly' ? 'Chờ xử lý'
+                   : item.trangThai === 'da-phan-hoi' ? 'Đã phản hồi' : 'Từ chối';
+
+    let chiTiet = '';
+    if (item.loai === 'buyback') {
+      chiTiet = `<div class="ad-chi-tiet" id="ad-ct-${item.id}">
+        <div class="ad-chi-tiet-grid">
+          <p><strong>Sách:</strong> ${item.sach.ten}${item.sach.tacGia ? ' — ' + item.sach.tacGia : ''}</p>
+          <p><strong>Năm XB:</strong> ${item.sach.namXB || '—'}</p>
+          <p><strong>SL:</strong> ${item.sach.soLuong}</p>
+          <p><strong>Tình trạng:</strong> ${item.sach.tinhTrang}</p>
+        </div>
+        ${item.sach.moTa ? `<p style="margin-top:8px"><strong>Mô tả:</strong> ${item.sach.moTa}</p>` : ''}
+        <p style="margin-top:8px"><strong>Thanh toán:</strong> ${item.hinhThuc === 'chuyen-khoan' ? 'Chuyển khoản' : 'Tiền mặt'}</p>
+        ${item.hinhThuc === 'chuyen-khoan' ? `<p><strong>NH:</strong> ${item.nganHang} — ${item.soTK}</p>` : ''}
+      </div>`;
+    } else {
+      chiTiet = `<div class="ad-chi-tiet" id="ad-ct-${item.id}">
+        <p><strong>Chủ đề:</strong> ${item.chuDe}</p>
+        <p style="margin-top:6px"><strong>Lời nhắn:</strong> ${item.loiNhan || '—'}</p>
+      </div>`;
+    }
+
+    return `<tr data-id="${item.id}">
+      <td><input type="checkbox" ${checked} onchange="adChonMot(${item.id}, this.checked)"></td>
+      <td style="white-space:nowrap;font-size:0.82rem">${item.ngay}</td>
+      <td><span class="ad-badge loai-${item.loai}">${item.loai === 'buyback' ? 'Mua lại sách' : 'Liên hệ'}</span></td>
+      <td>
+        <strong>${item.khach.ten || '—'}</strong><br>
+        <small style="color:#74665A">${item.khach.sdt || ''}${item.khach.email ? ' · ' + item.khach.email : ''}</small>
+      </td>
+      <td>
+        <a href="javascript:void(0)" onclick="adToggleChiTiet(${item.id})" style="color:#8a5d3b;text-decoration:none;font-size:0.82rem">
+          <i class="fas fa-angle-right" id="ad-icon-${item.id}"></i> Xem chi tiết
+        </a>
+        ${chiTiet}
+        ${item.ghiChu ? `<p style="margin-top:6px;font-size:0.8rem;color:#2e6b3e"><i class="fas fa-sticky-note"></i> ${item.ghiChu}</p>` : ''}
+      </td>
+      <td><span class="ad-badge ${ttBadge}">${ttText}</span></td>
+      <td>
+        <select class="trang-thai" onchange="adDoiTrangThai(${item.id}, this.value)">
+          <option value="cho-xu-ly" ${item.trangThai === 'cho-xu-ly' ? 'selected' : ''}>Chờ xử lý</option>
+          <option value="da-phan-hoi" ${item.trangThai === 'da-phan-hoi' ? 'selected' : ''}>Đã phản hồi</option>
+          <option value="tu-choi" ${item.trangThai === 'tu-choi' ? 'selected' : ''}>Từ chối</option>
+        </select>
+      </td>
+      <td>
+        <button class="ad-ghi-chu-btn" onclick="adMoModalGhiChu(${item.id})">
+          <i class="fas fa-edit"></i> ${item.ghiChu ? 'Sửa' : 'Ghi chú'}
+        </button>
+      </td>
+      <td>
+        <div class="ad-nut-hanh-dong">
+          <button class="ad-nut-xoa" title="Xóa" onclick="adXoaMot(${item.id})">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+/* ── TAB ── */
+function adDoiTab(loai, btn) {
+  adTabHienTai = loai;
+  document.querySelectorAll('.ad-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  adLocDuLieu();
+}
+
+/* ── CHI TIẾT EXPAND ── */
+function adToggleChiTiet(id) {
+  const el   = document.getElementById('ad-ct-' + id);
+  const icon = document.getElementById('ad-icon-' + id);
+  if (!el) return;
+  const hien = el.classList.toggle('hien');
+  icon.className = hien ? 'fas fa-angle-down' : 'fas fa-angle-right';
+}
+
+/* ── TRẠNG THÁI ── */
+function adDoiTrangThai(id, giaTri) {
+  let ds = JSON.parse(localStorage.getItem(SUB_KEY) || '[]');
+  const idx = ds.findIndex(x => x.id === id);
+  if (idx !== -1) { ds[idx].trangThai = giaTri; localStorage.setItem(SUB_KEY, JSON.stringify(ds)); }
+  adCapNhatStats();
+  adHienThongBao('Đã cập nhật trạng thái');
+}
+
+/* ── CHỌN NHIỀU ── */
+function adChonTatCa(cb) {
+  const ds  = JSON.parse(localStorage.getItem(SUB_KEY) || '[]');
+  const tab = adTabHienTai;
+  const tt  = document.getElementById('ad-loc-trang-thai').value;
+  const tk  = document.getElementById('ad-tim-kiem').value.toLowerCase();
+  const loc = ds.filter(x => {
+    if (tab !== 'tat-ca' && x.loai !== tab) return false;
+    if (tt && x.trangThai !== tt) return false;
+    if (tk) { const s = (x.khach.ten + x.khach.sdt + x.khach.email).toLowerCase(); if (!s.includes(tk)) return false; }
+    return true;
+  });
+  if (cb.checked) loc.forEach(x => adIdsDaChon.add(x.id));
+  else loc.forEach(x => adIdsDaChon.delete(x.id));
+  adLocDuLieu();
+}
+
+function adChonMot(id, checked) {
+  if (checked) adIdsDaChon.add(id); else adIdsDaChon.delete(id);
+  adLocDuLieu();
+}
+
+/* ── XÓA ── */
+function adXoaMot(id) {
+  if (!confirm('Xóa yêu cầu này?')) return;
+  let ds = JSON.parse(localStorage.getItem(SUB_KEY) || '[]');
+  ds = ds.filter(x => x.id !== id);
+  localStorage.setItem(SUB_KEY, JSON.stringify(ds));
+  adIdsDaChon.delete(id);
+  adCapNhatStats();
+  adLocDuLieu();
+  adHienThongBao('Đã xóa');
+}
+
+function adXoaDaChon() {
+  if (adIdsDaChon.size === 0) return;
+  if (!confirm('Xóa ' + adIdsDaChon.size + ' yêu cầu đã chọn?')) return;
+  let ds = JSON.parse(localStorage.getItem(SUB_KEY) || '[]');
+  ds = ds.filter(x => !adIdsDaChon.has(x.id));
+  localStorage.setItem(SUB_KEY, JSON.stringify(ds));
+  adIdsDaChon.clear();
+  adCapNhatStats();
+  adLocDuLieu();
+  adHienThongBao('Đã xóa ' + adIdsDaChon.size + ' yêu cầu');
+}
+
+/* ── MODAL GHI CHÚ ── */
+function adMoModalGhiChu(id) {
+  adIdDangSua = id;
+  const ds   = JSON.parse(localStorage.getItem(SUB_KEY) || '[]');
+  const item = ds.find(x => x.id === id);
+  document.getElementById('ad-gh-text').value = item ? (item.ghiChu || '') : '';
+  document.getElementById('ad-modal-gh').classList.add('hien');
+  document.getElementById('ad-gh-text').focus();
+}
+
+function adDongModal() {
+  document.getElementById('ad-modal-gh').classList.remove('hien');
+  adIdDangSua = null;
+}
+
+function adLuuGhiChu() {
+  if (adIdDangSua === null) return;
+  const text = document.getElementById('ad-gh-text').value;
+  let ds = JSON.parse(localStorage.getItem(SUB_KEY) || '[]');
+  const idx = ds.findIndex(x => x.id === adIdDangSua);
+  if (idx !== -1) { ds[idx].ghiChu = text; localStorage.setItem(SUB_KEY, JSON.stringify(ds)); }
+  adDongModal();
+  adLocDuLieu();
+  adHienThongBao('Đã lưu ghi chú');
+}
+
+/* ── NOTIFY ── */
+function adHienThongBao(text) {
+  const el = document.getElementById('ad-notify');
+  document.getElementById('ad-notify-text').textContent = text;
+  el.classList.add('hien');
+  setTimeout(() => el.classList.remove('hien'), 2500);
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', function() {
+  adTaiDuLieu();
+});
+</script>
+</body>
+</html>

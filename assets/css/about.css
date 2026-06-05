@@ -374,7 +374,7 @@
 .abt-form-nut:hover { background: var(--mau-chinh); transform: translateY(-2px); }
 
 /* THÔNG BÁO GỬI THÀNH CÔNG */
-.abt-thong-bao {
+.abt-thanh-cong-an {
     display: none;
     background: #f0f8f2;
     border: 1px solid #b8dfc4;
@@ -387,6 +387,7 @@
     align-items: center;
     gap: 10px;
 }
+.abt-thanh-cong-an.hien { display: flex; }
 
 .abt-thong-bao.hien { display: flex; }
 
