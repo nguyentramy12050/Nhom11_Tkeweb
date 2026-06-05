@@ -2,12 +2,14 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
     <title>Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý</title>
-    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <!--Nhúng css-->
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/index.css" />
@@ -19,22 +21,43 @@
     <div id="header"></div>
 
     <main>
-  <!-- Hero Banner -->
-<section class="hero-master">
-  <div class="hero-background">
-    <img src="assets/images/banners/banner.jpg" alt="Thư viện cổ" class="hero-bg-img">
-    <div class="hero-overlay-gradient"></div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-text-wrapper">
-      <span class="hero-uptitle">Bảo tàng tri thức Việt</span>
-      <h1 class="hero-title">Nơi thời gian đọng lại trên từng trang giấy</h1>
-      <p class="hero-description">Khám phá bộ sưu tập sách cổ quý hiếm, những bản in đầu tiên và những câu chuyện lịch sử bị lãng quên trong lòng di sản.</p>
-      <div class="hero-buttons">
-        <a href="category.html" class="hero-btn-primary">Khám phá thêm</a>
-      </div>
+<!-- Hero Banner -->
+<section class="hero-master swiper myHeroSlider">
+    <div class="swiper-wrapper">
+
+        <!-- SLIDE 1: Ảnh + nội dung text -->
+        <div class="swiper-slide hero-slide">
+            <div class="hero-background">
+                <img src="assets/images/banners/banner.jpg" class="hero-bg-img" alt="Banner">
+            </div>
+            <div class="hero-overlay-gradient"></div>
+            <div class="hero-content">
+                <div class="hero-text-wrapper">
+                    <span class="hero-uptitle">Bảo tàng tri thức Việt</span>
+                    <h1 class="hero-title">Nơi thời gian đọng lại trên từng trang giấy</h1>
+                    <p class="hero-description">Khám phá bộ sưu tập sách cổ quý hiếm, những bản in đầu tiên và những câu chuyện lịch sử bị lãng quên trong lòng di sản.</p>
+                    <div class="hero-buttons">
+                        <a href="category.html" class="hero-btn-primary">Khám phá thêm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: Chỉ ảnh KM, click sang trang khuyến mại -->
+        <div class="swiper-slide hero-slide hero-slide-km">
+            <a href="promotion-detail.html" class="hero-km-link">
+                <img src="assets/images//banners/banner_km.jpg" class="hero-bg-img" alt="Khuyến mại hè">
+            </a>
+        </div>
+
     </div>
-  </div>
+
+    <!-- Dots phân trang -->
+    <div class="swiper-pagination hero-pagination"></div>
+
+    <!-- Nút mũi tên -->
+    <div class="swiper-button-prev hero-prev"></div>
+    <div class="swiper-button-next hero-next"></div>
 </section>
 
 <!-- Thanh tiện ích dưới banner -->
@@ -176,41 +199,6 @@
   </div>
 </section>
 
-  <!-- Ký ức trang sách  -->
-<section class="memory-bento">
-  <div class="bento-container">
-      <h2 class="bento-title">Ký ức trang sách</h2>
-      <p class="bento-desc">Hơn cả một cuốn sách, đó là những dấu vết thời gian. Chúng tôi giúp bạn giải mã những lời nhắn gửi, dấu triện và cả những giọt mực rơi từ quá khứ.</p>
-      <div class="bento-grid">
-      <!-- Ảnh lớn bên trái -->
-      <div class="bento-large">
-        <div class="memory-card">
-          <img src="assets/images/buttichnguoixua.jpg" alt="Bút tích người xưa" class="memory-img" onerror="this.src='assets/images/buttichnguoi.jpg'">
-          <div class="memory-overlay memory-overlay-bottom">
-            <h3 class="memory-card-title">Bút tích người xưa</h3>
-            <p class="memory-card-desc">Những lời phê bình hay tâm tình được gửi gắm bên lề trang giấy qua hàng thế kỷ.</p>
-          </div>
-        </div>
-      </div> 
-          <!-- Cột ảnh nhỏ bên phải -->
-      <div class="bento-small">
-        <div class="memory-card">
-          <img src="assets/images/dauan.jpg" alt="Dấu ấn gia tộc" class="memory-img">
-          <div class="memory-overlay memory-overlay-center">
-            <h3 class="memory-card-title">Dấu ấn gia tộc</h3>
-          </div>
-        </div>
-        <div class="memory-card">
-            <img src="assets/images/manhhon.jpg" alt="Mảnh hồn sương khói" class="memory-img">
-          <div class="memory-overlay memory-overlay-center">
-            <h3 class="memory-card-title">Mảnh hồn sương khói</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!--===================================TOP SÁCH NỔI BẬT =================================== -->
 <section class="top-sach-noi-bat">
     <div class="khung-top">
@@ -255,15 +243,6 @@
                 <a href="product-detail.html?id=12" class="fas fa-arrow-right mu-ten"></a>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- ===== BANNER SALE ===== -->
-<section class="banner-bigsale">
-    <div class="khung-banner">
-        <a href="blog-detail.html?slug=tang-bao-sach-cho-don-hang-lon">
-            <img src="assets/images/blog/km3.jpg" alt="Thư Hiên tặng quà" class="anh-banner">
-        </a>
     </div>
 </section>
 
@@ -434,50 +413,12 @@
 
     <!-- ================= HỘP QUÀ NỔI TÍCH HỢP ================= -->
 <div id="khu-vuc-qua-tang">
-    
-    <!-- 1. Nút Hộp Quà Lơ Lửng -->
-    <button class="nut-hop-qua-don-gian" id="nut-mo-qua" onclick="batPopupQua()">
-        <!-- Dùng 1 ảnh duy nhất, nhớ xài đuôi .png trong suốt nhé -->
-        <img src="assets/images/box.png" alt="Hộp quà">
-    </button>
-
-    <!-- 2. Lớp Màng Đen & Thẻ Quà Tặng -->
-    <div class="mang-toi-popup" id="mang-toi" onclick="tatPopupQua(event)">
-        <div class="the-qua-thong-minh" id="the-qua-thong-minh">
-            <div class="icon-chuc-mung">✨🎁✨</div>
-            <h2 class="tieu-de-qua">Bất ngờ chưa!</h2>
-            <p class="mo-ta-qua">Bạn đã tìm thấy rương kho báu bí mật. Nhận ngay mã giảm giá 20% cho mọi đầu sách tại Thư Hiên trong hôm nay!</p>
-            
-            <div class="khung-ma-code">
-                <span id="ma-code">THUHIEN20</span>
-            </div>
-            
-            <button class="nut-nhan-qua" onclick="tatPopupQua(event, true)">Nhận quà ngay</button>
-        </div>
-    </div>
-    
+    <a href="box.html" class="nut-gieo-que-lo-lung" data-tooltip="Hãy ấn vào để gieo quẻ nhận quà">
+        <img src="assets/images/box.png" alt="Ống quẻ Thư Hiên" class="ong-que-img-lo-lung">
+    </a>
 </div>
 
-<!-- ================= JAVASCRIPT ================= -->
-<script>
-        function batPopupQua() {
-            document.getElementById('mang-toi').classList.add('hien-len');
-            setTimeout(() => {
-                document.getElementById('the-qua-thong-minh').classList.add('bung-no');
-            }, 50);
-        }
-
-        function tatPopupQua(event, laNutBam = false) {
-            if (laNutBam || event.target.id === 'mang-toi') {
-                document.getElementById('the-qua-thong-minh').classList.remove('bung-no');
-                setTimeout(() => {
-                    document.getElementById('mang-toi').classList.remove('hien-len');
-                }, 400);
-            }
-        }
-    </script>
-
-    <!-- 3. ĐOẠN SCRIPT FETCH MỚI (Đã tối ưu để kích hoạt lại các hàm active) -->
+    <!-- ĐOẠN SCRIPT FETCH MỚI (Đã tối ưu để kích hoạt lại các hàm active) -->
     <script>
         function taiComponent(elementId, url, callback) {
             const container = document.getElementById(elementId);
@@ -529,6 +470,29 @@
 
             // Tải Footer
             taiComponent('footer', 'components/footer.html');
+        });
+    </script>
+
+    <!-- HERO SWIPER INIT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.myHeroSlider', {
+                loop: true,
+                speed: 900,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+                pagination: {
+                    el: '.hero-pagination',
+                    clickable: true
+                },
+                navigation: {
+                    prevEl: '.hero-prev',
+                    nextEl: '.hero-next'
+                }
+            });
         });
     </script>
   </body>

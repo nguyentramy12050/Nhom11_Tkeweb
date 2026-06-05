@@ -9,15 +9,20 @@ main {
 main > section {
   width: 100%;
 }
-
-/* ========== HERO BANNER ========== */
+/* ========== HERO BANNER — SWIPER ========== */
 .hero-master {
   position: relative;
-  height: 700px;           
-  display: flex;
-  align-items: center;
+  height: 700px;
   overflow: hidden;
   margin-bottom: 3rem;
+}
+
+/* Mỗi slide chiếm full */
+.hero-slide {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
 }
 
 .hero-background {
@@ -31,111 +36,204 @@ main > section {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 6s ease;
 }
 
-/* Lớp phủ gradient chỉ từ trái sang phải (không tối toàn bộ) */
+/* Ken Burns — ảnh từ từ phóng to */
+.swiper-slide-active .hero-bg-img {
+  transform: scale(1.05);
+}
+
+/* Lớp phủ gradient slide 1 */
 .hero-overlay-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(66, 25, 4, 0.8) 0%, rgba(66, 25, 4, 0.4) 50%, transparent 100%);
-  /* Màu primary với độ trong suốt, giống mẫu */
+  background: linear-gradient(90deg,
+    rgba(46,26,14,.82) 0%,
+    rgba(46,26,14,.45) 55%,
+    transparent 100%);
+  z-index: 1;
 }
 
+/* Nội dung text — nằm trong slide, căn giữa dọc */
 .hero-content {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 10;
-  max-width: var(--home-max-width);
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
-  padding: 0 var(--home-gutter);
+  padding: 0 60px;
+  left: 0; right: 0;
 }
 
 .hero-text-wrapper {
-  max-width: 650px;       /* giới hạn chiều rộng chữ, căn trái */
+  max-width: 600px;
+  /* Hiệu ứng trượt lên khi active */
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .7s ease .2s, transform .7s ease .2s;
+}
+
+.swiper-slide-active .hero-text-wrapper {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-uptitle {
-  font-family: 'Libre Caslon Text', 'Playfair Display', serif;
-  font-size: 14px;
-  letter-spacing: 0.2em;
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
+  color: #c9a87c;
   display: inline-block;
   margin-bottom: 16px;
   font-weight: 600;
+  border-left: 3px solid #c9a87c;
+  padding-left: 12px;
 }
 
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: 45px;
+  font-size: 46px;
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 1.18;
   color: #ffffff;
-  margin-bottom: 24px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.25);
 }
 
 .hero-description {
-  font-family: 'Merriweather', 'Noto Sans', serif;
-  font-size: 18px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 40px;
-  font-style: italic;
-  font-weight: 400;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.hero-btn-primary {
-  padding: 12px 32px;
-  border-radius: 12px;
-  font-weight: 700;
   font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: inherit;
-  border: none;
+  line-height: 1.75;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 36px;
+  font-style: italic;
+  font-family: 'Noto Sans', sans-serif;
 }
 
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
 .hero-btn-primary {
-  background-color: #421904;  /* primary */
-  color: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 13px 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all .3s ease;
+  font-family: 'Playfair Display', serif;
+  border: none;
+  background: #8a5d3b;
+  color: #fff;
+  letter-spacing: .5px;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
 }
 
 .hero-btn-primary:hover {
-  background-color: #5d2e17;
+  background: #421904;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
 }
 
-/* Responsive cho mobile */
+/* SLIDE KM — chỉ ảnh, không nội dung */
+.hero-slide-km { cursor: pointer; }
+
+.hero-km-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-km-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 6s ease;
+}
+
+.swiper-slide-active .hero-km-link img {
+  transform: scale(1.03);
+}
+
+/* NÚT MŨI TÊN SWIPER */
+/* ── MŨI TÊN: ẩn mặc định, hiện khi hover vào .hero-master ── */
+.hero-prev,
+.hero-next {
+  /* Kích thước & vị trí */
+  width: 56px;
+  height: 100%;           /* chiều cao bằng banner */
+  top: 0;
+  margin-top: 0;
+  border-radius: 0;
+
+  /* Màu nền tối khi hover vào banner — mặc định trong suốt */
+  background: transparent;
+  border: none;
+
+  /* Icon mũi tên */
+  color: #fff;
+
+  /* Ẩn mặc định */
+  opacity: 0;
+  transition: opacity .3s ease, background .3s ease;
+  z-index: 20;
+}
+
+/* Hai bên tối + mũi tên hiện khi hover vào toàn banner */
+.hero-master:hover .hero-prev,
+.hero-master:hover .hero-next {
+  opacity: 1;
+  background: rgba(0,0,0,.38);
+}
+
+/* Hover riêng từng nút → tối thêm */
+.hero-prev:hover,
+.hero-next:hover {
+  background: rgba(0,0,0,.55) !important;
+}
+
+.hero-prev { left: 0; }
+.hero-next { right: 0; }
+
+.hero-prev::after,
+.hero-next::after {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* DOTS SWIPER */
+.hero-pagination {
+  bottom: 20px !important;
+}
+
+.hero-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,.5);
+  opacity: 1;
+  transition: all .25s;
+}
+
+.hero-pagination .swiper-pagination-bullet-active {
+  background: #c9a87c;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .hero-master {
-    height: 600px;
-  }
-  .hero-title {
-    font-size: 36px;
-  }
-  .hero-description {
-    font-size: 16px;
-  }
-  .hero-buttons {
-    gap: 12px;
-  }
-  .hero-btn-primary {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-  .hero-text-wrapper {
-    max-width: 100%;
-  }
+  .hero-master,
+  .hero-slide { height: 500px; }
+  .hero-title  { font-size: 30px; }
+  .hero-description { font-size: 14px; margin-bottom: 24px; }
+  .hero-content { padding: 0 24px; }
+  .hero-btn-primary { padding: 11px 22px; font-size: 14px; }
+  .hero-text-wrapper { max-width: 100%; }
 }
 
  /* ===================================AROUSEL SÁCH — Thư Hiên chọn lọc=================================== */
@@ -995,300 +1093,6 @@ RESPONSIVE
   color: #2c241a;
 }
 
-/* Memory quote (Ký ức trang sách) */
-.memory-bento {
-  padding: 2rem 0;
-  background-color: #fff8f6;
-}
-
-.bento-container {
-  width: calc(100% - (var(--home-gutter) * 2));
-  max-width: var(--home-max-width);
-  margin: 0 auto;
-  padding: 0;
-}
-
-.bento-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.bento-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #421904;
-  margin-bottom: 0.5rem;
-}
-
-.bento-desc {
-  max-width: 600px;
-  margin: 0 auto;
-  font-family: 'Merriweather', serif;
-  font-size: 0.9rem;
-  color: #52443e;
-  line-height: 1.4;
-}
-
-/* Grid 2 cột */
-.bento-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
-}
-
-/* Cố định chiều cao vùng ảnh */
-.bento-large,
-.bento-small {
-  height: 400px;          /* nhỏ hơn banner 700px rất nhiều */
-}
-
-.bento-small {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.bento-small .memory-card {
-  height: calc((400px - 20px) / 2); /* ~120px */
-}
-
-.memory-card {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  background-color: #e3d5c0;
-  height: 100%;
-}
-
-.memory-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-  display: block;
-}
-
-.memory-card:hover .memory-img {
-  transform: scale(1.03);
-}
-
-/* Overlay dưới đáy cho ảnh lớn */
-.memory-overlay-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 12px;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  color: white;
-  pointer-events: none;
-}
-
-/* Overlay giữa cho ảnh nhỏ */
-.memory-overlay-center {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  pointer-events: none;
-  transition: background 0.3s;
-}
-
-.memory-card:hover .memory-overlay-center {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.memory-card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.memory-card-desc {
-  font-size: 0.7rem;
-  margin-top: 4px;
-  opacity: 0.9;
-}
-
-/* Ẩn mô tả ở ảnh nhỏ */
-.bento-small .memory-card-desc {
-  display: none;
-}
-
-/* Responsive mobile */
-@media (max-width: 768px) {
-  .memory-bento {
-    padding: 1.5rem 0;
-  }
-  .bento-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .bento-large,
-  .bento-small {
-    height: auto;
-  }
-  .bento-small .memory-card {
-    height: 180px;
-  }
-  .memory-card-title {
-    font-size: 1rem;
-  }
-}
-
-/* ===== BANNER BIG SALE ===== */
-.banner-bigsale {
-    padding: 20px 0 60px;
-    background: #faf7f2;
-}
-
-.khung-banner {
-    width: calc(100% - (var(--home-gutter) * 2));
-    max-width: 1100px;   /* giới hạn chiều ngang, bé hơn màn hình */
-    margin: 0 auto;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(80, 50, 10, 0.18);
-}
-
-.anh-banner {
-    width: 100%;
-    height: 400px;          /* giới hạn chiều cao — chỉnh số này to/nhỏ tùy ý */
-    object-fit: cover;
-    object-position: center 20%;  /* crop phần trên để thấy chữ "Thư Hiên BIG SALE" */
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.anh-banner:hover {
-    transform: scale(1.02);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .anh-banner {
-        height: 220px;
-    }
-}
-
-
-/* =====================================================
-   THÊM VÀO CUỐI FILE index.css
-   Gồm 3 section: Trích dẫn | Bán lại | Blog preview
-====================================================== */
-
-/* =====================================================
-   SECTION 1: TRÍCH DẪN VĂN HỌC
-====================================================== */
-.khu-trich-dan {
-    padding: 80px 0;
-    background: #2e1a0e;
-    position: relative;
-    overflow: hidden;
-}
-
-.khu-trich-dan::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(138,93,59,.25) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.trich-dan-khung {
-    width: 88%;
-    max-width: 860px;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-}
-
-.trich-dan-dau-trang {
-    font-family: 'Playfair Display', serif;
-    font-size: 6rem;
-    color: #8a5d3b;
-    opacity: .35;
-    line-height: .8;
-    margin-bottom: -20px;
-    user-select: none;
-}
-
-.trich-dan-chu {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.7rem;
-    font-style: italic;
-    color: #f0e0c8;
-    line-height: 1.7;
-    margin: 0 0 28px;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity .5s, transform .5s;
-}
-
-.trich-dan-chu.an-di {
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-.trich-dan-tac-gia {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.trich-dan-ten {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: #c9a87c;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.trich-dan-sach {
-    font-size: 12px;
-    color: rgba(201,168,124,.6);
-    font-style: italic;
-    letter-spacing: 1px;
-}
-
-.trich-dan-cham-list {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 32px;
-}
-
-.trich-dan-cham {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(201,168,124,.3);
-    border: none;
-    cursor: pointer;
-    transition: all .3s;
-    padding: 0;
-}
-
-.trich-dan-cham.hien-tai {
-    background: #c9a87c;
-    width: 24px;
-    border-radius: 4px;
-}
-
 
 /* =====================================================
    SECTION 2: BÁN LẠI SÁCH CŨ
@@ -1701,4 +1505,3 @@ RESPONSIVE
     .blog-prev-card.nho { flex-direction: column; }
     .blog-prev-card.nho .blog-prev-anh-khung { width: 100%; height: 140px; }
 }
-

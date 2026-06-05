@@ -1,169 +1,254 @@
 /* ===================================================
-   CSS TRANG SỰ KIỆN HỘP QUÀ — THƯ HIÊN OPTIMIZED
+   CSS TRANG SỰ KIỆN GIEO QUẺ TRI THỨC — ĐỘC LẠ THƯ HIÊN
 =================================================== */
 
-* {
-    box-sizing: border-box;
-    outline: none !important;
+/* TÁCH BIỆT BỐ CỤC CHUNG */
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff9f0;
+    font: 'Lora', Georgia, serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+/* ==================== STYLE HEADER CỔ KÍNH ==================== */
+.thuhien-header {
+    background: #2e1a0e;
+    padding: 15px 40px;
+    box-shadow: 0 4px 15px rgba(46, 26, 14, 0.2);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-brand {
+    text-decoration: none;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #f4edd9;
+    letter-spacing: 1px;
+}
+
+.nav-menu a {
+    color: #c9a87c;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: color 0.25s;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: #f4edd9;
+    border-bottom: 2px solid #f4edd9;
+    padding-bottom: 4px;
+}
+
+/* KÍCH THƯỚC VÙNG NỘI DUNG CHÍNH */
 .page-container-qua {
-    min-height: calc(100vh - 250px);
-    background: #fff9f0; /* Màu nền giấy cổ của Thư Hiên */
-    padding: 60px 20px;
+    min-height: 100vh;
+    padding: 40px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Lora', Georgia, serif;
+    
+    /* CẤU HÌNH NỀN GIẤY DÓ CỔ PHONG */
+    background-color: #fdf5e6; /* Màu lót phòng hờ nếu ảnh load chậm */
+    background-image: url('../images/bg_box.jpg'); /* Đường dẫn đến ảnh texture */
+    background-size: cover; /* Phủ kín màn hình */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Tạo hiệu ứng chiều sâu tĩnh */
 }
+/* Thêm lớp phủ mờ để chữ hiện lên rõ nét hơn trên nền giấy */
+.page-container-qua::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05); /* Lớp phủ trắng mờ nhẹ */
+    pointer-events: none;
+}
+
 
 .game-card-wrapper {
     width: 100%;
-    max-width: 650px;
+    max-width: 600px;
     margin: 0 auto;
     text-align: center;
 }
 
-/* TIÊU ĐỀ */
 .game-header-box .game-title {
     font-family: 'Playfair Display', serif;
     color: #2e1a0e;
-    font-size: 2.3rem;
+    font-size: 2.6rem;
     font-weight: 900;
     margin-bottom: 12px;
 }
 
 .game-header-box .game-subtitle {
-    color: #5c3c24;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-/* KHU VỰC HỘP QUÀ CHUẨN HOẠT ẢNH */
-.khung-hop-qua {
-    width: 150px;
-    height: 150px;
-    margin: 45px auto;
-    cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
-    will-change: transform, opacity;
-}
-
-.khung-hop-qua img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 12px 20px rgba(46, 26, 14, 0.2));
-}
-
-.khung-hop-qua:hover {
-    transform: scale(1.1) rotate(3deg);
-}
-
-/* Hiệu ứng rung bần bật khi nhấn mở */
-.khung-hop-qua.hieu-ung-rung-lac {
-    animation: rung-thung-thuc 0.12s linear infinite;
-}
-
-/* Hiệu ứng biến mất êm dịu */
-.khung-hop-qua.bien-mat-hoan-toan {
-    transform: scale(0);
-    opacity: 0;
-}
-
-@keyframes rung-thung-thuc {
-    0%, 100% { transform: scale(1.1) rotate(0deg); }
-    25% { transform: scale(1.1) rotate(-6deg); }
-    75% { transform: scale(1.1) rotate(6deg); }
-}
-
-/* BẢNG KẾT QUẢ — SỬA LỖI KHÔNG DÙNG MARGIN CỨNG ĐỂ TRÁNH VỠ MOBILE */
-.bang-ket-qua {
-    background: #ffffff;
-    border: 2px solid #c9a87c;
-    border-radius: 16px;
-    padding: 40px 30px;
-    margin: 40px auto;
-    max-width: 480px;
-    box-shadow: 0 15px 40px rgba(46, 26, 14, 0.1);
-    
-    /* Trạng thái ẩn giấu ban đầu */
-    display: none;
-    opacity: 0;
-    transform: scale(0.5) translateY(40px);
-    transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.34, 1.65, 0.64, 1); /* Hiệu ứng lò xo Elastic cực xịn */
-}
-
-/* Hiện kết quả */
-.bang-ket-qua.kich-hoat-show {
-    display: block;
-    opacity: 1;
-    transform: scale(1) translateY(0);
-}
-
-.noi-dung-ket-qua .icon-thu-ong {
-    font-size: 3.5rem;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.noi-dung-ket-qua h2 {
-    font-family: 'Playfair Display', serif;
-    color: #2e1a0e;
-    font-size: 1.8rem;
-    margin: 0 0 12px 0;
-}
-
-.noi-dung-ket-qua p {
-    color: #555;
+    color: #74665A;
     font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
-/* CẤU TRÚC VOUCHER FLEXBOX ĐỂ HOÀN TOÀN KHÔNG BỊ LỆCH TRÊN ĐIỆN THOẠI */
-.khung-chua-voucher {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #2e1a0e; /* Màu nâu đậm Thư Hiên */
-    padding: 6px 6px 6px 20px;
-    border-radius: 10px;
-    max-width: 340px;
-    margin: 0 auto;
-}
-
-.ma-so-voucher {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: 2px;
-    color: #f4d3a1; /* Chữ màu vàng cát */
-}
-
-.btn-copy-ma {
-    background: #f4d3a1;
-    color: #2e1a0e;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 7px;
-    font-weight: bold;
-    font-family: 'Lora', Georgia, serif;
-    font-size: 0.9rem;
+/* ỐNG XĂM TRE CỔ PHONG */
+.khung-ong-xam {
+    width: 180px;
+    height: 260px;
+    margin: 40px auto;
     cursor: pointer;
-    transition: all 0.2s ease;
+    position: relative;
+    transition: all 0.4s ease;
 }
 
-.btn-copy-ma:hover {
+.ong-xam-tre {
+    width: 100%;
+    height: 100%;
     background: #c9a87c;
-    transform: scale(1.02);
+    border: 6px solid #5b341d;
+    border-radius: 15px 15px 40px 40px;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(91, 52, 29, 0.35);
+    background-image: linear-gradient(90deg, rgba(0,0,0,0.15) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.2) 100%);
 }
 
-/* ĐỊNH DẠNG NÚT ĐIỀU HƯỚNG BÊN DƯỚI */
+.the-xam-tre {
+    position: absolute;
+    bottom: 40px;
+    width: 16px;
+    height: 180px;
+    background: #e6dfd3;
+    border: 2px solid #8a5d3b;
+    border-radius: 4px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+}
+.the-1 { left: 30px; transform: rotate(-8deg); }
+.the-2 { left: 55px; transform: rotate(-3deg); bottom: 50px; }
+.the-3 { left: 80px; transform: rotate(2deg); bottom: 55px; }
+.the-4 { left: 105px; transform: rotate(5deg); bottom: 45px; }
+.the-5 { left: 130px; transform: rotate(10deg); }
+
+.ghi-chu-bam {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #8a5d3b;
+    font-style: italic;
+    animation: nhe-nhang-tho 1.5s infinite ease-in-out;
+}
+
+/* HIỆU ỨNG RUNG LẮC QUẺ */
+.hieu-ung-lac-xam {
+    animation: lac-xam-kich-tinh 0.12s infinite alternate;
+}
+
+@keyframes lac-xam-kich-tinh {
+    0% { transform: translate(4px, 4px) rotate(3deg); }
+    100% { transform: translate(-4px, -4px) rotate(-3deg); }
+}
+
+.bien-mat-hoan-toan {
+    opacity: 0;
+    transform: scale(0.6);
+}
+
+/* CUỘN SÁCH KẾT QUẢ KHI MỞ RA */
+.cuon-sach-ket-qua {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+    display: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cuon-sach-ket-qua.cuon-sach-mo-ra {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.ruot-cuon-sach {
+    background: #fbf6ec;
+    border-left: 8px solid #8a5d3b;
+    border-right: 8px solid #8a5d3b;
+    padding: 35px 30px;
+    box-shadow: 0 12px 30px rgba(46, 26, 14, 0.18);
+    border-radius: 4px;
+}
+
+.bieu-tuong-keo {
+    font-size: 1.8rem;
+    color: #8a5d3b;
+}
+
+.tieu-de-qua {
+    font-family: 'Playfair Display', serif;
+    color: #2e1a0e;
+    font-size: 1.9rem;
+    margin: 12px 0 20px;
+}
+
+.loi-tri-thuc-vung {
+    background: #f4edd9;
+    padding: 22px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-top: 3px double #8a5d3b;
+    border-bottom: 3px double #8a5d3b;
+}
+
+.cau-ngon {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #5b341d;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.tac-gia {
+    font-size: 0.95rem;
+    text-align: right;
+    font-weight: bold;
+    color: #8a5d3b;
+    margin: 10px 0 0;
+}
+
+.mo-ta-qua {
+    font-size: 0.95rem;
+    color: #6e5b4b;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.khung-ma-code {
+    background: #fff;
+    border: 2px dashed #8a5d3b;
+    padding: 12px 35px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #2e1a0e;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
 .nhom-nut-hanh-dong {
-    margin-top: 35px;
     display: flex;
     gap: 15px;
     justify-content: center;
@@ -171,25 +256,22 @@
 
 .btn-thuhien {
     padding: 12px 28px;
-    border-radius: 6px;
+    border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    cursor: pointer;
     transition: all 0.25s;
-    display: inline-flex;
-    align-items: center;
 }
 
 .btn-nau {
     background: #8a5d3b;
-    color: #ffffff;
-    border: 1px solid #8a5d3b;
+    color: #fff;
+    border: none;
 }
 
 .btn-nau:hover {
     background: #2e1a0e;
-    border-color: #2e1a0e;
-    transform: translateY(-2px);
 }
 
 .btn-vien {
@@ -199,34 +281,94 @@
 }
 
 .btn-vien:hover {
-    background: #8a5d3b;
-    color: #ffffff;
-    transform: translateY(-2px);
+    background: rgba(138, 93, 59, 0.08);
 }
 
-/* ===================================================
-   ĐÁP ỨNG RESPONSIVE HOÀN HẢO CHO ĐIỆN THOẠI (MOBILE)
-=================================================== */
-@media (max-width: 576px) {
-    .game-header-box .game-title {
-        font-size: 1.7rem;
-    }
-    .khung-hop-qua {
-        width: 120px;
-        height: 120px;
-        margin: 30px auto;
-    }
-    .bang-ket-qua {
-        padding: 30px 15px;
-        margin: 25px 10px;
-    }
-    .nhom-nut-hanh-dong {
+/* ==================== STYLE FOOTER CỔ KÍNH ==================== */
+.thuhien-footer {
+    background: #2e1a0e;
+    color: #e6dfd3;
+    padding: 40px 40px 20px;
+    border-top: 4px solid #8a5d3b;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-block {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-block h3, .footer-block h4 {
+    font-family: 'Playfair Display', serif;
+    color: #f4edd9;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.footer-block p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #c9a87c;
+}
+
+.footer-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-block ul li {
+    margin-bottom: 10px;
+}
+
+.footer-block ul li a {
+    color: #c9a87c;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.footer-block ul li a:hover {
+    color: #f4edd9;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 30px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(201, 168, 124, 0.2);
+    text-align: center;
+    font-size: 0.85rem;
+    color: #74665A;
+}
+
+@keyframes nhe-nhang-tho {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; transform: translateY(-4px); }
+}
+
+/* ĐÁP ỨNG DI ĐỘNG */
+@media (max-width: 768px) {
+    .header-container, .footer-container {
         flex-direction: column;
-        gap: 10px;
-        padding: 0 20px;
+        align-items: center;
+        text-align: center;
     }
-    .btn-thuhien {
-        width: 100%;
-        justify-content: center;
+    .nav-menu {
+        margin-top: 15px;
+    }
+    .nav-menu a {
+        margin: 0 10px;
+    }
+    .game-header-box .game-title {
+        font-size: 2rem;
     }
 }

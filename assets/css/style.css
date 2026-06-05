@@ -644,152 +644,82 @@ h1, h2, h3, h4, h5, h6,
     }
 }
 
-/* =====================================================
-   HỘP QUÀ NỔI TÍCH HỢP (FLOATING ACTION BUTTON & POPUP)
-===================================================== */
-
-/* 1. NÚT HỘP QUÀ LƠ LỬNG (Góc dưới cùng bên phải màn hình) */
-.nut-hop-qua-don-gian {
+/* ===================================================
+   CSS NÚT ỐNG QUẺ THẬT LƠ LỬNG CÓ TOOLTIP (TRANG CHỦ)
+=================================================== */
+.nut-gieo-que-lo-lung {
     position: fixed;
-    bottom: 30px;       /* Cách đáy màn hình 30px */
-    right: 30px;        /* Cách lề phải màn hình 30px */
-    width: 75px;        /* Khống chế kích thước hộp quà vừa vặn */
-    height: 75px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 9999;      /* Luôn nổi trên mọi nội dung, dưới lớp màng popup */
-    padding: 0;
-    transition: transform 0.3s ease;
-    animation: qua-mach-dap 2s infinite ease-in-out; /* Tạo hiệu ứng co giãn thu hút */
-}
-
-/* Định dạng ảnh bên trong nút không bị tràn kích thước */
-.nut-hop-qua-don-gian img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 5px 12px rgba(46, 26, 14, 0.35)); /* Tạo bóng đổ chân thực */
-}
-
-/* Hiệu ứng nảy nhẹ và xoay góc khi di chuột vào */
-.nut-hop-qua-don-gian:hover {
-    transform: scale(1.15) rotate(8deg);
-    animation-play-state: paused; /* Di chuột vào thì dừng nhịp đập chung */
-}
-
-/* 2. LỚP MÀNG ĐEN PHỦ TOÀN MÀN HÌNH */
-#mang-toi {
-    position: fixed;
-    inset: 0;
-    background: rgba(46, 26, 14, 0.7); /* Màu nâu tối sang trọng hợp gu Thư Hiên */
-    backdrop-filter: blur(4px);
-    z-index: 999999;    /* Nổi lên cao nhất để đè cả header/footer */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-}
-
-/* Trạng thái kích hoạt hiện màng đen */
-#mang-toi.hien-len {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* 3. THẺ QUÀ TẶNG THÔNG MINH (NẰM GIỮA) */
-#the-qua-thong-minh {
-    background: #F8F5F0; /* Nền be nhạt đồng bộ toàn trang */
-    border: 2px solid #8B5A2B;
-    border-radius: 16px;
-    padding: 35px 25px;
-    max-width: 420px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 15px 40px rgba(46, 26, 14, 0.4);
-    
-    /* Hiệu ứng thu nhỏ ẩn ban đầu */
-    transform: scale(0.7);
-    opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
-}
-
-/* Trạng thái kích hoạt nảy bung popup */
-#the-qua-thong-minh.bung-no {
-    transform: scale(1);
-    opacity: 1;
-}
-
-/* --- Các thành phần chi tiết bên trong Popup --- */
-.icon-chuc-mung {
-    font-size: 55px;
-    margin-bottom: 12px;
-    line-height: 1;
-    animation: hop-qua-lac 2.5s infinite ease-in-out;
-}
-
-.tieu-de-qua {
-    font-family: 'Playfair Display', serif;
-    color: #2E1A0E;
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.mo-ta-qua {
-    font-family: 'Noto Sans', sans-serif;
-    color: #74665A;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 22px;
-}
-
-.khung-ma-code {
-    background: #E6DFD3;
-    border: 2px dashed #8B5A2B;
-    padding: 12px 25px;
-    border-radius: 8px;
+    bottom: 10px;
+    right: 20px;
+    z-index: 9999;
+    text-decoration: none;
     display: inline-block;
-    margin-bottom: 25px;
 }
 
-#ma-code {
-    font-family: 'Noto Sans', sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: #5B341D;
-    letter-spacing: 2px;
-}
-
-.nut-nhan-qua {
-    background: #8B5A2B;
-    color: #FFFFFF;
-    border: none;
-    padding: 12px 30px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 25px;
+/* Định dạng file ảnh ống quẻ thật */
+.ong-que-img-lo-lung {
+    width: 130px; 
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 8px 20px rgba(91, 52, 29, 0.45));
     cursor: pointer;
-    width: 100%;
-    transition: background 0.25s ease, transform 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: mach-dap-moi-goi 2.5s infinite ease-in-out;
 }
 
-.nut-nhan-qua:hover {
-    background: #5B341D;
-    transform: translateY(-2px);
+/* Hiệu ứng chuyển động nhẹ khi di chuột vào ống quẻ */
+.nut-gieo-que-lo-lung:hover .ong-que-img-lo-lung {
+    transform: scale(1.12) rotate(10deg);
+    filter: drop-shadow(0 12px 25px rgba(46, 26, 14, 0.6));
 }
 
-/* --- HIỆU ỨNG CHUYỂN ĐỘNG (ANIMATIONS) --- */
-@keyframes qua-mach-dap {
+/* 💬 KHUNG HIỆN CHỮ (TOOLTIP) KHI DI CHUỘT VÀO */
+.nut-gieo-que-lo-lung::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 85px;
+    top: 50%;
+    transform: translateY(-50%) translateX(15px);
+    background: #2e1a0e;
+    color: #f4d3a1;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    border: 1px solid #8a5d3b;
+}
+
+/* Mũi tên nhỏ của khung Tooltip */
+.nut-gieo-que-lo-lung::after {
+    content: "";
+    position: absolute;
+    right: 75px;
+    top: 50%;
+    transform: translateY(-50%) translateX(15px);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #2e1a0e;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Hiển thị Tooltip khi Hover */
+.nut-gieo-que-lo-lung:hover::before,
+.nut-gieo-que-lo-lung:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Hiệu ứng nhịp thở tự động thu hút ánh nhìn */
+@keyframes mach-dap-moi-goi {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.06); }
-}
-
-@keyframes hop-qua-lac {
-    0%, 100% { transform: rotate(0deg); }
-    10%, 30% { transform: rotate(-6deg); }
-    20%, 40% { transform: rotate(6deg); }
-    50% { transform: rotate(0deg); }
 }
