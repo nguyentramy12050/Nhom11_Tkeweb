@@ -187,6 +187,11 @@
     color: #fff;
 }
 
+.order-btn.danger {
+    border-color: #9b3f2d;
+    color: #9b3f2d;
+}
+
 .order-btn:hover {
     background: #8b5a2b;
     border-color: #8b5a2b;

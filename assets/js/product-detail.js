@@ -1,9 +1,36 @@
 // Lấy id sách từ URL để biết cần hiển thị chi tiết cuốn nào.
 const urlParams = new URLSearchParams(window.location.search);
 const bookId = parseInt(urlParams.get('id'), 10);
+const REVIEWS_KEY = 'reviews';
 
 // Tìm sách trong dữ liệu chung data.js.
 const book = booksData.find(item => item.id === bookId);
+
+// Đọc các đánh giá người dùng đã gửi và lưu trong localStorage.
+function getLocalReviewsFromStorage() {
+    try {
+        const rawReviews = localStorage.getItem(REVIEWS_KEY);
+        const reviews = rawReviews ? JSON.parse(rawReviews) : [];
+
+        return Array.isArray(reviews) ? reviews : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+// Gộp đánh giá mẫu trong data.js với đánh giá thật người dùng đã gửi cho cuốn sách hiện tại.
+function layDanhGiaCuaSach(currentBook) {
+    const dataReviews = Array.isArray(currentBook?.reviews) ? currentBook.reviews : [];
+    const userReviews = getLocalReviewsFromStorage()
+        .filter(review => Number(review.bookId) === Number(currentBook?.id))
+        .map(review => ({
+            user: review.user || 'Khách hàng',
+            stars: Number(review.rating || review.stars || 0),
+            comment: review.content || review.comment || 'Người dùng chưa để lại nhận xét.'
+        }));
+
+    return [...userReviews, ...dataReviews];
+}
 
 // Chuyển chuỗi thành nội dung an toàn trước khi đưa vào HTML.
 function escapeHtml(value) {
@@ -35,7 +62,7 @@ function renderStars(rating) {
 
 // Tính điểm sao trung bình từ danh sách đánh giá trong data.js.
 function tinhRatingTrungBinh(currentBook) {
-    const reviews = Array.isArray(currentBook?.reviews) ? currentBook.reviews : [];
+    const reviews = layDanhGiaCuaSach(currentBook);
 
     if (reviews.length === 0) {
         return Number(currentBook?.rating || 0);
@@ -83,7 +110,7 @@ function renderReviews(currentBook) {
     const reviewStars = document.getElementById('review-average-stars');
     const reviewBreakdown = document.getElementById('review-breakdown');
     const reviewList = document.getElementById('review-list');
-    const reviews = Array.isArray(currentBook?.reviews) ? currentBook.reviews : [];
+    const reviews = layDanhGiaCuaSach(currentBook);
     const averageRating = tinhRatingTrungBinh(currentBook);
 
     if (reviewAverage) reviewAverage.textContent = averageRating.toFixed(1);

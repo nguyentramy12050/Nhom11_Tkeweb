@@ -91,11 +91,40 @@ function getReviewOrder() {
     };
 }
 
+// Lấy mã đơn ổn định để nối đơn hàng với đánh giá đã lưu.
+function getOrderCode(order, orderIndex) {
+    return order.code || `TH${String(orderIndex + 1).padStart(4, "0")}`;
+}
+
+// Lấy tên người dùng hiện tại để hiển thị trong phần đánh giá ở trang chi tiết sách.
+function getCurrentReviewerName(order) {
+    return sessionStorage.getItem("thuhien_ten")
+        || localStorage.getItem("thuhien_ten")
+        || order.customer?.name
+        || "Khách hàng";
+}
+
+// Tìm đánh giá đã gửi của đơn hàng hiện tại nếu có.
+function getExistingReviewForOrder(order, orderIndex) {
+    if (!order || !order.items || order.items.length === 0) return null;
+
+    const firstItem = order.items[0];
+    const orderCode = getOrderCode(order, orderIndex);
+
+    return getReviewsFromStorage().find(review => {
+        const sameCode = review.orderCode && review.orderCode === orderCode;
+        const sameIndex = Number(review.orderIndex) === Number(orderIndex);
+        const sameBook = Number(review.bookId) === Number(firstItem.id);
+
+        return sameBook && (sameCode || sameIndex);
+    });
+}
+
 function renderReviewPage() {
     const emptyBox = document.getElementById("review-empty");
     const contentBox = document.getElementById("review-content");
 
-    const { order } = getReviewOrder();
+    const { order, orderIndex } = getReviewOrder();
 
     if (!order || !order.items || order.items.length === 0) {
         emptyBox.style.display = "block";
@@ -112,6 +141,18 @@ function renderReviewPage() {
     document.getElementById("review-book-name").textContent = firstItem.name || "Tên sách";
     document.getElementById("review-book-author").textContent = firstItem.author || "Tác giả đang cập nhật";
     document.getElementById("review-book-category").textContent = firstItem.category || "Sách cũ";
+
+    const existingReview = getExistingReviewForOrder(order, orderIndex);
+    if (existingReview) {
+        selectedRating = Number(existingReview.rating || existingReview.stars || 4);
+        uploadedImageData = existingReview.reviewImage || "";
+
+        const contentInput = document.getElementById("review-content-input");
+        const submitButton = document.querySelector(".submit-review-btn");
+
+        if (contentInput) contentInput.value = existingReview.content || existingReview.comment || "";
+        if (submitButton) submitButton.textContent = "Cập nhật đánh giá";
+    }
 }
 
 function updateStarDisplay(rating) {
@@ -243,22 +284,38 @@ function saveReview() {
     const contentInput = document.getElementById("review-content-input");
 
     const reviews = getReviewsFromStorage();
+    const existingReviewIndex = reviews.findIndex(review => {
+        const sameCode = review.orderCode && review.orderCode === getOrderCode(order, orderIndex);
+        const sameIndex = Number(review.orderIndex) === Number(orderIndex);
+        const sameBook = Number(review.bookId) === Number(firstItem.id);
+
+        return sameBook && (sameCode || sameIndex);
+    });
 
     const newReview = {
-        id: "review_" + Date.now(),
+        id: existingReviewIndex >= 0 ? reviews[existingReviewIndex].id : "review_" + Date.now(),
         orderIndex,
-        orderCode: order.code || "",
+        orderCode: getOrderCode(order, orderIndex),
         bookId: firstItem.id,
         bookName: firstItem.name,
         author: firstItem.author || "",
         image: firstItem.image || "",
+        user: getCurrentReviewerName(order),
+        stars: selectedRating,
+        comment: contentInput.value.trim(),
         rating: selectedRating,
         content: contentInput.value.trim(),
         reviewImage: uploadedImageData,
-        createdAt: new Date().toISOString()
+        createdAt: existingReviewIndex >= 0 ? reviews[existingReviewIndex].createdAt : new Date().toISOString(),
+        updatedAt: new Date().toISOString()
     };
 
-    reviews.unshift(newReview);
+    if (existingReviewIndex >= 0) {
+        reviews[existingReviewIndex] = newReview;
+    } else {
+        reviews.unshift(newReview);
+    }
+
     saveReviewsToStorage(reviews);
 
     setReviewMessage("Cảm ơn bạn đã gửi đánh giá. Đang quay lại đơn hàng của tôi...", "success");
