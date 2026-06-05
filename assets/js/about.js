@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ===== FADE IN KHI CUỘN ===== */
     const cacPhan = document.querySelectorAll(
-        '.abt-gia-tri-the, .abt-thanh-vien, .abt-moc-su-kien, .abt-cau-chuyen-luoi'
+        '.abt-cau-chuyen-luoi'
     );
 
     cacPhan.forEach(el => {

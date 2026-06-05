@@ -154,7 +154,10 @@ function addCurrentBookToCart(redirectToCart = false) {
     if (redirectToCart) {
         window.location.href = 'cart.html';
     } else {
-        alert('Đã thêm sách vào giỏ hàng.');
+        const continueShopping = confirm("Đã thêm sách vào giỏ! Bạn muốn thanh toán ngay không?\n- Chọn OK để đến Giỏ hàng.\n- Chọn Cancel để tiếp tục xem sách.");
+        if(continueShopping) {
+            window.location.href = 'cart.html';
+        }
     }
 }
 

@@ -1,8 +1,21 @@
 const CART_KEY = "cart";
 const COUPON_KEY = "appliedCoupon";
-const COUPON_CODE = "TRIKY";
-const COUPON_PERCENT = 10;
 const SHIPPING_FEE = 35000;
+
+// DANH SÁCH VOUCHER (giống hệt checkout.js)
+const DANH_SACH_VOUCHER = {
+    "HESANG20": { loai: "percent", giaTri: 20 },
+    "HESANG50K": { loai: "fixed", giaTri: 50000 },
+    "THUHIEN20": { loai: "percent", giaTri: 20 },
+    "FREESHIP26": { loai: "shipping", giaTri: 0 },
+    "GIFT50K": { loai: "fixed", giaTri: 50000 },
+    "KHAIQUYEN10": { loai: "percent", giaTri: 10 },
+    "NGOCQUY20": { loai: "fixed", giaTri: 20000 },
+    "CHUVANAN15": { loai: "percent", giaTri: 15 },
+    "NGUYENKHI25": { loai: "fixed", giaTri: 25000 },
+    "TINHHOA50": { loai: "fixed", giaTri: 50000 },
+    "TRIKY": { loai: "percent", giaTri: 10 }
+};
 
 /* xử lý giá tiền */
 
@@ -160,15 +173,29 @@ function applyCoupon() {
         return;
     }
 
-    if (code === COUPON_CODE) {
-        setAppliedCoupon(code);
-        renderCartPage();
-    } else {
-        removeAppliedCoupon();
-        message.textContent = "Mã giảm giá không hợp lệ.";
+    if (!code) {
+        message.textContent = "Vui lòng nhập mã giảm giá.";
         message.classList.add("error");
         message.style.display = "block";
+        return;
     }
+
+    const voucher = DANH_SACH_VOUCHER[code];
+    if (!voucher) {
+        removeAppliedCoupon();
+        message.textContent = "Mã giảm giá không hợp lệ hoặc đã hết hạn.";
+        message.classList.add("error");
+        message.style.display = "block";
+        renderCartPage(); // cập nhật lại giao diện (xóa mã cũ nếu có)
+        return;
+    }
+
+    // Nếu mã hợp lệ, lưu vào localStorage
+    setAppliedCoupon(code);
+    message.textContent = `Áp dụng thành công! Mã ${code} đã được kích hoạt.`;
+    message.classList.remove("error");
+    message.style.display = "block";
+    renderCartPage();
 }
 
 /* tính tổng đơn hàng */
@@ -179,12 +206,20 @@ function calculateCartSummary(items) {
     }, 0);
 
     const appliedCoupon = subtotal > 0 ? getAppliedCoupon() : "";
+    let discount = 0;
+    let shipping = subtotal > 0 ? SHIPPING_FEE : 0;
 
-    const discount = appliedCoupon === COUPON_CODE
-        ? Math.round(subtotal * COUPON_PERCENT / 100)
-        : 0;
+    if (appliedCoupon && DANH_SACH_VOUCHER[appliedCoupon]) {
+        const voucher = DANH_SACH_VOUCHER[appliedCoupon];
+        if (voucher.loai === "percent") {
+            discount = Math.round(subtotal * voucher.giaTri / 100);
+        } else if (voucher.loai === "fixed") {
+            discount = voucher.giaTri;
+        } else if (voucher.loai === "shipping") {
+            shipping = 0;
+        }
+    }
 
-    const shipping = subtotal > 0 ? SHIPPING_FEE : 0;
     const total = Math.max(subtotal + shipping - discount, 0);
 
     return {
@@ -287,11 +322,14 @@ function renderCartPage() {
     summaryTotal.textContent = formatVND(summary.total);
 
     if (summary.appliedCoupon) {
-        couponInput.value = summary.appliedCoupon;
-        couponMessage.textContent = `Đã áp dụng mã ${summary.appliedCoupon}.`;
-        couponMessage.classList.remove("error");
-        couponMessage.style.display = "block";
-        discountRow.style.display = "flex";
+    couponInput.value = summary.appliedCoupon;
+    couponMessage.textContent = `Đã áp dụng mã ${summary.appliedCoupon}.`;
+    couponMessage.classList.remove("error");
+    couponMessage.style.display = "block";
+    discountRow.style.display = "flex";
+    // Hiển thị tên mã trong cột giảm giá
+    const couponNameSpan = document.getElementById("summary-coupon-name");
+    if (couponNameSpan) couponNameSpan.textContent = summary.appliedCoupon;
     } else {
         couponInput.value = "";
         couponMessage.textContent = "";

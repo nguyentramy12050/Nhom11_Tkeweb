@@ -3,32 +3,206 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-    <title>Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý</title>
+    <title> Hè Sang — Kho Sách Cũ Ưu Đãi Lớn | Thư Hiên </title>
     <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
 <!--Nhúng css-->
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/promotion-detail.css" />
+    <link rel="stylesheet" href="assets/css/promtion-detail.css" />
   </head>
 
   <body>
     <!-- ==========NHÚNG HEADER ========== -->
     <div id="header"></div>
-<main>
 
-</main>
+<main class="pd-trang">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="pd-hero">
+      <div class="pd-hero-anh">
+        <img src="assets/images/banners/banner_km.jpg" alt="Hè Sang — Kho Sách Cũ Ưu Đãi Lớn">
+        <div class="pd-hero-overlay"></div>
+      </div>
+      <div class="pd-hero-noi">
+        <div class="pd-hero-tag">🌞 Hè Sang 2026</div>
+        <h1 class="pd-hero-tieu-de">Kho Sách Cũ<br><em>Ưu Đãi Lớn</em></h1>
+        <p class="pd-hero-slogan">Đọc sách hay — Nhận quà ngay</p>
+        <div class="pd-hero-dem-nguoc" id="pd-dem-nguoc">
+          <div class="pd-dem-o">
+            <span class="pd-dem-so" id="pd-dem-ngay">00</span>
+            <span class="pd-dem-nhan">Ngày</span>
+          </div>
+          <span class="pd-dem-cham">:</span>
+          <div class="pd-dem-o">
+            <span class="pd-dem-so" id="pd-dem-gio">00</span>
+            <span class="pd-dem-nhan">Giờ</span>
+          </div>
+          <span class="pd-dem-cham">:</span>
+          <div class="pd-dem-o">
+            <span class="pd-dem-so" id="pd-dem-phut">00</span>
+            <span class="pd-dem-nhan">Phút</span>
+          </div>
+          <span class="pd-dem-cham">:</span>
+          <div class="pd-dem-o">
+            <span class="pd-dem-so" id="pd-dem-giay">00</span>
+            <span class="pd-dem-nhan">Giây</span>
+          </div>
+        </div>
+        <a href="category.html" class="pd-hero-nut">Mua ngay <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </section>
+
+    <!-- ═══ 3 ƯU ĐÃI CHÍNH ═══ -->
+    <section class="pd-uu-dai">
+      <div class="pd-khung">
+        <div class="pd-tieu-de-khu">
+          <p class="pd-nhan">Chương trình</p>
+          <h2 class="pd-tieu-de">Những ưu đãi <em>không thể bỏ qua</em></h2>
+        </div>
+        <div class="pd-uu-dai-luoi">
+
+          <div class="pd-uu-dai-the mau-vang">
+            <div class="pd-uu-dai-bieu-tuong">
+              <i class="fas fa-tags"></i>
+            </div>
+            <div class="pd-uu-dai-so">50<span>%</span></div>
+            <h3>Giảm đến 50%</h3>
+            <p>Cho hàng trăm đầu sách chọn lọc trong kho. Áp dụng toàn bộ thể loại, từ sách cổ đến ấn bản đặc biệt.</p>
+            <div class="pd-uu-dai-han">Từ 01/06 – 30/06/2026</div>
+            <button class="pd-sao-chep-ma" data-ma="HESANG20" onclick="applyPromotionVoucher('HESANG20')">📋 Lưu mã giảm 20% toàn đơn</button>
+          </div>
+
+          <div class="pd-uu-dai-the mau-xanh">
+            <div class="pd-uu-dai-bieu-tuong">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <div class="pd-uu-dai-so">Free<span>ship</span></div>
+            <h3>Miễn phí giao hàng</h3>
+            <p>Toàn quốc cho mọi đơn hàng từ 199.000đ. Giao nhanh trong 3 ngày làm việc, đóng gói cẩn thận.</p>
+            <div class="pd-uu-dai-han">Đơn từ 199.000đ</div>
+            <button class="pd-sao-chep-ma" data-ma="FREESHIP26" onclick="applyPromotionVoucher('FREESHIP26')">📋 Lưu mã miễn phí vận chuyển</button>
+          </div>
+
+          <div class="pd-uu-dai-the mau-do">
+            <div class="pd-uu-dai-bieu-tuong">
+              <i class="fas fa-gift"></i>
+            </div>
+            <div class="pd-uu-dai-so">Quà<span> tặng</span></div>
+            <h3>Quà tặng bí mật</h3>
+            <p>Mỗi đơn hàng từ 299.000đ nhận ngay một phần quà bí mật — bookmark thêu tay, túi vải hay voucher tiếp theo.</p>
+            <div class="pd-uu-dai-han">Đơn từ 299.000đ</div>
+            <button class="pd-sao-chep-ma" data-ma="GIFT50K" onclick="applyPromotionVoucher('GIFT50K')">📋 Lưu mã giảm 50.000đ</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CÁCH THỨC THAM GIA ═══ -->
+    <section class="pd-cach-tham-gia">
+      <div class="pd-khung">
+        <div class="pd-tieu-de-khu">
+          <p class="pd-nhan">Đơn giản</p>
+          <h2 class="pd-tieu-de">Cách tham gia <em>chỉ 3 bước</em></h2>
+        </div>
+        <div class="pd-buoc-list">
+          <div class="pd-buoc">
+            <div class="pd-buoc-so">01</div>
+            <div class="pd-buoc-icon"><i class="fas fa-search"></i></div>
+            <h3>Chọn sách yêu thích</h3>
+            <p>Duyệt qua hơn 1.200 đầu sách trong kho — từ sách văn học kinh điển đến ấn bản quý hiếm.</p>
+          </div>
+          <div class="pd-buoc-mui-ten"><i class="fas fa-chevron-right"></i></div>
+          <div class="pd-buoc">
+            <div class="pd-buoc-so">02</div>
+            <div class="pd-buoc-icon"><i class="fas fa-shopping-bag"></i></div>
+            <h3>Thêm vào giỏ hàng</h3>
+            <p>Ưu đãi tự động áp dụng khi đơn đạt điều kiện. Không cần nhập mã, không cần thao tác thêm.</p>
+          </div>
+          <div class="pd-buoc-mui-ten"><i class="fas fa-chevron-right"></i></div>
+          <div class="pd-buoc">
+            <div class="pd-buoc-so">03</div>
+            <div class="pd-buoc-icon"><i class="fas fa-box-open"></i></div>
+            <h3>Nhận sách & quà</h3>
+            <p>Sách được đóng gói cẩn thận, quà tặng bí mật kèm theo. Mở hộp là một trải nghiệm riêng.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SÁCH NỔI BẬT TRONG ĐỢT KM ═══ -->
+    <section class="pd-sach-km">
+      <div class="pd-khung">
+        <div class="pd-tieu-de-khu">
+          <p class="pd-nhan">Đừng bỏ lỡ</p>
+          <h2 class="pd-tieu-de">Sách <em>đang giảm giá</em></h2>
+        </div>
+        <div class="pd-sach-luoi" id="pd-sach-luoi">
+          <!-- Render bằng JS từ booksData -->
+        </div>
+        <div class="pd-xem-them-khu">
+          <a href="category.html" class="pd-nut-xem-them">Xem toàn bộ sách đang khuyến mãi <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ĐIỀU KIỆN & LƯU Ý ═══ -->
+    <section class="pd-dieu-kien">
+      <div class="pd-khung">
+        <div class="pd-dk-luoi">
+          <div class="pd-dk-trai">
+            <h2 class="pd-tieu-de" style="text-align:left;">Điều kiện <em>áp dụng</em></h2>
+            <ul class="pd-dk-list">
+              <li><i class="fas fa-check-circle"></i> Chương trình áp dụng từ 01/06 đến hết ngày 30/06/2026</li>
+              <li><i class="fas fa-check-circle"></i> Ưu đãi không áp dụng đồng thời với các chương trình khác</li>
+              <li><i class="fas fa-check-circle"></i> Freeship áp dụng cho đơn hàng từ 199.000đ trở lên</li>
+              <li><i class="fas fa-check-circle"></i> Quà tặng bí mật áp dụng cho đơn từ 299.000đ, số lượng có hạn</li>
+              <li><i class="fas fa-check-circle"></i> Thư Hiên có quyền thay đổi quà tặng tùy theo tồn kho</li>
+              <li><i class="fas fa-times-circle" style="color:#b84a2a;"></i> Không áp dụng cho sách đã đặt trước khi chương trình bắt đầu</li>
+            </ul>
+          </div>
+          <div class="pd-dk-phai">
+            <div class="pd-lien-he-the">
+              <h3><i class="fas fa-headset"></i> Cần hỗ trợ?</h3>
+              <p>Đội ngũ Thư Hiên luôn sẵn sàng giải đáp mọi thắc mắc về chương trình khuyến mãi.</p>
+              <div class="pd-lh-list">
+                <a href="tel:0901234567" class="pd-lh-nut"><i class="fas fa-phone-alt"></i> 0901 234 567</a>
+                <a href="mailto:thuhien@gmail.com" class="pd-lh-nut"><i class="fas fa-envelope"></i> thuhien@gmail.com</a>
+              </div>
+              <div class="pd-gio-mo">
+                <i class="fas fa-clock"></i> Thứ 2 – CN: 08:00 – 21:00
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA CUỐI ═══ -->
+    <section class="pd-cta">
+      <div class="pd-cta-noi">
+        <p class="pd-cta-nhan">Còn <strong id="pd-cta-ngay-con">26</strong> ngày để nhận ưu đãi</p>
+        <h2 class="pd-cta-tieu-de">Đừng để những cuốn sách quý<br>chờ đợi thêm nữa</h2>
+        <p class="pd-cta-mo-ta">Hàng trăm đầu sách cổ và quý hiếm đang chờ được trao đến đúng người.</p>
+        <a href="category.html" class="pd-cta-nut">
+          <i class="fas fa-book-open"></i> Khám phá kho sách ngay
+        </a>
+      </div>
+    </section>
+
+  </main>
+
     <!-- ==========NHÚNG FOOTER ========== -->
     <div id="footer"></div>
 
     <script src="assets/js/data.js" ></script>
-    <script src="assets/js/index.js" ></script>
-<script src="assets/js/style.js"></script>
+    <script src="assets/js/promotion-detail.js" ></script>
+    <script src="assets/js/style.js"></script>
 
     <!-- ================= HỘP QUÀ NỔI TÍCH HỢP ================= -->
 <div id="khu-vuc-qua-tang">
-    
     <a href="box.html" class="nut-gieo-que-lo-lung" data-tooltip="Hãy ấn vào để gieo quẻ nhận quà">
         <img src="assets/images/box.png" alt="Ống quẻ Thư Hiên" class="ong-que-img-lo-lung">
     </a>

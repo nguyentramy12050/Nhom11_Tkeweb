@@ -134,3 +134,5 @@ if (!window.__thuhienStorageBadgeBound) {
 document.addEventListener('DOMContentLoaded', function () {
     window.initThuhienHeader();
 });
+
+

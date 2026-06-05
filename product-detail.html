@@ -2,94 +2,18 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <title>Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý</title>
-    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title> Thư Hiên | Bảo tàng Tri thức Việt - Sách cổ & Sách quý </title>
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/style.css" />
+<!--Nhúng css-->
+    <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/product-detail.css" />
   </head>
   <body>
-    <!-- ========== HEADER ========== -->
-    <header class="header">
-  <div class="hd-top">
-    <div class="hd-top-noi">
-      <ul class="hd-top-list">
-        <li>
-          <i class="fas fa-bookmark"></i>
-          <a href="my_order.html" class="hd-top-dang-nhap">Sách của tôi</a>
-        </li>
-        <li class="hd-top-phan-cach" aria-hidden="true"></li>
-        <li id="hd-top-chua-dang-nhap">
-          <i class="far fa-user"></i>
-          <a href="login.html" class="hd-top-dang-nhap">Đăng nhập</a>
-          <span>|</span>
-          <a href="login.html" class="hd-top-dang-ky">Đăng ký</a>
-        </li>
-        <li id="hd-top-da-dang-nhap" style="display:none;">
-          <i class="far fa-user"></i>
-          <span id="hd-ten-user"></span>
-          <span>|</span>
-          <a href="#" id="hd-dang-xuat" class="hd-top-dang-xuat">Đăng xuất</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="header-container">
-    <div class="header-brand">
-      <a href="index.html">
-        <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="logo-img-only" />
-      </a>
-    </div>
-
-    <nav class="header-nav">
-      <ul>
-        <li><a href="index.html" data-page="index.html">Trang chủ</a></li>
-        <li><a href="category.html" data-page="category.html">Danh mục</a></li>
-        <li><a href="buyback.html" data-page="buyback.html">Bán lại sách cũ</a></li>
-        <li><a href="blog.html" data-page="blog.html">Blog</a></li>
-        <li><a href="about.html" data-page="about.html">Về chúng tôi</a></li>
-      </ul>
-    </nav>
-
-    <div class="header-icons">
-      <button class="hd-icon-btn" id="btn-tim-kiem" title="Tìm kiếm" aria-label="Tìm kiếm">
-        <i class="fas fa-search"></i>
-      </button>
-      <a href="cart.html" class="hd-icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng" style="position:relative;">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="hd-badge an" id="so-gio-hang">0</span>
-      </a>
-    </div>
-
-    <div class="pop-tim-kiem" id="pop-tim-kiem">
-      <div class="pop-tim-kiem-noi">
-        <p class="pop-nhan">Tìm kiếm sách</p>
-        <div class="pop-search-row">
-          <i class="fas fa-search"></i>
-          <input type="text" id="o-tim-kiem" placeholder="Tên sách, tác giả, thể loại..." />
-          <button class="pop-search-btn" id="btn-tim">Tìm</button>
-        </div>
-        <div class="pop-tag-list">
-          <span class="pop-tag">Văn học kinh điển</span>
-          <span class="pop-tag">Văn học Việt Nam xưa</span>
-          <span class="pop-tag">Ấn bản đặc biệt</span>
-          <span class="pop-tag">Lịch sử &amp; Văn minh</span>
-          <span class="pop-tag">Ngoại văn tuyển chọn</span>
-          <span class="pop-tag">Thiếu nhi &amp; Tuổi thơ</span>
-          <span class="pop-tag">Triết học &amp; Tư tưởng</span>
-          <span class="pop-tag">Trinh thám kinh điển</span>
-        </div>
-      </div>
-    </div>
-    <div class="pop-overlay" id="pop-overlay"></div>
-  </div>
-</header>
+    <!-- ==========NHÚNG HEADER ========== -->
+    <div id="header"></div>
 
     <main class="detail-page">
       <div class="container-custom">
@@ -187,62 +111,74 @@
         </div>
       </div>
     </main>
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer">
-  <div class="footer-top">
-    <div class="footer-col">
-      <h3 class="footer-title">Về Chúng Tôi</h3>
-      <p>Tiệm Sách Thư Hiên - Nơi lưu giữ và chia sẻ những câu chuyện qua từng trang sách cũ đầy ký ức, từ năm 2009.</p>
-      <div class="social-icons">
-        <a href="https://www.facebook.com/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
-      </div>
-    </div>
+<!-- ==========NHÚNG FOOTER ========== -->
+    <div id="footer"></div>
 
-    <div class="footer-col">
-      <h3 class="footer-title">Khám Phá</h3>
-      <ul>
-        <li><a href="category.html">Danh mục sách</a></li>
-        <li><a href="buyback.html">Bán lại sách cũ</a></li>
-        <li><a href="blog.html">Blog &amp; Tin tức</a></li>
-        <li><a href="about.html">Về chúng tôi</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h3 class="footer-title">Quy Định</h3>
-      <ul>
-        <li><a href="policy.html#chinh-sach-doi-tra">Chính sách đổi trả</a></li>
-        <li><a href="policy.html#huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
-        <li><a href="policy.html#phuong-thuc-thanh-toan">Phương thức thanh toán</a></li>
-        <li><a href="#">Chính sách bảo mật</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h3 class="footer-title">Liên Hệ</h3>
-      <ul class="contact-info">
-        <li><i class="fas fa-map-marker-alt"></i> 123 phố Hoàn Kiếm, Hà Nội</li>
-        <li><i class="fas fa-phone-alt"></i> 0901 234 567</li>
-        <li><i class="fas fa-envelope"></i> thuhien@gmail.com</li>
-        <li><i class="fas fa-clock"></i> 08:00 - 21:00, mở cửa mỗi ngày</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <img src="assets/images/logo.jpg" alt="Logo Thư Hiên" class="footer-bottom-logo" />
-    <div class="footer-bottom-noi">
-      <p><strong>Tiệm Sách Thư Hiên</strong> - Bảo tàng Tri thức Việt</p>
-      <p>Địa chỉ: Số 123 phố Hoàn Kiếm, quận Hoàn Kiếm, Hà Nội &nbsp;|&nbsp; Hotline: 0901 234 567</p>
-      <p>&copy; 2026 Tiệm Sách Thư Hiên. Tất cả quyền được bảo lưu.</p>
-    </div>
-  </div>
-</footer>
-<script src="assets/js/style.js"></script>
+    <script src="assets/js/style.js"></script>
     <script src="assets/js/data.js"></script>
     <script src="assets/js/product-detail.js"></script>
+
+    <!-- ================= HỘP QUÀ NỔI TÍCH HỢP ================= -->
+<div id="khu-vuc-qua-tang">
+    
+    <a href="box.html" class="nut-gieo-que-lo-lung" data-tooltip="Hãy ấn vào để gieo quẻ nhận quà">
+        <img src="assets/images/box.png" alt="Ống quẻ Thư Hiên" class="ong-que-img-lo-lung">
+    </a>
+</div>
+
+<!--  ĐOẠN SCRIPT FETCH MỚI (Đã tối ưu để kích hoạt lại các hàm active) -->
+    <script>
+        function taiComponent(elementId, url, callback) {
+            const container = document.getElementById(elementId);
+            if (!container) return;
+
+            fetch(url)
+                .then(res => {
+                    if (!res.ok) throw new Error(`Không tìm thấy file: ${url}`);
+                    return res.text();
+                })
+                .then(data => {
+                    container.innerHTML = data;
+                    
+                    // Kích hoạt các thẻ <script> nằm bên trong file component (nếu có)
+                    container.querySelectorAll("script").forEach(oldScript => {
+                        const newScript = document.createElement("script");
+                        if (oldScript.src) newScript.src = oldScript.src;
+                        else newScript.textContent = oldScript.textContent;
+                        document.body.appendChild(newScript);
+                        oldScript.remove();
+                    });
+
+                    // 🔥 QUAN TRỌNG: Gọi hàm callback để chạy các hàm active sau khi Header/Footer đã lên hình
+                    if (callback) callback();
+                })
+                .catch(err => console.error("Lỗi tải component:", err));
+        }
+
+        // Thực thi khi trang tải xong
+        document.addEventListener("DOMContentLoaded", function () {
+            
+            // Tải Header từ thư mục components
+            taiComponent('header', 'components/header.html', function() {
+                
+                // 1. Kích hoạt tính năng tìm kiếm/giỏ hàng của Thư Hiên
+                if (typeof window.initThuhienHeader === "function") {
+                    window.initThuhienHeader();
+                }
+                
+                // 2. Kích hoạt hàm đổi màu Active của cậu (Ví dụ tên hàm là xử lý active)
+                // Cậu kiểm tra xem trong style.js cậu đặt tên hàm active là gì thì gọi ở đây nhé:
+                if (typeof window.initActiveMenu === "function") {
+                    window.initActiveMenu();
+                } else if (typeof window.xuLyActiveMenu === "function") {
+                    window.xuLyActiveMenu();
+                }
+                
+            });
+
+            // Tải Footer
+            taiComponent('footer', 'components/footer.html');
+        });
+    </script>
   </body>
 </html>

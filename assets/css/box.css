@@ -221,8 +221,7 @@ body {
 
 .tac-gia {
     font-size: 0.95rem;
-    text-align: right;
-    font-weight: bold;
+    text-align: left;
     color: #8a5d3b;
     margin: 10px 0 0;
 }

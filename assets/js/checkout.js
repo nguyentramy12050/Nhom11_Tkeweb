@@ -1,12 +1,30 @@
 const CART_KEY = "cart";
 const COUPON_KEY = "appliedCoupon";
 const ORDER_KEY = "latestOrder";
-const COUPON_CODE = "TRIKY";
-const COUPON_PERCENT = 10;
+//const COUPON_CODE = "TRIKY";
+//const COUPON_PERCENT = 10;
 const SHIPPING_FEE = 35000;
 const USERS_KEY = "users";
 const CURRENT_USER_KEY = "currentUser";
+// VOUCHER TOÀN HỆ THỐNG
+const DANH_SACH_VOUCHER = {
+    // 1. Mã từ sự kiện "Hè Sang Thư Hiên" (promotion-detail)
+    "HESANG20": { loai: "percent", giaTri: 20 },      // Giảm 20% tổng hóa đơn
+    "HESANG50K": { loai: "fixed", giaTri: 50000 },    // Giảm thẳng 50.000đ
+    
+    // 2. Mã từ sự kiện "Gieo Quẻ Tri Thức" (box.html)
+    "THUHIEN20": { loai: "percent", giaTri: 20 },     
+    "FREESHIP26": { loai: "shipping", giaTri: 0 },    // Miễn phí vận chuyển
+    "GIFT50K": { loai: "fixed", giaTri: 50000 },      
+    "KHAIQUYEN10": {loai: "percent", giaTri: 10},
+    "NGOCQUY20": {loai: "fixed", giaTri: 20000},
+    "CHUVANAN15": {loai: "percent", giaTri: 15},
+    "NGUYENKHI25": {loai: "fixed", giaTri: 25000},
+    "TINHHOA50": {loai: "fixed", giaTri: 50000},
 
+    // 3. Mã tri ân cũ của cậu để giữ logic không lỗi
+    "TRIKY": { loai: "percent", giaTri: 10 }
+};
 /* xử lý giá tiền */
 
 function parsePrice(priceText) {
@@ -100,25 +118,39 @@ function removeAppliedCoupon() {
 /* tính tổng đơn hàng */
 
 function calculateOrderSummary(items) {
+    // Tính tổng tiền hàng gốc
     const subtotal = items.reduce((sum, item) => {
         return sum + parsePrice(item.price) * item.quantity;
     }, 0);
 
+    // Lấy mã đã áp dụng từ ô Nhập hoặc từ LocalStorage
     const appliedCoupon = subtotal > 0 ? getAppliedCoupon() : "";
+    let discount = 0;
+    let shipping = subtotal > 0 ? SHIPPING_FEE : 0;
 
-    const discount = appliedCoupon === COUPON_CODE
-        ? Math.round(subtotal * COUPON_PERCENT / 100)
-        : 0;
+    // Kiểm tra tính hợp lệ của mã nằm trong Từ Điển
+    if (appliedCoupon && DANH_SACH_VOUCHER[appliedCoupon]) {
+        const voucher = DANH_SACH_VOUCHER[appliedCoupon];
 
-    const shipping = subtotal > 0 ? SHIPPING_FEE : 0;
-    const total = Math.max(subtotal + shipping - discount, 0);
+        if (voucher.loai === "percent") {
+            // Giảm theo %
+            discount = Math.round(subtotal * voucher.giaTri / 100);
+        } else if (voucher.loai === "fixed") {
+            // Giảm tiền mặt cố định
+            discount = voucher.giaTri;
+        } else if (voucher.loai === "shipping") {
+            // Miễn phí vận chuyển
+            shipping = 0;
+        }
+    }
+    //  Tính toán tổng thanh toán cuối cùng và return kết quả
+    const total = subtotal - discount + shipping;
 
     return {
-        subtotal,
-        shipping,
-        discount,
-        total,
-        appliedCoupon
+        subtotal: subtotal,
+        discount: discount,
+        shipping: shipping,
+        total: total > 0 ? total : 0
     };
 }
 
@@ -455,4 +487,12 @@ document.addEventListener("DOMContentLoaded", function () {
     initCheckoutEvents();
     renderCheckoutPage();
     fillCheckoutUserInfo();
+    // Tự động kiểm tra và điền mã đã nhận từ trang sự kiện/khuyến mại vào ô nhập liệu
+    const maDaLuu = localStorage.getItem("appliedCoupon");
+    const oNhapCoupon = document.getElementById("coupon-input") || document.querySelector(".checkout-promo input"); 
+    // Cậu kiểm tra xem id hoặc class của ô nhập mã bên checkout.html là gì để map cho đúng nhé
+
+    if (maDaLuu && oNhapCoupon) {
+        oNhapCoupon.value = maDaLuu; // Tự động điền chữ HESANG20 vào ô
+    }
 });
