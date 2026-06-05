@@ -114,8 +114,11 @@ window.initThuhienHeader = function () {
             e.preventDefault();
             sessionStorage.removeItem('thuhien_dang_nhap');
             sessionStorage.removeItem('thuhien_ten');
+            sessionStorage.removeItem('currentUser');
             localStorage.removeItem('thuhien_dang_nhap');
             localStorage.removeItem('thuhien_ten');
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('thuhien_remembered_email');
             window.location.href = 'index.html';
         });
     }

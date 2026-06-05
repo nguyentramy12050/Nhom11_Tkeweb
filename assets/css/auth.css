@@ -1,0 +1,356 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    color: #4a3c31;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background-color: #f8f5f0;
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.login-page::before,
+.register-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(248, 245, 240, 0.66);
+    pointer-events: none;
+}
+
+.login-card,
+.register-shell {
+    position: relative;
+    z-index: 1;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    padding: 46px 38px;
+    background: rgba(255, 250, 245, 0.92);
+    box-shadow: 0 18px 45px rgba(72, 44, 28, 0.13);
+    text-align: center;
+}
+
+.auth-logo {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #4a2f22;
+    margin-bottom: 14px;
+}
+
+.login-card h1 {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #6d5b50;
+    margin-bottom: 28px;
+}
+
+.register-shell {
+    width: 100%;
+    max-width: 1060px;
+    min-height: 620px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: rgba(255, 250, 245, 0.92);
+    box-shadow: 0 18px 45px rgba(72, 44, 28, 0.13);
+    overflow: hidden;
+}
+
+.register-image {
+    position: relative;
+    min-height: 620px;
+    background:
+        linear-gradient(rgba(70, 37, 20, 0.35), rgba(70, 37, 20, 0.78)),
+        url("../images/bg_register.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.image-overlay {
+    position: absolute;
+    left: 34px;
+    right: 34px;
+    bottom: 34px;
+    color: #fff;
+}
+
+.image-overlay h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 33px;
+    margin-bottom: 8px;
+}
+
+.image-overlay p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.register-card {
+    padding: 40px 38px;
+    background: rgba(255, 250, 245, 0.94);
+}
+
+.register-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+    color: #4a2f22;
+    font-size: 27px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.register-logo i {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #6d351f;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.register-card h1 {
+    font-family: 'Playfair Display', serif;
+    color: #4a2f22;
+    font-size: 27px;
+    margin-bottom: 6px;
+}
+
+.register-subtitle {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 13px;
+    color: #7a6658;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #4a2f22;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(89, 61, 46, 0.18);
+    background: transparent;
+    outline: none;
+    padding: 10px 0;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    color: #4a2f22;
+}
+
+.form-group input::placeholder {
+    color: #b09c8b;
+    font-style: italic;
+}
+
+.form-group input:focus {
+    border-bottom-color: #6d351f;
+}
+
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-right: 38px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #8a7567;
+    font-size: 14px;
+}
+
+.form-error {
+    display: block;
+    min-height: 16px;
+    margin-top: 4px;
+    font-size: 11px;
+    color: #a6422d;
+}
+
+.auth-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4px 0 22px;
+    gap: 16px;
+}
+
+.remember-me,
+.agree-policy {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 12px;
+    color: #6d5b50;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.remember-me input,
+.agree-policy input {
+    accent-color: #6d351f;
+    margin-top: 2px;
+}
+
+.small-link {
+    font-size: 12px;
+    color: #6d351f;
+    font-weight: 500;
+}
+
+.agree-policy {
+    margin-top: 4px;
+    margin-bottom: 2px;
+}
+
+.policy-error {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.auth-btn {
+    width: 100%;
+    border: none;
+    background: #5a2412;
+    color: #fff;
+    padding: 15px 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.auth-btn:hover {
+    background: #7a3b22;
+    transform: translateY(-1px);
+}
+
+.auth-btn i {
+    margin-left: 5px;
+}
+
+.auth-message {
+    min-height: 20px;
+    margin-top: 12px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.auth-message.success {
+    color: #5f7541;
+}
+
+.auth-message.error {
+    color: #a6422d;
+}
+
+.hidden-form {
+    display: none;
+}
+
+.hidden-form.show {
+    display: block;
+    margin-top: 18px;
+}
+
+.auth-switch {
+    margin-top: 22px;
+    padding-top: 16px;
+    text-align: center;
+    font-size: 13px;
+    color: #6d5b50;
+}
+
+.auth-switch a {
+    color: #4a2f22;
+    font-weight: 700;
+    margin-left: 4px;
+}
+
+.auth-switch a:hover {
+    color: #7a3b22;
+}
+
+@media (max-width: 900px) {
+    .register-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .register-image {
+        display: none;
+    }
+
+    .register-card {
+        padding: 34px 26px;
+    }
+}
+
+@media (max-width: 520px) {
+    .auth-page {
+        padding: 18px;
+    }
+
+    .login-card {
+        padding: 36px 24px;
+    }
+
+    .auth-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}

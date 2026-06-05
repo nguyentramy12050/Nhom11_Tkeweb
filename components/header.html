@@ -3,8 +3,10 @@
     <div class="hd-top-noi">
       <ul class="hd-top-list">
         <li>
-          <i class="fas fa-bookmark"></i>
-          <a href="cart.html" class="hd-top-dang-nhap">Sách của tôi</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 5px; vertical-align: -1px;">
+            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5z"/>
+          </svg>
+          <a href="my_order.html" class="hd-top-dang-nhap">Sách của tôi</a>
         </li>
         <li class="hd-top-phan-cach" aria-hidden="true"></li>
         <li id="hd-top-chua-dang-nhap">
@@ -83,8 +85,9 @@
     const theTenUser = document.getElementById("hd-ten-user");
     const nutDangXuat = document.getElementById("hd-dang-xuat");
 
-    const tdn = sessionStorage.getItem("tenDangNhap") || localStorage.getItem("tenDangNhap");
-    if (tdn) {
+    const tdn = sessionStorage.getItem("thuhien_ten") || localStorage.getItem("thuhien_ten");
+    const daDangNhap = sessionStorage.getItem("thuhien_dang_nhap") || localStorage.getItem("thuhien_dang_nhap");
+    if (daDangNhap && tdn) {
       if (vungChuaDangNhap) vungChuaDangNhap.style.display = "none";
       if (vungDaDangNhap) vungDaDangNhap.style.display = "inline-block";
       if (theTenUser) theTenUser.textContent = tdn;
@@ -93,8 +96,13 @@
     if (nutDangXuat) {
       nutDangXuat.addEventListener("click", (e) => {
         e.preventDefault();
-        sessionStorage.clear();
-        localStorage.removeItem("tenDangNhap");
+        sessionStorage.removeItem("thuhien_dang_nhap");
+        sessionStorage.removeItem("thuhien_ten");
+        sessionStorage.removeItem("currentUser");
+        localStorage.removeItem("thuhien_dang_nhap");
+        localStorage.removeItem("thuhien_ten");
+        localStorage.removeItem("currentUser");
+        localStorage.removeItem("thuhien_remembered_email");
         window.location.reload();
       });
     }

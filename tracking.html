@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Theo dõi kiện hàng | Thư Hiên</title>
+
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/tracking.css" />
+  </head>
+
+  <body>
+    <div id="header-placeholder"></div>
+
+    <main class="tracking-page">
+      <section class="tracking-container">
+        <div class="tracking-heading">
+          <h1>Theo dõi kiện hàng</h1>
+          <p>Hành trình đơn tri thức đang đến với bạn.</p>
+        </div>
+
+        <section id="tracking-empty" class="tracking-empty">
+          <i class="fas fa-box-open"></i>
+          <h2>Không tìm thấy đơn hàng</h2>
+          <p>
+            Đơn hàng này không tồn tại hoặc đã bị xóa khỏi lịch sử mua hàng.
+          </p>
+          <a href="my_order.html">Quay lại đơn hàng của tôi</a>
+        </section>
+
+        <section id="tracking-content" class="tracking-layout">
+          <div class="tracking-main-card">
+            <div class="tracking-top">
+              <div>
+                <span>Mã đơn hàng</span>
+                <strong id="tracking-code">#TH-0000</strong>
+              </div>
+
+              <div>
+                <span>Dự kiến giao</span>
+                <strong id="tracking-date">Đang cập nhật</strong>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <article class="timeline-item active">
+                <span class="timeline-icon">
+                  <i class="fas fa-clipboard-check"></i>
+                </span>
+
+                <div class="timeline-content">
+                  <div class="timeline-row">
+                    <h2>Đã tiếp nhận đơn hàng</h2>
+                    <span id="time-confirmed">08:30</span>
+                  </div>
+                  <p>
+                    Hệ thống đã ghi nhận yêu cầu đặt sách của bạn. Chuyên gia
+                    đang kiểm tra tình trạng bản thảo.
+                  </p>
+                </div>
+              </article>
+
+              <article class="timeline-item active">
+                <span class="timeline-icon">
+                  <i class="fas fa-book-open"></i>
+                </span>
+
+                <div class="timeline-content">
+                  <div class="timeline-row">
+                    <h2>Đang phục chế & đóng gói</h2>
+                    <span id="time-packed">14:15</span>
+                  </div>
+                  <p>
+                    Sách đang được đóng bao quản vật trong hộp chuyên dụng lót
+                    nhung tơ tằm.
+                  </p>
+                </div>
+              </article>
+
+              <article class="timeline-item active current">
+                <span class="timeline-icon">
+                  <i class="fas fa-truck"></i>
+                </span>
+
+                <div class="timeline-content">
+                  <div class="timeline-row">
+                    <h2>Đang vận chuyển</h2>
+                    <span>Hiện tại</span>
+                  </div>
+                  <p id="shipping-message">
+                    Kiện hàng đã rời kho trung chuyển và đang trên đường tới địa
+                    chỉ của bạn.
+                  </p>
+
+                  <div class="tracking-note">
+                    <i class="fas fa-history"></i>
+                    <span id="tracking-note-text">
+                      Cập nhật: Kiện hàng đã qua trạm kiểm soát gần nhất.
+                    </span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="timeline-item disabled">
+                <span class="timeline-icon">
+                  <i class="fas fa-home"></i>
+                </span>
+
+                <div class="timeline-content">
+                  <div class="timeline-row">
+                    <h2>Giao hàng thành công</h2>
+                    <span>Chờ cập nhật</span>
+                  </div>
+                  <p>
+                    Cảm ơn bạn đã tin tưởng Thư Hiên trong việc gìn giữ di sản
+                    tri thức.
+                  </p>
+
+                  <button class="review-btn" type="button">
+                    <i class="fas fa-star"></i>
+                    Viết đánh giá
+                  </button>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="tracking-side">
+            <section class="side-card">
+              <h2>Địa chỉ nhận sách</h2>
+
+              <div class="receiver-info">
+                <p>
+                  <i class="fas fa-user"></i>
+                  <strong id="receiver-name">Đang cập nhật</strong>
+                </p>
+
+                <p>
+                  <i class="fas fa-phone"></i>
+                  <span id="receiver-phone">Đang cập nhật</span>
+                </p>
+
+                <p>
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span id="receiver-address">Đang cập nhật</span>
+                </p>
+              </div>
+            </section>
+
+            <section class="side-card">
+              <h2>Kiện hàng gồm có</h2>
+
+              <div id="tracking-items" class="tracking-items"></div>
+
+              <div class="tracking-summary">
+                <div>
+                  <span>Tạm tính</span>
+                  <strong id="tracking-subtotal">0đ</strong>
+                </div>
+
+                <div>
+                  <span>Phí bảo quản & vận chuyển</span>
+                  <strong id="tracking-shipping">0đ</strong>
+                </div>
+
+                <div id="tracking-discount-row">
+                  <span>Giảm giá</span>
+                  <strong id="tracking-discount">-0đ</strong>
+                </div>
+              </div>
+
+              <div class="tracking-total">
+                <span>Tổng cộng</span>
+                <strong id="tracking-total">0đ</strong>
+              </div>
+            </section>
+
+            <button class="support-btn" type="button">
+              <i class="fas fa-headset"></i>
+              Liên hệ chăm sóc khách hàng
+            </button>
+          </aside>
+        </section>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/style.js"></script>
+    <script src="assets/js/tracking.js"></script>
+  </body>
+</html>

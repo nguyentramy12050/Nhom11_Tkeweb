@@ -195,7 +195,6 @@ if (book) {
                             </a>
                             <div class="hover-overlay">
                                 <a href="cart.html" class="action-btn cart-btn" title="Thêm vào giỏ"><i class="fas fa-shopping-cart"></i></a>
-                                <a href="#" class="action-btn" title="Yêu thích"><i class="far fa-heart"></i></a>
                                 <a href="product-detail.html?id=${rBook.id}" class="action-btn" title="Xem chi tiết"><i class="far fa-eye"></i></a>
                             </div>
                         </div>

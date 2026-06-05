@@ -262,10 +262,6 @@ function renderBooks(page) {
                             <i class="fas fa-shopping-cart"></i>
                         </button>
 
-                        <a href="#" class="action-btn" title="Yêu thích">
-                            <i class="far fa-heart"></i>
-                        </a>
-
                         <a href="product-detail.html?id=${book.id}" class="action-btn" title="Xem chi tiết">
                             <i class="far fa-eye"></i>
                         </a>
