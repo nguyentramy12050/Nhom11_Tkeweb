@@ -314,6 +314,45 @@
     margin: 0 0 24px;
 }
 
+.abt-login-notice {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin: -10px 0 22px;
+    padding: 13px 15px;
+    border-radius: 12px;
+    background: #7a2f1d;
+    color: #fff8ef;
+    font-family: var(--font-than);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.abt-login-notice i {
+    color: #f4d3a1;
+}
+
+.abt-login-notice a {
+    margin-left: auto;
+    color: #fff8ef;
+    font-weight: 700;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.abt-form-locked .abt-input,
+.abt-input:disabled {
+    background: #efe7dd;
+    color: #9a887b;
+    cursor: not-allowed;
+}
+
+.abt-form-nut:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .abt-form-hang-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;

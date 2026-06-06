@@ -5,7 +5,7 @@
 }
 
 .cart-page {
-    padding: 58px 20px 76px;
+    padding: 30px 20px 76px;
     background: transparent;
 }
 
@@ -15,7 +15,39 @@
 }
 
 .cart-heading {
-    margin-bottom: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.cart-heading .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.cart-heading .breadcrumb a {
+    color: var(--text-muted);
+    font-family: 'Playfair Display', serif;
+}
+
+.cart-heading .breadcrumb span {
+    font-family: 'Playfair Display', serif;
+}
+
+.cart-heading .breadcrumb a:hover {
+    color: var(--accent-color);
+}
+
+.cart-heading .breadcrumb-separator {
+    color: var(--accent-color);
 }
 
 .cart-heading h1 {
@@ -69,6 +101,8 @@
 
 .cart-item-info {
     min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .cart-item-title {
@@ -91,6 +125,8 @@
 .cart-quantity {
     display: inline-flex;
     align-items: center;
+    width: fit-content;
+    margin-top: auto;
     height: 30px;
     border: 1px solid rgba(126, 89, 63, 0.16);
     background: rgba(255, 255, 255, 0.42);
@@ -166,7 +202,7 @@
     border: none;
     background: transparent;
     color: #5c4033;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 1.4px;
@@ -210,6 +246,8 @@
 .summary-line strong {
     color: #4a2f22;
     font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
 }
 
 .summary-discount strong {
@@ -277,6 +315,102 @@
 
 .coupon-message.error {
     color: #9a3d2a;
+}
+
+.coupon-options {
+    display: grid;
+    gap: 9px;
+    margin-top: 12px;
+    max-height: 238px;
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(109, 53, 31, 0.5) rgba(230, 223, 211, 0.55);
+}
+
+.coupon-options::-webkit-scrollbar {
+    width: 6px;
+}
+
+.coupon-options::-webkit-scrollbar-track {
+    background: rgba(230, 223, 211, 0.55);
+    border-radius: 999px;
+}
+
+.coupon-options::-webkit-scrollbar-thumb {
+    background: rgba(109, 53, 31, 0.5);
+    border-radius: 999px;
+}
+
+.coupon-option {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 10px;
+    align-items: center;
+    padding: 10px 11px;
+    border: 1px solid rgba(126, 89, 63, 0.18);
+    background: #fffaf5;
+    color: #4a2f22;
+    text-align: left;
+    cursor: pointer;
+    transition: opacity .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.coupon-option.is-available:hover {
+    border-color: rgba(109, 53, 31, 0.42);
+    background: #fff4e9;
+    transform: translateY(-1px);
+}
+
+.coupon-option.is-disabled {
+    opacity: 0.42;
+    cursor: not-allowed;
+    filter: grayscale(0.25);
+}
+
+.coupon-option.is-selected {
+    border-color: #6d351f;
+    background: #f5e7dd;
+}
+
+.coupon-option-tag {
+    grid-row: 1 / span 2;
+    min-width: 58px;
+    padding: 5px 7px;
+    border-radius: 999px;
+    background: rgba(109, 53, 31, 0.12);
+    color: #6d351f;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.coupon-option-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
+}
+
+.coupon-option-main strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: #4a2f22;
+}
+
+.coupon-option-main small,
+.coupon-option-note {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 11px;
+    color: #7a6658;
+}
+
+.coupon-option-note {
+    display: block;
 }
 
 .summary-total {
@@ -495,6 +629,19 @@
 .cart-page h2,
 .cart-item-title,
 .cart-item-price,
+.summary-line strong,
 .summary-total-price {
+    font-family: 'Playfair Display', serif;
+}
+
+.cart-heading .breadcrumb,
+.cart-heading .breadcrumb a,
+.cart-heading .breadcrumb span,
+.cart-heading .cart-text-link {
+    font-family: 'Playfair Display', serif;
+}
+
+.cart-page .summary-total-price,
+.cart-page #summary-total {
     font-family: 'Playfair Display', serif;
 }

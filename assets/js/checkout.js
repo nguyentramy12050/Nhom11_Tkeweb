@@ -2,7 +2,8 @@ const CART_KEY = "cart";
 const COUPON_KEY = "appliedCoupon";
 const ORDER_KEY = "latestOrder";
 const SHIPPING_FEE = 35000;
-const USERS_KEY = "users";
+const USERS_KEY = "thuhien_users";
+const LEGACY_USERS_KEY = "users";
 const CURRENT_USER_KEY = "currentUser";
 
 // DANH SÁCH VOUCHER — có donToiThieu và hetHan
@@ -19,6 +20,7 @@ const DANH_SACH_VOUCHER = {
     "TINHHOA50":  { loai: "fixed",    giaTri: 50000, donToiThieu: 0,     hetHan: null },
     "TRIKY":      { loai: "percent",  giaTri: 10,  donToiThieu: 0,      hetHan: null },
 };
+const AUTO_SHIPPING_CODE = "FREESHIP26";
 /* xử lý giá tiền */
 
 function parsePrice(priceText) {
@@ -36,6 +38,52 @@ function parsePrice(priceText) {
 
 function formatVND(number) {
     return Number(number || 0).toLocaleString("vi-VN") + "đ";
+}
+
+function isVoucherExpired(voucher) {
+    return Boolean(voucher?.hetHan && new Date() > voucher.hetHan);
+}
+
+function isVoucherUsable(code, subtotal) {
+    const voucher = DANH_SACH_VOUCHER[code];
+    if (!voucher || isVoucherExpired(voucher)) return false;
+
+    return !voucher.donToiThieu || subtotal >= voucher.donToiThieu;
+}
+
+function getVoucherDiscount(code, subtotal) {
+    const voucher = DANH_SACH_VOUCHER[code];
+    if (!voucher || voucher.loai === "shipping" || !isVoucherUsable(code, subtotal)) return 0;
+
+    if (voucher.loai === "percent") {
+        return Math.round(subtotal * voucher.giaTri / 100);
+    }
+
+    if (voucher.loai === "fixed") {
+        return voucher.giaTri;
+    }
+
+    return 0;
+}
+
+function formatOrderDate(dateValue) {
+    const date = new Date(dateValue);
+    if (Number.isNaN(date.getTime())) return "";
+
+    return date.toLocaleDateString("vi-VN", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+    });
+}
+
+function escapeHtml(value) {
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 /* xử lý giỏ hàng */
@@ -118,24 +166,27 @@ function calculateOrderSummary(items) {
     }, 0);
 
     // Lấy mã đã áp dụng từ ô Nhập hoặc từ LocalStorage
-    const appliedCoupon = subtotal > 0 ? getAppliedCoupon() : "";
+    let appliedCoupon = subtotal > 0 ? getAppliedCoupon() : "";
     let discount = 0;
     let shipping = subtotal > 0 ? SHIPPING_FEE : 0;
+    const hasFreeShipping = subtotal > 0 && isVoucherUsable(AUTO_SHIPPING_CODE, subtotal);
 
-    // Kiểm tra tính hợp lệ của mã nằm trong Từ Điển
-    if (appliedCoupon && DANH_SACH_VOUCHER[appliedCoupon]) {
-        const voucher = DANH_SACH_VOUCHER[appliedCoupon];
+    if (hasFreeShipping) {
+        shipping = 0;
+    }
 
-        if (voucher.loai === "percent") {
-            // Giảm theo %
-            discount = Math.round(subtotal * voucher.giaTri / 100);
-        } else if (voucher.loai === "fixed") {
-            // Giảm tiền mặt cố định
-            discount = voucher.giaTri;
-        } else if (voucher.loai === "shipping") {
-            // Miễn phí vận chuyển
-            shipping = 0;
-        }
+    if (appliedCoupon && DANH_SACH_VOUCHER[appliedCoupon]?.loai === "shipping") {
+        appliedCoupon = "";
+        removeAppliedCoupon();
+    }
+
+    if (appliedCoupon && !isVoucherUsable(appliedCoupon, subtotal)) {
+        appliedCoupon = "";
+        removeAppliedCoupon();
+    }
+
+    if (appliedCoupon) {
+        discount = getVoucherDiscount(appliedCoupon, subtotal);
     }
     //  Tính toán tổng thanh toán cuối cùng và return kết quả
     const total = subtotal - discount + shipping;
@@ -324,6 +375,11 @@ function saveOrderToHistory(order) {
 }
 
 function placeOrder() {
+    if (typeof window.yeuCauDangNhap === "function"
+        && !window.yeuCauDangNhap("Vui lòng đăng nhập để đặt hàng.")) {
+        return;
+    }
+
     const items = getCartItemsDetail();
 
     if (items.length === 0) {
@@ -367,14 +423,74 @@ function showSuccessOrder(order) {
     const emptyBox = document.getElementById("checkout-empty");
     const contentBox = document.getElementById("checkout-content");
     const successBox = document.getElementById("order-success");
-    const successMessage = document.getElementById("success-message");
 
     emptyBox.style.display = "none";
     contentBox.style.display = "none";
     successBox.style.display = "block";
 
-    successMessage.textContent =
-        `Mã đơn hàng của bạn là ${order.code}. Thư Hiên sẽ liên hệ xác nhận đơn hàng trong thời gian sớm nhất.`;
+    const orderItemsHtml = order.items.map(item => {
+        const itemTotal = parsePrice(item.price) * item.quantity;
+
+        return `
+            <article class="success-order-item">
+                <img
+                    src="${getBookImagePath(item.image)}"
+                    alt="${escapeHtml(item.name)}"
+                    onerror="this.src='assets/images/background.jpg'"
+                >
+                <div class="success-order-info">
+                    <strong>${escapeHtml(item.name)}</strong>
+                    <span>Số lượng: ${item.quantity}</span>
+                </div>
+                <b>${formatVND(itemTotal)}</b>
+            </article>
+        `;
+    }).join("");
+
+    successBox.innerHTML = `
+        <div class="success-icon-box">
+            <i class="fas fa-check"></i>
+        </div>
+
+        <h2>Đặt hàng thành công!</h2>
+        <p class="success-subtitle">
+            Cảm ơn bạn đã đồng hành cùng Thư Hiên trong hành trình gìn giữ tri thức.
+        </p>
+
+        <div class="success-meta">
+            <div>
+                <span>Mã đơn hàng</span>
+                <strong>#${escapeHtml(order.code)}</strong>
+            </div>
+            <div>
+                <span>Ngày đặt hàng</span>
+                <strong>${formatOrderDate(order.createdAt)}</strong>
+            </div>
+        </div>
+
+        <div class="success-order-summary">
+            <h3>Tóm tắt đơn hàng</h3>
+            ${orderItemsHtml}
+        </div>
+
+        <div class="success-total-row">
+            <span>Tổng thanh toán</span>
+            <strong>${formatVND(order.summary.total)}</strong>
+        </div>
+
+        <div class="success-email-note">
+            <i class="far fa-envelope"></i>
+            <p>
+                Chúng tôi đã gửi email xác nhận chi tiết đơn hàng đến hộp thư
+                <strong>${escapeHtml(order.customer.email)}</strong>. Vui lòng kiểm tra hộp thư đến hoặc thư rác để theo dõi hành trình của cuốn sách.
+            </p>
+        </div>
+
+        <div class="success-actions">
+            <a href="my_order.html">Theo dõi đơn hàng</a>
+            <a href="category.html">Tiếp tục mua sắm</a>
+        </div>
+    `;
 }
 
 /* gắn sự kiện */
@@ -419,7 +535,7 @@ function getRegisteredCheckoutUser() {
     const currentUser = readJsonStorage(CURRENT_USER_KEY, null);
     if (!currentUser) return null;
 
-    const users = readJsonStorage(USERS_KEY, []);
+    const users = readJsonStorage(USERS_KEY, readJsonStorage(LEGACY_USERS_KEY, []));
     if (!Array.isArray(users)) return currentUser;
 
     const registeredUser = users.find(user => {

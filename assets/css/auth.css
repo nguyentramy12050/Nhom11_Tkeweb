@@ -345,3 +345,23 @@ a {
         gap: 8px;
     }
 }
+
+/* Quên mật khẩu */
+.hidden-form {
+    display: none;
+}
+
+.hidden-form.show {
+    display: block;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(119, 84, 58, 0.16);
+}
+
+.forgot-card {
+    max-width: 460px;
+}
+
+.forgot-card h1 {
+    margin-bottom: 28px;
+}

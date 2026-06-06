@@ -2,7 +2,7 @@ const ORDERS_KEY = "orders";
 const REVIEWS_KEY = "reviews";
 const CART_KEY = "cart";
 
-let selectedRating = 4;
+let selectedRating = 5;
 let uploadedImageData = "";
 
 function getOrdersFromStorage() {
@@ -144,7 +144,7 @@ function renderReviewPage() {
 
     const existingReview = getExistingReviewForOrder(order, orderIndex);
     if (existingReview) {
-        selectedRating = Number(existingReview.rating || existingReview.stars || 4);
+        selectedRating = Number(existingReview.rating || existingReview.stars || 5);
         uploadedImageData = existingReview.reviewImage || "";
 
         const contentInput = document.getElementById("review-content-input");

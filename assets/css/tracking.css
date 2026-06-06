@@ -1,6 +1,6 @@
 .tracking-page {
     min-height: 70vh;
-    padding: 54px 20px 78px;
+    padding: 30px 20px 78px;
     background:
         radial-gradient(rgba(106, 63, 38, 0.12) 1px, transparent 1px);
     background-size: 16px 16px;
@@ -12,22 +12,29 @@
 }
 
 .tracking-heading {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
-.tracking-heading h1 {
+.tracking-heading .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    color: #4a2f22;
-    line-height: 1.1;
-    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-muted);
 }
 
-.tracking-heading p {
-    font-family: 'Noto Sans', sans-serif;
-    color: #7b6657;
-    font-size: 14px;
-    font-style: italic;
+.tracking-heading .breadcrumb a {
+    color: var(--text-muted);
+}
+
+.tracking-heading .breadcrumb a:hover {
+    color: var(--accent-color);
+}
+
+.tracking-heading .breadcrumb-separator {
+    color: var(--accent-color);
 }
 
 .tracking-layout {
@@ -71,9 +78,9 @@
 }
 
 .tracking-top strong {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
     color: #6d351f;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .timeline {
@@ -124,7 +131,7 @@
 }
 
 .timeline-item.disabled {
-    opacity: 0.45;
+    opacity: 0.38;
 }
 
 .timeline-row {
@@ -143,7 +150,7 @@
 }
 
 .timeline-row span {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-size: 11px;
     font-weight: 700;
     color: #6d351f;
@@ -264,9 +271,9 @@
 }
 
 .tracking-item strong {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
     color: #4a2f22;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .tracking-summary {
@@ -286,7 +293,9 @@
 }
 
 .tracking-summary strong {
+    font-family: 'Playfair Display', serif;
     color: #4a2f22;
+    font-size: 14px;
 }
 
 .tracking-total {
@@ -306,23 +315,6 @@
     font-family: 'Playfair Display', serif;
     color: #4a2f22;
     font-size: 26px;
-}
-
-.support-btn {
-    border: none;
-    background: #5a2412;
-    color: #fff;
-    padding: 15px 18px;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-.support-btn:hover {
-    background: #7a3b22;
-    transform: translateY(-1px);
 }
 
 .tracking-empty {
@@ -372,10 +364,6 @@
 @media (max-width: 620px) {
     .tracking-page {
         padding: 38px 14px 58px;
-    }
-
-    .tracking-heading h1 {
-        font-size: 34px;
     }
 
     .tracking-main-card,

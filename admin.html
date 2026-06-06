@@ -7,27 +7,65 @@
   <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <style>
     :root { --mau-chinh: #2e6b3e; --mau-nau: #8a5d3b; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Noto Sans', sans-serif; background: #f5f2ed; color: #2e1a0e; min-height: 100vh; display: flex; flex-direction: column; }
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #f8f5f0;
+      background-image: url('assets/images/background.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center top;
+      color: #2e1a0e;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
     main { flex: 1; }
 
     /* ── ADMIN HEADER ── */
-    .ad-hd { background: #2e1a0e; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .ad-hd-logo { color: #f4d3a1; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .ad-hd-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+    .ad-hd {
+      background: rgba(255, 252, 246, 0.94);
+      border-bottom: 1px solid rgba(139, 90, 43, 0.16);
+      box-shadow: 0 8px 24px rgba(62, 48, 39, 0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      min-height: 86px;
+    }
+    .ad-hd-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ad-hd-logo { color: #2f241d; font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 900; display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .ad-hd-logo img { width: auto; height: 58px; border-radius: 0; object-fit: contain; filter: drop-shadow(0 3px 8px rgba(62, 48, 39, 0.16)); }
     .ad-hd-right { display: flex; align-items: center; gap: 16px; }
     .ad-hd-btn { padding: 7px 18px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; cursor: pointer; border: none; display: none; }
-    .ad-hd-btn-vl { background: transparent; border: 1px solid #8a5d3b; color: #f4d3a1; }
-    .ad-hd-btn-vl:hover { background: #8a5d3b; }
-    .ad-hd-btn-dx { background: #8a5d3b; color: #fff; }
-    .ad-hd-btn-dx:hover { background: #6b4729; }
+    .ad-hd-btn-vl { background: transparent; border: 1px solid rgba(139, 90, 43, 0.24); color: #2f241d; }
+    .ad-hd-btn-vl:hover { background: #fffaf2; color: #5b341d; border-color: rgba(139, 90, 43, 0.42); }
+    .ad-hd-btn-dx { background: #8b5a2b; color: #fff; }
+    .ad-hd-btn-dx:hover { background: #5b341d; }
 
     /* ── ADMIN FOOTER ── */
-    .ad-ft { background: #2e1a0e; color: #a08060; padding: 24px 32px; text-align: center; font-size: 0.82rem; margin-top: auto; }
-    .ad-ft strong { color: #f4d3a1; }
+    .ad-ft {
+      background: #fffaf2;
+      border-top: 1px solid rgba(139, 90, 43, 0.16);
+      box-shadow: 0 -8px 24px rgba(62, 48, 39, 0.06);
+      color: #74665A;
+      padding: 24px 32px;
+      text-align: center;
+      font-size: 0.82rem;
+      margin-top: auto;
+    }
+    .ad-ft strong { color: #2f241d; font-family: 'Playfair Display', serif; }
 
     .ad-container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 
@@ -50,20 +88,20 @@
     .ad-login button:hover { background: #4a2c14; }
     .ad-login .ad-loi { color: #b84a2a; font-size: 0.85rem; margin-top: 12px; display: none; }
 
-    .ad-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-    .ad-toolbar select, .ad-toolbar input { padding: 8px 14px; border: 1px solid #d4c5b0; border-radius: 8px; font-size: 0.88rem; outline: none; }
-    .ad-toolbar input[type="text"] { width: 240px; }
-    .ad-tab-group { display: flex; gap: 4px; background: #ede8e0; border-radius: 8px; padding: 4px; }
+    .ad-toolbar { display: grid; grid-template-columns: minmax(320px, 1.1fr) minmax(220px, .75fr) minmax(320px, 1fr); align-items: center; gap: 14px; margin-bottom: 24px; }
+    .ad-toolbar select, .ad-toolbar input { width: 100%; min-height: 44px; padding: 10px 14px; border: 1px solid #d4c5b0; border-radius: 10px; font-size: 0.9rem; outline: none; background: #fff; }
+    .ad-toolbar select:focus, .ad-toolbar input:focus { border-color: #8a5d3b; box-shadow: 0 0 0 3px rgba(138, 93, 59, .12); }
+    .ad-tab-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; background: #ede8e0; border-radius: 10px; padding: 5px; min-height: 44px; }
     .ad-tab { padding: 8px 18px; border: none; background: transparent; border-radius: 6px; cursor: pointer; font-size: 0.88rem; font-weight: 500; color: #74665A; transition: .2s; }
     .ad-tab.active { background: #fff; color: #2e1a0e; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
     .ad-tab:hover:not(.active) { background: rgba(255,255,255,.6); }
-    .ad-btn-xoa-tat-ca { margin-left: auto; padding: 8px 16px; background: #fff; border: 1px solid #e5503a; color: #e5503a; border-radius: 8px; cursor: pointer; font-size: 0.85rem; display: none; }
+    .ad-btn-xoa-tat-ca { grid-column: 1 / -1; justify-self: end; padding: 10px 16px; min-height: 44px; background: #fff; border: 1px solid #e5503a; color: #e5503a; border-radius: 10px; cursor: pointer; font-size: 0.85rem; display: none; white-space: nowrap; }
     .ad-btn-xoa-tat-ca:hover { background: #e5503a; color: #fff; }
 
-    .ad-table-wrap { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); overflow: hidden; }
-    .ad-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
-    .ad-table th { background: #f4ede4; padding: 12px 16px; text-align: left; font-weight: 600; color: #74665A; font-size: 0.8rem; text-transform: uppercase; letter-spacing: .5px; }
-    .ad-table td { padding: 14px 16px; border-bottom: 1px solid #f0ece6; vertical-align: top; }
+    .ad-table-wrap { background: #fff; border-radius: 14px; box-shadow: 0 8px 26px rgba(46,26,14,.08); overflow: hidden; }
+    .ad-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 0.88rem; }
+    .ad-table th { background: #f4ede4; padding: 14px 16px; text-align: left; font-weight: 700; color: #74665A; font-size: 0.78rem; text-transform: uppercase; letter-spacing: .7px; }
+    .ad-table td { padding: 16px; border-bottom: 1px solid #f0ece6; vertical-align: middle; }
     .ad-table tr:last-child td { border-bottom: none; }
     .ad-table tr:hover td { background: #faf8f5; }
 
@@ -74,9 +112,9 @@
     .ad-badge.loai-buyback { background: #f4ede4; color: #8a5d3b; }
     .ad-badge.loai-contact { background: #e3f2fd; color: #1565c0; }
 
-    .ad-table select.trang-thai { padding: 5px 10px; border: 1px solid #d4c5b0; border-radius: 6px; font-size: 0.82rem; background: #fff; cursor: pointer; }
+    .ad-table select.trang-thai { width: 100%; padding: 8px 10px; border: 1px solid #d4c5b0; border-radius: 8px; font-size: 0.82rem; background: #fffaf5; cursor: pointer; color: #2e1a0e; }
 
-    .ad-ghi-chu-btn { padding: 5px 12px; background: #f4ede4; border: 1px solid #d4c5b0; border-radius: 6px; cursor: pointer; font-size: 0.82rem; color: #74665A; }
+    .ad-ghi-chu-btn { width: 100%; padding: 8px 10px; background: #f4ede4; border: 1px solid #d4c5b0; border-radius: 8px; cursor: pointer; font-size: 0.82rem; color: #74665A; }
     .ad-ghi-chu-btn:hover { background: #ede4d4; }
 
     .ad-modal-gh { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); align-items: center; justify-content: center; z-index: 200; }
@@ -90,8 +128,8 @@
     .ad-modal-huy { background: #f0ece6; color: #74665A; }
     .ad-modal-luu { background: #2e6b3e; color: #fff; }
 
-    .ad-nut-hanh-dong { display: flex; gap: 6px; align-items: center; }
-    .ad-nut-xoa { width: 30px; height: 30px; border-radius: 6px; border: 1px solid #e5503a; background: transparent; color: #e5503a; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+    .ad-nut-hanh-dong { display: flex; gap: 6px; align-items: center; justify-content: center; }
+    .ad-nut-xoa { width: 36px; height: 36px; border-radius: 9px; border: 1px solid #e5503a; background: #fff; color: #e5503a; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
     .ad-nut-xoa:hover { background: #e5503a; color: #fff; }
 
     .ad-chi-tiet { background: #faf8f5; border-radius: 8px; padding: 14px; margin-top: 10px; font-size: 0.84rem; color: #74665A; display: none; }
@@ -111,6 +149,7 @@
 
     @media (max-width: 768px) {
       .ad-stats { grid-template-columns: repeat(2, 1fr); }
+      .ad-toolbar { grid-template-columns: 1fr; }
       .ad-table { font-size: 0.8rem; }
       .ad-table th, .ad-table td { padding: 10px 8px; }
     }
@@ -120,17 +159,18 @@
 
 <!-- HEADER -->
 <header class="ad-hd">
-  <a href="index.html" class="ad-hd-logo">
-    <img src="assets/images/logo.jpg" alt="logo">
-    <span>Thư Hiên — Quản lý</span>
-  </a>
-  <div class="ad-hd-right">
-    <button class="ad-hd-btn ad-hd-btn-vl" id="ad-btn-ve-trang-chu" onclick="window.location.href='index.html'">
-      <i class="fas fa-home"></i> Về trang chủ
-    </button>
-    <button class="ad-hd-btn ad-hd-btn-dx" id="ad-btn-dang-xuat" onclick="adDangXuat()">
-      <i class="fas fa-sign-out-alt"></i> Đăng xuất
-    </button>
+  <div class="ad-hd-inner">
+    <a href="index.html" class="ad-hd-logo">
+      <img src="assets/images/logo.jpg" alt="logo">
+    </a>
+    <div class="ad-hd-right">
+      <button class="ad-hd-btn ad-hd-btn-vl" id="ad-btn-ve-trang-chu" onclick="window.location.href='index.html'">
+        <i class="fas fa-home"></i> Về trang chủ
+      </button>
+      <button class="ad-hd-btn ad-hd-btn-dx" id="ad-btn-dang-xuat" onclick="adDangXuat()">
+        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+      </button>
+    </div>
   </div>
 </header>
 
@@ -191,14 +231,14 @@
       <table class="ad-table">
         <thead>
           <tr>
-            <th style="width:38px"><input type="checkbox" id="ad-chon-tat-ca" onchange="adChonTatCa(this)"></th>
-            <th>Ngày</th>
-            <th>Loại</th>
-            <th>Khách hàng</th>
+            <th style="width:44px"><input type="checkbox" id="ad-chon-tat-ca" onchange="adChonTatCa(this)"></th>
+            <th style="width:150px">Ngày</th>
+            <th style="width:120px">Loại</th>
+            <th style="width:260px">Khách hàng</th>
             <th>Nội dung</th>
-            <th>Trạng thái</th>
-            <th>Ghi chú</th>
-            <th style="width:60px"></th>
+            <th style="width:150px">Trạng thái</th>
+            <th style="width:110px">Ghi chú</th>
+            <th style="width:90px">Thao tác</th>
           </tr>
         </thead>
         <tbody id="ad-tbody"></tbody>
@@ -323,11 +363,6 @@ function adRenderBang(ds) {
 
   tbody.innerHTML = ds.map(item => {
     const checked = adIdsDaChon.has(item.id) ? 'checked' : '';
-    const ttBadge = item.trangThai === 'cho-xu-ly' ? 'chua'
-                   : item.trangThai === 'da-phan-hoi' ? 'xl' : 'tc';
-    const ttText  = item.trangThai === 'cho-xu-ly' ? 'Chờ xử lý'
-                   : item.trangThai === 'da-phan-hoi' ? 'Đã phản hồi' : 'Từ chối';
-
     let chiTiet = '';
     if (item.loai === 'buyback') {
       chiTiet = `<div class="ad-chi-tiet" id="ad-ct-${item.id}">
@@ -363,7 +398,6 @@ function adRenderBang(ds) {
         ${chiTiet}
         ${item.ghiChu ? `<p style="margin-top:6px;font-size:0.8rem;color:#2e6b3e"><i class="fas fa-sticky-note"></i> ${item.ghiChu}</p>` : ''}
       </td>
-      <td><span class="ad-badge ${ttBadge}">${ttText}</span></td>
       <td>
         <select class="trang-thai" onchange="adDoiTrangThai(${item.id}, this.value)">
           <option value="cho-xu-ly" ${item.trangThai === 'cho-xu-ly' ? 'selected' : ''}>Chờ xử lý</option>

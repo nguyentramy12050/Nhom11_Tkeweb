@@ -17,15 +17,23 @@
     <div id="header"></div>
     <main class="orders-page">
       <section class="orders-container">
-        <div class="orders-heading">
-          <h1>Đơn hàng của tôi</h1>
-          <p>Theo dõi hành trình của những pho sách quý đang tới tay bạn.</p>
-        </div>
+        <div class="orders-topline">
+          <div class="breadcrumb">
+            <a href="my_order.html">Sách của tôi</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Đơn hàng của tôi</span>
+          </div>
 
-        <div class="orders-tabs">
-          <button class="order-tab active" data-filter="all">Tất cả</button>
-          <button class="order-tab" data-filter="shipping">Đang giao</button>
-          <button class="order-tab" data-filter="completed">Hoàn thành</button>
+          <div class="orders-status-filter">
+            <label for="order-status-filter">Trạng thái</label>
+            <select id="order-status-filter">
+              <option value="all">Tất cả trạng thái</option>
+              <option value="confirmed">Xác nhận</option>
+              <option value="packed">Đóng gói</option>
+              <option value="shipping">Đang giao</option>
+              <option value="completed">Hoàn tất</option>
+            </select>
+          </div>
         </div>
 
         <section id="orders-list" class="orders-list"></section>

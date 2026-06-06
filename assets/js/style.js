@@ -22,6 +22,52 @@ function capNhatBadgeGioHang() {
     badge.classList.toggle('an', soLuong === 0);
 }
 
+function thuhienDaDangNhap() {
+    const sessionLoggedIn = sessionStorage.getItem('thuhien_dang_nhap');
+    const localLoggedIn = localStorage.getItem('thuhien_dang_nhap');
+    const currentUser = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
+
+    return Boolean(sessionLoggedIn || localLoggedIn || currentUser);
+}
+
+function hienThongBaoDangNhap(message) {
+    let toast = document.getElementById('thuhien-login-toast');
+
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'thuhien-login-toast';
+        toast.className = 'thuhien-login-toast';
+        toast.innerHTML = `
+            <i class="fas fa-user-lock"></i>
+            <span></span>
+        `;
+        document.body.appendChild(toast);
+    }
+
+    const textEl = toast.querySelector('span');
+    if (textEl) {
+        textEl.textContent = message || 'Vui lòng đăng nhập để tiếp tục.';
+    }
+
+    toast.classList.add('show');
+
+    clearTimeout(window.__thuhienLoginToastTimer);
+    window.__thuhienLoginToastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2600);
+}
+
+function yeuCauDangNhap(message) {
+    if (thuhienDaDangNhap()) return true;
+
+    hienThongBaoDangNhap(message);
+    return false;
+}
+
+window.thuhienDaDangNhap = thuhienDaDangNhap;
+window.hienThongBaoDangNhap = hienThongBaoDangNhap;
+window.yeuCauDangNhap = yeuCauDangNhap;
+
 // Danh sách thể loại dùng để nhận diện khi người dùng tìm đúng tên thể loại ở header.
 const CAC_THE_LOAI_HEADER = [
     'Văn học kinh điển',
@@ -156,6 +202,38 @@ window.initThuhienHeader = function () {
     }
 };
 
+if (!window.__thuhienProtectedClickBound) {
+    window.__thuhienProtectedClickBound = true;
+    document.addEventListener('click', event => {
+        const protectedLink = event.target.closest('a[href]');
+        if (!protectedLink) return;
+
+        const href = protectedLink.getAttribute('href') || '';
+        const isMyOrderLink = href.includes('my_order.html');
+        const isCheckoutLink = href.includes('checkout.html');
+
+        if (!isMyOrderLink && !isCheckoutLink) return;
+
+        if (!yeuCauDangNhap('Vui lòng đăng nhập để xem Sách của tôi và tiếp tục đặt hàng.')) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    }, true);
+}
+
+function baoVeTrangCanDangNhap() {
+    const pageName = window.location.pathname.split('/').pop();
+    const protectedPages = ['my_order.html', 'checkout.html', 'tracking.html', 'review.html'];
+
+    if (!protectedPages.includes(pageName) || thuhienDaDangNhap()) return;
+
+    hienThongBaoDangNhap('Vui lòng đăng nhập để xem Sách của tôi và tiếp tục đặt hàng.');
+
+    setTimeout(() => {
+        window.location.href = 'login.html';
+    }, 1200);
+}
+
 if (!window.__thuhienStorageBadgeBound) {
     window.__thuhienStorageBadgeBound = true;
     window.addEventListener('storage', event => {
@@ -165,6 +243,7 @@ if (!window.__thuhienStorageBadgeBound) {
 
 document.addEventListener('DOMContentLoaded', function () {
     window.initThuhienHeader();
+    baoVeTrangCanDangNhap();
 });
 
 

@@ -19,8 +19,14 @@
     <main class="cart-page">
       <section class="cart-shell">
         <div class="cart-heading">
-          <h1>Giỏ hàng của bạn</h1>
-          <p>Nơi lưu giữ những tri thức quý giá bạn đã chọn.</p>
+          <div class="breadcrumb">
+            <a href="category.html">Danh mục</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Giỏ hàng</span>
+          </div>
+          <button class="cart-text-link" id="clear-cart">
+            Xóa toàn bộ giỏ hàng
+          </button>
         </div>
 
         <div id="cart-empty" class="empty-cart">
@@ -38,12 +44,6 @@
             aria-label="Danh sách sản phẩm trong giỏ hàng"
           >
             <div id="cart-items"></div>
-
-            <div class="cart-actions">
-              <button class="cart-text-link" id="clear-cart">
-                Xóa toàn bộ giỏ hàng
-              </button>
-            </div>
           </section>
 
           <aside class="cart-summary" aria-label="Tóm tắt đơn hàng">
@@ -76,6 +76,8 @@
               </div>
 
               <div class="coupon-message" id="coupon-message"></div>
+
+              <div class="coupon-options" id="coupon-options"></div>
             </div>
 
             <div class="summary-total">

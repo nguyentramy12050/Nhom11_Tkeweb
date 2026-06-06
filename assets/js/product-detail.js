@@ -253,6 +253,53 @@ function updateHeaderCartBadge() {
     badge.classList.toggle('an', totalQuantity === 0);
 }
 
+// Hien thong bao them gio hang bang toast rieng, khong dung hop thoai mac dinh trinh duyet.
+function showAddCartToast() {
+    let toast = document.getElementById('thuhien-cart-toast');
+
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'thuhien-cart-toast';
+        toast.className = 'thuhien-cart-toast';
+        toast.innerHTML = `
+            <div class="cart-toast-icon">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="cart-toast-content">
+                <strong>Đã thêm sách vào giỏ!</strong>
+                <p>Bạn có muốn đến giỏ hàng để thanh toán không?</p>
+                <div class="cart-toast-actions">
+                    <button type="button" class="cart-toast-primary">Đến giỏ hàng</button>
+                    <button type="button" class="cart-toast-secondary">Tiếp tục xem</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(toast);
+
+        const goCartBtn = toast.querySelector('.cart-toast-primary');
+        const closeBtn = toast.querySelector('.cart-toast-secondary');
+
+        if (goCartBtn) {
+            goCartBtn.addEventListener('click', () => {
+                window.location.href = 'cart.html';
+            });
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                toast.classList.remove('show');
+            });
+        }
+    }
+
+    toast.classList.add('show');
+
+    clearTimeout(window.__thuhienCartToastTimer);
+    window.__thuhienCartToastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 4200);
+}
+
 // Thêm cuốn sách hiện tại vào giỏ hàng, có thể chuyển thẳng sang trang giỏ hàng.
 function addCurrentBookToCart(redirectToCart = false) {
     if (!book) return;
@@ -282,10 +329,7 @@ function addCurrentBookToCart(redirectToCart = false) {
         return;
     }
 
-    const continueShopping = confirm('Đã thêm sách vào giỏ! Bạn muốn thanh toán ngay không?\n- Chọn OK để đến Giỏ hàng.\n- Chọn Cancel để tiếp tục xem sách.');
-    if (continueShopping) {
-        window.location.href = 'cart.html';
-    }
+    showAddCartToast();
 }
 
 // Gắn sự kiện cho các nút thêm giỏ hàng và mua ngay.

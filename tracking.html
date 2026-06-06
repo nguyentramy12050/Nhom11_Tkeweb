@@ -28,8 +28,13 @@
     <main class="tracking-page">
       <section class="tracking-container">
         <div class="tracking-heading">
-          <h1>Theo dõi kiện hàng</h1>
-          <p>Hành trình đơn tri thức đang đến với bạn.</p>
+          <div class="breadcrumb">
+            <a href="my_order.html">Sách của tôi</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="my_order.html">Đơn hàng của tôi</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Theo dõi đơn hàng</span>
+          </div>
         </div>
 
         <section id="tracking-empty" class="tracking-empty">
@@ -63,7 +68,7 @@
 
                 <div class="timeline-content">
                   <div class="timeline-row">
-                    <h2>Đã tiếp nhận đơn hàng</h2>
+                    <h2>Xác nhận</h2>
                     <span id="time-confirmed">08:30</span>
                   </div>
                   <p>
@@ -80,7 +85,7 @@
 
                 <div class="timeline-content">
                   <div class="timeline-row">
-                    <h2>Đang phục chế & đóng gói</h2>
+                    <h2>Đóng gói</h2>
                     <span id="time-packed">14:15</span>
                   </div>
                   <p>
@@ -97,7 +102,7 @@
 
                 <div class="timeline-content">
                   <div class="timeline-row">
-                    <h2>Đang vận chuyển</h2>
+                    <h2>Vận chuyển</h2>
                     <span>Hiện tại</span>
                   </div>
                   <p id="shipping-message">
@@ -121,7 +126,7 @@
 
                 <div class="timeline-content">
                   <div class="timeline-row">
-                    <h2>Giao hàng thành công</h2>
+                    <h2>Hoàn tất</h2>
                     <span>Chờ cập nhật</span>
                   </div>
                   <p>
@@ -187,11 +192,6 @@
                 <strong id="tracking-total">0đ</strong>
               </div>
             </section>
-
-            <button class="support-btn" type="button">
-              <i class="fas fa-headset"></i>
-              Liên hệ chăm sóc khách hàng
-            </button>
           </aside>
         </section>
       </section>

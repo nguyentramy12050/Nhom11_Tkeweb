@@ -18,6 +18,73 @@ const DANH_SACH_VOUCHER = {
     "TRIKY":      { loai: "percent",  giaTri: 10,  donToiThieu: 0,      hetHan: null },
 };
 
+const THONG_TIN_VOUCHER = {
+    HESANG20: {
+        title: "Hè sang 20%",
+        description: "Giảm 20% cho đơn hàng của bạn.",
+        tag: "Giảm 20%"
+    },
+    HESANG50K: {
+        title: "Giảm 50.000đ",
+        description: "Ưu đãi hè sang cho đơn hàng đủ điều kiện.",
+        tag: "Giảm 50K"
+    },
+    FREESHIP26: {
+        title: "Miễn phí vận chuyển",
+        description: "Tự áp dụng cho đơn hàng từ 199.000đ.",
+        tag: "Freeship"
+    },
+    GIFT50K: {
+        title: "Quà tặng 50.000đ",
+        description: "Áp dụng cho đơn hàng từ 299.000đ.",
+        tag: "Quà tặng"
+    },
+    THUHIEN20: {
+        title: "Thư Hiên 20%",
+        description: "Giảm 20% cho đơn hàng.",
+        tag: "Giảm 20%"
+    },
+    KHAIQUYEN10: {
+        title: "Khai quyển 10%",
+        description: "Giảm 10% cho đơn hàng.",
+        tag: "Giảm 10%"
+    },
+    NGOCQUY20: {
+        title: "Ngọc quý 20.000đ",
+        description: "Giảm trực tiếp 20.000đ.",
+        tag: "Giảm 20K"
+    },
+    CHUVANAN15: {
+        title: "Chu Văn An 15%",
+        description: "Giảm 15% cho đơn hàng.",
+        tag: "Giảm 15%"
+    },
+    NGUYENKHI25: {
+        title: "Nguyên khí 25.000đ",
+        description: "Giảm trực tiếp 25.000đ.",
+        tag: "Giảm 25K"
+    },
+    TINHHOA50: {
+        title: "Tinh hoa 50.000đ",
+        description: "Giảm trực tiếp 50.000đ.",
+        tag: "Giảm 50K"
+    },
+    TRIKY: {
+        title: "Tri kỷ 10%",
+        description: "Giảm 10% cho đơn hàng.",
+        tag: "Giảm 10%"
+    }
+};
+
+const AUTO_SHIPPING_CODE = "FREESHIP26";
+const HIDDEN_CART_VOUCHERS = [
+    "KHAIQUYEN10",
+    "NGOCQUY20",
+    "CHUVANAN15",
+    "NGUYENKHI25",
+    "TINHHOA50"
+];
+
 /* xử lý giá tiền */
 
 function parsePrice(priceText) {
@@ -35,6 +102,43 @@ function parsePrice(priceText) {
 
 function formatVND(number) {
     return Number(number || 0).toLocaleString("vi-VN") + "đ";
+}
+
+function isVoucherExpired(voucher) {
+    return Boolean(voucher?.hetHan && new Date() > voucher.hetHan);
+}
+
+function isVoucherUsable(code, subtotal) {
+    const voucher = DANH_SACH_VOUCHER[code];
+    if (!voucher || isVoucherExpired(voucher)) return false;
+
+    return !voucher.donToiThieu || subtotal >= voucher.donToiThieu;
+}
+
+function getVoucherUnavailableReason(code, subtotal) {
+    const voucher = DANH_SACH_VOUCHER[code];
+    if (!voucher) return "Mã không tồn tại.";
+    if (isVoucherExpired(voucher)) return "Mã đã hết hạn.";
+    if (voucher.donToiThieu && subtotal < voucher.donToiThieu) {
+        return `Cần đơn từ ${formatVND(voucher.donToiThieu)}.`;
+    }
+
+    return "";
+}
+
+function getVoucherDiscount(code, subtotal) {
+    const voucher = DANH_SACH_VOUCHER[code];
+    if (!voucher || voucher.loai === "shipping" || !isVoucherUsable(code, subtotal)) return 0;
+
+    if (voucher.loai === "percent") {
+        return Math.round(subtotal * voucher.giaTri / 100);
+    }
+
+    if (voucher.loai === "fixed") {
+        return voucher.giaTri;
+    }
+
+    return 0;
 }
 
 /* xử lý dữ liệu giỏ hàng */
@@ -187,20 +291,21 @@ function applyCoupon() {
         return;
     }
 
-    // Kiểm tra đơn tối thiểu
-    if (voucher.donToiThieu && subtotal < voucher.donToiThieu) {
+    if (voucher.loai === "shipping") {
         removeAppliedCoupon();
-        message.textContent = `Mã ${code} cần đơn từ ${voucher.donToiThieu.toLocaleString('vi-VN')}đ mới áp dụng được.`;
-        message.classList.add("error");
+        message.textContent = isVoucherUsable(code, subtotal)
+            ? "Mã miễn phí vận chuyển đã được tự động áp dụng."
+            : getVoucherUnavailableReason(code, subtotal);
+        message.classList.toggle("error", !isVoucherUsable(code, subtotal));
         message.style.display = "block";
         renderCartPage();
         return;
     }
 
-    // Kiểm tra hết hạn
-    if (voucher.hetHan && new Date() > voucher.hetHan) {
+    // Kiểm tra đơn tối thiểu
+    if (!isVoucherUsable(code, subtotal)) {
         removeAppliedCoupon();
-        message.textContent = "Mã giảm giá đã hết hạn sử dụng.";
+        message.textContent = getVoucherUnavailableReason(code, subtotal);
         message.classList.add("error");
         message.style.display = "block";
         renderCartPage();
@@ -221,19 +326,27 @@ function calculateCartSummary(items) {
         return sum + parsePrice(item.price) * item.quantity;
     }, 0);
 
-    const appliedCoupon = subtotal > 0 ? getAppliedCoupon() : "";
+    let appliedCoupon = subtotal > 0 ? getAppliedCoupon() : "";
     let discount = 0;
     let shipping = subtotal > 0 ? SHIPPING_FEE : 0;
+    const hasFreeShipping = subtotal > 0 && isVoucherUsable(AUTO_SHIPPING_CODE, subtotal);
 
-    if (appliedCoupon && DANH_SACH_VOUCHER[appliedCoupon]) {
-        const voucher = DANH_SACH_VOUCHER[appliedCoupon];
-        if (voucher.loai === "percent") {
-            discount = Math.round(subtotal * voucher.giaTri / 100);
-        } else if (voucher.loai === "fixed") {
-            discount = voucher.giaTri;
-        } else if (voucher.loai === "shipping") {
-            shipping = 0;
-        }
+    if (hasFreeShipping) {
+        shipping = 0;
+    }
+
+    if (appliedCoupon && DANH_SACH_VOUCHER[appliedCoupon]?.loai === "shipping") {
+        appliedCoupon = "";
+        removeAppliedCoupon();
+    }
+
+    if (appliedCoupon && !isVoucherUsable(appliedCoupon, subtotal)) {
+        appliedCoupon = "";
+        removeAppliedCoupon();
+    }
+
+    if (appliedCoupon) {
+        discount = getVoucherDiscount(appliedCoupon, subtotal);
     }
 
     const total = Math.max(subtotal + shipping - discount, 0);
@@ -243,8 +356,48 @@ function calculateCartSummary(items) {
         shipping,
         discount,
         total,
-        appliedCoupon
+        appliedCoupon,
+        hasFreeShipping
     };
+}
+
+function renderCouponOptions(subtotal, appliedCoupon) {
+    const couponOptions = document.getElementById("coupon-options");
+    if (!couponOptions) return;
+
+    couponOptions.innerHTML = Object.keys(DANH_SACH_VOUCHER)
+        .filter(code => !HIDDEN_CART_VOUCHERS.includes(code))
+        .map(code => {
+        const voucher = DANH_SACH_VOUCHER[code];
+        const info = THONG_TIN_VOUCHER[code] || {
+            title: code,
+            description: "Ưu đãi dành cho đơn hàng của bạn.",
+            tag: code
+        };
+        const usable = isVoucherUsable(code, subtotal);
+        const isShipping = voucher.loai === "shipping";
+        const selected = appliedCoupon === code || (isShipping && code === AUTO_SHIPPING_CODE && usable);
+        const reason = usable
+            ? (isShipping ? "Tự động áp dụng" : "Có thể áp dụng")
+            : getVoucherUnavailableReason(code, subtotal);
+
+        return `
+            <button
+                type="button"
+                class="coupon-option ${usable ? "is-available" : "is-disabled"} ${selected ? "is-selected" : ""}"
+                data-coupon-code="${code}"
+                ${usable && !isShipping ? "" : "disabled"}
+                title="${reason}"
+            >
+                <span class="coupon-option-tag">${info.tag}</span>
+                <span class="coupon-option-main">
+                    <strong>${code}</strong>
+                    <small>${info.title}</small>
+                </span>
+                <span class="coupon-option-note">${reason}</span>
+            </button>
+        `;
+    }).join("");
 }
 
 /* hiển thị từng sản phẩm */
@@ -300,6 +453,7 @@ function renderCartPage() {
     const cartEmpty = document.getElementById("cart-empty");
     const cartContent = document.getElementById("cart-content");
     const cartItemsBox = document.getElementById("cart-items");
+    const clearCartBtn = document.getElementById("clear-cart");
 
     const summaryCount = document.getElementById("summary-count");
     const summarySubtotal = document.getElementById("summary-subtotal");
@@ -321,6 +475,7 @@ function renderCartPage() {
     if (items.length === 0) {
         cartEmpty.style.display = "block";
         cartContent.style.display = "none";
+        if (clearCartBtn) clearCartBtn.style.display = "none";
         cartItemsBox.innerHTML = "";
         removeAppliedCoupon();
         return;
@@ -331,6 +486,7 @@ function renderCartPage() {
 
     cartEmpty.style.display = "none";
     cartContent.style.display = "grid";
+    if (clearCartBtn) clearCartBtn.style.display = "inline-flex";
 
     cartItemsBox.innerHTML = items.map(renderCartItem).join("");
 
@@ -340,19 +496,24 @@ function renderCartPage() {
     summaryDiscount.textContent = `-${formatVND(summary.discount)}`;
     summaryTotal.textContent = formatVND(summary.total);
 
+    renderCouponOptions(summary.subtotal, summary.appliedCoupon);
+
     if (summary.appliedCoupon) {
-    couponInput.value = summary.appliedCoupon;
-    couponMessage.textContent = `Đã áp dụng mã ${summary.appliedCoupon}.`;
-    couponMessage.classList.remove("error");
-    couponMessage.style.display = "block";
-    discountRow.style.display = "flex";
-    // Hiển thị tên mã trong cột giảm giá
-    const couponNameSpan = document.getElementById("summary-coupon-name");
-    if (couponNameSpan) couponNameSpan.textContent = summary.appliedCoupon;
+        couponInput.value = summary.appliedCoupon;
+        couponMessage.textContent = `Đã áp dụng mã ${summary.appliedCoupon}.`;
+        couponMessage.classList.remove("error");
+        couponMessage.style.display = "block";
+        discountRow.style.display = "flex";
+        // Hiển thị tên mã trong cột giảm giá
+        const couponNameSpan = document.getElementById("summary-coupon-name");
+        if (couponNameSpan) couponNameSpan.textContent = summary.appliedCoupon;
     } else {
         couponInput.value = "";
-        couponMessage.textContent = "";
-        couponMessage.style.display = "none";
+        couponMessage.textContent = summary.hasFreeShipping
+            ? "Miễn phí vận chuyển đã được tự động áp dụng."
+            : "";
+        couponMessage.classList.remove("error");
+        couponMessage.style.display = summary.hasFreeShipping ? "block" : "none";
         discountRow.style.display = "none";
     }
 }
@@ -360,6 +521,11 @@ function renderCartPage() {
 /* chuyển sang thanh toán */
 
 function goToCheckout() {
+    if (typeof window.yeuCauDangNhap === "function"
+        && !window.yeuCauDangNhap("Vui lòng đăng nhập để thanh toán và đặt hàng.")) {
+        return;
+    }
+
     const items = getCartFromStorage();
 
     if (items.length === 0) {
@@ -397,6 +563,16 @@ function initCartEvents() {
             }
         });
     }
+
+    document.addEventListener("click", function (event) {
+        const option = event.target.closest(".coupon-option.is-available:not([disabled])");
+        if (!option) return;
+
+        const code = option.dataset.couponCode;
+        const couponInputEl = document.getElementById("coupon-input");
+        if (couponInputEl) couponInputEl.value = code;
+        applyCoupon();
+    });
 }
 
 /* khởi chạy trang */

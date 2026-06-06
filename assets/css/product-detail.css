@@ -9,8 +9,11 @@
 }
 
 .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-muted);
     margin-bottom: 24px;
@@ -20,6 +23,7 @@
     transition: 0.3s;
 }
 .breadcrumb a:hover { color: var(--accent-color); }
+.breadcrumb-separator { color: var(--accent-color); }
 
 /* Khung viền trắng be bo góc bao quanh toàn bộ chi tiết */
 .detail-container {

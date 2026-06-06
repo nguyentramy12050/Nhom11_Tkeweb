@@ -3,6 +3,115 @@
 ======================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
+    const USERS_KEY = "thuhien_users";
+    const LEGACY_USERS_KEY = "users";
+    const CURRENT_USER_KEY = "currentUser";
+
+    function docJsonStorage(key, fallbackValue) {
+        try {
+            const raw = sessionStorage.getItem(key) || localStorage.getItem(key);
+            return raw ? JSON.parse(raw) : fallbackValue;
+        } catch (error) {
+            return fallbackValue;
+        }
+    }
+
+    function nguoiDungDaDangNhap() {
+        if (typeof window.thuhienDaDangNhap === "function") {
+            return window.thuhienDaDangNhap();
+        }
+
+        return Boolean(
+            sessionStorage.getItem("thuhien_dang_nhap")
+            || localStorage.getItem("thuhien_dang_nhap")
+            || sessionStorage.getItem(CURRENT_USER_KEY)
+            || localStorage.getItem(CURRENT_USER_KEY)
+        );
+    }
+
+    function chuanHoaEmail(email) {
+        return String(email || "").trim().toLowerCase();
+    }
+
+    function layNguoiDungDangNhap() {
+        const currentUser = docJsonStorage(CURRENT_USER_KEY, null) || {};
+        const users = docJsonStorage(USERS_KEY, docJsonStorage(LEGACY_USERS_KEY, []));
+
+        if (!Array.isArray(users)) return currentUser;
+
+        const registeredUser = users.find(user => {
+            return String(user.id || "") === String(currentUser.id || "")
+                || chuanHoaEmail(user.email) === chuanHoaEmail(currentUser.email);
+        });
+
+        return registeredUser
+            ? { ...currentUser, ...registeredUser }
+            : currentUser;
+    }
+
+    function layGiaTriDauTien(source, keys) {
+        for (const key of keys) {
+            const value = source ? source[key] : "";
+            if (value) return String(value).trim();
+        }
+
+        return "";
+    }
+
+    function khoaFormLienHeNeuChuaDangNhap() {
+        const formBox = document.querySelector(".abt-lien-he-form");
+        const inputs = document.querySelectorAll("#abt-ho-ten, #abt-sdt, #abt-email, #abt-chu-de, #abt-loi-nhan");
+        const nutGui = document.getElementById("abt-nut-gui");
+
+        if (!formBox) return;
+
+        let notice = document.getElementById("abt-login-notice");
+        if (!notice) {
+            notice = document.createElement("div");
+            notice.id = "abt-login-notice";
+            notice.className = "abt-login-notice";
+            notice.innerHTML = `
+                <i class="fas fa-user-lock"></i>
+                <span>Vui lòng đăng nhập để gửi tin nhắn cho Thư Hiên.</span>
+                <a href="login.html">Đăng nhập</a>
+            `;
+            const title = formBox.querySelector(".abt-form-tieu-de");
+            if (title) title.insertAdjacentElement("afterend", notice);
+        }
+
+        const isLoggedIn = nguoiDungDaDangNhap();
+        formBox.classList.toggle("abt-form-locked", !isLoggedIn);
+        notice.style.display = isLoggedIn ? "none" : "flex";
+
+        inputs.forEach(input => {
+            input.disabled = !isLoggedIn;
+        });
+
+        if (nutGui) {
+            nutGui.disabled = !isLoggedIn;
+        }
+
+        return isLoggedIn;
+    }
+
+    function tuDongDienThongTinLienHe() {
+        if (!khoaFormLienHeNeuChuaDangNhap()) return;
+
+        const currentUser = layNguoiDungDangNhap();
+        const hoTenInput = document.getElementById("abt-ho-ten");
+        const sdtInput = document.getElementById("abt-sdt");
+        const emailInput = document.getElementById("abt-email");
+
+        const hoTen = layGiaTriDauTien(currentUser, ["name", "fullName", "fullname", "hoTen", "ten"]);
+        const sdt = layGiaTriDauTien(currentUser, ["phone", "phoneNumber", "sdt", "soDienThoai"]);
+        const email = layGiaTriDauTien(currentUser, ["email", "gmail"]);
+
+        if (hoTenInput && hoTen) hoTenInput.value = hoTen;
+        if (sdtInput && sdt) sdtInput.value = sdt;
+        if (emailInput && email) emailInput.value = email;
+    }
+
+    tuDongDienThongTinLienHe();
 
     /* ===== ĐẾM SỐ ANIMATION ===== */
     function demSo(el, cuoi, thoiGian) {
@@ -66,6 +175,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const nutGui = document.getElementById('abt-nut-gui');
     if (nutGui) {
         nutGui.addEventListener('click', function () {
+            if (!nguoiDungDaDangNhap()) {
+                if (typeof window.hienThongBaoDangNhap === "function") {
+                    window.hienThongBaoDangNhap("Vui lòng đăng nhập để gửi tin nhắn cho Thư Hiên.");
+                }
+                return;
+            }
+
             const hoTenVal = document.getElementById('abt-ho-ten').value.trim();
             const sdtVal   = document.getElementById('abt-sdt').value.trim();
             const emailVal = document.getElementById('abt-email').value.trim();
@@ -100,9 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => {
                 const tb = document.getElementById('abt-thanh-cong');
                 if (tb) tb.classList.add('hien');
-                document.getElementById('abt-ho-ten').value = '';
-                document.getElementById('abt-sdt').value = '';
-                document.getElementById('abt-email').value = '';
                 document.getElementById('abt-loi-nhan').value = '';
                 nutGui.disabled = false;
                 nutGui.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi tin nhắn';

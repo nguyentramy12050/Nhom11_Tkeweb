@@ -108,6 +108,26 @@ function formatTrackingTime(dateValue, hourOffset = 0) {
     });
 }
 
+function getTrackingStatus(order) {
+    const createdAt = new Date(order.createdAt || 0).getTime();
+
+    if (!createdAt || Number.isNaN(createdAt)) {
+        return order.status || "confirmed";
+    }
+
+    const elapsedHours = (Date.now() - createdAt) / (1000 * 60 * 60);
+
+    if (elapsedHours >= 24) return "completed";
+    if (elapsedHours >= 2) return "shipping";
+    if (elapsedHours >= 1) return "packed";
+    return "confirmed";
+}
+
+function getTrackingStepIndex(status) {
+    const statuses = ["confirmed", "packed", "shipping", "completed"];
+    return Math.max(statuses.indexOf(status), 0);
+}
+
 // Gan noi dung text vao phan tu neu phan tu ton tai.
 function setTrackingText(id, value) {
     const element = document.getElementById(id);
@@ -230,6 +250,61 @@ function renderTrackingSummary(order) {
     }
 }
 
+function updateTrackingTimeline(order) {
+    const status = getTrackingStatus(order);
+    const currentStepIndex = getTrackingStepIndex(status);
+    const timelineItems = document.querySelectorAll(".timeline-item");
+    const createdAt = order.createdAt || new Date().toISOString();
+
+    const steps = [
+        {
+            time: formatTrackingTime(createdAt, 0),
+            description: "Hệ thống đã ghi nhận yêu cầu đặt sách của bạn."
+        },
+        {
+            time: formatTrackingTime(createdAt, 1),
+            description: "Sách đang được kiểm tra, bọc chống ẩm và đóng gói."
+        },
+        {
+            time: status === "shipping" ? "Hiện tại" : formatTrackingTime(createdAt, 2),
+            description: "Kiện hàng đã rời kho trung chuyển và đang trên đường tới địa chỉ của bạn."
+        },
+        {
+            time: status === "completed" ? formatTrackingTime(createdAt, 24) : "Chờ cập nhật",
+            description: "Cảm ơn bạn đã tin tưởng Thư Hiên trong việc gìn giữ di sản tri thức."
+        }
+    ];
+
+    timelineItems.forEach((item, index) => {
+        const isActive = index <= currentStepIndex;
+        const isCurrent = index === currentStepIndex && status !== "completed";
+        const timeEl = item.querySelector(".timeline-row span");
+        const descEl = item.querySelector(".timeline-content p");
+
+        item.classList.toggle("active", isActive);
+        item.classList.toggle("current", isCurrent);
+        item.classList.toggle("disabled", !isActive);
+
+        if (timeEl) {
+            timeEl.textContent = isActive ? steps[index].time : "";
+        }
+
+        if (descEl) {
+            descEl.textContent = isActive ? steps[index].description : "";
+        }
+    });
+
+    const noteBox = document.querySelector(".tracking-note");
+    if (noteBox) {
+        noteBox.style.display = status === "shipping" ? "flex" : "none";
+    }
+
+    const reviewBtn = document.getElementById("go-review-btn");
+    if (reviewBtn) {
+        reviewBtn.style.display = status === "completed" ? "inline-flex" : "none";
+    }
+}
+
 // Do du lieu don hang vao cac khu vuc thong tin tren trang tracking.
 function renderTrackingPage() {
     const order = findTrackingOrder();
@@ -249,8 +324,6 @@ function renderTrackingPage() {
 
     setTrackingText("tracking-code", `#${order.code || "TH-0000"}`);
     setTrackingText("tracking-date", formatTrackingDate(expectedDate));
-    setTrackingText("time-confirmed", formatTrackingTime(createdAt, 0));
-    setTrackingText("time-packed", formatTrackingTime(createdAt, 6));
     setTrackingText("receiver-name", customer.name || "Đang cập nhật");
     setTrackingText("receiver-phone", customer.phone || "Đang cập nhật");
     setTrackingText("receiver-address", address);
@@ -268,6 +341,7 @@ function renderTrackingPage() {
     }
 
     renderTrackingSummary(order);
+    updateTrackingTimeline(order);
 }
 
 // Khoi chay trang tracking sau khi DOM san sang va cap nhat badge header sau do.

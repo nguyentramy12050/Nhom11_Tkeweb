@@ -6,8 +6,18 @@
 }
 
 .page-header { text-align: left; margin-bottom: 40px; }
-.breadcrumb { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+}
 .breadcrumb a { color: var(--text-muted); }
+.breadcrumb-separator { color: var(--accent-color); }
 .page-title { font-size: 42px; color: var(--accent-color); margin-bottom: 10px; }
 .page-quote { font-size: 16px; font-style: italic; color: var(--text-muted); }
 

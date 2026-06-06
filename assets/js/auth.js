@@ -1,4 +1,5 @@
-const USERS_KEY = "users";
+const USERS_KEY = "thuhien_users";
+const LEGACY_USERS_KEY = "users";
 const CURRENT_USER_KEY = "currentUser";
 const LOGIN_STATUS_KEY = "thuhien_dang_nhap";
 const DISPLAY_NAME_KEY = "thuhien_ten";
@@ -6,10 +7,14 @@ const REMEMBERED_EMAIL_KEY = "thuhien_remembered_email";
 
 function getUsers() {
     try {
-        const rawUsers = localStorage.getItem(USERS_KEY);
+        const rawUsers = localStorage.getItem(USERS_KEY) || localStorage.getItem(LEGACY_USERS_KEY);
         const users = rawUsers ? JSON.parse(rawUsers) : [];
 
         if (!Array.isArray(users)) return [];
+
+        if (!localStorage.getItem(USERS_KEY) && users.length > 0) {
+            saveUsers(users);
+        }
 
         return users;
     } catch (error) {
@@ -20,6 +25,7 @@ function getUsers() {
 
 function saveUsers(users) {
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    localStorage.removeItem(LEGACY_USERS_KEY);
 }
 
 // Tạo sẵn tài khoản admin nếu chưa có

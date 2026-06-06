@@ -19,11 +19,13 @@
     <main class="checkout-page">
       <section class="checkout-wrap">
         <div class="checkout-heading">
-          <h1>Hoàn tất đặt sách</h1>
-          <p>
-            Bước cuối cùng để đưa những tri thức vượt thời gian về tủ sách của
-            bạn.
-          </p>
+          <div class="breadcrumb">
+            <a href="category.html">Danh mục</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="cart.html">Giỏ hàng</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Đặt sách</span>
+          </div>
         </div>
 
         <div id="checkout-empty" class="checkout-empty">
@@ -126,6 +128,18 @@
                   >
                 </span>
                 <i class="fas fa-money-bill-wave"></i>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="payment-method" value="ewallet" />
+                <span>
+                  <strong>Ví điện tử MoMo / ZaloPay</strong>
+                  <em
+                    >Thanh toán nhanh qua ví điện tử sau khi đơn hàng được xác
+                    nhận.</em
+                  >
+                </span>
+                <i class="fas fa-wallet"></i>
               </label>
             </section>
 
