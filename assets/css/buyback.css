@@ -588,8 +588,58 @@
 }
 
 @media (max-width: 600px) {
+    .bb-khung {
+        width: 90%;
+    }
+
+    .bb-hero {
+        min-height: 420px;
+    }
+
+    .bb-hero-noi {
+        padding: 48px 18px;
+    }
+
     .bb-hero-tieu-de { font-size: 2rem; }
     .bb-hang-2 { grid-template-columns: 1fr; }
     .bb-tinh-trang-list { grid-template-columns: repeat(2, 1fr); }
     .bb-tieu-de { font-size: 1.7rem; }
+
+    .bb-tieu-de-khu {
+        margin-bottom: 36px;
+    }
+
+    .bb-quy-trinh,
+    .bb-tieu-chi,
+    .bb-form-khu {
+        padding: 58px 0;
+    }
+
+    .bb-buoc {
+        flex: 0 0 100%;
+        margin-bottom: 28px;
+    }
+
+    .bb-bang-gia,
+    .bb-nhom,
+    .bb-form-phai {
+        border-radius: 14px;
+        padding: 22px 18px;
+    }
+
+    .bb-hang-gia {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .bb-radio-list {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 390px) {
+    .bb-tinh-trang-list {
+        grid-template-columns: 1fr;
+    }
 }

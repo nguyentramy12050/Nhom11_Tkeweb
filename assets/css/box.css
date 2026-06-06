@@ -404,6 +404,10 @@ body {
 
 /* ĐÁP ỨNG DI ĐỘNG */
 @media (max-width: 768px) {
+    .thuhien-header {
+        padding: 14px 18px;
+    }
+
     .header-container, .footer-container {
         flex-direction: column;
         align-items: center;
@@ -417,5 +421,54 @@ body {
     }
     .game-header-box .game-title {
         font-size: 2rem;
+    }
+
+    .page-container-qua {
+        min-height: auto;
+        padding: 48px 16px;
+        background-attachment: scroll;
+    }
+
+    .khung-ong-xam {
+        width: 150px;
+        height: 220px;
+        margin: 30px auto;
+    }
+
+    .ruot-cuon-sach {
+        padding: 28px 20px;
+    }
+
+    .nhom-nut-hanh-dong {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 430px) {
+    .logo-text {
+        font-size: 1.45rem;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 14px;
+    }
+
+    .nav-menu a {
+        margin: 0;
+        font-size: 0.86rem;
+    }
+
+    .game-header-box .game-title {
+        font-size: 1.75rem;
+    }
+
+    .khung-ma-code {
+        width: 100%;
+        padding-left: 14px;
+        padding-right: 14px;
+        font-size: 1.15rem;
     }
 }

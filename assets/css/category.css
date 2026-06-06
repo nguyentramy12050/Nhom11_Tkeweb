@@ -433,3 +433,122 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+@media (max-width: 1024px) {
+    .container-custom {
+        padding: 24px 18px 54px;
+    }
+
+    .page-header {
+        margin-bottom: 24px;
+    }
+
+    .page-title {
+        font-size: 36px;
+    }
+
+    .category-layout {
+        display: block;
+        padding: 26px 22px;
+        border-radius: 14px;
+        overflow: hidden;
+    }
+
+    .sidebar-filter {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 28px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .filter-group {
+        margin-bottom: 0;
+        min-width: 0;
+    }
+
+    .category-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 14px;
+    }
+
+    .category-list li {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    .checkbox-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 14px;
+    }
+
+    .checkbox-group label {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    .btn-apply-filter {
+        grid-column: 1 / -1;
+        max-width: 240px;
+        justify-self: end;
+    }
+
+    .product-area {
+        width: 100%;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .book-name {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 700px) {
+    .container-custom {
+        padding: 20px 14px 48px;
+    }
+
+    .category-layout {
+        padding: 20px 16px;
+    }
+
+    .sidebar-filter {
+        grid-template-columns: 1fr;
+    }
+
+    .category-list,
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-apply-filter {
+        max-width: none;
+        justify-self: stretch;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .page-title {
+        font-size: 30px;
+    }
+
+    .page-quote {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 430px) {
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+}

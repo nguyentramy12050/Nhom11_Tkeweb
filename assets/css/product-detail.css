@@ -564,3 +564,128 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+@media (max-width: 1024px) {
+    .container-custom {
+        padding: 26px 18px 54px;
+    }
+
+    .detail-container {
+        padding: 28px;
+    }
+
+    .product-top-section {
+        gap: 32px;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .container-custom {
+        padding: 22px 14px 48px;
+    }
+
+    .breadcrumb {
+        flex-wrap: wrap;
+        font-size: 15px;
+    }
+
+    .detail-container {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .product-top-section {
+        display: block;
+    }
+
+    .product-gallery,
+    .product-info-box {
+        width: 100%;
+    }
+
+    .product-gallery {
+        max-width: 430px;
+        margin: 0 auto 24px;
+    }
+
+    .product-title {
+        font-size: 28px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 16px;
+    }
+
+    .cart-action {
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+    .qty-selector {
+        height: 44px;
+    }
+
+    .btn-add-cart,
+    .btn-buy-now-detail {
+        min-height: 46px;
+        max-width: none;
+        flex: 1 1 100%;
+    }
+
+    .detail-tabs {
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .detail-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .detail-tab-btn {
+        flex: 0 0 auto;
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    .review-summary,
+    .order-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-score-box {
+        padding-right: 0;
+        border-right: 0;
+        border-bottom: 1px solid rgba(139, 90, 43, 0.12);
+        padding-bottom: 18px;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 430px) {
+    .product-title {
+        font-size: 24px;
+    }
+
+    .new-price {
+        font-size: 28px;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .description-content p::first-letter {
+        float: none;
+        font-size: inherit;
+        padding-right: 0;
+    }
+}

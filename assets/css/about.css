@@ -436,9 +436,21 @@
     .abt-cau-chuyen-luoi   { grid-template-columns: 1fr; }
     .abt-anh-luoi          { height: 360px; }
     .abt-lien-he-luoi      { grid-template-columns: 1fr; }
+    .abt-lien-he,
+    .abt-cau-chuyen {
+        padding: 70px 0;
+    }
 }
 
 @media (max-width: 768px) {
+    .abt-hero {
+        min-height: auto;
+    }
+
+    .abt-hero-noi {
+        padding: 64px 20px 42px;
+    }
+
     .abt-hero-tieu-de      { font-size: 2.2rem; }
     .abt-hero-so-list      { flex-wrap: wrap; }
     .abt-hero-so           { flex: 0 0 50%; border-bottom: 1px solid rgba(255,255,255,.1); }
@@ -446,4 +458,79 @@
     .abt-gia-tri-luoi      { grid-template-columns: 1fr; }
     .abt-form-hang-2       { grid-template-columns: 1fr; }
     .abt-lien-he-form      { padding: 28px 20px; }
+    .abt-anh-luoi {
+        height: auto;
+        grid-template-rows: auto;
+    }
+
+    .abt-anh-lon {
+        aspect-ratio: 4 / 3;
+    }
+
+    .abt-anh-nho-list {
+        height: auto;
+    }
+
+    .abt-anh-nho {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+@media (max-width: 520px) {
+    .abt-khung {
+        width: 90%;
+    }
+
+    .abt-hero-noi {
+        padding: 54px 18px 38px;
+    }
+
+    .abt-hero-tieu-de {
+        font-size: 1.95rem;
+    }
+
+    .abt-cau-chuyen,
+    .abt-lien-he {
+        padding: 56px 0;
+    }
+
+    .abt-tieu-de-khu {
+        margin-bottom: 36px;
+    }
+
+    .abt-anh-lon,
+    .abt-anh-nho {
+        border-radius: 12px;
+    }
+
+    .abt-anh-nho-list {
+        grid-template-columns: 1fr;
+    }
+
+    .abt-lien-he-muc {
+        gap: 12px;
+    }
+
+    .abt-lien-he-form {
+        border-radius: 14px;
+        padding: 24px 16px;
+    }
+
+    .abt-hero-so {
+        flex-basis: 100%;
+        border-right: none;
+    }
+
+    .abt-login-notice {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .abt-login-notice a {
+        margin-left: 0;
+    }
+
+    .abt-mxh-list {
+        flex-wrap: wrap;
+    }
 }

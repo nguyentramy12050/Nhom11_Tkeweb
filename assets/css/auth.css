@@ -317,8 +317,15 @@ a {
 }
 
 @media (max-width: 900px) {
+    .auth-page {
+        align-items: flex-start;
+        min-height: 100svh;
+        background-attachment: scroll;
+    }
+
     .register-shell {
         grid-template-columns: 1fr;
+        min-height: 0;
     }
 
     .register-image {
@@ -337,6 +344,14 @@ a {
 
     .login-card {
         padding: 36px 24px;
+    }
+
+    .register-card {
+        padding: 30px 20px;
+    }
+
+    .register-card h1 {
+        font-size: 24px;
     }
 
     .auth-row {

@@ -358,6 +358,12 @@
 @media (max-width: 940px) {
     .tracking-layout {
         grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .tracking-side {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -369,6 +375,15 @@
     .tracking-main-card,
     .side-card {
         padding: 22px;
+    }
+
+    .tracking-heading .breadcrumb {
+        flex-wrap: wrap;
+        font-size: 15px;
+    }
+
+    .tracking-side {
+        display: flex;
     }
 
     .tracking-top {
@@ -392,5 +407,53 @@
     .timeline-row {
         flex-direction: column;
         gap: 4px;
+    }
+
+    .tracking-summary div,
+    .tracking-total {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 430px) {
+    .tracking-main-card,
+    .side-card {
+        padding: 18px;
+    }
+
+    .tracking-top strong {
+        font-size: 14px;
+    }
+
+    .timeline {
+        padding-left: 16px;
+    }
+
+    .timeline::before {
+        left: 13px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 30px 1fr;
+        margin-bottom: 28px;
+    }
+
+    .timeline-icon {
+        width: 30px;
+        height: 30px;
+        margin-left: -16px;
+    }
+
+    .timeline-row h2 {
+        font-size: 20px;
+    }
+
+    .tracking-total {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .tracking-total strong {
+        font-size: 24px;
     }
 }
