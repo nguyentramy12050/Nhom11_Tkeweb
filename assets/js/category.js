@@ -59,13 +59,26 @@ function chuanHoaChuoi(value) {
         .toLocaleLowerCase('vi-VN');
 }
 
+// Tạo slug không dấu viết liền để đọc URL như vanhockinhdien, lichsuvavanminh...
+function taoSlugTheLoai(value) {
+    return chuanHoaChuoi(value)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/[^a-z0-9]/g, '');
+}
+
 // Tìm tên thể loại đúng trong dữ liệu sách dựa trên từ khóa từ URL hoặc ô tìm kiếm.
 function timTheLoaiTheoTuKhoa(keyword) {
     const tuKhoaChuan = chuanHoaChuoi(keyword);
+    const slugTuKhoa = taoSlugTheLoai(keyword);
     if (!tuKhoaChuan) return null;
 
     const danhSachTheLoai = [...new Set(booksData.map(book => book.category))];
-    return danhSachTheLoai.find(category => chuanHoaChuoi(category) === tuKhoaChuan) || null;
+    return danhSachTheLoai.find(category => {
+        return chuanHoaChuoi(category) === tuKhoaChuan
+            || taoSlugTheLoai(category) === slugTuKhoa;
+    }) || null;
 }
 
 // Bật sáng đúng mục thể loại trong sidebar khi người dùng đi từ dropdown header hoặc tìm kiếm.

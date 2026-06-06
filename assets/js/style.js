@@ -88,13 +88,21 @@ function chuanHoaTuKhoaHeader(value) {
         .toLocaleLowerCase('vi-VN');
 }
 
+function taoSlugTheLoaiHeader(value) {
+    return chuanHoaTuKhoaHeader(value)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/[^a-z0-9]/g, '');
+}
+
 // Tạo đường dẫn sang trang danh mục, ưu tiên lọc thể loại nếu từ khóa là tên thể loại.
 function taoDuongDanDanhMucTheoTuKhoa(tuKhoa) {
     const tuKhoaChuan = chuanHoaTuKhoaHeader(tuKhoa);
     const theLoai = CAC_THE_LOAI_HEADER.find(item => chuanHoaTuKhoaHeader(item) === tuKhoaChuan);
 
     if (theLoai) {
-        return `category.html?category=${encodeURIComponent(theLoai)}`;
+        return `category.html?category=${taoSlugTheLoaiHeader(theLoai)}`;
     }
 
     return `category.html?q=${encodeURIComponent(tuKhoa)}`;
