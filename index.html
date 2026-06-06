@@ -495,5 +495,41 @@
             });
         });
     </script>
+
+    <!-- ================= POPUP QUẢNG CÁO ================= -->
+    <div id="thuhien-popup" class="thuhien-popup">
+      <div class="thuhien-popup-overlay"></div>
+      <div class="thuhien-popup-box">
+        <a href="promotion-detail.html" class="thuhien-popup-link">
+          <img src="assets/images/banners/popup.jpg" alt="Khuyến mãi Thư Hiên" class="thuhien-popup-img">
+        </a>
+        <button class="thuhien-popup-close" id="thuhien-popup-close" aria-label="Đóng">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var popup = document.getElementById('thuhien-popup');
+        var closeBtn = document.getElementById('thuhien-popup-close');
+        var overlay = popup ? popup.querySelector('.thuhien-popup-overlay') : null;
+        var POPUP_KEY = 'thuhien_popup_dong';
+
+        if (!popup || !closeBtn || !overlay) return;
+
+        if (localStorage.getItem(POPUP_KEY) !== 'true') {
+          popup.classList.add('hien-popup');
+        }
+
+        function dongPopup() {
+          popup.classList.remove('hien-popup');
+          localStorage.setItem(POPUP_KEY, 'true');
+        }
+
+        closeBtn.addEventListener('click', dongPopup);
+        overlay.addEventListener('click', dongPopup);
+      })();
+    </script>
   </body>
 </html>

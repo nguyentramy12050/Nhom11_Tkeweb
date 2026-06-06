@@ -36,12 +36,7 @@ main > section {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 6s ease;
-}
-
-/* Ken Burns — ảnh từ từ phóng to */
-.swiper-slide-active .hero-bg-img {
-  transform: scale(1.05);
+  transition: transform 5s ease;
 }
 
 /* Lớp phủ gradient slide 1 */
@@ -152,7 +147,7 @@ main > section {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 6s ease;
+  transition: transform 5s ease;
 }
 
 .swiper-slide-active .hero-km-link img {
@@ -745,9 +740,6 @@ main > section {
 }
 
 /* ===================================TOP SÁCH NỔI BẬT =================================== */
-/* ===================================
-TOP SÁCH NỔI BẬT
-=================================== */
 
 .top-sach-noi-bat{
     padding:80px 0;
@@ -785,24 +777,16 @@ TOP SÁCH NỔI BẬT
 
 .item-sach-lon{
     position:relative;
-
     width:300px;
     height: 700px;
-
     background:#fff;
-
     border:1px solid #d7b797;
     border-radius:24px;
-
     overflow:hidden;
-
     display:flex;
     flex-direction:column;
-
     cursor:pointer;
-
     transition:.35s;
-
     box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
@@ -842,9 +826,9 @@ TOP SÁCH NỔI BẬT
     transition: opacity .35s, transform .35s;
 }
 
-.top1::before { background-position-x: 0%; }    /* phần "01" */
-.top2::before { background-position-x: 50%; }   /* phần "02" */
-.top3::before { background-position-x: 100%; }  /* phần "03" */
+.top1::before { background-position-x: 0%; }  
+.top2::before { background-position-x: 50%; }  
+.top3::before { background-position-x: 100%; }  
 
 .item-sach-lon:hover::before {
     opacity: .85;
@@ -874,7 +858,6 @@ TOP SÁCH NỔI BẬT
     width:100%;
     height:100%;
     object-fit:cover;
-
     transition:.5s;
 }
 
