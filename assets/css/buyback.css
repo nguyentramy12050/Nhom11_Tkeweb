@@ -114,7 +114,10 @@
     transition: background .25s, transform .25s;
 }
 
-.bb-nut-chinh:hover { background: var(--mau-chinh); transform: translateY(-2px); }
+.bb-nut-chinh:hover { 
+    background: var(--mau-chinh); 
+    transform: translateY(-2px); 
+ia}
 
 /* ===== QUY TRÌNH ===== */
 .bb-quy-trinh {
