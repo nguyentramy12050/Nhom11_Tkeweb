@@ -17,7 +17,6 @@
     <div id="header"></div>
 
   <main class="trang-blog">
-<!-- ========================================= -->
 <!-- HERO -->
 <section class="hero-blog">
     <div class="hero-blog-overlay"></div>
@@ -43,9 +42,7 @@
     </div>
 </section>
 
-<!-- ========================================= -->
 <!-- BÀI NỔI BẬT -->
-<!-- ========================================= -->
 
 <section class="khu-bai-noi-bat" id="bai-viet-noi-bat">
 
@@ -69,9 +66,7 @@
 
 </section>
 
-<!-- ========================================= -->
 <!-- TIN TỨC -->
-<!-- ========================================= -->
 
 <section class="khu-tin-tuc">
 
@@ -98,9 +93,7 @@
 
 </section>
 
-<!-- ========================================= -->
 <!-- KHUYẾN MÃI -->
-<!-- ========================================= -->
 
 <section class="khu-khuyen-mai">
 
@@ -127,9 +120,7 @@
 
 </section>
 
-<!-- ========================================= -->
 <!-- SỰ KIỆN -->
-<!-- ========================================= -->
 
 <section class="khu-su-kien">
 
@@ -156,9 +147,7 @@
 
 </section>
 
-<!-- ========================================= -->
 <!-- SÁCH QUÝ -->
-<!-- ========================================= -->
 
 <section class="khu-sach-quy">
 
@@ -185,9 +174,7 @@
 
 </section>
 
-<!-- ========================================= -->
 <!-- DANH SÁCH BÀI VIẾT -->
-<!-- ========================================= -->
 
 <section class="khu-danh-sach-bai-viet">
 
@@ -223,7 +210,7 @@
     <script src="assets/js/blog.js"></script>
     <script src="assets/js/style.js"></script>
 
-    <!-- ================= HỘP QUÀ NỔI TÍCH HỢP ================= -->
+    <!-- ================= gieo que ================= -->
 <div id="khu-vuc-qua-tang">
     
     <a href="box.html" class="nut-gieo-que-lo-lung" data-tooltip="Hãy ấn vào để gieo quẻ nhận quà">
@@ -231,7 +218,7 @@
     </a>
 </div>
 
-<!--  ĐOẠN SCRIPT FETCH MỚI (Đã tối ưu để kích hoạt lại các hàm active) -->
+<!-- FETCH -->
     <script>
         function taiComponent(elementId, url, callback) {
             const container = document.getElementById(elementId);
@@ -254,7 +241,7 @@
                         oldScript.remove();
                     });
 
-                    // 🔥 QUAN TRỌNG: Gọi hàm callback để chạy các hàm active sau khi Header/Footer đã lên hình
+                    //  Gọi hàm callback để chạy các hàm active sau khi Header/Footer đã lên hình
                     if (callback) callback();
                 })
                 .catch(err => console.error("Lỗi tải component:", err));
@@ -271,8 +258,7 @@
                     window.initThuhienHeader();
                 }
                 
-                // 2. Kích hoạt hàm đổi màu Active của cậu (Ví dụ tên hàm là xử lý active)
-                // Cậu kiểm tra xem trong style.js cậu đặt tên hàm active là gì thì gọi ở đây nhé:
+                // 2. Kích hoạt hàm đổi màu Active
                 if (typeof window.initActiveMenu === "function") {
                     window.initActiveMenu();
                 } else if (typeof window.xuLyActiveMenu === "function") {

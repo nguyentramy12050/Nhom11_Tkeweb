@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <style>
     :root {
-            --primary-brown: #8b5e34; /* Nâu cổ điển */
-            --bg-cream: #fcf9f2; /* Kem giấy cũ */
+            --primary-brown: #8b5e34; 
+            --bg-cream: #fcf9f2; 
             --text-dark: #3e2723;
             --border-color: #dfd3c3;
         }
@@ -35,7 +35,7 @@
             font-size: 2.2rem;
             color: var(--primary-brown);
             margin-bottom: 40px;
-            font-family: 'Times New Roman', serif; /* Font có chân tạo cảm giác sách cổ */
+            font-family: 'Times New Roman', serif;
             border-bottom: 2px dashed var(--border-color);
             padding-bottom: 15px;
         }
@@ -246,7 +246,7 @@
     <script src="assets/js/index.js" ></script>
     <script src="assets/js/style.js"></script>
 
-    <!-- ================= HỘP QUÀ NỔI TÍCH HỢP ================= -->
+    <!-- ================= GIEO QU ================= -->
 <div id="khu-vuc-qua-tang">
     
     <a href="box.html" class="nut-gieo-que-lo-lung" data-tooltip="Hãy ấn vào để gieo quẻ nhận quà">
@@ -254,7 +254,7 @@
     </a>
 </div>
 
-<!--  ĐOẠN SCRIPT FETCH MỚI (Đã tối ưu để kích hoạt lại các hàm active) -->
+<!-- FETCH-->
     <script>
         function taiComponent(elementId, url, callback) {
             const container = document.getElementById(elementId);
@@ -277,7 +277,7 @@
                         oldScript.remove();
                     });
 
-                    // 🔥 QUAN TRỌNG: Gọi hàm callback để chạy các hàm active sau khi Header/Footer đã lên hình
+                    // Gọi hàm callback để chạy các hàm active sau khi Header/Footer đã lên hình
                     if (callback) callback();
                 })
                 .catch(err => console.error("Lỗi tải component:", err));
@@ -294,8 +294,7 @@
                     window.initThuhienHeader();
                 }
                 
-                // 2. Kích hoạt hàm đổi màu Active của cậu (Ví dụ tên hàm là xử lý active)
-                // Cậu kiểm tra xem trong style.js cậu đặt tên hàm active là gì thì gọi ở đây nhé:
+                // 2. Kích hoạt hàm đổi màu Active 
                 if (typeof window.initActiveMenu === "function") {
                     window.initActiveMenu();
                 } else if (typeof window.xuLyActiveMenu === "function") {
