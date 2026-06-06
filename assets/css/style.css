@@ -810,3 +810,77 @@ h1, h2, h3, h4, h5, h6,
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.06); }
 }
+
+/* ===================================================
+   POPUP QUẢNG CÁO TRANG CHỦ
+=================================================== */
+.thuhien-popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+}
+
+.thuhien-popup.hien-popup {
+  display: flex;
+}
+
+.thuhien-popup-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.thuhien-popup-box {
+  position: relative;
+  max-width: 520px;
+  width: 90vw;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  animation: thuhien-popup-hien 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes thuhien-popup-hien {
+  from { opacity: 0; transform: scale(0.8) translateY(-20px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+.thuhien-popup-link {
+  display: block;
+  width: 100%;
+}
+
+.thuhien-popup-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+.thuhien-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(46, 26, 14, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  line-height: 1;
+}
+
+.thuhien-popup-close:hover {
+  background: rgba(46, 26, 14, 0.95);
+  transform: scale(1.1);
+}
